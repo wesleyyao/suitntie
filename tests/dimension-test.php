@@ -50,19 +50,19 @@
             <div class="row testDesc">
                 <div class="col-md-4 tri-block">
                     <div class="lightShadow tri-block-content">
-                        <img src="asset/image/timer.svg">
+                        <img src="asset/image/test-page/timer.svg">
                         <p>测试长度大概为20分钟，回答没有对错好坏之分。</p>
                     </div>
                 </div>
                 <div class="col-md-4 tri-block">
                     <div class="lightShadow tri-block-content">
-                        <img src="asset/image/heart.svg">
+                        <img src="asset/image/test-page/heart.svg">
                         <p>请选择真实的你的做法，而不要选择你认为哪样更好。</p>
                     </div>
                 </div>
                 <div class="col-md-4 tri-block">
                     <div class="lightShadow tri-block-content">
-                        <img src="asset/image/relax.svg">
+                        <img src="asset/image/test-page/relax.svg">
                         <p>最大程度放松下来，不假思索地选择你的倾向。</p>
                     </div>
                 </div>
