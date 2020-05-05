@@ -12,6 +12,7 @@
     <div class="home-page-main">
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/home-slider-top.php"); ?>
+        <input type="hidden" id="hide_title" value="home"/>
         <div class="container mt-5 mb-5 pt-5 pb-5">
             <div class="row">
                 <div class="col-12 text-center">
@@ -179,8 +180,9 @@
                 </form>
             </div>
         </div>
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-footer.php"); ?>
     </div>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-footer.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/component/auth-modals.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/script.php"); ?>
 </body>
 </html>

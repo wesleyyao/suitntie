@@ -23,6 +23,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="test-main">
+        <input type="hidden" id="hide_title" value="dimension-test"/>
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
         <div class="container" style="padding: 100px 0 25px 0; min-height: 500px;">
             <?php if(isset($_SESSION["test_error_message"])): ?>

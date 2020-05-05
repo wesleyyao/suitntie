@@ -22,6 +22,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="user-main">
+        <input type="hidden" id="hide_title" value="user"/>
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
             <div class="container" style="padding: 150px 0 100px 0">
                 <br/>

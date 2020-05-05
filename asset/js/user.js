@@ -11,12 +11,13 @@ $(document).ready(function () {
     });
     $.get('/suitntie/public/api/account.php').done(function(data){
         const result = JSON.parse(data);
-        if(result === 'no login'){
+        const pageTitle = $('#hide_title').val();
+        console.log(pageTitle)
+        if(result === 'no login' && pageTitle !== 'home'){  
             $('#userLoginModal').modal('show');
             $('#mainContentDiv').fadeOut();
             message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
             $('#message').html(message);
-            return;
         }
         user = result.user ? result.user : undefined;
         const noLogin = `<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录 | 注册</a>`;
@@ -30,7 +31,10 @@ $(document).ready(function () {
             </div>
         </div>`;
         $('#userInNav').html(user ? isLogin : noLogin);
-        $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : '/suitntie/asset/image/avatar.png');
+        if(user){
+            $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : '/suitntie/asset/image/avatar.png');
+        }
+        return;
     });
     $('.submit-button').click(function () {
         const submitId = $(this).attr('id');
