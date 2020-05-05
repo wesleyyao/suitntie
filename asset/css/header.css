@@ -1,0 +1,34 @@
+.global-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 90;
+}
+
+.global-nav-logo{
+    position: absolute;
+    top: 20px;
+}
+
+.glboal-nav-items{
+    width: 100%;
+}
+
+.global-nav-item{
+    display: inline-block;
+    padding: 10px;
+}
+
+.global-nav-item a{
+    color: #555;
+}
+
+.global-nav-item a:hover, .global-nav-item a:active, .global-nav-item a:focus{
+    text-decoration: none;
+}

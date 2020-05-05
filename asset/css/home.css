@@ -1,0 +1,45 @@
+.home-slider{
+    width: 100%;
+    max-height: 520px;
+}
+
+.carousel-caption{
+    top: 185px;
+}
+
+.carousel-inner, .carousel-item{
+    max-height: 520px !important;
+}
+
+.home-programs-entrance{
+    background-image: url(/suitntie/asset/image/library.jpg);
+    background-size: cover;
+    height: 450px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 25px 50px;
+}
+
+.home-one-on-one-entrance{
+    background-color: #fdf1e7;
+    color: #333;
+    padding: 25px;
+}
+
+.teacher-cell{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.teacher-cell img{
+    width: 45%;
+    margin-right: 5%;
+    border-radius: 25px;
+}
+
+.home-contact-form{
+    padding: 50px 25px;
+    background-color: #f0f0f0;
+}

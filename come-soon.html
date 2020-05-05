@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>适途咨询</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/asset/css/bootstrap.css">
+    </head>
+    <body>
+        <div class="container">
+            <br/>
+            <div class="jumbotron jumbotron-fluid bg-warning text-center">
+                <div class="container">
+                  <h1 class="display-4">即将开放</h1>
+                  <p class="h2"><span id="day"></span> 日 <span id="hour"></span> 时 <span id="minute"></span> 分 <span id="second"></span> 秒</p>
+                </div>
+              </div>
+        </div>
+        <script src="/asset/js/jquery-3.4.1.js"></script>
+        <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+        <script src="/asset/js/bootstrap.bundle.js"></script>
+        <script>
+            let days = 24;
+            let hours = 23;
+            let minutes = 59;
+            let seconds = 60;
+            setInterval(function(){
+                if(seconds > 0){
+                    seconds--;
+                }
+                else{
+                    seconds = 59;
+                    if(minutes > 0){
+                        minutes--;
+                    }
+                    else{
+                        minutes = 23;
+                        if(hours > 0){
+                            hours--;
+                        }
+                        else{
+                            hours = 23;
+                            if(days > 0){
+                                days --;
+                            }
+                        }
+                    }
+                }
+                $('#second').html(seconds >= 0 && seconds < 10 ? '0' + seconds : seconds);
+                $('#minute').html(minutes >= 0 && minutes < 10 ? '0' + minutes : minutes);
+                $('#hour').html(hours >= 0 && hours < 10 ? '0' + hours : hours);
+                $('#day').html(days >= 0 && days < 10 ? '0' + days : days);
+            }, 1000);
+        </script>
+    </body>
+</html>

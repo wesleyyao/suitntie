@@ -1,0 +1,13 @@
+footer{
+    background-color: #303650;
+    color: #fff;
+}
+
+.footer-qrcodes{
+    display: flex;
+}
+
+.footer-qrcodes img{
+    width: 30%;
+    padding: 10px;
+}

@@ -1,0 +1,97 @@
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+form{
+    margin: 0;
+}
+
+.answer-div{
+    display: block;
+    padding: 5px;
+}
+
+.answer-div:hover{
+    background: #faaa31;
+    cursor: pointer;
+}
+
+.answer-selected{
+    background: #f5c57d;
+}
+
+.user-menu:hover{
+    text-decoration: none;
+}
+
+.stick-at-top{
+    position: fixed;
+    z-index: 99;
+    background: rgb(245, 245, 245);
+    padding: 25px;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.notification-dot{
+    position: absolute;
+    right: 20px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: red;
+    vertical-align: text-top;
+}
+
+.dot-small{
+    width: 5px;
+    height: 5px;
+}
+
+.dot-medium{
+    width: 8px;
+    height: 8px;
+}
+
+.notification-popup{
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    z-index: 99;
+}
+
+#wechatLoginButton{
+    padding: 5px;
+    cursor: pointer;
+}
+
+#wechatLoginButton:hover{
+    text-decoration: none;
+}
+
+input {
+    font-family: "FontAwesome";
+    font-weight: 900;
+}
+
+.img-cell{
+    border-radius: 5px;
+}
+
+#loginUserAvatarInNav{
+    border-radius: 50%;
+}
+
+.result-title-cell{
+    position: absolute;
+    padding: 25px;
+    width: auto;
+}
+
+#characterImg{
+    position: absolute;
+    right: 15px;
+    top: 0;
+    z-index: 1;
+    height: 100%;
+}
