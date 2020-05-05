@@ -11,7 +11,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h1>用科学的方法选择适合自己的专业</h1>
                     <p>做过测试的同学说：“这准的令人发指。”</p>
-                    <a class="btn btn-outline-light" href="">限时免费测试</a>
+                    <a class="btn btn-outline-light" href="/suitntie/tests/dimension-test.php">限时免费测试</a>
                 </div>
             </div>
             <div class="carousel-item">

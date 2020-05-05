@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/suitntie/asset/css/bootstrap.css">
 <link rel="stylesheet" href="/suitntie/asset/css/main.css">
 <link rel="stylesheet" href="/suitntie/asset/css/header.css">

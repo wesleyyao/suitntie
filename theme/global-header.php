@@ -7,7 +7,7 @@
             <a href="/suitntie/index.php">首页</a>
         </div>
         <div class="global-nav-item">
-            <a href="">个人测试</a>
+            <a href="/suitntie/tests/dimension-test.php">个人测试</a>
         </div>
         <div class="global-nav-item">
             <div class="dropdown">

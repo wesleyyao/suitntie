@@ -84,7 +84,7 @@ form{
 
 .mainTitle{
     height:250px;
-    background-image:url('../image/Hero-img.jpg');
+    background-image:url('/suitntie/asset/image/test-page/Hero-img.jpg');
     background-repeat:no-repeat;
     background-size:cover;
     background-position:center;
@@ -187,17 +187,17 @@ form{
  .answer-div input {
 	 display: none;
 }
- .answer-div input + span {
+ .answer-div {
 	 line-height: 22px;
 	 height: 22px;
 	 padding-left: 22px;
 	 display: block;
 	 position: relative;
 }
- .answer-div input + span:not(:empty) {
+ .answer-div:not(:empty) {
 	 padding-left: 30px;
 }
- .answer-div input + span:before, .answer-div input + span:after {
+ .answer-div:before, .answer-div:after {
 	 content: '';
 	 width: 22px;
 	 height: 22px;
@@ -207,34 +207,34 @@ form{
 	 top: 0;
 	 position: absolute;
 }
- .answer-div input + span:before {
+ .answer-div:before {
 	 background: #FFE3C8;
-	 transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+	 transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
 }
- .answer-div input + span:after {
+ .answer-div:after {
 	 background: #fff;
 	 transform: scale(0.78);
 	 transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
 }
- .answer-div input:checked + span:before {
+ .answer-div input:checked > .answer-div span:before {
 	 transform: scale(1.04);
 	 background: #F19F4D;
 }
- .answer-div input:checked + span:after {
+ .answer-div input:checked > .answer-div span:after {
 	 transform: scale(0.4);
 	 transition: transform 0.3s ease;
 }
- .answer-div:hover input + span:before {
+ .answer-div:hover:before {
 	 transform: scale(0.92);
 }
- .answer-div:hover input + span:after {
+ .answer-div:hover:after {
 	 transform: scale(0.74);
 }
- .answer-div:hover input:checked + span:after {
+ .answer-div:hover input:checked > .answer-div span:after {
 	 transform: scale(0.4);
 }
 
-.answer-selescted .answer-text{
+.answer-selected .answer-text{
     color:#F19F4D !important;
 }
 
@@ -471,4 +471,3 @@ form{
 .account-center-section{
     padding:40px;
 }
-

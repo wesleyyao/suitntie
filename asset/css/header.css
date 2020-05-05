@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     z-index: 90;
+    box-shadow: 0px 4px 8px 0px #f3f3f3
 }
 
 .global-nav-logo{

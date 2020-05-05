@@ -13,6 +13,7 @@ $(document).ready(function(){
     let weights = [];
     let majorDimensions = [];
     let notification = false;
+    let imgSrc = '';
     $.get('/suitntie/public/api/result.php').done(function(data){
         const result = JSON.parse(data);
         console.log(result);
@@ -26,7 +27,7 @@ $(document).ready(function(){
             }
             if(result === 'no result'){
                 $('#loadingDiv').hide();
-                message = generateMessage('warning', '未找到结果报告，请点击此处查询你的所有历史结果。');
+                message = generateMessage('warning', '未找到结果报告，请点击<a href="/suitntie/account/user.php">用户中心</a>查询您的测试结果。');
                 $('#message').html(message);
                 return;
             }
@@ -48,9 +49,11 @@ $(document).ready(function(){
             weights = dimensionResult.weights;
             majorDimensions = dimensionResult.majorDimensions;
             notification = result.saved_notification ? true: false;
+            imgSrc = dimensionResult.img;
             //presentation
             $('#resultTitle').html(`你的结果为： ${code} ${title}`);
             $('#resultDescription').html(description);
+            $('#characterImg').attr('src', imgSrc);
 
             let tagHtml = `<span>你的标签： </span>`;
             tags.forEach(function(tag){
@@ -128,14 +131,14 @@ $(document).ready(function(){
             if(notification){
                 const noticePopup = `<div id="dimension-result-notification" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
                 <div class="toast-header">
-                  <img src="/suitntie/asset/image/notice.svg" class="rounded mr-2" alt="..." style="width: 20px; height: 20px">
+                  <img src="/suitntie/asset/image/notice.png" class="rounded mr-2" alt="..." style="width: 20px; height: 20px">
                   <strong class="mr-auto">通知</strong>
                   <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="toast-body">
-                  新的测试结果已经保存了。点击<a href="/user.php" style="color:#F19F4D;">个人主页</a>可查看历史记录。
+                  新的测试结果已经保存了。点击<a href="/suitntie/account/user.php">个人主页</a>可查看历史记录。
                 </div>
               </div>`;
               $('#notification').html(noticePopup);

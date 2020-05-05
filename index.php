@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>适途咨询</title>
+    <link rel="icon" href="/suitntie/asset/image/logo/logo.png">
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/style.php"); ?>
     <link rel="stylesheet" href="/suitntie/asset/css/home.css">
 </head>
