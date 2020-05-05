@@ -15,7 +15,7 @@
         <title>用户中心</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/suitntie/asset/css/bootstrap.css">
         <link rel="stylesheet" href="/suitntie/asset/css/main.css">
     </head>
