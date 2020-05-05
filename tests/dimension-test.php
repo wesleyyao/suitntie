@@ -10,22 +10,21 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
+<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>适途16型人格测试</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/suitntie/asset/css/bootstrap.css">
         <link rel="stylesheet" href="/suitntie/asset/css/main.css">
-        <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="container" style="padding: 50px 0 25px 0">
+        <div class="container" style="padding: 50px 0 120px 0">
             <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/component/navigation-bar.php"); ?>
             <?php if(isset($_SESSION["test_error_message"])): ?>
                 <br/>
@@ -41,68 +40,92 @@
                     </div>
                 </div>
                 <br/>
-            <?php endif; ?>
-            <div id="mainContentDiv">
-                <div id="titleDiv">
-                    <div class="row">
-                        <div class="col-12">
-                            <h1 class="text-center text-warning" id="testTitle"></h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body bg-light">
-                                    <h2 class="text-center" id="questionTypeTitle"></h2>
-                                    <div class="text-center result-div" id="resultSubtitle"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br/><br/>
+                <?php endif; ?>
+            <div id="titleDiv">
+            <div class="row mainTitle">
+                <div class="col-12">
+                    <h1 class="text-center" id="testTitle">Loading...</h1>
                 </div>
-                <div id="clockAndProgressBarDiv" class="test-div">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <div id="clock"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                            <span id="percentage" class="badge badge-primary">0%</span>
-                        </div>
-                        <div class="col-lg-11 col-md-11 col-sm-10 col-xs-10">
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" id="progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
+            </div>
+            <div class="row testDesc">
+                <div class="col-md-4 tri-block">
+                    <div class="lightShadow tri-block-content">
+                        <img src="asset/image/timer.svg">
+                        <p>测试长度大概为20分钟，回答没有对错好坏之分。</p>
                     </div>
                 </div>
-                <br/>
-                <div id="mainQuestionDiv" class="test-div">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <div class="spinner-border text-success" role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                            <br/><br/>
+                <div class="col-md-4 tri-block">
+                    <div class="lightShadow tri-block-content">
+                        <img src="asset/image/heart.svg">
+                        <p>请选择真实的你的做法，而不要选择你认为哪样更好。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 tri-block">
+                    <div class="lightShadow tri-block-content">
+                        <img src="asset/image/relax.svg">
+                        <p>最大程度放松下来，不假思索地选择你的倾向。</p>
+                    </div>
+                </div>
+            </div>
+            <div id="clockAndProgressBarDiv" class="test-div">
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                        <span id="percentage" class="">0%</span>
+                    </div>
+                    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 progressContainer">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" id="progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
-                </div>
-                <div class="row test-div">
-                    <div class="offset-lg-4 col-lg-4 offset-md-4 col-md-4 col-sm-12">
-                        <form id="testForm" action="process-dimension-result.php" method="POST">
-                            <input type="hidden" id="testId" name="test_id" value="" />
-                            <input type="hidden" id="resultCodes" name="result_codes" value="" />
-                            <?php if(count($available_dimensions) > 0): ?>
-                                <?php foreach($available_dimensions as $item): ?>
-                                    <input type="hidden" id="dimension<?php echo $item["id"];?>" name="dimension_<?php echo $item["id"];?>" value="" />
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                            <button type="submit" class="btn btn-warning btn-block" id="nextPage">下一页</button>
-                        </form>
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                        <div id="clock"></div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 textHeading">
+                    <h2 class="text-center" id="questionTypeTitle"></h2>
+                    <div class="text-center result-div" id="resultSubtitle"></div>
+                </div>
+            </div>
+            <br/>
+            <div id="mainQuestionDiv" class="test-div">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 text-center">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <br/><br/>
+                    </div>
+                </div>
+            </div>
+            <div class="row test-div">
+                <div class="offset-lg-3 col-lg-6 offset-md-4 col-md-4 offset-sm-1 col-sm-10">
+                    <form id="testForm" action="process-dimension-result.php" method="POST">
+                        <input type="hidden" id="testId" name="test_id" value="" />
+                        <input type="hidden" id="resultCodes" name="result_codes" value="" />
+                        <?php if(count($available_dimensions) > 0): ?>
+                            <?php foreach($available_dimensions as $item): ?>
+                                <input type="hidden" id="dimension<?php echo $item["id"];?>" name="dimension_<?php echo $item["id"];?>" value="" />
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        <button type="submit" class="btn primBtn" id="nextPage">下一页</button>
+                    </form>
+                </div>
+            </div>
+            <div id="mainResultDiv" class="result-div">
+                <div class="row">
+                    <div class="col-12">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+                <br/><br/>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="resultContent"></div>
+                    </div>
+                </div>
+                <br/><br/>
             </div>
             <div class="row">
                 <div class="col-12">
