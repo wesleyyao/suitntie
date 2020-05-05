@@ -1,7 +1,7 @@
 $(document).ready(function () {
     const loading = `
     <div class="d-flex justify-content-center m-2">
-        <div class="spinner-border text-success" role="status">
+        <div class="spinner-border text-warning" role="status">
             <span class="sr-only">Loading...</span>
         </div>
     </div>`;
@@ -19,6 +19,17 @@ $(document).ready(function () {
             return;
         }
         user = result.user ? result.user : undefined;
+        const noLogin = `<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录 | 注册</a>`;
+        const isLogin = `<div class="dropdown">
+            <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img id="loginUserAvatarInNav" src="" width="20" height="20" />
+            </a>
+            <div class="dropdown-menu" aria-labelledby="userLinks">
+                <a class="dropdown-item" href="/suitntie/account/user.php">个人中心</a>
+                <a class="dropdown-item" href="/suitntie/public/auth/user-logout.php">登出</a>
+            </div>
+        </div>`;
+        $('#userInNav').html(user ? isLogin : noLogin);
         $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : '/suitntie/asset/image/avatar.png');
     });
     $('.submit-button').click(function () {

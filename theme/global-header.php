@@ -11,10 +11,10 @@
         </div>
         <div class="global-nav-item">
             <div class="dropdown">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="dropdown-toggle" href="#" role="button" id="programLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     专业探索
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="programLinks">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
@@ -31,7 +31,7 @@
             <a href="">成为导师</a>
         </div>
         <div class="global-nav-item">
-            <a href="">注册 | 登录</a>
+            <div id="userInNav" class=""></div>
         </div>
     </div>
 </nav>
