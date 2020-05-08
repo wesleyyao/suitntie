@@ -146,9 +146,27 @@
             }
         }
 
+        public function save_contact($email, $phone, $user_id){
+            $this->fetch_current_user($user_id);
+            $new_email = empty($email) ? $this->email : $email;
+            $new_phone = empty($phone) ? $this->phone : $phone;
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            try {
+                $query = "UPDATE customers SET email = ?, phone = ? WHERE id = ?";
+                $sql = $this->conn->prepare($query);
+                $sql->bind_param("ssi", $new_email, $new_phone, $user_id);
+                $sql->execute();
+                $this->conn->commit();
+                return true;
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
+        }
+
         public function fetch_all_users(){
             $data = array();
-            $query = "SELECT id, email, phone, nick_name, sex, city, province, country, headImg, unionId, temporary_link, status FROM customers";
+            $query = "SELECT `id`, `email`, `phone`, `nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionId`, `temporary_link`, `status` FROM customers";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();

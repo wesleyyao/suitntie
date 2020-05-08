@@ -39,7 +39,7 @@ $(document).ready(function () {
         }
     });
 
-    $.get('/suitntie/public/api/index.php?title=' + title).done(function (data) {
+    $.get('/suitntie/public/api/test.php?title=' + title).done(function (data) {
         if (data) {
             let result = JSON.parse(data);
             const { dimension, test, user } = result;

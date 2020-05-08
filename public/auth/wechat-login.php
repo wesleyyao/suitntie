@@ -62,7 +62,7 @@
                 $_SESSION["auth_message"]["message"] = "保存新用户数据未成功，请重新扫描二维码。";
             }
         }
-        header("Location: /suitntie/user.php");
+        header("Location: /suitntie/account/user.php");
         exit;
     }        
 ?>

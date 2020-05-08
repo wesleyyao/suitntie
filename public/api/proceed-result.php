@@ -69,7 +69,7 @@
 
     function test_error_redirect($message){
         $_SESSION["test_error_message"] = $message;
-        redirect("index.php");
+        redirect("/suitntie/tests/dimension-test.php");
         exit;
     }
 

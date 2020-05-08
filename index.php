@@ -26,7 +26,7 @@
                             <h3 class="card-title">第一步</h3>
                             <h6>免费的适途独家评测</h6>
                             <p>适途评测基于著名的迈尔斯里格斯(MBTI)类型指标，为中国学生重新进行了深度定制，帮助学生从客观的角度更加科学地了解自己的性格偏好，从一定程度上消除对未来的迷茫感，为选择大学专业方向做好准备。</p>
-                            <a href="" class="btn btn-warning">免费测试</a>
+                            <a href="/suitntie/tests/dimension-test.php" class="btn btn-warning">免费测试</a>
                         </div>
                     </div>
                 </div>
@@ -139,39 +139,40 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> 姓名：</label>
-                            <input type="text" maxlength="64" id="contactName" class="form-control" />
+                            <input type="text" maxlength="128" id="contactName" class="form-control contact-required" />
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> E-Mail：</label>
-                            <input type="email" maxlength="128" id="contactName" class="form-control" />
+                            <input type="email" maxlength="128" id="contactEmail" class="form-control contact-required" />
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> 手机号：</label>
-                            <input type="text" maxlength="64" id="contactName" class="form-control" />
+                            <input type="text" maxlength="64" id="contactPhone" class="form-control contact-required" />
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
-                            <label><span class="text-danger">*</span> 微信号：</label>
-                            <input type="text" maxlength="64" id="contactName" class="form-control" />
+                            <label> 微信号：</label>
+                            <input type="text" maxlength="64" id="contactWechat" class="form-control" />
                         </div>
                     </div>
                     <br/>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> 所在城市：</label>
-                            <input type="text" maxlength="128" id="contactCity" class="form-control" />
+                            <input type="text" maxlength="128" id="contactCity" class="form-control contact-required" />
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> 所在高校：</label>
-                            <input type="text" maxlength="128" id="contactSchool" class="form-control" />
+                            <input type="text" maxlength="128" id="contactSchool" class="form-control contact-required" />
                         </div>
                     </div>
                     <br/>
-                    <div class="row pb-5">
+                    <div class="row pb-3">
                         <div class="col-12">
                             <label><span class="text-danger">*</span> 提问：</label>
-                            <textarea type="text" rows="5" maxlength="1280" id="contactContent" class="form-control"></textarea>
+                            <textarea type="text" rows="5" maxlength="2500" id="contactContent" class="form-control"></textarea>
                         </div>
                     </div>
+                    <div id="contactMessage"></div>
                     <div class="row">
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-warning" id="homeContactSubmit">提交信息</button>
@@ -184,5 +185,6 @@
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-footer.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/component/auth-modals.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/script.php"); ?>
+    <script src="/suitntie/asset/js/home.js"></script>
 </body>
 </html>

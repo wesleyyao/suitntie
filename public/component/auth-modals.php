@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <br/>
-                    <div class="row">
+                    <div class="row mb-1">
                         <div class="offset-1 col-10">
                             <input type="password" id="loginPassword" name="login_password" placeholder="&#xf09c; 密码" class="form-control login-required" maxlength="20"/>
                         </div>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="tab-pane fade" id="emailSignup" role="tabpanel" aria-labelledby="emailSignup-tab">
                         <br/>
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-12">
                                 <label><span class="text-danger">*</span> 邮箱：<i class="fas fa-info-circle text-info" style="cursor: pointer" data-toggle="collapse" href="#signUpUserNameTip" role="button" aria-expanded="false" aria-controls="signUpUserNameTip"></i></label>
                                 <div class="collapse" id="signUpUserNameTip">
@@ -123,7 +123,7 @@
                                 <input type="email" class="form-control signup-required" id="signupEmail" maxlength="128"/>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-12">
                                 <label><span class="text-danger">*</span> 密码：<i class="fas fa-info-circle text-info" style="cursor: pointer" data-toggle="collapse" href="#signUpPasswordTip" role="button" aria-expanded="false" aria-controls="signUpPasswordTip"></i></label>
                                 <div class="collapse" id="signUpPasswordTip">
@@ -134,14 +134,13 @@
                                 <input type="password" id="signupPassword" maxlength="20" class="form-control signup-required" />
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-12">
                                 <label><span class="text-danger">*</span> 确认密码：</label>
                                 <input type="password" id="signupPasswordConfirm" maxlength="36" class="form-control signup-required" />
                             </div>
                         </div>
                         <div id="signupMessage"></div>
-                        <br/>
                         <div class="row">
                             <div class="col-12 text-right">
                                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
@@ -150,6 +149,48 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="userProfileCompleteModal" tabindex="-1" role="dialog" aria-labelledby="userProfileCompleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userProfileCompleteModalTitle">完善用户资料</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-light" role="alert">
+                    为了确保我们的工作人员可以与您取得联系，请保存您的联系方式。
+                </div>
+                <form id="userProfileCompleteForm">
+                    <div class="row mb-2" id="profileCompleteEmailCell">
+                        <div class="offset-1 col-10">
+                            <label><span class="text-danger">*</span> 邮箱：</label>
+                            <input type="text" id="toFinishEmail" class="form-control profile-required" maxlength="128"/>
+                        </div>
+                    </div>
+                    <div class="row mb-2" id="profileCompletePhoneCell">
+                        <div class="offset-1 col-10">
+                            <label><span class="text-danger">*</span> 手机：</label>
+                            <input type="password" id="toFinishPhone" class="form-control profile-required" maxlength="25"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offset-1 col-10">
+                            <div id="profileCompleteMessage"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offset-1 col-10 text-right">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-success" id="CompleteProfile">提交</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

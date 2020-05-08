@@ -26,6 +26,11 @@
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
             <div class="container" style="padding: 150px 0 100px 0">
                 <br/>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="message"></div>
+                    </div>
+                </div>
                 <div id="loadingDiv">
                     <br/>
                     <div class="d-flex justify-content-center">
@@ -135,11 +140,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div id="message"></div>
                     </div>
                 </div>
             </div>

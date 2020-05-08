@@ -5,6 +5,7 @@ $(document).ready(function () {
             <span class="sr-only">Loading...</span>
         </div>
     </div>`;
+    let message = '';
     $('#showSignupModal').click(function(){
         $('#userLoginModal').modal('hide');
         $('#userSignUpModal').modal('show');
@@ -20,10 +21,13 @@ $(document).ready(function () {
             $('#message').html(message);
         }
         user = result.user ? result.user : undefined;
+        if(!user){
+            return;
+        }
         const noLogin = `<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录 | 注册</a>`;
         const isLogin = `<div class="dropdown">
             <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img id="loginUserAvatarInNav" src="" width="20" height="20" />
+                <img id="loginUserAvatarInNav" src="" width="25" height="25" style="border-radius: 50%"/>
             </a>
             <div class="dropdown-menu" aria-labelledby="userLinks">
                 <a class="dropdown-item" href="/suitntie/account/user.php">个人中心</a>
@@ -34,6 +38,16 @@ $(document).ready(function () {
         if(user){
             $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : '/suitntie/asset/image/avatar.png');
         }
+        if(!user.email && !user.phone){
+            if(window.location.href.indexOf('/account/user') == -1){
+                window.location.href = '/suitntie/account/user.php';
+            }
+            $('#profileCompleteEmailCell').css('display', !user.email ? 'block' : 'none');
+            $('#profileCompletePhoneCell').css('display', !user.phone ? 'block' : 'none');
+            $('#userProfileCompleteModal').modal('show');
+            message = generateMessage('warning', '在开始测试前，请您点击<a href="#/" data-toggle="modal" data-target="#userProfileCompleteModal">此处</a>完善联系方式。');
+            $('#message').html(message);
+        }
         return;
     });
     $('.submit-button').click(function () {
@@ -43,25 +57,25 @@ $(document).ready(function () {
             let isValid = true;
             $('.signup-required').each(function () {
                 if (!$(this).val().replace(/\s/g, '')) {
-                    const emptyErrorMessage = constructMessage('danger', '请填写所有必填项。');
+                    const emptyErrorMessage = generateMessage('warning', '请填写所有必填项。');
                     $('#signupMessage').html(emptyErrorMessage);
                     isValid = false;
                     return;
                 }
                 else if(!validateEmailFormat($('#signupEmail').val())){
-                    const invalidEmailMessage = constructMessage('danger', '输入的邮箱格式错误。');
+                    const invalidEmailMessage = generateMessage('warning', '输入的邮箱格式错误。');
                     $('#signupMessage').html(invalidEmailMessage);
                     isValid = false;
                     return;
                 }
                 else if(!$('#signupPassword').val().match(passwordFormat)){
-                    const invalidPasswordMessage = constructMessage('danger', `密码不符合要求。请点击小图标<i class="fas fa-info-circle text-info"></i>查看密码格式，重新输入。`);
+                    const invalidPasswordMessage = generateMessage('warning', `密码不符合要求。请点击小图标<i class="fas fa-info-circle text-info"></i>查看密码格式，重新输入。`);
                     $('#signupMessage').html(invalidPasswordMessage);
                     isValid = false;
                     return;
                 }
                 else if($('#signupPassword').val() !== $('#signupPasswordConfirm').val()){
-                    const invalidMatchPasswordMessage = constructMessage('danger', `两次输入的密码不一致。`);
+                    const invalidMatchPasswordMessage = generateMessage('warning', `两次输入的密码不一致。`);
                     $('#signupMessage').html(invalidMatchPasswordMessage);
                     isValid = false;
                     return;
@@ -78,7 +92,7 @@ $(document).ready(function () {
                 $.post('/suitntie/public/api/signup.php', { submit_signup: 'yes', usr_email: email, usr_password: password}).done(function(data){
                     if(data){
                         let result = JSON.parse(data);
-                        const message = constructMessage(result.type, result.content);
+                        const message = generateMessage(result.type, result.content);
                         $('#signupMessage').html(message);
                     }
                 });
@@ -87,17 +101,40 @@ $(document).ready(function () {
     });
 
     $('#loginForm').submit(function(e){
+        if(!formValidation('.login-required', '#loginMessage', $('#loginEmail').val())){
+            e.preventDefault();
+        }
+    });
+
+    $('#userProfileCompleteForm').submit(function(e){
+        e.preventDefault();
+        const email = $('#toFinishEmail').val();
+        const phone = $('#toFinishPhone').val();
+        $('#profileCompleteMessage').html(loading);
+        if(!formValidation('.profile-required', '#profileCompleteMessage', email)){
+            return;
+        }
+        $.post('/suitntie/public/api/account/php', {email, phone, isSaveContact: true}).done(function(data){
+            console.log(data)
+            if(data){
+                window.location.href = '/suitntie/tests/dimension-test.php';
+            }
+            else{
+                $('#profileCompleteMessage').html(generateMessage('danger', '请求未被处理，请重试。'));
+            }
+        });
+    });
+
+    function formValidation(className, message, email){
         let isValid = true;
-        $('.login-required').each(function(){
+        $(className).each(function(){
             if (!$(this).val().replace(/\s/g, '')) {
-                const emptyErrorMessage = constructMessage('danger', '请填写所有必填项。');
-                $('#loginMessage').html(emptyErrorMessage);
+                $(message).html(generateMessage('warning', '请填写所有必填项。'));
                 isValid = false;
                 return;
             }
-            else if(!validateEmailFormat($('#loginEmail').val())){
-                const invalidEmailMessage = constructMessage('danger', '输入的邮箱格式错误。');
-                $('#loginMessage').html(invalidEmailMessage);
+            else if(!validateEmailFormat(email)){
+                $(message).html(generateMessage('warning', '输入的邮箱格式错误。'));
                 isValid = false;
                 return;
             }
@@ -106,10 +143,8 @@ $(document).ready(function () {
                 return;
             }
         });
-        if(!isValid){
-            e.preventDefault();
-        }
-    });
+        return isValid;
+    }
 
     function validateEmailFormat(mail) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
@@ -122,9 +157,8 @@ $(document).ready(function () {
         return  `
         <div class="row">
             <div class="col-12">
-            <br/>
-                <div class="alert alert-${type == 'success' ? 'success' : 'danger'}">
-                    <i class="${type == 'success' ? 'fas fa-check' : 'fas fa-times'}"></i> ${message}
+                <div class="alert alert-${type}">
+                    <i class="${type == 'success' ? 'fas fa-check' : type === 'warning' ? 'fas fa-exclamation-triangle' : 'fas fa-times'}"></i> ${message}
                 </div>
             </div>
         </div>`;

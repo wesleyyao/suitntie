@@ -1,6 +1,11 @@
 $(document).ready(function(){
     let user = undefined;
     let tests = [];
+    const loading = `<div class="d-flex justify-content-center">
+        <div class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+        </div>
+    </div>`;
     $('#accountCenter').hide();
     $('#testResultsSection').hide();
     fetchUserInfo(); 
@@ -42,18 +47,17 @@ $(document).ready(function(){
                 city: $('#profileEditCity').val(),
                 province: $('#profileEditProvince').val(),
                 country: $('#profileEditCountry').val(),
+                isUpdate: true
             }
-            $('#profileEditMessage').html(`<div class="d-flex justify-content-center">
-            <div class="spinner-border text-success" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div>`);
+            $('#profileEditMessage').html(loading);
             $.post('/suitntie/public/api/account.php', data).done(function(newData){
                 if(newData){
-                    console.log(newData);
                     fetchUserInfo(); 
                     $('#profileEditMessage').html(generateMessage('success', '您的信息已更新成功。'));
                     timeoutHideModal();
+                }
+                else{
+                    $('#profileEditMessage').html(generateMessage('danger', '您的请求未能被处理，请重试。'));
                 }
             }).fail(function() {
                 $('#profileEditMessage').html(generateMessage('danger', '您的请求未能被处理，请重试。'));
