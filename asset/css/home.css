@@ -75,6 +75,7 @@
 .threeSteps p{
     font-weight: 100;
     margin-bottom: 30px !important;
+<<<<<<< HEAD
 }
 
 @media screen and (max-width: 990px) {
@@ -82,6 +83,7 @@
         margin-bottom:30px;
     }
 }
+<<<<<<< HEAD
 
 /* Mentor Section */
 .home-one-on-one-entrance{
@@ -99,3 +101,8 @@
 .home-one-on-one-entrance p{
     margin-bottom: 30px;
 }
+=======
+=======
+}
+>>>>>>> fixed top slider image display and finished 3 steps section styling
+>>>>>>> fixed top slider image display and finished 3 steps section styling
