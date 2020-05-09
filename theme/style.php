@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="/suitntie/asset/css/footer.css">
 <link rel="stylesheet" href="/suitntie/asset/css/topSlider.css">
 <link rel="stylesheet" href="/suitntie/asset/css/dimension-test.css">
+<<<<<<< HEAD
 <link rel="stylesheet" href="/suitntie/asset/css/testimonial.css">
 <link rel="stylesheet" href="/suitntie/asset/css/test-result.css">
 <link rel="stylesheet" href="/suitntie/asset/css/program.css">
+=======
+>>>>>>> Edited Header and Main style
