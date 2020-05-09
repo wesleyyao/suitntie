@@ -22,7 +22,11 @@
                 </div>
             </div>
             <div class="row threeSteps">
+<<<<<<< HEAD
                 <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch addBtmMargin-30">
+=======
+                <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch">
+>>>>>>> fixed top slider image display and finished 3 steps section styling
                     <div class="card border-0 lightShadow">
                         <div class="card-body text-center d-flex flex-column">
                             <h3 class="card-title">第一步</h3>
@@ -32,7 +36,11 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch addBtmMargin-30">
+=======
+                <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch">
+>>>>>>> fixed top slider image display and finished 3 steps section styling
                     <div class="card border-0 lightShadow">
                         <div class="card-body text-center d-flex flex-column">
                             <h3 class="card-title">第二步</h3>
