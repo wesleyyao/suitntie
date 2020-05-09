@@ -27,7 +27,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h1>了解更多专业，打开更大的世界</h1>
                     <p>搜索海量各个专业的信息，做到心里有数</p>
-                    <a class="btn btn-outline-light" href="">开始探索</a>
+                    <a class="btn btn-outline-light" href="/suitntie/programs/index.php">开始探索</a>
                 </div>
             </div>
         </div>

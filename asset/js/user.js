@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    const pages = ['dimension-test', 'user'];
     const loading = `
     <div class="d-flex justify-content-center m-2">
         <div class="spinner-border text-warning" role="status">
@@ -14,7 +15,7 @@ $(document).ready(function () {
         const result = JSON.parse(data);
         const pageTitle = $('#hide_title').val();
         console.log(pageTitle)
-        if(result === 'no login' && pageTitle !== 'home'){  
+        if(result === 'no login' && pages.includes(pageTitle)){  
             $('#userLoginModal').modal('show');
             $('#mainContentDiv').fadeOut();
             message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');

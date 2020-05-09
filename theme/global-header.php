@@ -15,6 +15,7 @@
                     专业探索
                 </a>
                 <div class="dropdown-menu" aria-labelledby="programLinks">
+                    <a class="dropdown-item" href="#">总览</a>
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>

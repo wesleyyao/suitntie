@@ -1,0 +1,12 @@
+.program-home-banner{
+    width: 100%;
+    height: auto;
+    background: #ffab2e;
+    color: #ffffff;
+    text-align: center;
+}
+
+.program-home-banner h1{
+    margin: 0;
+    padding: 80px 0;
+}
