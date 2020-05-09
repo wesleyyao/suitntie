@@ -3,6 +3,7 @@ body {
     font-family: 'Noto Sans SC', sans-serif;
     line-height: 1.6 !important;
     font-weight:100;
+<<<<<<< HEAD
     width: 100vw;
     overflow-x: hidden;
 }
@@ -15,6 +16,9 @@ h2{
     font-weight: 400 !important;
     color:#2F4858;
     margin-bottom: 30px;
+=======
+    overflow-x: hidden;
+>>>>>>> commit before the pull
 }
 
 h3{
