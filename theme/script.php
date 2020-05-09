@@ -3,3 +3,4 @@
 <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
 <script src="/suitntie/asset/js/bootstrap.bundle.js"></script>
 <script src="/suitntie/asset/js/user.js"></script>
+<script src="/suitntie/asset/js/global-Nav.js"></script>

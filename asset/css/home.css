@@ -1,6 +1,5 @@
-.home-slider{
+.home-slider-top{
     width: 100%;
-    max-height: 520px;
 }
 
 .carousel-caption{
@@ -42,4 +41,42 @@
 .home-contact-form{
     padding: 50px 25px;
     background-color: #f0f0f0;
+}
+
+/* 3 steps section */
+
+.stepsTitle h1{
+    font-weight: 400 !important;
+}
+
+.threeSteps{
+    margin: 50px auto !important;
+    display:flex;
+}
+
+.threeSteps .card{
+    border-radius: 10px !important;
+    padding:30px 40px;
+}
+
+.threeSteps h3{
+    font-size: 1.75em !important;
+    font-weight: 500;
+    margin-bottom: 20px !important;
+}
+
+.threeSteps h4{
+    font-size: 1.25em !important;
+    font-weight: 400;
+}
+
+.threeSteps p{
+    font-weight: 100;
+    margin-bottom: 30px !important;
+}
+
+@media screen and (max-width: 990px) {
+    .addBtmMargin-30 {
+        margin-bottom:30px;
+    }
 }
