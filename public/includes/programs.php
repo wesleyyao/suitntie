@@ -15,9 +15,9 @@
             return $data;
         }
 
-        private function fetch_category(){
+        public function fetch_category(){
             $data = array();
-            $query = "SELECT `id`, `name` FROM program_categories WHERE `status` = 'open'";
+            $query = "SELECT `id`, `name`, `image` FROM program_categories WHERE `status` = 'open'";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();
