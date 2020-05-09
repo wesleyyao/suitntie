@@ -2,7 +2,7 @@
     require_once("../includes/initial.php");
     require_once("../includes/test-results.php");
     $results = new Results();
-    $data;
+    $data = array();
     if(!isset($_SESSION["login_user"])){
         echo json_encode("no login");
         exit;

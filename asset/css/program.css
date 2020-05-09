@@ -10,3 +10,14 @@
     margin: 0;
     padding: 80px 0;
 }
+
+.one-on-one-promote img{
+    position: absolute;
+    right: 20px;
+    top: -100px;
+    width: 180px;
+}
+
+.one-on-one-promote p{
+    margin-right: 180px;
+}

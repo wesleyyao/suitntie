@@ -11,10 +11,10 @@ $(document).ready(function () {
         $('#userLoginModal').modal('hide');
         $('#userSignUpModal').modal('show');
     });
+
     $.get('/suitntie/public/api/account.php').done(function(data){
         const result = JSON.parse(data);
         const pageTitle = $('#hide_title').val();
-        console.log(pageTitle)
         if(result === 'no login' && pages.includes(pageTitle)){  
             $('#userLoginModal').modal('show');
             $('#mainContentDiv').fadeOut();
@@ -22,9 +22,6 @@ $(document).ready(function () {
             $('#message').html(message);
         }
         user = result.user ? result.user : undefined;
-        if(!user){
-            return;
-        }
         const noLogin = `<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录 | 注册</a>`;
         const isLogin = `<div class="dropdown">
             <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +36,7 @@ $(document).ready(function () {
         if(user){
             $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : '/suitntie/asset/image/avatar.png');
         }
-        if(!user.email && !user.phone){
+        if(user && !user.email && !user.phone){
             if(window.location.href.indexOf('/account/user') == -1){
                 window.location.href = '/suitntie/account/user.php';
             }
@@ -51,6 +48,7 @@ $(document).ready(function () {
         }
         return;
     });
+
     $('.submit-button').click(function () {
         const submitId = $(this).attr('id');
         const passwordFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;

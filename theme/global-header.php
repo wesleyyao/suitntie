@@ -18,11 +18,8 @@
                     <a class="dropdown-toggle nav-link" href="#" role="button" id="programLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         专业探索
                     </a>
-                    <div class="dropdown-menu pt-2 pb-2 text-right" aria-labelledby="programLinks">
-                        <a class="dropdown-item" href="#">总览</a>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-menu pt-2 pb-2 text-right" aria-labelledby="programLinks" id="programMenu">
+                      <a class="dropdown-item" href="/suitntie/programs/index.php">总览</a>
                     </div>
                 </div>
             </li>
