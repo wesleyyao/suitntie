@@ -6,10 +6,10 @@
             <li data-target="#testimonialSlider" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
+            <h1>使用了适途服务的同学们都说了啥？</h1>
             <div class="carousel-item active">
                 <img src="/suitntie/asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">
                 <div class="carousel-caption d-none d-md-block" style="color: #333; top: 90px;">
-                    <h1>使用了适途服务的同学们都说了啥？</h1>
                     <img src="/suitntie/asset/image/slider/head-img.jpg" width="80" alt="student head image" style="border-radius: 50%"/>
                     <p>“测试结果真的贼准，作为文科生一直不知道以后该选什么专业，也非常感谢Tim老师的科普。太多干货了，让我在一个小时内知道了英国学市场学到底学啥，毕业以后能干嘛，现在对自己的未来有信心多了！”</p>
                     <p><b>ALEX同学</b></p>
@@ -20,7 +20,6 @@
             <div class="carousel-item">
                 <img src="/suitntie/asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 2">
                 <div class="carousel-caption d-none d-md-block" style="color: #333; top: 90px;">
-                    <h1>使用了适途服务的同学们都说了啥？</h1>
                     <img src="/suitntie/asset/image/slider/head-img.jpg" width="80" alt="student head image" style="border-radius: 50%"/>
                     <p>“测试结果真的贼准，作为文科生一直不知道以后该选什么专业，也非常感谢Tim老师的科普。太多干货了，让我在一个小时内知道了英国学市场学到底学啥，毕业以后能干嘛，现在对自己的未来有信心多了！”</p>
                     <p><b>ALEX同学</b></p>
@@ -31,7 +30,6 @@
             <div class="carousel-item">
                 <img src="/suitntie/asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 3">
                 <div class="carousel-caption d-none d-md-block" style="color: #333; top: 90px;">
-                    <h1>使用了适途服务的同学们都说了啥？</h1>
                     <img src="/suitntie/asset/image/slider/head-img.jpg" width="80" alt="student head image" style="border-radius: 50%"/>
                     <p>“测试结果真的贼准，作为文科生一直不知道以后该选什么专业，也非常感谢Tim老师的科普。太多干货了，让我在一个小时内知道了英国学市场学到底学啥，毕业以后能干嘛，现在对自己的未来有信心多了！”</p>
                     <p><b>ALEX同学</b></p>
