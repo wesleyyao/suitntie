@@ -3,5 +3,9 @@
 <link rel="stylesheet" href="/suitntie/asset/css/main.css">
 <link rel="stylesheet" href="/suitntie/asset/css/header.css">
 <link rel="stylesheet" href="/suitntie/asset/css/footer.css">
+<<<<<<< HEAD
 <link rel="stylesheet" href="/suitntie/asset/css/topSlider.css">
 <link rel="stylesheet" href="/suitntie/asset/css/dimension-test.css">
+=======
+<link rel="stylesheet" href="/suitntie/asset/css/topSlider.css">
+>>>>>>> home slider style
