@@ -6,7 +6,7 @@
             <li data-target="#testimonialSlider" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <h1>使用了适途服务的同学们都说了啥？</h1>
+            <h1 class="text-center">使用了适途服务的同学们都说了啥？</h1>
             <div class="carousel-item active">
                 <img src="/suitntie/asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">
                 <div class="carousel-caption d-none d-md-block" style="color: #333; top: 90px;">
