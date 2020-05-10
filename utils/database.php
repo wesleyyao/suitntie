@@ -29,4 +29,18 @@ class Database
         }
         return true;
     }
+
+    protected function fetch_data_by_foreign_key($query, $id){
+        $data = array();
+        $sql = $this->conn->prepare($query);
+        $sql->bind_param("i", $id);
+        $sql->execute();
+        $result = $sql->get_result();
+        if($result){
+            while($row = $result->fetch_assoc()){
+                array_push($data, $row);
+            }
+        }
+        return $data;
+    }
 }

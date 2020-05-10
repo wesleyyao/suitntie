@@ -19,5 +19,18 @@
 }
 
 .one-on-one-promote p{
-    margin-right: 180px;
+    margin-right: 200px;
+}
+
+.carousel-caption{
+    top: 185px;
+}
+
+.carousel-inner, .carousel-item{
+    max-height: 520px !important;
+}
+
+.home-contact-form{
+    padding: 50px 25px;
+    background-color: #f0f0f0;
 }

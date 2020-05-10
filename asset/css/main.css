@@ -47,7 +47,7 @@ input:empty{
     padding:16px 40px;
     background-color: #F19F4D !important;
     transition: 0.3s;
-  }
+}
 
   .primBtn:hover{    
     background-color: #9E744E !important;

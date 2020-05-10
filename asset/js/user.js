@@ -27,7 +27,7 @@ $(document).ready(function () {
             <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img id="loginUserAvatarInNav" src="" width="25" height="25" style="border-radius: 50%"/>
             </a>
-            <div class="dropdown-menu" aria-labelledby="userLinks">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userLinks">
                 <a class="dropdown-item" href="/suitntie/account/user.php">个人中心</a>
                 <a class="dropdown-item" href="/suitntie/public/auth/user-logout.php">登出</a>
             </div>
