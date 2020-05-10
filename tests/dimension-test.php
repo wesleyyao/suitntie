@@ -43,14 +43,15 @@
                     </div>
                 </div>
             </div>
-            <br />
-            <?php endif; ?>
-            <div id="titleDiv">
-                <div class="row mainTitle">
-                    <div class="col-12">
-                        <h1 class="text-center" id="testTitle">Loading...</h1>
-                    </div>
+                    <br/>
+                <?php endif; ?>
+                <div id="titleDiv">
+                    <div class="row mainTitle">
+                        <div class="col-12">
+                            <h1 class="text-center" id="testTitle">Loading...</h1>
                 </div>
+            </div>
+            <div class="container mainContent">
                 <div class="row testDesc">
                     <div class="col-md-4 tri-block">
                         <div class="lightShadow tri-block-content">
