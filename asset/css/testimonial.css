@@ -14,10 +14,14 @@
 
 .home-slider-testimonials .carousel-caption{
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin-top: -100px;
 =======
     margin-top: -50px;
 >>>>>>> testimonials slider style
+=======
+    margin-top: -100px;
+>>>>>>> fixed text option
 }
 
 .home-slider-testimonials .carousel-caption img{
@@ -35,6 +39,7 @@
     }
 
     .home-slider-testimonials .carousel-caption{
+<<<<<<< HEAD
 <<<<<<< HEAD
         margin-top: -120px;
     }
@@ -54,6 +59,19 @@
     .home-slider-testimonials .carousel-inner{
         height: 800px !important;
 >>>>>>> testimonials slider style
+=======
+        margin-top: -120px;
+    }
+
+    .home-slider-testimonials .carousel-inner{
+        height: 650px !important;
+        background-color: #f9f9f9 !important;
+    }
+}
+@media screen and (max-width: 640px) {
+    .home-slider-testimonials .carousel-inner{
+        height: 860px !important;
+>>>>>>> fixed text option
         background-color: #f9f9f9 !important;
     }
 }
