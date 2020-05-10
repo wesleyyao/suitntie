@@ -45,26 +45,10 @@
             </div>
                     <br/>
                 <?php endif; ?>
-<<<<<<< HEAD
                 <div id="titleDiv">
                     <div class="row mainTitle">
                         <div class="col-12">
                             <h1 class="text-center" id="testTitle">Loading...</h1>
-=======
-
-            <div id="titleDiv">
-            <div class="row mainTitle">
-                <div class="col-12">
-                    <h1 class="text-center" id="testTitle">Loading...</h1>
-                </div>
-            </div>
-            <div class="container mainContent">
-                <div class="row testDesc">
-                    <div class="col-md-4 tri-block">
-                        <div class="lightShadow tri-block-content">
-                            <img src="../asset/image/test-page/timer.svg">
-                            <p>测试长度大概为20分钟，回答没有对错好坏之分。</p>
->>>>>>> test page style edits
                         </div>
                     </div>
                 </div>
