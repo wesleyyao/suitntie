@@ -13,7 +13,7 @@
 }
 
 .home-slider-testimonials .carousel-caption{
-    margin-top: -50px;
+    margin-top: -100px;
 }
 
 .home-slider-testimonials .carousel-caption img{
@@ -31,11 +31,17 @@
     }
 
     .home-slider-testimonials .carousel-caption{
-        margin-top: -60px;
+        margin-top: -120px;
     }
 
     .home-slider-testimonials .carousel-inner{
-        height: 800px !important;
+        height: 650px !important;
+        background-color: #f9f9f9 !important;
+    }
+}
+@media screen and (max-width: 640px) {
+    .home-slider-testimonials .carousel-inner{
+        height: 860px !important;
         background-color: #f9f9f9 !important;
     }
 }

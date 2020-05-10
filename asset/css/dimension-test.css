@@ -1,15 +1,16 @@
 /* Header */
 
 .mainTitle{
-    height:250px;
+    height:350px;
     background-image:url('/suitntie/asset/image/test-page/Hero-img.jpg');
     background-repeat:no-repeat;
-    background-size:cover;
-    background-position:center;
+    background-size:contain;
+    background-position:center 0;
+    background-attachment: fixed;
 }
 
 #testTitle{
-    margin-top: 60px;
+    margin-top: 120px;
     color:white;
     font-weight: 400 !important;
 
@@ -98,60 +99,61 @@
 /* Answers */
 
 .answer-div {
-	 margin: 16px 0;
-	 display: block;
-	 cursor: pointer;
-}
- .answer-div input {
-	 display: none;
-}
- .answer-div {
-	 line-height: 22px;
-	 height: 22px;
-	 padding-left: 22px;
-	 display: block;
-	 position: relative;
-}
- .answer-div:not(:empty) {
-	 padding-left: 30px;
-}
- .answer-div:before, .answer-div:after {
-	 content: '';
-	 width: 22px;
-	 height: 22px;
-	 display: block;
-	 border-radius: 50%;
-	 left: 0;
-	 top: 0;
-	 position: absolute;
-}
- .answer-div:before {
-	 background: #FFE3C8;
-	 transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
-}
- .answer-div:after {
-	 background: #fff;
-	 transform: scale(0.78);
-	 transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
-}
- .answer-div input:checked > .answer-div span:before {
-	 transform: scale(1.04);
-	 background: #F19F4D;
-}
- .answer-div input:checked > .answer-div span:after {
-	 transform: scale(0.4);
-	 transition: transform 0.3s ease;
-}
- .answer-div:hover:before {
-	 transform: scale(0.92);
-}
- .answer-div:hover:after {
-	 transform: scale(0.74);
-}
- .answer-div:hover input:checked > .answer-div span:after {
-	 transform: scale(0.4);
-}
-
+    margin: 16px 0;
+    display: block;
+    cursor: pointer;
+  }
+  .answer-div input {
+    display: none;
+  }
+  .answer-div input + span {
+    line-height: 22px;
+    height: 22px;
+    padding-left: 22px;
+    display: block;
+    position: relative;
+  }
+  .answer-div input + span:not(:empty) {
+    padding-left: 30px;
+  }
+  .answer-div input + span:before, .answer-div input + span:after {
+    content: '';
+    width: 22px;
+    height: 22px;
+    display: block;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+  .answer-div input + span:before {
+    background: #FFE3C8;
+    transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  }
+  .answer-div input + span:after {
+    background: #fff;
+    transform: scale(0.78);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  }
+  .answer-div input:checked + span:before {
+    transform: scale(1.04);
+    background: #F19F4D;
+  }
+  .answer-div input:checked + span:after {
+    transform: scale(0.4);
+    transition: transform 0.3s ease;
+  }
+  .answer-div:hover input + span:before {
+    transform: scale(0.92);
+  }
+  .answer-div:hover input + span:after {
+    transform: scale(0.74);
+  }
+  .answer-div:hover input:checked + span:after {
+    transform: scale(0.4);
+  }
+  
+  
 .answer-selected .answer-text{
     color:#F19F4D !important;
 }

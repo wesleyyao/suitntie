@@ -236,12 +236,11 @@ $(document).ready(function () {
                 for (let j = 0; j < data.questions[i].answers.length; j++) {
                     content +=
                         `
-                            <div class="answer-div" style="padding-bottom: 5px">
-                            <span class="answer-text">${data.questions[i].answers[j].subject}</span>
-                            <input hidden
-                            name="answer_for_question_${data.questions[i].answers[j].question_id}" 
-                            value="${data.questions[i].answers[j].dimension_id}">
-                            </div>
+                            <label class="answer-div" style="padding-bottom: 5px">                    
+                                <input type="radio" name="answer_for_question_${data.questions[i].answers[j].question_id}" 
+                                    value="${data.questions[i].answers[j].dimension_id}">
+                                <span class="answer-text">${data.questions[i].answers[j].subject}</span>
+                            </label>
                        `;
                 }
                 content += `</div></div><br/>`;
