@@ -2,10 +2,6 @@
     width: 100%;
 }
 
-.carousel-caption{
-    top: 185px;
-}
-
 .carousel-inner, .carousel-item{
     max-height: 520px !important;
 }
@@ -18,12 +14,18 @@
     display: flex;
     align-items: center;
     padding: 25px 50px;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-.home-one-on-one-entrance{
-    background-color: #fdf1e7;
-    color: #333;
-    padding: 25px;
+.home-programs-entrance h1{
+    font-weight: 400 !important;
+    margin-bottom: 30px;
+}
+
+.home-programs-entrance p{
+    margin-bottom: 30px;
 }
 
 .teacher-cell{
@@ -79,4 +81,21 @@
     .addBtmMargin-30 {
         margin-bottom:30px;
     }
+}
+
+/* Mentor Section */
+.home-one-on-one-entrance{
+    background-color: #fdf1e7;
+    color: #333;
+    padding: 80px 40px;
+    border-radius: 10px;
+}
+
+.home-one-on-one-entrance h1{
+    font-weight: 400 !important;
+    margin-bottom: 30px;
+}
+
+.home-one-on-one-entrance p{
+    margin-bottom: 30px;
 }

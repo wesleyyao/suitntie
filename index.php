@@ -59,20 +59,20 @@
             <div class="container">
                 <h1>超全专业库</h1>
                 <div class="row">
-                    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12">
+                    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12">
                     <p>如需进一步了解感兴趣的专业，适途的专业导师库涵盖了全球顶级大学各类专业500+位优秀且有亲和力的学长学姐，乐于用自己的亲身经历，并结合同学的个人情况，提供一对一具有针对性的大学专业知识科普。</p>
                     </div>
                 </div>
-                <a href="" class="btn btn-warning">浏览专业库</a>
+                <a href="" class="btn primBtn">浏览专业库</a>
             </div>
         </div>
         <div class="container mt-5 mb-5 pt-5 pb-5">
-            <div class="row mb-5">
-                <div class="col-12">
-                    <div class="home-one-on-one-entrance text-center">
+            <div class="row mb-5 home-one-on-one-entrance ">
+                <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12">
+                    <div class="text-center">
                         <h1>一对一专业导师科普</h1>
                         <p>我们的每一位导师都经过精心挑选，他们来自全球顶级学府的各个专业。他们走过的路就是你可能面临的路。他们的人生经验和专业知识能给你从专业，选课，学校生活，工作各个方面提供指导和参考价值。</p>
-                        <a href="" class="btn btn-warning">了解更多</a>
+                        <a href="" class="btn primBtn">了解更多</a>
                     </div>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                     <div id="contactMessage"></div>
                     <div class="row">
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-warning" id="homeContactSubmit">提交信息</button>
+                            <button type="submit" class="btn primBtn" id="homeContactSubmit">提交信息</button>
                         </div>
                     </div>
                 </form>
