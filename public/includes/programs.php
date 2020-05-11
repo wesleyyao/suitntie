@@ -10,6 +10,7 @@
         public $books = array();
         public $related_programs = array();
         public $child_programs = array();
+        public $testimonials = array();
 
         public function fetch_program_data(){
             $data = array();
@@ -32,11 +33,13 @@
             $this->courses = $this->fetch_data_by_foreign_key($query_course, $this->id);
             $query_info = "SELECT `id`, `content`, `p_index`, `type` FROM program_info WHERE `status` = 'open' AND p_id = ?";
             $this->info = $this->fetch_data_by_foreign_key($query_info, $this->id);
-            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image` FROM self_learn_recommend WHERE `status` = 'open' AND p_id = ?";
+            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link` FROM self_learn_recommend WHERE `status` = 'open' AND p_id = ?";
             $this->books = $this->fetch_data_by_foreign_key($query_books, $this->id);
             $this->related_programs = $this->fetch_programs_by_cateogry($this->categoryId);
-            $query_child = "SELECT id, name, content, item_index FROM child_program WHERE status = 'open' AND p_id = ?";
+            $query_child = "SELECT `id`, `name`, `content`, `item_index` FROM child_program WHERE `status` = 'open' AND p_id = ?";
             $this->child_programs = $this->fetch_data_by_foreign_key($query_child, $this->id);
+            $query_testimonials = "SELECT `id`, `name`, `feedback`, `school`, `program`, `grade` FROM program_testimonials WHERE `status` = 'open' AND p_id = ?";
+            $this->testimonials = $this->fetch_data_by_foreign_key($query_testimonials, $this->id);
         }
 
         public function fetch_category(){

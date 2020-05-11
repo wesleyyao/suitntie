@@ -79,9 +79,11 @@
             <hr><br/><br/>
             <div class="row mt-2 mb-5">
                 <div class="col-lg-6 col-md-12">
+                    <h4>相关课程</h4>
                     <div id="courses"></div>
                 </div>
                 <div class="col-lg-6 col-md-12">
+                    <h4>子专业列表</h4>
                     <div id="childPrograms"></div>
                 </div>
             </div>

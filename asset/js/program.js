@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    const prefix = '/suitntie';
     const loading = `
     <div class="d-flex justify-content-center m-2">
         <div class="spinner-border text-warning" role="status">
@@ -9,7 +10,7 @@ $(document).ready(function(){
     let programCards = '';
     let programData = [];
     const currentPage = window.location.href;
-    $.get('/suitntie/public/api/program.php?type=all').done(function(data){
+    $.get(`${prefix}/public/api/program.php?type=all`).done(function(data){
         if(data){
             const result = JSON.parse(data);
             programData = result;
@@ -18,7 +19,7 @@ $(document).ready(function(){
                     programCards += `<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                     <div class="card">
                         <div class="card-body text-center">
-                            <img src="/suitntie${item.image}" width="60" alt="program logo"/>
+                            <img src="${prefix}${item.image}" width="60" alt="program logo"/>
                             <h5 class="card-title">${item.name}</h5>
                             <a href="#/" class="programs-view-btn" id="programsView${item.id}">查看专业列表</a>
                         </div>
@@ -41,7 +42,7 @@ $(document).ready(function(){
         console.log(pcId)
         if(foundCategory && foundCategory.details && Array.isArray(foundCategory.details)){
             foundCategory.details.forEach(function(item){
-                programDetails += `<li><a href="/suitntie/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
+                programDetails += `<li><a href="${prefix}/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
             });
         }
         programDetails += '</ul>';
@@ -51,7 +52,7 @@ $(document).ready(function(){
 
     if(currentPage.includes('title=')){
         const title = decodeURIComponent(currentPage.slice(currentPage.indexOf('title=') + 6));
-        $.get('/suitntie/public/api/program.php?view=single&title=' + title).done(function(data){
+        $.get(`${prefix}/public/api/program.php?view=single&title=${title}`).done(function(data){
             const result = JSON.parse(data);
             console.log(result)
             if(!result){
@@ -75,7 +76,7 @@ $(document).ready(function(){
             if(relatedPrograms.length > 0){
                 relatedPrograms.forEach(function(item){
                     if(item.title !== title){
-                        related += `<li><a href="/suitntie/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
+                        related += `<li><a href="${prefix}/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
                     }
                 });
             }
@@ -108,11 +109,12 @@ $(document).ready(function(){
             if(bookData && Array.isArray(bookData) && bookData.length > 0){
                 bookData.forEach(function(item){
                     books += `<div class="col-lg-4 col-md-12 col-sm-12" style="display: flex">
-                        <img src="/suitntie/${item.image}" alt="${item.title}" width="120" height="90" />
+                        <img src="${prefix}/${item.image}" alt="${item.title}" width="120" height="90" />
                         <div>
                             <h6>${item.title}</h6>
                             <p>作者： ${item.author}</p>
                             <p>豆瓣评分： ${item.douban}</p>
+                            <a class="btn btn-warning" href="${item.link}">查看</a>
                         </div>
                         </div>
                     `;
@@ -170,6 +172,30 @@ $(document).ready(function(){
             }
             childPrograms += `</div>`;
             $('#childPrograms').html(childPrograms);
+
+            const testimonialData = result.testimonials;
+            let testimonials = '';
+            let controller = '';
+            if(testimonialData && Array.isArray(testimonialData) && testimonialData.length > 0){
+                testimonialData.forEach(function(item, index){
+                    testimonials += `<div class="carousel-item ${index == 0 ? 'active' : ''}">
+                    <img src="../asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">
+                    <div class="carousel-caption d-none d-md-block" style="color: #333; top: 90px;">
+                        <div>
+                            <p>${item.feedback}</p>
+                            <p><b>${item.name}</b></p>
+                            <p>${item.school} ${item.program} ${item.grade}</p>
+                        </div>
+                        <a class="btn primBtn" href="#/">咨询学长学姐</a>
+                    </div>
+                </div>`;
+                if(testimonialData.length > 1){
+                    controller += `<li data-target="#testimonialSlider" data-slide-to="${index + 1}"></li>`;
+                }
+                });
+            }
+            $('#programTestimonialController').append(controller);
+            $('#programTestimonial').append(testimonials);
         });
     }
 });
