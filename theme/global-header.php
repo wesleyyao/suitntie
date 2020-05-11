@@ -19,7 +19,7 @@
                         专业探索
                     </a>
                     <div class="dropdown-menu pt-2 pb-2 text-center" aria-labelledby="programLinks" id="programMenu">
-                      <a class="dropdown-item" href="/suitntie/programs/index.php">总览</a>
+                        <a class="dropdown-item" href="/suitntie/programs/index.php">总览</a>
                     </div>
                 </div>
             </li>

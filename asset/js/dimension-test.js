@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    const prefix = '/suitntie';
     let second = 0;
     let minute = 0;
     const title = '适途16型人格测试';
@@ -22,6 +23,7 @@ $(document).ready(function () {
                 <div class="spinner-border text-warning" role="status">
                     <span class="sr-only">正在加载测试...</span>
                 </div>
+                <div>正在加载测试...</div>
                 <br/><br/>
             </div>
         </div>`;
@@ -39,7 +41,7 @@ $(document).ready(function () {
         }
     });
 
-    $.get('/suitntie/public/api/test.php?title=' + title).done(function (data) {
+    $.get(`${prefix}/public/api/test.php?title=${title}`).done(function (data) {
         if (data) {
             let result = JSON.parse(data);
             const { dimension, test, user } = result;
@@ -137,17 +139,17 @@ $(document).ready(function () {
               <p class="lead">我们正在为您生成本次测试的结果。处理完成后，会自动为您跳转到测试结果页面。</p>
             </div>
           </div>`;
-            $('#mainContentDiv').html(proceeding);
-            $.post('/suitntie/public/api/proceed-result.php', formData).done(function(data){
+            $('#dimensionTestMain').html(proceeding);
+            $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
                 const result = JSON.parse(data);
                 console.log(result)
-                if(result == 'success'){
-                    window.location.replace('/suitntie/tests/dimension-test-result.php');
+                if (result == 'success') {
+                    window.location.replace(`${prefix}/tests/dimension-test-result.php`);
                 }
-                else if(result == 'no login'){
-                    window.location.replace('/suitntie/index.php');
+                else if (result == 'no login') {
+                    window.location.replace(`${prefix}/tests/dimension-test.php`);
                 }
-                else{
+                else {
                     const invalidFormMessage = `<div class="jumbotron jumbotron-fluid">
                     <div class="container text-center">
                       <h1 class="display-4 text-danger"> 
@@ -155,7 +157,7 @@ $(document).ready(function () {
                       抱歉，该请求无法被处理。</h1>
                     </div>
                   </div>`;
-                  $('#mainContentDiv').html(invalidFormMessage);
+                    $('#dimensionTestMain').html(invalidFormMessage);
                 }
             });
             return;
@@ -188,7 +190,7 @@ $(document).ready(function () {
         if (renderedQuestions === totalQuestions) {
             $('#nextPage').html('查看结果');
         }
-     
+
         $('#message').html('');
         $('#questionTypeTitle').html(questions[questionTypesIndex] ? questions[questionTypesIndex].name : '');
         $('#mainQuestionDiv').html(content);

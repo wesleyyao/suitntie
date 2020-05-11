@@ -115,14 +115,14 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <!-- <a href="#/" class="btn btn-info rounded"><i class="fab fa-weixin"></i> 分享到朋友圈</a> -->
-                            <span class="text-danger">*提示： 每次测试结果都会保存在<a href="/user.php">个人中心</a>， 建议每半年做一次，看看自己有没有变化。</span>
+                            <span class="text-danger">*提示： 每次测试结果都会保存在<a href="../account/user.php">个人中心</a>， 建议每半年做一次，看看自己有没有变化。</span>
                         </div>
                     </div>
                     <br/>
                     <div class="row">
                         <div class="col-lg-3 col-sm-12">
                             <h5 class="text-center">没有看到心仪的专业？</h5>
-                            <a class="btn btn-warning btn-block" href="">探索更多专业</a>
+                            <a class="btn btn-warning btn-block" href="../programs/index.php">探索更多专业</a>
                         </div>
                         <div class="offset-lg-6 col-lg-3 col-sm-12">
                             <h5 class="text-center">想找专业导师聊聊？</h5>

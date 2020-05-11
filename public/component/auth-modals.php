@@ -153,26 +153,20 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="userProfileCompleteModal" tabindex="-1" role="dialog" aria-labelledby="userProfileCompleteModalTitle" aria-hidden="true">
+<div class="modal fade" id="userProfileCompleteModal" tabindex="-1" role="dialog" aria-labelledby="userProfileCompleteModalTitle" aria-hidden="true"  data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="userProfileCompleteModalTitle">完善用户资料</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
             </div>
             <div class="modal-body">
                 <div class="alert alert-light" role="alert">
                     为了确保我们的工作人员可以与您取得联系，请保存您的联系方式。
                 </div>
                 <form id="userProfileCompleteForm">
-                    <div class="row mb-2" id="profileCompleteEmailCell">
-                        <div class="offset-1 col-10">
-                            <label><span class="text-danger">*</span> 邮箱：</label>
-                            <input type="text" id="toFinishEmail" class="form-control profile-required" maxlength="128"/>
-                        </div>
-                    </div>
                     <div class="row mb-2" id="profileCompletePhoneCell">
                         <div class="offset-1 col-10">
                             <label><span class="text-danger">*</span> 手机：</label>
@@ -186,7 +180,7 @@
                     </div>
                     <div class="row">
                         <div class="offset-1 col-10 text-right">
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                            <a class="btn btn-outline-secondary" href="../../suitntie/account/user.php">回到个人中心</a>
                             <button type="submit" class="btn btn-success" id="CompleteProfile">提交</button>
                         </div>
                     </div>
