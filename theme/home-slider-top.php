@@ -1,12 +1,12 @@
 <div class="home-slider-top">
     <div id="homeTopSlider" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#homeTopSlider" data-slide-to="0" class="active"></li>
+        <ol class="carousel-indicators" id="homeSliderControllers">
+            <!-- <li data-target="#homeTopSlider" data-slide-to="0" class="active"></li>
             <li data-target="#homeTopSlider" data-slide-to="1"></li>
-            <li data-target="#homeTopSlider" data-slide-to="2"></li>
+            <li data-target="#homeTopSlider" data-slide-to="2"></li> -->
         </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
+        <div class="carousel-inner" id="homeTopSliderContent">
+            <!-- <div class="carousel-item active">
                 <img src="/suitntie/asset/image/slider/home-slider-1.jpg" class="d-block img-responsive" alt="home slider 1">
                 <div class="carousel-caption">
                     <h1>用科学的方法选择适合自己的专业</h1>
@@ -29,7 +29,7 @@
                     <p>搜索海量各个专业的信息，做到心里有数</p>
                     <a class="btn ghostBtn mt-3" href="">开始探索</a>
                 </div>
-            </div>
+            </div> -->
         </div>
         <a class="carousel-control-prev" href="#homeTopSlider" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

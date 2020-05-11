@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    const prefix = '/suitntie';
     $('#contactMessage').hide();
     const loading = `
     <div class="d-flex justify-content-center m-2">
@@ -6,7 +7,29 @@ $(document).ready(function(){
             <span class="sr-only">Loading...</span>
         </div>
     </div>`;
-    let message = '';
+    let topSlider = '';
+    let topController = '';
+    $.get(`${prefix}/public/api/home.php`).done(function(data){
+        const result = JSON.parse(data);
+        if(result && Array.isArray(result) && result.length > 0){
+            result.forEach(function(item, index){
+                topSlider += `<div class="carousel-item ${index == 0 ? 'active' : ''}">
+                <img src="/suitntie/asset/image/slider/home-slider-1.jpg" class="d-block img-responsive" alt="home slider 1">
+                <div class="carousel-caption">
+                    <h1>${item.title ? item.title : ''}</h1>
+                    <p>${item.content ? item.content : ''}</p>
+                    ${item.button ? `<a class="btn ghostBtn mt-3" href="${item.link ? item.link : '#/'}">${item.button}</a>` : ''}
+                </div>
+            </div>`;
+                if(result.length > 0){
+                    topController += `<li data-target="#homeTopSlider" data-slide-to="${index}" class="${index == 0 ? 'active' : ''}"></li>`;
+                }
+            });
+        }
+        $('#homeTopSliderContent').html(topSlider);
+        $('#homeSliderControllers').html(topController);
+    });
+
     $('#contactForm').submit(function(e){
         e.preventDefault();
         const email = $('#contactEmail').val();
