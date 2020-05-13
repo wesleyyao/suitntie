@@ -4,14 +4,11 @@
     $state = uniqid('', true);
     $_SESSION["wechat_state"] = $state;
 ?>
-<div class="modal fade" id="userLoginModal" tabindex="-1" role="dialog" aria-labelledby="userLoginTitle" aria-hidden="true">
+<div class="modal fade" id="userLoginModal" tabindex="-1" role="dialog" aria-labelledby="userLoginTitle" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="userLoginTitle">用户登录</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <form id="loginForm" action="/suitntie/public/auth/user-login.php?redirect=<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post">
                 <div class="modal-body">
@@ -45,7 +42,7 @@
                     <br/>
                     <div class="row">
                         <div class="offset-1 col-10 text-right">
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                            <a class="btn btn-outline-secondary" href="../../suitntie/index.php">首页</a>
                             <button type="submit" class="btn btn-success" id="loginSubmit" name="login_button">确认</button>
                         </div>
                     </div>
@@ -105,7 +102,7 @@
                         <br/>
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-outline-secondary close-signup-btn">关闭</button>
                                 <button type="button" class="btn btn-success submit-button" id="signupByPhone">提交</button>
                             </div>
                         </div>
@@ -143,7 +140,7 @@
                         <div id="signupMessage"></div>
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-outline-secondary close-signup-btn">关闭</button>
                                 <button type="button" class="btn btn-success submit-button" id="signupByEmail">提交</button>
                             </div>
                         </div>
@@ -153,7 +150,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="userProfileCompleteModal" tabindex="-1" role="dialog" aria-labelledby="userProfileCompleteModalTitle" aria-hidden="true"  data-backdrop="static">
+<div class="modal fade" id="userProfileCompleteModal" tabindex="-1" role="dialog" aria-labelledby="userProfileCompleteModalTitle" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">

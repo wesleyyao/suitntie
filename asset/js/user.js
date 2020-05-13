@@ -125,6 +125,11 @@ $(document).ready(function () {
         });
     });
 
+    $('.close-signup-btn').click(function(){
+        $('#userSignUpModal').modal('hide');
+        $('#userLoginModal').modal('show');
+    });
+
     function formValidation(className, message, email) {
         let isValid = true;
         $(className).each(function () {

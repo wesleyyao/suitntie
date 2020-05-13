@@ -1,7 +1,10 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
+    session_start();
     if(isset($_SESSION["new_test"])){
         unset($_SESSION["new_test"]);
+    }
+    if(!isset($_SESSION["login_user"])){
+        redirect("../account/user.php");
     }
 ?>
 <!DOCTYPE html>

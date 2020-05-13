@@ -1,5 +1,5 @@
 <?php
-    require_once("../includes/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
     $result = array();
     $result["message"] = array();
     if($_SERVER["REQUEST_METHOD"] == "GET"){

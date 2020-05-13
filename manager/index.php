@@ -5,22 +5,19 @@
         <title>管理页面</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/suitntie/asset/css/bootstrap.css">
-        <link rel="stylesheet" href="/suitntie/asset/css/main.css">
-        <link rel="stylesheet" href="/suitntie/asset/css/manager.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <?php require_once("./components/style.php"); ?>
     </head>
     <body>
         <div class="container">
             <div id="mainDiv">
+                <?php require_once("./components/nav.php"); ?>
                 <br/>
                 <div id="message"></div>
                 <div class="row">
                     <div class="col-12">
                         <div class="card text-center">
                             <div class="card-body">
-                                <a style="position: absolute; top: 10px; right: 15px;" href="/suitntie/public/auth/office-logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                <a style="position: absolute; top: 10px; right: 15px;" href="./auth/office-logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                 <div class="row">
                                     <div class="col-12">
                                         <h5 class="card-title" id="staffName"></h5>
@@ -73,45 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">登录</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <form id="loginForm">
-                        <div class="row">
-                            <div class="offset-2 col-8">
-                                <label><span class="text-danger">*</span>邮箱:</label>
-                                <input type="email" maxlength="128" id="officeEmail" class="form-control login-required" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="offset-2 col-8">
-                                <label><span class="text-danger">*</span>密码:</label>
-                                <input type="password" maxlength="24" id="officePwd" class="form-control login-required" />
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row">
-                            <div class="offset-2 col-8">
-                                <div id="loginMessage"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="offset-2 col-8 text-right">
-                                <button type="submit" class="btn btn-primary">确认</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-              </div>
-            </div>
-        </div>
+        <?php require_once("./components/login.php"); ?>
         <div class="modal fade" id="testResultModal" tabindex="-1" role="dialog" aria-labelledby="testResultTitle" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
               <div class="modal-content">
@@ -141,13 +100,13 @@
                     <div id="historyDetailsDiv">
                         <div class="row">
                             <div class="col-12">
-                                <div style="min-height: 200px;">
+                                <div style="min-height: 200px; background: #F19F4D">
                                     <div class="container text-center result-title-cell" style="z-index: 2">
                                         <h1 class="display-4" id="resultTitle"></h1>
                                         <h2 id="resultDescription"></h2>
                                         <div class="lead" id="resultTags"></div>
                                     </div>
-                                    <img id="characterImg" src="" />
+                                    <!-- <img id="characterImg" src="" /> -->
                                 </div>
                             </div>
                         </div>
@@ -217,11 +176,6 @@
               </div>
             </div>
         </div>
-        <script src="/suitntie/asset/js/jquery-3.4.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
-        <script src="/suitntie/asset/js/bootstrap.bundle.js"></script>
-        <script src="/suitntie/asset/js/chart.js"></script>
-        <script src="/suitntie/asset/js/manager.js"></script>
+        <?php require_once("./components/script.php"); ?>
     </body>
 </html>

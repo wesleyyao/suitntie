@@ -30,12 +30,13 @@ $(document).ready(function(){
             const email = $('#officeEmail').val();
             const password = $('#officePwd').val();
             
-            $.post('/suitntie/public/auth/office-login.php', {email, password}).done(function(data){
+            $.post('./auth/office-login.php', {email, password}).done(function(data){
                 const result = JSON.parse(data);
+                console.log(result)
                 if(!result){
                     showMessage('#loginMessage', 'danger', '无法连接服务器。');
                 }
-                const { message, user} = result;
+                const { message } = result;
                 if(message){
                     if(message.type === 'danger'){
                         if(message.content === 'required missing'){
@@ -53,11 +54,9 @@ $(document).ready(function(){
                         setTimeout(function(){
                             $('#loginModal').modal('hide');
                             fetchMainData();
+                            $('#message').html('');
                         }, 2000);
                     }
-                }
-                if(user){
-
                 }
             });
         }
@@ -68,7 +67,7 @@ $(document).ready(function(){
         $('#historyDiv').html(loading);
         const id = $(this).attr('id').replace('userId_', '');
         console.log(id)
-        $.get('/suitntie/public/api/manager.php?user=' + id).done(function(data){
+        $.get('./api/manager.php?user=' + id).done(function(data){
             if(data){
                 const result = JSON.parse(data);
                 console.log(result);
@@ -95,7 +94,7 @@ $(document).ready(function(){
         $('#testResultDetailsModal').modal('show');
         const id = $(this).attr('id').replace('testResultId_', '');
         console.log(id)
-        $.get('/suitntie/public/api/manager.php?result=' + id).done(function(data){
+        $.get('./api/manager.php?result=' + id).done(function(data){
             if(data){
                 const result = JSON.parse(data);
                 console.log(result);
@@ -221,7 +220,7 @@ $(document).ready(function(){
     }
 
     function fetchMainData(){
-        $.get('/suitntie/public/api/manager.php').done(function(data){
+        $.get('./api/manager.php').done(function(data){
             const result = JSON.parse(data);
             const { message, users, staff } = result;
             console.log(result);
