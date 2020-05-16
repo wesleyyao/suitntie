@@ -26,6 +26,7 @@
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+<<<<<<< HEAD
     <div class="test-main">
         <input type="hidden" id="hide_title" value="dimension-test" />
         <?php require_once("../theme/global-header.php"); ?>
@@ -40,6 +41,24 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
+=======
+        <div class="test-main">
+            <input type="hidden" id="hide_title" value="dimension-test"/>
+            <?php require_once("../theme/global-header.php"); ?>
+            <div  style="min-height: 500px;">
+                <?php if(isset($_SESSION["test_error_message"])): ?>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                <i class="fas fa-times"></i>
+                                <?php echo $_SESSION["test_error_message"]; ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+>>>>>>> finished homepage
                     </div>
                 </div>
             </div>
@@ -59,10 +78,20 @@
                             <p>测试长度大概为20分钟，回答没有对错好坏之分。</p>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-md-4 tri-block">
                         <div class="lightShadow tri-block-content">
                             <img src="../asset/image/test-page/heart.svg">
                             <p>请选择真实的你的做法，而不要选择你认为哪样更好。</p>
+=======
+                    <div class="container">
+                    <div class="row testDesc">
+                        <div class="col-md-4 tri-block">
+                            <div class="lightShadow tri-block-content">
+                                <img src="../asset/image/test-page/timer.svg">
+                                <p>测试长度大概为20分钟，回答没有对错好坏之分。</p>
+                            </div>
+>>>>>>> finished homepage
                         </div>
                     </div>
                     <div class="col-md-4 tri-block">
@@ -72,6 +101,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
             </div>
             <div id="clockAndProgressBarDiv" class="test-div">
                 <div class="row">
@@ -82,6 +112,22 @@
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" id="progress" aria-valuenow="0"
                                 aria-valuemin="0" aria-valuemax="100"></div>
+=======
+                </div>
+                <div class="container">
+                <div id="clockAndProgressBarDiv" class="test-div">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                            <span id="percentage" class="">0%</span>
+                        </div>
+                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 progressContainer">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" id="progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                            <div id="clock"></div>
+>>>>>>> finished homepage
                         </div>
                     </div>
                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
@@ -126,6 +172,7 @@
             <div class="row">
                 <div class="col-12">
                     <div id="message"></div>
+                </div>
                 </div>
             </div>
         </div>
