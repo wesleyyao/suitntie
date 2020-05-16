@@ -1,31 +1,34 @@
-#mainResultDiv p, #mainResultDiv li{
-    font-size:1.2em;
+.dimension-test-result-main h3{
+    font-size:1.5em !important;
+    font-weight:500;
  }
 
 .resultHeader{
     background-color: #2F4858 !important;
-    z-index: 0;
+    padding:0 !important;
 }
 
-.resultDemension{
+.resultDimension{
+    margin-top: -1px;;
     background-color: #2F4858 !important;
-    margin-top:-80px;
+    position:relative;
+}
+
+.resultDimension svg {
+    left:0;
+    bottom: 0;
+    width: 100%;
+    height: 20vw;
+    z-index: 0;
+    position: absolute;
 }
 
 .resultCharactor{
     display:inline-block;
 }
 
-.resultDemension{
-    position:relative;
-}
-
-.resultDemension svg {
-    position: absolute;
-    bottom: 0;
-    left:0;
-    width: 100%;
-    height: 300px;
+.dimensionContent{
+    z-index: 100;
 }
 
 @media only screen and (max-width: 575px) {
@@ -33,7 +36,7 @@
         padding:40px;
     }
   }
-.resultDemension:after{
+.resultDimension:after{
     clear:both;
 }
 
@@ -63,7 +66,7 @@
 }
 
  .resultBarChart{
-     padding:40px;
+     padding:20px;
  }
 
  @media only screen and (max-width: 1200px) {
@@ -86,7 +89,7 @@
 
   @media only screen and (max-width: 575px) {
 
-    .resultDemension{
+    .resultDimension{
         padding:0 30px;
     }
   }
@@ -124,11 +127,23 @@
 }
 
 /* Analysis */
+.dimension-analysis{
+    padding:70px 80px !important;
+}
+
 .basic-analysis{
     background-color: rgba(242,242,242,0.4);
     padding:70px 80px !important;
-    font-size: 1.2em;
     border-radius: 10px;
+}
+
+.advantages{
+    padding:70px 80px !important;
+}
+
+.disadvantages{
+    padding:0 80px !important;
+    margin-bottom: 70px;
 }
 
 .advantages ul, .disadvantages ul{
