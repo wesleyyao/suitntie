@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-2">
+            <div class="row mb-2 instructor">
                 <div class="col-12 text-center">
                     <h1>部分导师展示</h1>
                 </div>
@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="teacher-cell">
-                        <img src="/suitntie/asset/image/slider/head-img.jpg" alt="teacher"/>
+                        <img src="/suitntie/asset/image/photos/Erik.png" alt="teacher" class="mb-auto"/>
                         <div class="teacher-cell-info">
                             <h5>Erik</h5>
                             <label>专业领域：</label>
@@ -96,9 +96,9 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="teacher-cell">
-                        <img src="/suitntie/asset/image/slider/head-img.jpg" alt="teacher"/>
+                        <img src="/suitntie/asset/image/photos/Cathy.png" alt="teacher" class="mb-auto"/>
                         <div class="teacher-cell-info">
-                            <h5>Erik</h5>
+                            <h5>Cathy</h5>
                             <label>专业领域：</label>
                             <p>机械工程，机器人</p>
                             <label>毕业院校:</label>
@@ -110,9 +110,9 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="teacher-cell">
-                        <img src="/suitntie/asset/image/slider/head-img.jpg" alt="teacher"/>
+                        <img src="/suitntie/asset/image/photos/Joyce.png" alt="teacher" class="mb-auto"/>
                         <div class="teacher-cell-info">
-                            <h5>Erik</h5>
+                            <h5>Joyce</h5>
                             <label>专业领域：</label>
                             <p>机械工程，机器人</p>
                             <label>毕业院校:</label>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="teacher-cell">
-                        <img src="/suitntie/asset/image/slider/head-img.jpg" alt="teacher"/>
+                        <img src="/suitntie/asset/image/photos/Violet.png" alt="teacher" class="mb-auto"/>
                         <div class="teacher-cell-info">
                             <h5>Erik</h5>
                             <label>专业领域：</label>
@@ -132,6 +132,7 @@
                         </div>
                     </div>
                 </div>
+                <a href="#" class="btn primBtn">请教学长姐</a>
             </div>
         </div>
         <div class="home-contact-form">
@@ -141,33 +142,33 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> 姓名：</label>
-                            <input type="text" maxlength="128" id="contactName" class="form-control contact-required" />
+                            <input type="text" maxlength="128" id="contactName" class="form-control contact-required" placeholder="姓名" />
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> E-Mail：</label>
-                            <input type="email" maxlength="128" id="contactEmail" class="form-control contact-required" />
+                            <input type="email" maxlength="128" id="contactEmail" class="form-control contact-required" placeholder="E-Mail"/>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> 手机号：</label>
-                            <input type="text" maxlength="64" id="contactPhone" class="form-control contact-required" />
+                            <input type="text" maxlength="64" id="contactPhone" class="form-control contact-required" placeholder="手机号"/>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <label> 微信号：</label>
-                            <input type="text" maxlength="64" id="contactWechat" class="form-control" />
+                            <input type="text" maxlength="64" id="contactWechat" class="form-control" placeholder="微信号"/>
                         </div>
                     </div>
-                    <br/>
+                    
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> 所在城市：</label>
-                            <input type="text" maxlength="128" id="contactCity" class="form-control contact-required" />
+                            <input type="text" maxlength="128" id="contactCity" class="form-control contact-required" placeholder="所在城市"/>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <label><span class="text-danger">*</span> 所在高校：</label>
-                            <input type="text" maxlength="128" id="contactSchool" class="form-control contact-required" />
+                            <input type="text" maxlength="128" id="contactSchool" class="form-control contact-required" placeholder="所在高校"/>
                         </div>
                     </div>
-                    <br/>
+                    
                     <div class="row pb-3">
                         <div class="col-12">
                             <label><span class="text-danger">*</span> 提问：</label>

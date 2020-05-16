@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div id="mainResultDiv" class="result-div">
-                    <div class="row">
+                    <div class="row resultHeader">
                         <div class="col-12">
                             <div style="min-height: 256px;">
                                 <div class="container text-center result-title-cell" style="z-index: 2; width: 100%">
