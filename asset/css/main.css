@@ -26,6 +26,12 @@ input:empty{
     box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
 }
 
+.lighterShadow{
+    -webkit-box-shadow: 0px 0px 25px -1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0px 0px 25px -1px rgba(0,0,0,0.05);
+    box-shadow: 0px 0px 25px -1px rgba(0,0,0,0.05);
+}
+
 .ghostBtn{
     margin:0 auto;
     border: 1px solid white;
@@ -53,6 +59,20 @@ input:empty{
     background-color: #9E744E !important;
     color:white;
     transition: 0.3s;
+}
+
+.secBtn{
+    font-weight: 100;
+    margin:0 auto;
+    padding:16px 40px;
+    background-color: rgb(248, 248, 248) !important;
+    transition: 0.3s;
+}
+
+  .secBtn:hover{    
+    transition: 0.3s;
+    background-color: #F19F4D !important;
+    color:white;
 }
 
 

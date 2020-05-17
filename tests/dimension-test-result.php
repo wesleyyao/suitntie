@@ -71,7 +71,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 tagBox">
                                             <div class="lead" id="resultTags"></div>
                                         </div>
                                     </div>

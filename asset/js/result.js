@@ -56,8 +56,8 @@ $(document).ready(function () {
             $('#resultDescription').html(description);
             $('#characterImg').attr('src', imgSrc);
 
-            let tagHtml = `<span>你的标签： </span>`;
-            tags.forEach(function (tag) {
+            let tagHtml = `<h4>你的标签： </h4>`;
+            tags.forEach(function(tag){
                 tagHtml += `<span class="badge badge-light" style="margin: 0 3px">#${tag.name}</span>`
             });
             $('#resultTags').html(tagHtml);
