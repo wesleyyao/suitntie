@@ -17,11 +17,11 @@ $(document).ready(function(){
             if(Array.isArray(result) && result.length > 0){
                 result.forEach(function(item){
                     programCards += `<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="card">
+                    <div class="card programItems lightShadow">
                         <div class="card-body text-center">
                             <img src="${prefix}${item.image}" width="60" alt="program logo"/>
                             <h5 class="card-title">${item.name}</h5>
-                            <a href="#/" class="programs-view-btn" id="programsView${item.id}">查看专业列表</a>
+                            <a href="#/" class="programs-view-btn secBtn btn" id="programsView${item.id}">查看专业列表</a>
                         </div>
                     </div>
                 </div>`

@@ -1,25 +1,21 @@
 .program-home-banner{
-    width: 100%;
-    height: auto;
-    background: #ffab2e;
     color: #ffffff;
     text-align: center;
+}
+
+.program-home-banner{
+    height:250px;
+    background-image:url('/suitntie/asset/image/test-page/Hero-img.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center 0;
+    background-attachment: fixed;
 }
 
 .program-home-banner h1{
     margin: 0;
     padding: 80px 0;
-}
-
-.one-on-one-promote img{
-    position: absolute;
-    right: 20px;
-    top: -100px;
-    width: 180px;
-}
-
-.one-on-one-promote p{
-    margin-right: 200px;
+    font-weight: 400 !important;
 }
 
 .carousel-caption{
@@ -33,4 +29,76 @@
 .home-contact-form{
     padding: 50px 25px;
     background-color: #f0f0f0;
+}
+
+.programItems{
+    border: none !important;
+    margin-bottom: 30px;
+    padding: 30px 0;
+}
+
+.programItems img{
+    margin-bottom: 20px;
+    width:45px;
+}
+
+.programItems a{
+    margin-top: 20px;
+}
+
+/* 1 on 1 */
+.one-on-one-promote{
+    background-color: #fdf1e7;
+    border-radius: 10px;
+    color: #333;
+    padding: 80px 40px;
+    border:none !important;
+    margin-top: 80px;
+}
+
+.one-on-one-promote img{
+    position: absolute;
+    right: 40px;
+    bottom:0;
+    width: 350px;
+}
+
+.one-on-one-promote p{
+    margin-right: 390px;
+}
+
+.one-on-one-promote h2{
+    margin-bottom: 30px;
+}
+
+.one-on-one-promote a{
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 767px) {
+    .one-on-one-promote{
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .one-on-one-promote{
+        margin-top: 30px;
+    }
+
+    .one-on-one-promote p{
+        margin-right: 0;
+    }
+
+    .one-on-one-promote{
+        padding: 40px 40px;
+    }
+
+    .one-on-one-promote h2{
+        margin-bottom: 20px;
+    }
+    
+    .one-on-one-promote a{
+        margin-top: 20px;
+    }
 }

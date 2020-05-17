@@ -61,7 +61,7 @@
                                 <h5>你准备好了吗?</h5>
                                 <div id="ready"></div>
                                 <p class="text-warning">还没有做适途测试？</p>
-                                <a class="btn btn-warning" href="../tests/dimension-test.php">点击测试</a>
+                                <a class="btn primBtn" href="../tests/dimension-test.php">点击测试</a>
                             </div>
                         </div>
                     </div>
