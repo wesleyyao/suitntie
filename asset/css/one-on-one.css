@@ -1,0 +1,20 @@
+.one-on-one-top-banner{
+    width: 100%;
+    height: 300px;
+    background-image: url(/suitntie/asset/image/pics/1-on-1/1on1-BG-Desktop.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.one-on-one-section-1{
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.one-on-one-section-2{
+    background-color: #fff3db;
+    padding: 35px;
+}

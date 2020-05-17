@@ -51,10 +51,10 @@ $(document).ready(function(){
                     }
                     else{
                         showMessage('#loginMessage', 'success', message.content);
+                        $('#message').html('');
                         setTimeout(function(){
                             $('#loginModal').modal('hide');
                             fetchMainData();
-                            $('#message').html('');
                         }, 2000);
                     }
                 }
@@ -71,7 +71,7 @@ $(document).ready(function(){
             if(data){
                 const result = JSON.parse(data);
                 console.log(result);
-                let historyList = `<table id="testHistoryTable" class='table table-bordered'><thead><tr>
+                let historyList = `<table id="testHistoryTable" class='table table-striped'><thead class="thead-dark"><tr>
                 <th>测试</th>
                 <th>创建时间</th>
                 <th>状态</th>
@@ -244,26 +244,17 @@ $(document).ready(function(){
             }
             if(users && Array.isArray(users)){
                 $('#totalUser').html(users.length);
-                let userTable = `<table id="userTable" class='table table-bordered'><thead><tr>
-                    <th>昵称</th>
-                    <th>邮箱</th>
-                    <th>电话</th>
-                    <th>性别</th>
-                    <th>城市</th>
-                    <th>省份</th>
-                    <th>国家</th>
-                    </tr></thead><tbody>`;
+                let userTable = '';
                 users.forEach(function(item){
-                    userTable += `<tr><td><a href="#/" class="user-names" id="userId_${item.id}">${item.nick_name}</a></td>
-                    <td>${item.email}</td>
-                    <td>${item.phone}</td>
-                    <td>${item.sex}</td>
-                    <td>${item.city}</td>
-                    <td>${item.province}</td>
-                    <td>${item.country}</td></tr>`;
+                    userTable += `<tr><td><a href="#/" class="user-names" id="userId_${item.id}">${item.nick_name ? item.nick_name : ''}</a></td>
+                    <td>${item.email ? item.email : ''}</td>
+                    <td>${item.phone ? item.phone : ''}</td>
+                    <td>${item.sex ? item.sex == 1 ? '男' : '女' : ''}</td>
+                    <td>${item.city ? item.city : ''}</td>
+                    <td>${item.province ? item.province : ''}</td>
+                    <td>${item.country ? item.country : ''}</td></tr>`;
                 });
-                userTable += `</tbody></table>`;
-                $('#userTableDiv').html(userTable);
+                $('#userTableBody').html(userTable);
                 $('#userTable').DataTable();
                 
             }

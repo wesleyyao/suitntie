@@ -4,3 +4,4 @@
 <script src="/suitntie/asset/js/bootstrap.bundle.js"></script>
 <script src="/suitntie/asset/js/chart.js"></script>
 <script src="/suitntie/manager/asset/js/manager.js"></script>
+<script src="/suitntie/manager/asset/js/validation.js"></script>

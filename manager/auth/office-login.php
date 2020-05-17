@@ -1,5 +1,5 @@
 <?php
-    require_once("../includes/initial.php");
+    require_once("../../public/includes/initial.php");
     $result = array();
     $result["message"] = array();
 

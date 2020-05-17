@@ -139,7 +139,7 @@ $(document).ready(function () {
               <p class="lead">我们正在为您生成本次测试的结果。处理完成后，会自动为您跳转到测试结果页面。</p>
             </div>
           </div>`;
-            $('#dimensionTestMain').html(proceeding);
+            $('#mainContentDiv').html(proceeding);
             $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
                 const result = JSON.parse(data);
                 console.log(result)
@@ -157,7 +157,7 @@ $(document).ready(function () {
                       抱歉，该请求无法被处理。</h1>
                     </div>
                   </div>`;
-                    $('#dimensionTestMain').html(invalidFormMessage);
+                    $('#mainContentDiv').html(invalidFormMessage);
                 }
             });
             return;
