@@ -24,31 +24,31 @@
             <div class="row threeSteps">
                 <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch addBtmMargin-30">
                     <div class="card border-0 lightShadow">
-                        <div class="card-body text-center">
+                        <div class="card-body text-center d-flex flex-column">
                             <h3 class="card-title">第一步</h3>
                             <h4>免费的适途独家评测</h4>
                             <p>适途评测基于著名的迈尔斯里格斯(MBTI)类型指标，为中国学生重新进行了深度定制，帮助学生从客观的角度更加科学地了解自己的性格偏好，从一定程度上消除对未来的迷茫感，为选择大学专业方向做好准备。</p>
-                            <a href="/suitntie/tests/dimension-test.php" class="btn primBtn">免费测试</a>
+                            <a href="/suitntie/tests/dimension-test.php" class="btn primBtn mt-auto">免费测试</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch addBtmMargin-30">
                     <div class="card border-0 lightShadow">
-                        <div class="card-body text-center">
+                        <div class="card-body text-center d-flex flex-column">
                             <h3 class="card-title">第二步</h3>
                             <h4>探索专业倾向</h4>
                             <p>测试结果可以为个人提供有力参考，但更重要的是同学们可以积极主动地去探索这些陌生和未知的专业。适途为大家准备了各专业最新概况。在这里你可以针对感兴趣的专业做到心里有数。</p>
-                            <a href="" class="btn primBtn">开始探索</a>
+                            <a href="" class="btn primBtn mt-auto">开始探索</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 lightShadow">
-                        <div class="card-body text-center">
+                        <div class="card-body text-center d-flex flex-column">
                             <h3 class="card-title">第三步</h3>
                             <h4>匹配一对一专业导师</h4>
                             <p>如需进一步了解感兴趣的专业，适途的专业导师库涵盖了全球顶级大学各类专业500+位优秀且有亲和力的学长学姐，乐于用自己的亲身经历，并结合同学的个人情况，提供一对一具有针对性的大学专业知识科普。</p>
-                            <a href="" class="btn primBtn">了解更多</a>
+                            <a href="" class="btn primBtn mt-auto">了解更多</a>
                         </div>
                     </div>
                 </div>
