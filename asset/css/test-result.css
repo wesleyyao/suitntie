@@ -16,8 +16,8 @@
 
 .resultDimension svg {
     left:0;
-    bottom: 0;
-    width: 100%;
+    bottom: -1px;
+    width: 110%;
     height: 20vw;
     z-index: 0;
     position: absolute;
@@ -39,6 +39,18 @@
 .resultDimension:after{
     clear:both;
 }
+
+@media only screen and (max-width:768px) {
+    .dimensionContent img{
+        width:50%;
+        padding:30px 0;
+    }
+
+    .resultDimension svg {
+        width: 110%;
+        height: 30vw;
+    }
+  }
 
 .jumbotron{
     background-color: transparent !important;
@@ -164,6 +176,7 @@
     background-color: rgba(241,159,77,0.05);
     padding:70px 80px !important;
     border-radius: 10px;
+    margin-bottom: 40px;
 }
 
 .careerDesc h5{
@@ -207,6 +220,16 @@
     margin-left: -1.5em; 
 }
 
+@media only screen and (max-width: 992px) {
+    .dimension-analysis, .basic-analysis, .advantages, .careerDesc{
+        padding:50px 30px !important;
+    }
+
+    .disadvantages{
+        padding:0 30px !important;
+    }
+  }
+
 .reminderText a{
     color:#F19F4D;
     text-decoration: underline;
@@ -214,4 +237,8 @@
 
 .reminderText a:hover{
     color:#9E744E;
+}
+
+.twoButton{
+    margin: 40px 0 80px 0;
 }

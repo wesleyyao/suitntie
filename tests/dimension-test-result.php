@@ -51,7 +51,7 @@
                         <div class="container">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">    <polygon stroke="white" fill="white" points="0,100 100,0 100,100"/></svg>
                             <div class="row dimensionContent">
-                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="col-lg-4 col-md-4 col-sm-12 text-center">
                                     <img id="characterImg" src="" class="img-fluid"/>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-12">
@@ -126,21 +126,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row reminderText">
                         <div class="col-12 text-center">
                             <!-- <a href="#/" class="btn btn-info rounded"><i class="fab fa-weixin"></i> 分享到朋友圈</a> -->
-                            <span class="text-danger">*提示： 每次测试结果都会保存在<a href="../account/user.php">个人中心</a>， 建议每半年做一次，看看自己有没有变化。</span>
+                            <p><span class="text-danger">*</span>提示： 每次测试结果都会保存在<a href="/user.php">个人中心</a>， 建议每半年做一次，看看自己有没有变化。</p>
                         </div>
                     </div>
                     <br/>
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-12">
+                    <div class="row twoButton">
+                        <hr>
+                        <div class="col-lg-3 col-sm-6 text-center">
                             <h5 class="text-center">没有看到心仪的专业？</h5>
-                            <a class="btn btn-warning btn-block" href="../programs/index.php">探索更多专业</a>
+                            <a class="btn primBtn" href="">探索更多专业</a>
                         </div>
-                        <div class="offset-lg-6 col-lg-3 col-sm-12">
+                        <div class="offset-lg-6 col-lg-3 col-sm-6 text-center">
                             <h5 class="text-center">想找专业导师聊聊？</h5>
-                            <a class="btn btn-warning btn-block" href="">一对一咨询</a>
+                            <a class="btn primBtn" href="">一对一咨询</a>
                         </div>
                     </div>
                 </div>
