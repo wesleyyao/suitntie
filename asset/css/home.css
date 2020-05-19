@@ -3,29 +3,7 @@
 }
 
 .carousel-inner, .carousel-item{
-    max-height: 550px !important;
-}
-
-.home-slider-testimonials .carousel-inner, .home-slider-testimonials .carousel-item{
-    max-height: 500px !important;
-}
-
-@media screen and (max-width: 770px) {
-    .home-slider-testimonials .carousel-inner{
-        max-height: 450px !important;
-    }
-}
-
-@media screen and (max-width: 725px) {
-    .home-slider-testimonials .carousel-inner{
-        max-height: 500px !important;
-    }
-}
-
-@media screen and (max-width: 625px) {
-    .home-slider-testimonials .carousel-inner{
-        max-height: 550px !important;
-    }
+    max-height: 520px !important;
 }
 
 .home-programs-entrance{
@@ -41,11 +19,6 @@
     background-attachment: fixed;
 }
 
-.startTest{
-    background-color: #f8f9fa;
-    padding:30px 0 80px 0;
-}
-
 .home-programs-entrance h1{
     font-weight: 400 !important;
     margin-bottom: 30px;
@@ -53,6 +26,18 @@
 
 .home-programs-entrance p{
     margin-bottom: 30px;
+}
+
+.teacher-cell{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.teacher-cell img{
+    width: 45%;
+    margin-right: 5%;
+    border-radius: 25px;
 }
 
 .home-contact-form{
@@ -114,68 +99,3 @@
 .home-one-on-one-entrance p{
     margin-bottom: 30px;
 }
-
-
-.instructor h1{
-    margin-top:40px;
-    margin-bottom:20px;
-    font-weight: 400 !important;
-}
-
-.teacher-cell{
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 30px;
-}
-
-.teacher-cell img{
-    width: 25%;
-    margin-right: 10%;
-    border-radius: 10px;
-}
-
-.teacher-cell-info h5{
-    font-weight: 500;
-    font-size: 1.3em;
-}
-
-.teacher-cell-info label{
-    font-weight: 400;
-    font-size: 1em;
-}
-
-.teacher-cell-info p{
-    font-weight: 100;
-    font-size: 1em;
-    line-height: 1.2em;
-}
-
-/* contact form */
-.home-contact-form{
-    padding:80px 0;
-}
-
-.home-contact-form input, .home-contact-form textarea{
-    background-color: #f0f0f0 !important;
-    padding:20px !important;
-}
-
-.home-contact-form input::placeholder{
-    color:#858585 !important;
-    font-size: 0.9em;
-    font-family: 'Noto Sans SC', sans-serif;
-    font-weight:100;
-}
-
-.home-contact-form label{
-    color:#858585 !important;
-    font-size: 0.9em !important;
-}
-
-.home-contact-form .row{
-    margin-bottom: 20px;
-}
-
-
-
