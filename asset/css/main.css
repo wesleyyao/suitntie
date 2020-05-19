@@ -3,6 +3,8 @@ body {
     font-family: 'Noto Sans SC', sans-serif;
     line-height: 1.6 !important;
     font-weight:100;
+    width: 100vw;
+    overflow: hidden;
 }
 
 h3{

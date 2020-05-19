@@ -1,5 +1,5 @@
 <footer class="pt-5 pb-5">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-lg-5 col-md-4 col-sm-12">
                 <div class="footer-qrcodes text-right">
