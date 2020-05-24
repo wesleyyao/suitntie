@@ -1,0 +1,277 @@
+/* User Page */
+#accountCenter button{
+    position:relative;
+}
+
+.account-nav{
+    background-color: #e9e9e9 !important;
+    color:#bdbdbd;
+}
+
+.account-nav.active{
+    background-color: #F19F4D !important;
+    color:white;
+}
+
+.account-center-section{
+    padding:40px;
+}
+
+#testCategory li{
+    background-color: #F19F4D !important;
+}
+
+/* result */
+.dimension-test-result-main h3{
+    font-size:1.5em !important;
+    font-weight:500;
+ }
+
+.resultHeader{
+    background-color: #2F4858 !important;
+    padding:0 !important;
+}
+
+.resultDimension{
+    margin-top: -1px;;
+    background-color: #2F4858 !important;
+    position:relative;
+}
+
+.resultDimension svg {
+    left:0;
+    bottom: -1px;
+    width: 110%;
+    height: 20vw;
+    z-index: 0;
+    position: absolute;
+}
+
+.resultCharactor{
+    display:inline-block;
+}
+
+.dimensionContent{
+    z-index: 100;
+}
+
+@media only screen and (max-width: 575px) {
+    .resultBarChart{
+        padding:40px;
+    }
+  }
+.resultDimension:after{
+    clear:both;
+}
+
+@media only screen and (max-width:768px) {
+    .dimensionContent img{
+        width:50%;
+        padding:30px 0;
+    }
+
+    .resultDimension svg {
+        width: 110%;
+        height: 30vw;
+    }
+  }
+
+.jumbotron{
+    background-color: transparent !important;
+    padding-top:0 !important;
+}
+
+#resultTitle{
+    margin-top: 60px;
+    color:white;
+    font-size: 2.5rem;
+}
+
+#resultDescription{
+    margin-top: 30px;
+    color:white;
+    font-size: 1.2rem;
+}
+
+#resultTags h4{
+    font-size: 0.75em;
+    font-weight: 100;
+    display: inline-block;
+}
+
+.tagBox{
+    padding:20px;
+    background-color: #ffffff9d;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+#resultCharts{
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
+    -moz-box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
+    background: white;
+}
+
+ .resultBarChart{
+     padding:20px;
+ }
+
+ @media only screen and (max-width: 1200px) {
+    .resultBarChart{
+        padding:10px;
+    }
+  }
+
+ @media only screen and (max-width: 991px) {
+    .resultBarChart{
+        padding:20px;
+    }
+  }
+
+@media only screen and (max-width: 768px){
+    .resultCharactor{
+        padding:0 120px 50px 120px;
+    }
+}
+
+  @media only screen and (max-width: 575px) {
+
+    .resultDimension{
+        padding:0 30px;
+    }
+  }
+
+  .result-div h3{
+      color:#2F4858;
+  }
+
+  .result-div .row{
+      padding:30px 80px;
+  }
+
+  @media only screen and (max-width: 991px) {
+    .result-div .row{
+        padding:30px 20px;
+    }
+  }
+
+  @media only screen and (max-width: 575px) {
+    .result-div .row{
+        padding:30px 80px;
+    }
+  }
+
+.list-group-item{
+    border: none !important;
+}
+
+.badge{
+    font-weight: 200;
+}
+
+/* Analysis */
+.dimension-analysis{
+    padding:70px 80px !important;
+}
+
+.basic-analysis{
+    background-color: rgba(242,242,242,0.4);
+    padding:70px 80px !important;
+    border-radius: 10px;
+}
+
+.advantages{
+    padding:70px 80px !important;
+}
+
+.disadvantages{
+    padding:0 80px !important;
+    margin-bottom: 70px;
+}
+
+.advantages ul, .disadvantages ul{
+    list-style:none;
+}
+
+.advantages ul li::before, .disadvantages ul li::before{
+    content: "\2022"; 
+    color: #F19F4D; 
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    width: 1.5em; 
+    margin-left: -1.5em; 
+}
+
+.careerDesc{
+    background-color: rgba(241,159,77,0.05);
+    padding:70px 80px !important;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.careerDesc h5{
+    margin-bottom: 1em;
+}
+
+.programFit{
+    margin:50px 0;
+}
+
+.programFit ul{
+    list-style:none;
+    padding:0 !important;
+}
+
+.programFit ul li a{
+    color: #808080; 
+    text-decoration: underline;
+    transition: all 400ms;
+}
+
+.programFit ul li a:hover{
+    color: #F19F4D; 
+}
+
+.careerFit{
+    margin:50px 0 0 0;
+}
+
+.careerFit ul{
+    list-style:none;
+}
+
+.careerFit ul li::before{
+    content: "\2022"; 
+    color: #F19F4D; 
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    width: 1.5em; 
+    margin-left: -1.5em; 
+}
+
+@media only screen and (max-width: 992px) {
+    .dimension-analysis, .basic-analysis, .advantages, .careerDesc{
+        padding:50px 30px !important;
+    }
+
+    .disadvantages{
+        padding:0 30px !important;
+    }
+  }
+
+.reminderText a{
+    color:#F19F4D;
+    text-decoration: underline;
+}
+
+.reminderText a:hover{
+    color:#9E744E;
+}
+
+.twoButton{
+    margin: 40px 0 80px 0;
+}
