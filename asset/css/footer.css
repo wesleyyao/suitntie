@@ -1,6 +1,7 @@
 footer{
-    background-color: #303650;
+    background-color: #2F4858;
     color: #fff;
+    padding:80px !important;
 }
 
 .footer-qrcodes{
@@ -10,4 +11,13 @@ footer{
 .footer-qrcodes img{
     width: 30%;
     padding: 10px;
+}
+footer h5{
+    margin-bottom: 15px;
+}
+footer a{
+    display: block;
+    text-decoration: none;
+    color:white;
+    padding: 5px 0;
 }

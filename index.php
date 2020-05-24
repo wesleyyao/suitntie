@@ -18,7 +18,7 @@
         <div class="container mt-5 mb-5 pt-5 pb-5">
             <div class="row stepsTitle">
                 <div class="col-12 text-center">
-                    <h1>“我该如何选择未来的专业？”</h1>
+                    <h2>“我该如何选择未来的专业？”</h2>
                 </div>
             </div>
             <div class="row threeSteps">
@@ -57,7 +57,7 @@
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/home-slider-testimonials.php"); ?>
         <div class="home-programs-entrance text-center">
             <div class="container">
-                <h1>超全专业库</h1>
+                <h2>超全专业库</h2>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12">
                     <p>如需进一步了解感兴趣的专业，适途的专业导师库涵盖了全球顶级大学各类专业500+位优秀且有亲和力的学长学姐，乐于用自己的亲身经历，并结合同学的个人情况，提供一对一具有针对性的大学专业知识科普。</p>
@@ -70,20 +70,20 @@
             <div class="row mb-5 home-one-on-one-entrance ">
                 <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12">
                     <div class="text-center">
-                        <h1>一对一专业导师科普</h1>
+                        <h2>一对一专业导师科普</h2>
                         <p>我们的每一位导师都经过精心挑选，他们来自全球顶级学府的各个专业。他们走过的路就是你可能面临的路。他们的人生经验和专业知识能给你从专业，选课，学校生活，工作各个方面提供指导和参考价值。</p>
                         <a href="" class="btn primBtn">了解更多</a>
                     </div>
                 </div>
             </div>
-            <div class="row mb-2 instructor">
+            <div class="row instructor">
                 <div class="col-12 text-center">
-                    <h1>部分导师展示</h1>
+                    <h2>部分导师展示</h2>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-6 col-sm-12">
-                    <div class="teacher-cell">
+                    <div class="teacher-cell center-block" style="width:400px;max-width:100%;">
                         <img src="/suitntie/asset/image/photos/Erik.png" alt="teacher" class="mb-auto"/>
                         <div class="teacher-cell-info">
                             <h5>Erik</h5>
@@ -91,11 +91,20 @@
                             <p>机械工程，机器人</p>
                             <label>毕业院校:</label>
                             <p>康奈尔大学，滑铁卢大学</p>
+                            <a class="animated-arrow" href="/suitntie/one-on-one/index.php">
+                                <span class="the-arrow -left"><span class="shaft"></span></span>
+                                <span class="main">
+                                    <span class="text">请教学长姐</span>
+                                    <span class="the-arrow -right">
+                                        <span class="shaft"></span>
+                                    </span>
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <div class="teacher-cell">
+                    <div class="teacher-cell center-block" style="width:400px;max-width:100%;">
                         <img src="/suitntie/asset/image/photos/Cathy.png" alt="teacher" class="mb-auto"/>
                         <div class="teacher-cell-info">
                             <h5>Cathy</h5>
@@ -103,13 +112,22 @@
                             <p>机械工程，机器人</p>
                             <label>毕业院校:</label>
                             <p>康奈尔大学，滑铁卢大学</p>
+                            <a class="animated-arrow" href="/suitntie/one-on-one/index.php">
+                                <span class="the-arrow -left"><span class="shaft"></span></span>
+                                <span class="main">
+                                    <span class="text">请教学长姐</span>
+                                    <span class="the-arrow -right">
+                                        <span class="shaft"></span>
+                                    </span>
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-6 col-sm-12">
-                    <div class="teacher-cell">
+                    <div class="teacher-cell center-block" style="width:400px;max-width:100%;">
                         <img src="/suitntie/asset/image/photos/Joyce.png" alt="teacher" class="mb-auto"/>
                         <div class="teacher-cell-info">
                             <h5>Joyce</h5>
@@ -117,11 +135,20 @@
                             <p>机械工程，机器人</p>
                             <label>毕业院校:</label>
                             <p>康奈尔大学，滑铁卢大学</p>
+                            <a class="animated-arrow" href="/suitntie/one-on-one/index.php">
+                                <span class="the-arrow -left"><span class="shaft"></span></span>
+                                <span class="main">
+                                    <span class="text">请教学长姐</span>
+                                    <span class="the-arrow -right">
+                                        <span class="shaft"></span>
+                                    </span>
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <div class="teacher-cell">
+                    <div class="teacher-cell center-block" style="width:400px;max-width:100%;">
                         <img src="/suitntie/asset/image/photos/Violet.png" alt="teacher" class="mb-auto"/>
                         <div class="teacher-cell-info">
                             <h5>Erik</h5>
@@ -129,15 +156,23 @@
                             <p>机械工程，机器人</p>
                             <label>毕业院校:</label>
                             <p>康奈尔大学，滑铁卢大学</p>
+                            <a class="animated-arrow" href="/suitntie/one-on-one/index.php">
+                                <span class="the-arrow -left"><span class="shaft"></span></span>
+                                <span class="main">
+                                    <span class="text">请教学长姐</span>
+                                    <span class="the-arrow -right">
+                                        <span class="shaft"></span>
+                                    </span>
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn primBtn">请教学长姐</a>
             </div>
         </div>
         <div class="home-contact-form">
-            <div class="container">
-                <h1 class="text-center pb-5">联系我们</h1>
+            <div class="container pt-5 pb-5">
+                <h2 class="text-center pb-3">联系我们</h2>
                 <form id="contactForm">
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12">

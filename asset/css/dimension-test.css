@@ -1,18 +1,19 @@
 /* Header */
 
 .mainTitle{
-    height:350px;
+    width: 100%;
+    height:300px;
     background-image:url('/suitntie/asset/image/test-page/Hero-img.jpg');
-    background-repeat:no-repeat;
-    background-size:contain;
-    background-position:center 0;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding-top: 100px;
+    margin:0;
 }
 
 #testTitle{
-    margin-top: 120px;
-    color:white;
-    font-weight: 400 !important;
+    
 
 }
 
