@@ -73,7 +73,7 @@
         <?php require_once("./components/slider-testimonials.php"); ?>
         <div class="container mt-5 mb-2">
             <div class="row mt-2 mb-3">
-                <div class="col-12 text-center">
+                <div class="col-12 text-center mt-5">
                     <h2>自学推荐</h2>
                 </div>
             </div>

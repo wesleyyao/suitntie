@@ -203,8 +203,8 @@ $(document).ready(function(){
                     <div class="carousel-caption" style="color: #333; top: 90px;">
                         <div>
                             <p>${item.feedback}</p>
-                            <p><b>${item.name}</b></p>
-                            <p>${item.school} ${item.program} ${item.grade}</p>
+                            <h5>${item.name}</h5>
+                            <p><em>${item.school} ${item.program} ${item.grade}</em></p>
                         </div>
                         <a class="btn primBtn" href="#/">咨询学长学姐</a>
                     </div>
