@@ -10,11 +10,11 @@ $(document).ready(function(){
     let topSlider = '';
     let topController = '';
     $.get(`${prefix}/public/api/home.php`).done(function(data){
-        const result = JSON.parse(data);
+        const result = JSON.parse(data); console.log(result)
         if(result && Array.isArray(result) && result.length > 0){
             result.forEach(function(item, index){
                 topSlider += `<div class="carousel-item ${index == 0 ? 'active' : ''}">
-                <img src="/suitntie/asset/image/slider/home-slider-1.jpg" class="d-block img-responsive" alt="home slider 1">
+                <img src="${prefix}${item.image}" class="d-block img-responsive" alt="home slider 1">
                 <div class="carousel-caption">
                     <h1>${item.title ? item.title : ''}</h1>
                     <p>${item.content ? item.content : ''}</p>

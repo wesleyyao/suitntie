@@ -86,17 +86,17 @@
             </div>
             <div class="modal-body">
                 <ul class="nav nav-pills" id="signupTabs" role="tablist">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link active" id="phoneSignup-tab" data-toggle="tab" href="#phoneSignup" role="tab"
                             aria-controls="profile" aria-selected="false">短信验证</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" id="emailSignup-tab" data-toggle="tab" href="#emailSignup" role="tab"
+                        <a class="nav-link active" id="emailSignup-tab" data-toggle="tab" href="#emailSignup" role="tab"
                             aria-controls="contact" aria-selected="false">邮箱</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="phoneSignup" role="tabpanel"
+                    <!--     <div class="tab-pane fade show active" id="phoneSignup" role="tabpanel"
                         aria-labelledby="phoneSignup-tab">
                         <br />
                         <p>请选择区号，并输入您的手机号码。</p>
@@ -119,8 +119,9 @@
                                     id="signupByPhone">提交</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="emailSignup" role="tabpanel" aria-labelledby="emailSignup-tab">
+                    </div> -->
+                    <div class="tab-pane fade show active" id="emailSignup" role="tabpanel"
+                        aria-labelledby="emailSignup-tab">
                         <br />
                         <div class="row mb-2">
                             <div class="col-12">

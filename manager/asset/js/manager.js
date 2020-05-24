@@ -51,9 +51,9 @@ $(document).ready(function(){
                     }
                     else{
                         showMessage('#loginMessage', 'success', message.content);
-                        $('#message').html('');
                         setTimeout(function(){
                             $('#loginModal').modal('hide');
+                            $('#message').html('');
                             fetchMainData();
                         }, 2000);
                     }
@@ -235,6 +235,7 @@ $(document).ready(function(){
                 }
                 $('#message').html(messageDiv);
             }
+            $('#message').html('');
             if(staff){
                 $('#staffName').html("欢迎， " + staff.name);
                 $('#staffTitle').html(staff.title);

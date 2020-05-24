@@ -38,6 +38,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>名称</th>
+                                    <th>排序</th>
                                     <th>状态</th>
                                     <th></th>
                                 </tr>
@@ -61,6 +62,7 @@
                         <table class="table table-striped" id="programTable">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th>ID</th>
                                     <th>名称</th>
                                     <th>概述</th>
                                     <th>状态</th>

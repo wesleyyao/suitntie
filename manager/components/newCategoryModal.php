@@ -26,7 +26,11 @@
                         </div>
                     </div>
                     <div class="row mt-3 mb-3">
-                        <div class="col-12">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <label><span class="text-danger">*</span> 排序</label>
+                            <input type="number" class="form-control" max="999" name="new_category_index" requried />
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <label><span class="text-danger">*</span> 状态</label>
                             <select class="form-control" name="new_category_status" id="newCategoryStatus" required>
                                 <option value="open">可用</option>

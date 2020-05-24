@@ -13,19 +13,21 @@
         if($to == "addNewCategory"){
             $name = $_POST["new_category_name"];
             $status = $_POST["new_category_status"];
+            $index = $_POST["new_category_index"];
             $imageUrl = "/uploads/" . basename($_FILES["newCategoryImg"]["name"]);
             $result["file"] = fileUpload($target_dir, "image", $_FILES["newCategoryImg"]);
             if($result["file"]["status"] != "failed"){
-                $result["is_saved"] = $program->save_new_program_category($name, $imageUrl, $status);
+                $result["is_saved"] = $program->save_new_program_category($name, $imageUrl, $index, $status);
             }
             echo json_encode($result);
         }
         else if($to == "updateCategory"){
             $name = $_POST["edit_category_name"];
             $status = $_POST["edit_category_status"];
+            $index = $_POST["edit_category_index"];
             $id = $_POST["edit_category_id"];
             if(!$_FILES["editCategoryImg"]["name"]){
-                $result["is_saved"] = $program->update_program_category($name, "", $status, $id);
+                $result["is_saved"] = $program->update_program_category($name, "", $index, $status, $id);
             }
             else{
                 $imageUrl = "/uploads/" . basename($_FILES["editCategoryImg"]["name"]);
@@ -35,7 +37,7 @@
                 }
                 $result["file"] = fileUpload($target_dir, "image", $_FILES["editCategoryImg"]);
                 if($result["file"]["status"] != "failed"){
-                    $result["is_saved"] = $program->update_program_category($name, $imageUrl, $status, $id);
+                    $result["is_saved"] = $program->update_program_category($name, $imageUrl, $index, $status, $id);
                 }
             }
             echo json_encode($result);

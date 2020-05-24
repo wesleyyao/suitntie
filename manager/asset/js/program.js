@@ -36,6 +36,7 @@ $(document).ready(function(){
             }
             $('#editCategoryName').val(foundCategory.name ? foundCategory.name : '');
             $('#editCategoryStatus').val(foundCategory.status ? foundCategory.status : 'close');
+            $('#editCategoryIndex').val(foundCategory.item_index ? foundCategory.item_index : '0');
             $('#editCategoryId').val(foundCategory.id ? foundCategory.id : 0);
             $('#editCategoryImg').val('');
             $('#editCategoryModal').modal('show');
@@ -61,8 +62,7 @@ $(document).ready(function(){
                     }
                     else{
                         if(result.is_saved){
-                            fetchPrograms();
-                            $('#newCategoryModal').modal('hide');
+                            window.location.href = "./programs.php";
                         }
                         else{
                             $('#newCategoryMessage').html(generateMessage('warning', '未保存成功，请重试。'));
@@ -97,8 +97,7 @@ $(document).ready(function(){
                     }
                     else{
                         if(result.is_saved){
-                            fetchPrograms();
-                            $('#editCategoryModal').modal('hide');
+                            window.location.href = "./programs.php";
                         }
                         else{
                             $('#editCategoryMessage').html(generateMessage('warning', '未更新成功，请重试。'));
@@ -127,7 +126,7 @@ $(document).ready(function(){
             data: formData,
             success: function(data){ console.log(data)
                 if(data){
-                   // window.location.href = "./programs.php";
+                   window.location.href = "./programs.php";
                 }
                 else{
                     $('#programMessage').html(generateMessage('warning', '未更新成功，请重试。'));
@@ -214,6 +213,7 @@ $(document).ready(function(){
                     categoryTable += `
                     <tr>
                         <td>${item.name}</td>
+                        <td>${item.item_index}</td>
                         <td>${item.status}</td>
                         <td class="text-right">
                             <a href="#/" class="categoryView" id="checkCategory${item.id}">查看</a> | 
@@ -227,11 +227,12 @@ $(document).ready(function(){
                 programData.forEach(function(item){
                     programTable += `
                     <tr>
+                        <td>${item.id}</td>
                         <td>${item.title}</td>
                         <td>${item.description ? item.description : ''}</td>
                         <td>${item.status}</td>
                         <td class="text-right">
-                            <a href="#/" class="programView" id="checkProgram${item.id}">查看</a> | 
+                            <a href="./program-details.php?program=${item.title}">查看</a> | 
                             <a href="#/" class="programView" id="editProgram${item.id}">编辑</a>
                         </td>
                     </tr>`;
