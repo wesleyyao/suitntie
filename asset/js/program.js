@@ -108,14 +108,14 @@ $(document).ready(function(){
             let books = `<div class="row">`;
             if(bookData && Array.isArray(bookData) && bookData.length > 0){
                 bookData.forEach(function(item){
-                    books += `<div class="col-lg-4 col-md-12 col-sm-12" style="display: flex">
-                        <img src="${prefix}/${item.image}" alt="${item.title}" width="120" height="90" />
+                    books += `<div class="col-lg-4 col-md-6 col-sm-12 mb-5" style="display: flex">
+                        <a href="${item.link}"><img src="${prefix}/${item.image}" alt="${item.title}" width="120" class="mr-5"/></a>
                         <div>
                             <h6>${item.title}</h6>
-                            <p>作者： ${item.author}</p>
-                            <p>豆瓣评分： ${item.douban}</p>
-                            <a class="btn btn-warning" href="${item.link}">查看</a>
-                        </div>
+                            <p>作者： ${item.author}</p>`+
+                            // <p>豆瓣评分： ${item.douban}</p>
+                            // <a class="btn primBtn" href="${item.link}">查看</a>
+                            `</div>
                         </div>
                     `;
                 });
@@ -128,10 +128,10 @@ $(document).ready(function(){
             if(courseData && Array.isArray(courseData) && courseData.length > 0){
                 courseData.forEach(function(item, index){
                     courses += `
-                        <div class="card">
+                        <div class="card border-0">
                             <div class="card-header" id="courseHeader${index}">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#courseCollapse${index}" aria-expanded="true" aria-controls="courseCollapse${index}">
+                                    <button class="btn btn-accordion" type="button" data-toggle="collapse" data-target="#courseCollapse${index}" aria-expanded="true" aria-controls="courseCollapse${index}">
                                         ${item.name}
                                     </button>
                                 </h2>
@@ -153,10 +153,10 @@ $(document).ready(function(){
             if(childProgramData && Array.isArray(childProgramData) && childProgramData.length > 0){
                 childProgramData.forEach(function(item, index){
                     childPrograms += `
-                        <div class="card">
+                        <div class="card border-0">
                             <div class="card-header" id="childHeader${index}">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#childCollapse${index}" aria-expanded="true" aria-controls="childCollapse${index}">
+                                    <button class="btn btn-accordion" type="button" data-toggle="collapse" data-target="#childCollapse${index}" aria-expanded="true" aria-controls="childCollapse${index}">
                                         ${item.name}
                                     </button>
                                 </h2>
@@ -180,7 +180,7 @@ $(document).ready(function(){
                 testimonialData.forEach(function(item, index){
                     testimonials += `<div class="carousel-item ${index == 0 ? 'active' : ''}">
                     <img src="../asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">
-                    <div class="carousel-caption d-none d-md-block" style="color: #333; top: 90px;">
+                    <div class="carousel-caption" style="color: #333; top: 90px;">
                         <div>
                             <p>${item.feedback}</p>
                             <p><b>${item.name}</b></p>

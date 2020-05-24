@@ -4,17 +4,17 @@
 }
 
 .program-home-banner{
-    height:250px;
+    width: 100%;
+    height: 300px;
     background-image:url('/suitntie/asset/image/test-page/Hero-img.jpg');
-    background-repeat:no-repeat;
-    background-size:cover;
-    background-position:center 0;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding-top: 100px;
 }
 
 .program-home-banner h1{
-    margin: 0;
-    padding: 80px 0;
     font-weight: 400 !important;
 }
 
@@ -101,4 +101,161 @@
     .one-on-one-promote a{
         margin-top: 20px;
     }
+}
+
+/* program list */
+#programDetailsModal ul{
+    list-style:none;
+}
+
+#programDetailsModal ul li::before{
+    content: "\2022"; 
+    color: #F19F4D; 
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    width: 1.5em; 
+    margin-left: -1.5em; 
+}
+
+#programDetailsModal ul li a{
+    color:#333333;
+    font-size: 1em;
+    margin:10px auto;
+}
+
+/* Explore page */
+.relatedPrograms{
+    padding:30px;
+}
+
+#relatedPrograms ul{
+    list-style:none;
+    padding:10px 25px;
+}
+
+#relatedPrograms ul li{
+    margin-bottom:5px;
+}
+
+#relatedPrograms ul li::before{
+    content: "\2022"; 
+    color: #F19F4D; 
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    width: 1.5em; 
+    margin-left: -1.5em; 
+}
+
+#relatedPrograms ul li a{
+    color:#333333;
+    font-size: 1em;
+    margin:10px auto;
+}
+
+.explore-section-2{
+    padding:20px;
+}
+
+.preparation{
+    background-color: #fdf7f2;
+    padding:40px;
+    border-radius: 6px;
+}
+
+.preparation ul{
+    list-style:none;
+    padding:10px 25px;
+}
+
+.preparation ul li{
+    margin-bottom:5px;
+}
+
+.preparation ul li::before{
+    content: "\2022"; 
+    color: #F19F4D; 
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    width: 1.5em; 
+    margin-left: -1.5em; 
+}
+
+.preparation p{
+    color: #F19F4D; 
+    font-weight: 500;
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+.program-slider-testimonials h2{
+    background-color: #f9f9f9;
+    padding-top: 80px !important;
+}
+
+.program-slider-testimonials .carousel-item{
+    height:350px !important;
+}
+
+.program-slider-testimonials .carousel-caption{
+    margin-top: -130px;
+}
+
+.program-slider-testimonials .carousel-caption .btn{
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .program-slider-testimonials .carousel-item{
+        height:400px !important;
+    }
+}
+
+/* recommendation */
+.recommend img{
+    margin-right:30px;
+}
+
+/* course list */
+.courseList h3{
+    background-color: #ffead9;
+    margin:0 !important;
+    padding:20px !important;
+}
+
+.btn-accordion{
+    margin:0 auto;
+    color:#292929!important;
+    transition: 0.3s;
+  }
+
+  .btn-accordion:hover{    
+    color:  #F19F4D !important;
+    transition: 0.3s;
+    border:none;
+}
+
+.btn-accordion:focus,.btn-accordion:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+.program-contact-form{
+    padding: 50px 25px;
+    background-color: #f0f0f0;
+}
+
+.program-contact-form input, .program-contact-form textarea{
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.program-contact-form ::placeholder{
+    color:#777777;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 100;
+    font-size:0.9em;
 }

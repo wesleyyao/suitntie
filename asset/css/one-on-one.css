@@ -9,12 +9,80 @@
     padding-top: 100px;
 }
 
-.one-on-one-section-1{
-    background-color: #f4f4f4;
-    padding: 20px;
+.one-on-one-reason{
+    padding: 0 10px;
 }
 
+/* instructors section */
+.one-on-one-section-1{
+    background-color: rgba(242,242,242,0.4);
+    padding: 80px 10px;
+}
+
+.instructor h2{
+    margin:30px auto;
+}
+
+.teacher-cell{
+    align-items: center;
+    padding: 10px;
+    margin: 0 auto 30px auto;
+}
+
+.teacher-cell img{
+    width: 150px;
+    border-radius: 10px;
+    margin-bottom:20px !important;
+}
+
+.teacher-cell h5{
+    font-size: 1.25em !important;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.teacher-cell label{
+    font-weight: 500;
+    margin: 1px auto;
+}
+
+/* FAQ section */
 .one-on-one-section-2{
-    background-color: #fff3db;
-    padding: 35px;
+    background-color: #fdf7f2;
+    padding: 80px 10px;
+    border-radius: 10px;
+}
+
+.one-on-one-section-2 li{
+    margin-bottom: 5px;
+}
+
+.one-on-one-section-2 ul{
+    margin-bottom: 0 !important;
+}
+
+/* Four steps */
+.fourSteps .card{
+    background-color: rgba(242,242,242,0.4);
+    margin-bottom:30px;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+}
+
+.fourSteps p{
+    margin-bottom:0 !important;
+}
+
+.numberCircle{
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    color: #F19F4D;
+    background-color: white;
+    display: inline-block;
+    line-height:60px;
+    text-align: center;
+    width: 60px; 
+    margin-bottom: 15px;
 }

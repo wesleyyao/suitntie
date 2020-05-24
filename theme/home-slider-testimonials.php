@@ -6,7 +6,7 @@
             <li data-target="#testimonialSlider" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <h1 class="text-center m-0 ">使用了适途服务的同学们都说了啥？</h1>
+            <h2 class="text-center m-0 ">使用了适途服务的同学们都说了啥？</h2>
             <div class="carousel-item active">
                 <img src="/suitntie/asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">
                 <div class="carousel-caption" style="color: #333; top: 90px;">
@@ -38,18 +38,14 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-=======
-
-        <div class="text-center startTest"><a class="btn primBtn" href="/suitntie/tests/dimension-test-.php">开始测试</a></div>
-        <!-- <a class="carousel-control-prev" href="#testimonial-slider" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#testimonial-slider" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
         <a class="carousel-control-next" href="#testimonial-slider" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
-        </a> -->
->>>>>>> finished homepage
+        </a>
+        <div class="text-center startTest"><a class="btn primBtn" href="/suitntie/tests/dimension-test-.php">开始测试</a></div>
     </div>
 </div>
