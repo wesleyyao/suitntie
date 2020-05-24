@@ -3,8 +3,8 @@
     top: 150px !important;
 }
 
-.home-slider-top .carousel-caption h1{
-    font-weight: 400 !important;
+.carousel-caption{
+    top: 150px !important;
 }
 
 .home-slider-top .carousel-caption p{

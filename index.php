@@ -70,7 +70,11 @@
             <div class="row mb-5 home-one-on-one-entrance ">
                 <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12">
                     <div class="text-center">
+<<<<<<< HEAD
                         <h2>一对一专业导师科普</h2>
+=======
+                        <h1>一对一专业导师科普</h1>
+>>>>>>> ee5d9e1e5712d54ecad3974c9e9aa6553c6ba5d6
                         <p>我们的每一位导师都经过精心挑选，他们来自全球顶级学府的各个专业。他们走过的路就是你可能面临的路。他们的人生经验和专业知识能给你从专业，选课，学校生活，工作各个方面提供指导和参考价值。</p>
                         <a href="" class="btn primBtn">了解更多</a>
                     </div>
