@@ -23,9 +23,12 @@ $(document).ready(function(){
                     <td>${item.id}</td>
                     <td>${item.title}</td>
                     <td>${item.image ? '有' : '无'}</td>
-                    <td>${item.author}</td>
-                    <td>${item.douban}</td>
-                    <td>${item.link}</td>
+                    <td>${item.author ? item.author : ''}</td>
+                    <td>${item.douban ? item.douban : ''}</td>
+                    <td>${item.link ? item.link : ''}</td>
+                    <td>${item.channel ? item.channel : ''}</td>
+                    <td>${item.online_course ? item.online_course : ''}</td>
+                    <td>${item.item_index}</td>
                     <td>${item.status}</td>
                     <td><a href="./components/program-recommendation.php?type=edit&id=${item.id}&pid=${item.p_id}&title=${program}">编辑</a></td></tr>`;
             });

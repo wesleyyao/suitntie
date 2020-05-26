@@ -19,8 +19,8 @@
                 <div class="col-12">
                     <div class="card text-center">
                         <div class="card-body">
-                            <a style="position: absolute; top: 10px; right: 15px;" href="./auth/office-logout.php"><i
-                                    class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a style="position: absolute; top: 10px; right: 15px; z-index: 2"
+                                href="./auth/office-logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             <div class="row">
                                 <div class="col-12">
                                     <h5 class="card-title" id="staffName"></h5>

@@ -144,6 +144,7 @@ $(document).ready(function(){
     $('#newProgramBtn').click(function(){
         $('#programName').val("");
         $('#programDesc').val("");
+        $('#programRelated').val("");
         $('#programStatus').val("open");
         const options = fetchProgramCategoryOptions();
         $('#programCateogryId').append(options);
@@ -178,6 +179,7 @@ $(document).ready(function(){
             }
             $('#programName').val(foundProgram.title ? foundProgram.title : '');
             $('#programDesc').val(foundProgram.description ? foundProgram.description : '');
+            $('#programRelated').val(foundProgram.related ? foundProgram.related : '');
             $('#programStatus').val(foundProgram.status ? foundProgram.status : 'close');
             $('#programId').val(id);
             const options = fetchProgramCategoryOptions();

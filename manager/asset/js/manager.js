@@ -50,7 +50,7 @@ $(document).ready(function(){
                         }
                     }
                     else{
-                        showMessage('#loginMessage', 'success', message.content);
+                        showMessage('#loginMessage', 'success', message.content + ' 正在为您加载数据...');
                         setTimeout(function(){
                             $('#loginModal').modal('hide');
                             $('#message').html('');

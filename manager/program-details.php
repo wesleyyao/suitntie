@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div id="mainDiv">
             <?php require_once("./components/nav.php"); ?>
             <br />
@@ -126,6 +126,9 @@
                                     <th>作者</th>
                                     <th>豆瓣</th>
                                     <th>链接</th>
+                                    <th>公众号</th>
+                                    <th>公开课</th>
+                                    <th>排序</th>
                                     <th>状态</th>
                                     <th></th>
                                 </tr>

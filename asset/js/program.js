@@ -108,12 +108,34 @@ $(document).ready(function(){
             let books = `<div class="row">`;
             if(bookData && Array.isArray(bookData) && bookData.length > 0){
                 bookData.forEach(function(item){
-                    books += `<div class="col-lg-4 col-md-12 col-sm-12" style="display: flex">
+                    let channelList = [];
+                    let channelContent = '<ul style="height: 120px; overflow-y: auto;">';
+                    const channelData = item.channel ? item.channel : '';
+                    if(channelData){
+                        channelList = channelData.split('|');
+                        channelList.forEach(function(item){
+                            channelContent += `<li>${item}</li>`;
+                        });
+                    }
+                    channelContent += '</ul>';
+                    let courseList = [];
+                    let courseContent = '<ul style="height: 120px; overflow-y: auto;">';
+                    const courseData = item.online_course ? item.online_course : '';
+                    if(courseData){
+                        courseList = channelData.split('|');
+                        courseList.forEach(function(item){
+                            courseContent += `<li>${item}</li>`;
+                        });
+                    }
+                    courseContent += '</ul>';
+                    books += `<div class="col-lg-4 col-md-12 col-sm-12 mb-3" style="display: flex">
                         <img src="${prefix}/${item.image}" alt="${item.title}" width="120" height="90" />
                         <div>
                             <h6>${item.title}</h6>
-                            <p>作者： ${item.author}</p>
-                            <p>豆瓣评分： ${item.douban}</p>
+                            ${item.author ? `<p>作者：${item.author}</p>` : ''}
+                            ${item.douban ? `<p>豆瓣评分：${item.douban}</p>` : ''}
+                            ${channelData ? channelContent : ''}
+                            ${courseData ? courseContent : ''}
                             <a class="btn btn-warning" href="${item.link}">查看</a>
                         </div>
                         </div>

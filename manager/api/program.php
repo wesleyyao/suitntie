@@ -44,19 +44,21 @@
         }
         else if($to == "updateProgram"){
             $name = $_POST["program_name"];
-            $desc = $_POST["program_desc"];
+            $desc = !empty($_POST["program_desc"]) ? $_POST["program_desc"] : "";
+            $related = !empty($_POST["program_related"]) ? $_POST["program_related"] : "";
             $status = $_POST["program_status"];
             $pc_id = $_POST["program_category_id"];
             $id = $_POST["program_id"];
-            $is_updated = $program->update_program($name, $desc, $status, $pc_id, $id);
+            $is_updated = $program->update_program($name, $desc, $status, $related, $pc_id, $id);
             echo json_encode($is_updated);
         }
         else if($to == "addNewProgram"){
             $name = $_POST["program_name"];
-            $desc = $_POST["program_desc"];
+            $desc = !empty($_POST["program_desc"]) ? $_POST["program_desc"] : "";
+            $related = !empty($_POST["program_related"]) ? $_POST["program_related"] : "";
             $status = $_POST["program_status"];
             $pc_id = $_POST["program_category_id"];
-            $is_saved = $program->save_program($name, $desc, $status, $pc_id);
+            $is_saved = $program->save_program($name, $desc, $status, $related, $pc_id);
             echo json_encode($is_saved);
         }
     }

@@ -12,6 +12,15 @@
                 <form id="programForm" action="" method="post">
                     <div class="row mt-3 mb-3">
                         <div class="col-12">
+                            <div class="alert alert-info" role="alert">
+                                <ul>
+                                    <li>在填写相关专业时，请使用空格分开每个专业名称</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-12">
                             <label><span class="text-danger">*</span> 名称</label>
                             <input type="text" maxlength="128" class="form-control" name="program_name" id="programName"
                                 value="" required />
@@ -22,6 +31,13 @@
                             <label>概述</label>
                             <textarea maxlength="2500" class="form-control" name="program_desc"
                                 id="programDesc"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-12">
+                            <label>相关专业</label>
+                            <textarea maxlength="2500" class="form-control" name="program_related"
+                                id="programRelated"></textarea>
                         </div>
                     </div>
                     <div class="row mt-3 mb-3">

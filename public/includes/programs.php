@@ -3,6 +3,7 @@
         public $id = 0;
         public $title = "";
         public $description = "";
+        public $related = "";
         public $status = "";
         public $categoryId = 0;
         public $courses = array();
@@ -42,18 +43,34 @@
 
         public function fetch_program_details($title){
             $data = array();
-            $this->fetch_program($title);
+            $program_data = $this->fetch_program($title);
+            if($program_data){
+                $this->id = $program_data["id"];
+                $this->title = $program_data["title"];
+                $this->description = $program_data["description"];
+                $this->categoryId = $program_data["pc_id"];
+                $this->related = $program_data["related"];
+            }
             $query_course = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM program_course WHERE `status` = 'open' AND p_id = ?";
             $this->courses = $this->fetch_data_by_foreign_key($query_course, $this->id);
             $query_info = "SELECT `id`, `content`, `p_index`, `type`, `status`, `p_id` FROM program_info WHERE `status` = 'open' AND p_id = ?";
             $this->info = $this->fetch_data_by_foreign_key($query_info, $this->id);
-            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id` FROM self_learn_recommend WHERE `status` = 'open' AND p_id = ?";
+            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `channel`, `online_course`, `item_index` FROM self_learn_recommend WHERE `status` = 'open' AND p_id = ?";
             $this->books = $this->fetch_data_by_foreign_key($query_books, $this->id);
-            $this->related_programs = $this->fetch_programs_by_cateogry($this->categoryId);
+            //$this->related_programs = $this->fetch_programs_by_cateogry($this->categoryId);
             $query_child = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM child_program WHERE `status` = 'open' AND p_id = ?";
             $this->child_programs = $this->fetch_data_by_foreign_key($query_child, $this->id);
             $query_testimonials = "SELECT `id`, `name`, `feedback`, `school`, `program`, `grade`, `status`, `p_id` FROM program_testimonials WHERE `status` = 'open' AND p_id = ?";
             $this->testimonials = $this->fetch_data_by_foreign_key($query_testimonials, $this->id);
+            if(!empty(trim($this->related))){
+                $found_related = explode(" ", $this->related);
+                foreach($found_related as $item){
+                    $related_item = $this->fetch_program($item);
+                    if($related_item){
+                        array_push($this->related_programs, $related_item );
+                    }
+                }
+            }
         }
 
         public function fetch_category(){
@@ -87,7 +104,7 @@
 
         public function fetch_all_program_items(){
             $data = array();
-            $query = "SELECT `id`, `title`, `description`, `pc_id`, `status` FROM programs ORDER BY id DESC";
+            $query = "SELECT `id`, `title`, `description`, `pc_id`, `related`, `status` FROM programs ORDER BY id DESC";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();
@@ -100,18 +117,16 @@
         }
 
         private function fetch_program($title){
-            $data;
-            $query = "SELECT `id`, `title`, `description`, `pc_id` FROM programs WHERE `status` = 'open' AND title = ? LIMIT 1";
+            $query = "SELECT `id`, `title`, `description`, `pc_id`, `related` FROM programs WHERE `status` = 'open' AND title = ? LIMIT 1";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("s", $title);
             $sql->execute();
             $result = $sql->get_result();
             if($result){
-                $data = mysqli_fetch_assoc($result);
-                $this->id = $data["id"];
-                $this->title = $data["title"];
-                $this->description = $data["description"];
-                $this->categoryId = $data["pc_id"];
+                return mysqli_fetch_assoc($result);
+            }
+            else {
+                return false;
             }
         }
 
@@ -173,26 +188,42 @@
 
         public function fetch_program_details_manager($title){
             $data = array();
-            $this->fetch_program($title);
+            $program_data = $this->fetch_program($title);
+            if($program_data){
+                $this->id = $program_data["id"];
+                $this->title = $program_data["title"];
+                $this->description = $program_data["description"];
+                $this->categoryId = $program_data["pc_id"];
+                $this->related = $program_data["related"];
+            }
             $query_course = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM program_course WHERE p_id = ?";
             $this->courses = $this->fetch_data_by_foreign_key($query_course, $this->id);
             $query_info = "SELECT `id`, `content`, `p_index`, `type`, `status`, `p_id` FROM program_info WHERE p_id = ?";
             $this->info = $this->fetch_data_by_foreign_key($query_info, $this->id);
-            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id` FROM self_learn_recommend WHERE p_id = ?";
+            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `channel`, `online_course`, `item_index` FROM self_learn_recommend WHERE p_id = ?";
             $this->books = $this->fetch_data_by_foreign_key($query_books, $this->id);
-            $this->related_programs = $this->fetch_programs_by_cateogry($this->categoryId);
+            //$this->related_programs = $this->fetch_programs_by_cateogry($this->categoryId);
             $query_child = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM child_program WHERE p_id = ?";
             $this->child_programs = $this->fetch_data_by_foreign_key($query_child, $this->id);
             $query_testimonials = "SELECT `id`, `name`, `feedback`, `school`, `program`, `grade`, `status`, `p_id` FROM program_testimonials WHERE p_id = ?";
             $this->testimonials = $this->fetch_data_by_foreign_key($query_testimonials, $this->id);
+            if(!empty(trim($this->related))){
+                $found_related = explode(" ", $this->related);
+                foreach($found_related as $item){
+                    $related_item = $this->fetch_program($item);
+                    if($related_item){
+                        array_push($this->related_programs, $related_item );
+                    }
+                }
+            }
         }
 
-        public function update_program($name, $desc, $status, $pc_id, $id){
+        public function update_program($name, $desc, $status, $related, $pc_id, $id){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-            $query = "UPDATE programs SET `title` = ?, `description` = ?, `status` = ?, `pc_id` = ? WHERE `id` = ?";
+            $query = "UPDATE programs SET `title` = ?, `description` = ?, `status` = ?, `related` = ?, `pc_id` = ? WHERE `id` = ?";
             try {
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sssii", $name, $desc, $status, $pc_id, $id);
+                $sql->bind_param("ssssii", $name, $desc, $status, $related, $pc_id, $id);
                 $sql->execute();
                 $this->conn->commit();
                 return true;
@@ -202,12 +233,12 @@
             }
         }
 
-        public function save_program($name, $desc, $status, $pc_id){
+        public function save_program($name, $desc, $status, $related, $pc_id){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-            $query = "INSERT INTO programs (`title`, `description`, `status`, `pc_id`) VALUES (?,?,?,?)";
+            $query = "INSERT INTO programs (`title`, `description`, `status`, `related`, `pc_id`) VALUES (?,?,?,?,?)";
             try {
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sssi", $name, $desc, $status, $pc_id);
+                $sql->bind_param("ssssi", $name, $desc, $status, $related, $pc_id);
                 $sql->execute();
                 $this->conn->commit();
                 return true;
@@ -265,7 +296,7 @@
                 $query = "SELECT `id`, `name`, `content`, `item_index`, `status` FROM program_course WHERE `status` = 'open' AND id = ?";
             }
             else if($data == "book"){
-                $query = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id` FROM self_learn_recommend WHERE id = ?";
+                $query = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `channel`, `online_course`, `item_index` FROM self_learn_recommend WHERE id = ?";
             }
             else if($data == "child"){
                 $query = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM child_program WHERE id = ?";
@@ -340,12 +371,12 @@
             }
         }
 
-        public function save_program_recommendation($program_id, $title, $imageUrl, $author, $douban, $link, $status){
+        public function save_program_recommendation($program_id, $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-            $query = "INSERT INTO self_learn_recommend (`title`, `image`, `author`, `douban`, `link`, `status`, `p_id`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO self_learn_recommend (`title`, `image`, `author`, `douban`, `link`, `channel`, `online_course`, `item_index`, `status`, `p_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try {
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("ssssssi", $title, $imageUrl, $author, $douban, $link, $status, $program_id);
+                $sql->bind_param("sssssssisi", $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status, $program_id);
                 $sql->execute();
                 $this->conn->commit();
                 return true;
@@ -355,12 +386,12 @@
             }
         }
 
-        public function update_program_recommendation($id, $title, $imageUrl, $author, $douban, $link, $status){
+        public function update_program_recommendation($id, $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-            $query = "UPDATE self_learn_recommend SET `title` = ?, `image` = ?, `author` = ?, `douban` = ?, `link` = ?, `status` = ? WHERE id = ?";
+            $query = "UPDATE self_learn_recommend SET `title` = ?, `image` = ?, `author` = ?, `douban` = ?, `link` = ?, `channel` = ?, `online_course` = ?, `item_index` = ?, `status` = ? WHERE id = ?";
             try {
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("ssssssi", $title, $imageUrl, $author, $douban, $link, $status, $id);
+                $sql->bind_param("sssssssisi", $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status, $id);
                 $sql->execute();
                 $this->conn->commit();
                 return true;
