@@ -108,14 +108,19 @@ $(document).ready(function(){
             let books = `<div class="row">`;
             if(bookData && Array.isArray(bookData) && bookData.length > 0){
                 bookData.forEach(function(item){
-                    books += `<div class="col-lg-4 col-md-6 col-sm-12 mb-5" style="display: flex">
-                        <a href="${item.link}"><img src="${prefix}/${item.image}" alt="${item.title}" width="120" class="mr-5"/></a>
-                        <div>
-                            <h6>${item.title}</h6>
-                            <p>作者： ${item.author}</p>`+
-                            // <p>豆瓣评分： ${item.douban}</p>
-                            // <a class="btn primBtn" href="${item.link}">查看</a>
-                            `</div>
+                    books += `<div class="col-lg-3 col-md-4 col-sm-6 mb-5" text-center>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <a href="${item.link}" class="lighterShadow mr-5"><img src="${prefix}/${item.image}" alt="${item.title}" width="100" height="100"/></a>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-sm-12">
+                                        <h6>${item.title}</h6>
+                                        <p>作者： ${item.author}</p>`+
+                                        // <p>豆瓣评分： ${item.douban}</p>
+                                        // <a class="btn primBtn" href="${item.link}">查看</a>
+                                        `</div>
+                                    </div>
+                                </div>
                         </div>
                     `;
                 });

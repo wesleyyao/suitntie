@@ -218,6 +218,11 @@
     margin-right:30px;
 }
 
+#recommend a{
+    border-radius: 50px;
+    height:100px;
+}
+
 /* course list */
 .courseList h3{
     margin:0 !important;

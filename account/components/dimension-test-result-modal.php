@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="testResultBody">
+            <!-- <div class="modal-body" id="testResultBody">
                 <div id="testResultMessage"></div>
                 <div class="row">
                     <div class="col-12">
@@ -82,8 +82,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div id="mainResultDiv" class="result-div">
+            </div> -->
+            <div class="modal-body" id="testResultBody">
+            <div id="mainResultDiv" class="result-div">
                     <div class="row resultHeader">
                         <div class="col-12">
                             <div>
@@ -176,6 +177,6 @@
                     </div>
                     <br/>
                 </div>
-        </div> -->
+        </div></div>
     </div>
 </div>
