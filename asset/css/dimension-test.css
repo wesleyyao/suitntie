@@ -12,10 +12,15 @@
     margin:0;
 }
 
-#testTitle{
-    
-
+/* #testTitle{
+  height:350px;
+  background-image:url('/suitntie/asset/image/test-page/Hero-img.jpg');
+  background-repeat:no-repeat;
+  background-size:contain;
+  background-position:center 0;
+  background-attachment: fixed;
 }
+     */
 
 .testDesc{
     margin-top: -110px;
