@@ -108,36 +108,6 @@ $(document).ready(function(){
             let books = `<div class="row">`;
             if(bookData && Array.isArray(bookData) && bookData.length > 0){
                 bookData.forEach(function(item){
-<<<<<<< HEAD
-                    let channelList = [];
-                    let channelContent = '<ul style="height: 120px; overflow-y: auto;">';
-                    const channelData = item.channel ? item.channel : '';
-                    if(channelData){
-                        channelList = channelData.split('|');
-                        channelList.forEach(function(item){
-                            channelContent += `<li>${item}</li>`;
-                        });
-                    }
-                    channelContent += '</ul>';
-                    let courseList = [];
-                    let courseContent = '<ul style="height: 120px; overflow-y: auto;">';
-                    const courseData = item.online_course ? item.online_course : '';
-                    if(courseData){
-                        courseList = channelData.split('|');
-                        courseList.forEach(function(item){
-                            courseContent += `<li>${item}</li>`;
-                        });
-                    }
-                    courseContent += '</ul>';
-                    books += `<div class="col-lg-4 col-md-6 col-sm-12 mb-5" style="display: flex">
-                        <a href="${item.link}"><img src="${prefix}/${item.image}" alt="${item.title}" width="120" class="mr-5"/></a>
-                        <div>
-                            <h6>${item.title}</h6>
-                            ${item.author ? `<p>作者：${item.author}</p>` : ''}
-                            ${item.douban ? `<p>豆瓣评分：${item.douban}</p>` : ''}
-                            ${channelData ? channelContent : ''}
-                            ${courseData ? courseContent : ''}</div>
-=======
                     books += `<div class="col-lg-3 col-md-4 col-sm-6 mb-5" text-center>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 col-sm-12">
@@ -151,7 +121,6 @@ $(document).ready(function(){
                                         `</div>
                                     </div>
                                 </div>
->>>>>>> Added resources image
                         </div>
                     `;
                 });
