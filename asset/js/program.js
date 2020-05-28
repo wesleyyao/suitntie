@@ -122,7 +122,8 @@ $(document).ready(function () {
                     let courseContent = '<ul style="height: 120px; overflow-y: auto;">';
                     const courseData = item.online_course ? item.online_course : '';
                     if (courseData) {
-                        courseList = channelData.split('|');
+                        courseList = courseData.split('|');
+                        console.log(courseList)
                         courseList.forEach(function (item) {
                             courseContent += `<li>${item}</li>`;
                         });
