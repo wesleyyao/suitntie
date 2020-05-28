@@ -2,10 +2,6 @@
     width: 100%;
 }
 
-.carousel-inner, .carousel-item{
-    max-height: 520px !important;
-}
-
 .home-programs-entrance{
     background-image: url(/suitntie/asset/image/library.jpg);
     background-size: cover;
@@ -19,25 +15,12 @@
     background-attachment: fixed;
 }
 
-.home-programs-entrance h1{
-    font-weight: 400 !important;
-    margin-bottom: 30px;
+.home-programs-entrance h2{
+    color: white !important;
 }
 
 .home-programs-entrance p{
     margin-bottom: 30px;
-}
-
-.teacher-cell{
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-.teacher-cell img{
-    width: 45%;
-    margin-right: 5%;
-    border-radius: 25px;
 }
 
 .home-contact-form{
@@ -64,7 +47,7 @@
 .threeSteps h3{
     font-size: 1.75em !important;
     font-weight: 500;
-    margin-bottom: 20px !important;
+    margin-bottom: 30px !important;
 }
 
 .threeSteps h4{
@@ -85,17 +68,59 @@
 
 /* Mentor Section */
 .home-one-on-one-entrance{
-    background-color: #fdf1e7;
+    background-color: #fdf7f2;
     color: #333;
     padding: 80px 40px;
     border-radius: 10px;
 }
 
-.home-one-on-one-entrance h1{
-    font-weight: 400 !important;
-    margin-bottom: 30px;
+.home-one-on-one-entrance h2{
+    margin-bottom: 30px 0;
 }
 
 .home-one-on-one-entrance p{
     margin-bottom: 30px;
+}
+
+.instructor h2{
+    margin:30px auto;
+}
+
+.teacher-cell{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 0 auto 30px auto;
+}
+
+.teacher-cell img{
+    width: 150px;
+    margin-right: 30px;
+    border-radius: 10px;
+}
+
+.teacher-cell h5{
+    font-size: 1.25em !important;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.teacher-cell label{
+    width: 160px;
+    font-weight: 500;
+    margin-bottom: 1px;
+}
+
+/* contact form */
+.home-contact-form input, .home-contact-form textarea{
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.home-contact-form ::placeholder{
+    color:#777777;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 100;
+    font-size:0.9em;
 }

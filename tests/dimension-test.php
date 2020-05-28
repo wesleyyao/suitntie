@@ -29,7 +29,7 @@
     <div class="test-main">
         <input type="hidden" id="hide_title" value="dimension-test" />
         <?php require_once("../theme/global-header.php"); ?>
-        <div class="container">
+        <!-- <div class="container"> -->
             <?php if(isset($_SESSION["test_error_message"])): ?>
             <br />
             <div class="row">
@@ -43,14 +43,16 @@
                     </div>
                 </div>
             </div>
-            <br />
-            <?php endif; ?>
-            <div id="titleDiv">
-                <div class="row mainTitle">
-                    <div class="col-12">
-                        <h1 class="text-center" id="testTitle">Loading...</h1>
+                    <br/>
+                <?php endif; ?>
+                <div id="titleDiv">
+                    <div class="row mainTitle">
+                        <div class="col-12">
+                            <h1 class="text-center" id="testTitle">Loading...</h1>
+                        </div>
                     </div>
                 </div>
+            <div class="container mainContent">
                 <div class="row testDesc">
                     <div class="col-md-4 tri-block">
                         <div class="lightShadow tri-block-content">
@@ -72,15 +74,19 @@
                     </div>
                 </div>
             </div>
-            <div id="clockAndProgressBarDiv" class="test-div">
-                <div class="row">
-                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                        <span id="percentage" class="">0%</span>
-                    </div>
-                    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 progressContainer">
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" id="progress" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="container">
+                <div id="clockAndProgressBarDiv" class="test-div">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                            <span id="percentage" class="">0%</span>
+                        </div>
+                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 progressContainer">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" id="progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                            <div id="clock"></div>
                         </div>
                     </div>
                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
@@ -88,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div id="mainContentDiv">
+            <div id="mainContentDiv container">
                 <div class="row">
                     <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 textHeading">
                         <h2 class="text-center" id="questionTypeTitle"></h2>
@@ -126,8 +132,9 @@
                 <div class="col-12">
                     <div id="message"></div>
                 </div>
+                </div>
             </div>
-        </div>
+        <!-- </div> -->
     </div>
     <?php require_once("../theme/global-footer.php"); ?>
     <?php require_once("../public/component/auth-modals.php"); ?>

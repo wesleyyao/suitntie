@@ -24,7 +24,7 @@
         <div class="user-main">
         <input type="hidden" id="hide_title" value="user"/>
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
-            <div class="container" style="padding: 20px 0 100px 0">
+            <div class="container mt-5" style="padding: 20px 0 100px 0">
                 <div class="row">
                     <div class="col-12">
                         <div id="message"></div>
@@ -42,18 +42,18 @@
                     <div class="row no-gutters">
                         <div class="col-lg-2 col-md-4 col-sm-2">
                             <div class="list-group">
-                            <button type="button" class="list-group-item list-group-item-action account-nav active" id="userProfile">
+                            <button type="button" class="list-group-item list-group-item-action account-nav active rounded-0 btn" id="userProfile">
                                 <i class="fas fa-user"></i>
                                 个人信息
                             </button>
-                            <button type="button" class="list-group-item list-group-item-action account-nav" id="testResults">
+                            <button type="button" class="list-group-item list-group-item-action account-nav rounded-0 btn" id="testResults">
                                 <i class="fas fa-poll"></i>
                                 测试结果
                             </button>
                             </div>
                         </div>
                         <div class="col-lg-10 col-md-8 col-sm-10">
-                            <div class="card">
+                            <div class="card rounded-0">
                                 <div class="card-body">
                                     <div class="account-center-section" id="userProfileSection">
                                         <div class="row">
@@ -124,7 +124,7 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <table class="table">
-                                                    <thead class="thead-dark">
+                                                    <thead class="bgGrey">
                                                         <tr>
                                                             <th>日期</th>
                                                             <th></th>

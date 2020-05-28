@@ -6,4 +6,10 @@
 <link rel="stylesheet" href="/suitntie/asset/css/topSlider.css">
 <link rel="stylesheet" href="/suitntie/asset/css/dimension-test.css">
 <link rel="stylesheet" href="/suitntie/asset/css/testimonial.css">
+<link rel="stylesheet" href="/suitntie/asset/css/test-result.css">
+<link rel="stylesheet" href="/suitntie/asset/css/program.css">
+<link rel="stylesheet" href="/suitntie/asset/css/user.css">
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8d37a75cc2650fdc8f555f9483ea045b31179d7

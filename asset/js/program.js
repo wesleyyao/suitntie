@@ -17,11 +17,11 @@ $(document).ready(function(){
             if(Array.isArray(result) && result.length > 0){
                 result.forEach(function(item){
                     programCards += `<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="card">
+                    <div class="card programItems lightShadow">
                         <div class="card-body text-center">
                             <img src="${prefix}${item.image}" width="60" alt="program logo"/>
                             <h5 class="card-title">${item.name}</h5>
-                            <a href="#/" class="programs-view-btn" id="programsView${item.id}">查看专业列表</a>
+                            <a href="#/" class="programs-view-btn secBtn btn" id="programsView${item.id}">查看专业列表</a>
                         </div>
                     </div>
                 </div>`
@@ -108,36 +108,19 @@ $(document).ready(function(){
             let books = `<div class="row">`;
             if(bookData && Array.isArray(bookData) && bookData.length > 0){
                 bookData.forEach(function(item){
-                    let channelList = [];
-                    let channelContent = '<ul style="height: 120px; overflow-y: auto;">';
-                    const channelData = item.channel ? item.channel : '';
-                    if(channelData){
-                        channelList = channelData.split('|');
-                        channelList.forEach(function(item){
-                            channelContent += `<li>${item}</li>`;
-                        });
-                    }
-                    channelContent += '</ul>';
-                    let courseList = [];
-                    let courseContent = '<ul style="height: 120px; overflow-y: auto;">';
-                    const courseData = item.online_course ? item.online_course : '';
-                    if(courseData){
-                        courseList = channelData.split('|');
-                        courseList.forEach(function(item){
-                            courseContent += `<li>${item}</li>`;
-                        });
-                    }
-                    courseContent += '</ul>';
-                    books += `<div class="col-lg-4 col-md-12 col-sm-12 mb-3" style="display: flex">
-                        <img src="${prefix}/${item.image}" alt="${item.title}" width="120" height="90" />
-                        <div>
-                            <h6>${item.title}</h6>
-                            ${item.author ? `<p>作者：${item.author}</p>` : ''}
-                            ${item.douban ? `<p>豆瓣评分：${item.douban}</p>` : ''}
-                            ${channelData ? channelContent : ''}
-                            ${courseData ? courseContent : ''}
-                            <a class="btn btn-warning" href="${item.link}">查看</a>
-                        </div>
+                    books += `<div class="col-lg-3 col-md-4 col-sm-6 mb-5" text-center>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <a href="${item.link}" class="lighterShadow mr-5"><img src="${prefix}/${item.image}" alt="${item.title}" width="100" height="100"/></a>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-sm-12">
+                                        <h6>${item.title}</h6>
+                                        <p>作者： ${item.author}</p>`+
+                                        // <p>豆瓣评分： ${item.douban}</p>
+                                        // <a class="btn primBtn" href="${item.link}">查看</a>
+                                        `</div>
+                                    </div>
+                                </div>
                         </div>
                     `;
                 });
@@ -150,10 +133,10 @@ $(document).ready(function(){
             if(courseData && Array.isArray(courseData) && courseData.length > 0){
                 courseData.forEach(function(item, index){
                     courses += `
-                        <div class="card">
+                        <div class="card border-0">
                             <div class="card-header" id="courseHeader${index}">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#courseCollapse${index}" aria-expanded="true" aria-controls="courseCollapse${index}">
+                                    <button class="btn btn-accordion" type="button" data-toggle="collapse" data-target="#courseCollapse${index}" aria-expanded="true" aria-controls="courseCollapse${index}">
                                         ${item.name}
                                     </button>
                                 </h2>
@@ -175,10 +158,10 @@ $(document).ready(function(){
             if(childProgramData && Array.isArray(childProgramData) && childProgramData.length > 0){
                 childProgramData.forEach(function(item, index){
                     childPrograms += `
-                        <div class="card">
+                        <div class="card border-0">
                             <div class="card-header" id="childHeader${index}">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#childCollapse${index}" aria-expanded="true" aria-controls="childCollapse${index}">
+                                    <button class="btn btn-accordion" type="button" data-toggle="collapse" data-target="#childCollapse${index}" aria-expanded="true" aria-controls="childCollapse${index}">
                                         ${item.name}
                                     </button>
                                 </h2>
@@ -202,11 +185,11 @@ $(document).ready(function(){
                 testimonialData.forEach(function(item, index){
                     testimonials += `<div class="carousel-item ${index == 0 ? 'active' : ''}">
                     <img src="../asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">
-                    <div class="carousel-caption d-none d-md-block" style="color: #333; top: 90px;">
+                    <div class="carousel-caption" style="color: #333; top: 90px;">
                         <div>
                             <p>${item.feedback}</p>
-                            <p><b>${item.name}</b></p>
-                            <p>${item.school} ${item.program} ${item.grade}</p>
+                            <h5>${item.name}</h5>
+                            <p><em>${item.school} ${item.program} ${item.grade}</em></p>
                         </div>
                         <a class="btn primBtn" href="#/">咨询学长学姐</a>
                     </div>

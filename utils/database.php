@@ -11,10 +11,10 @@ class Database
 
     protected function open_db_connection()
     {
-        $host_name = "localhost:3308"; //3308 3306 production
+        $host_name = "localhost:8889"; 
         $database = "suitntie";
-        $user_name = "root"; //root
-        $password = ""; //SuitNtie0502
+        $user_name = "root"; //wyao
+        $password = "root"; //yaojianbo01
         date_default_timezone_set("America/Toronto");
         $this->conn = mysqli_connect($host_name, $user_name, $password, $database);
         $this->conn->set_charset("utf8");
