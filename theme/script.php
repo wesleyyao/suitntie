@@ -4,5 +4,5 @@
 <script src="/suitntie/asset/js/bootstrap.bundle.js"></script>
 <script src="/suitntie/asset/js/user.js"></script>
 <script src="/suitntie/asset/js/header.js"></script>
-<script src="/suitntie/asset/js/global-Nav.js"></script>
-
+<script src="/suitntie/asset/js/global-nav.js"></script>
+<script src="/suitntie/asset/js/contact.js"></script>
