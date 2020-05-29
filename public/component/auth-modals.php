@@ -192,7 +192,7 @@
                     <div class="row mb-2" id="profileCompletePhoneCell">
                         <div class="offset-1 col-10">
                             <label><span class="text-danger">*</span> 手机：</label>
-                            <input type="password" id="toFinishPhone" class="form-control profile-required"
+                            <input type="text" id="toFinishPhone" class="form-control profile-required"
                                 maxlength="25" />
                         </div>
                     </div>

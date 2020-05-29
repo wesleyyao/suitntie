@@ -16,6 +16,7 @@ $(document).ready(function () {
 
     $.get(`${prefix}/public/api/account.php`).done(function (data) {
         const result = JSON.parse(data);
+        console.log(result)
         const pageTitle = $('#hide_title').val();
         if (result === 'no login' && pagesRequiredLogin.includes(pageTitle)) {
             $('#userLoginModal').modal('show');
@@ -114,8 +115,7 @@ $(document).ready(function () {
         if (!formValidation('.profile-required', '#profileCompleteMessage', 'test@abc.ca')) {
             return;
         }
-        $.post(`${prefix}/public/api/account/php`, { email, phone, isSaveContact: true }).done(function (data) {
-            console.log(data)
+        $.post(`${prefix}/public/api/account.php`, { email, phone, isSaveContact: true }).done(function (data) {
             if (data) {
                 window.location.href = `${prefix}/tests/dimension-test.php`;
             }
@@ -125,7 +125,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.close-signup-btn').click(function(){
+    $('.close-signup-btn').click(function () {
         $('#userSignUpModal').modal('hide');
         $('#userLoginModal').modal('show');
     });
