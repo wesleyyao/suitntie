@@ -82,9 +82,8 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <div class="modal-body" id="testResultBody">
-            <div id="mainResultDiv" class="result-div">
+            </div>
+            <!-- <div id="mainResultDiv" class="result-div">
                     <div class="row resultHeader">
                         <div class="col-12">
                             <div>
@@ -177,6 +176,6 @@
                     </div>
                     <br/>
                 </div>
-        </div></div>
+        </div> -->
     </div>
 </div>

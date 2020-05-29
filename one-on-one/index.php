@@ -313,6 +313,7 @@
             </div>
         </div>
         <div class="home-contact-form" id="contactUs">
+            <h2 class="text-center pt-3">联系我们</h2>
             <?php require_once("../public/component/contact-us.php"); ?>
         </div>
     </div>

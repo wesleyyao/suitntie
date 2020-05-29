@@ -1,5 +1,4 @@
 <div class="container pt-5 pb-5">
-    <h2 class="text-center pb-3">联系我们</h2>
     <form id="contactForm">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12">
