@@ -22,6 +22,13 @@
 }
 
 /* result */
+#testResultBody{
+    overflow-x: hidden;
+} 
+
+#testResultBody .resultHeader{
+    padding:40px !important;
+}
 
 .resultHeader{
     background-color: #2F4858 !important;
@@ -52,8 +59,8 @@
 }
 
 @media only screen and (max-width: 575px) {
-    .resultBarChart{
-        padding:40px;
+    #testResultBody .resultBarChart{
+        padding:10px;
     }
   }
 .resultDimension:after{
@@ -139,24 +146,12 @@
     }
   }
 
-  .result-div h3{
+  #testResultBody .result-div h3{
       color:#2F4858;
   }
 
-  .result-div .row{
-      padding:30px 80px;
-  }
-
-  @media only screen and (max-width: 991px) {
-    .result-div .row{
-        padding:30px 20px;
-    }
-  }
-
-  @media only screen and (max-width: 575px) {
-    .result-div .row{
-        padding:30px 80px;
-    }
+  #testResultBody .result-div .row{
+      padding:10px 10px;
   }
 
 .list-group-item{
@@ -216,30 +211,30 @@
     margin:50px 0;
 }
 
-.programFit ul{
+.careerDesc ul{
     list-style:none;
     padding:0 !important;
 }
 
-.programFit ul li a{
+.careerDesc ul li a{
     color: #808080; 
     text-decoration: underline;
     transition: all 400ms;
 }
 
-.programFit ul li a:hover{
+.careerDesc ul li a:hover{
     color: #F19F4D; 
 }
 
-.careerFit{
+.careerDesc{
     margin:50px 0 0 0;
 }
 
-.careerFit ul{
+.careerDesc ul{
     list-style:none;
 }
 
-.careerFit ul li::before{
+.careerDesc ul li::before{
     content: "\2022"; 
     color: #F19F4D; 
     font-weight: bolder;
@@ -271,3 +266,5 @@
 .twoButton{
     margin: 40px 0 80px 0;
 }
+
+#programAndJobAnalytics

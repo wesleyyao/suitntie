@@ -82,21 +82,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div id="mainResultDiv" class="result-div">
-                    <div class="row resultHeader">
-                        <div class="col-12">
-                            <div>
-                                <div class="container text-center result-title-cell" style="z-index: 2; width: 100%">
+            </div> -->
+            <div class="modal-body" id="testResultBody">
+            <div id="mainResultDiv" class="result-div">
+                    <div class="resultHeader">
+                                <div class="text-center result-title-cell" style="z-index: 2; width: 100%">
                                     <h1 class="display-4" id="resultTitle"></h1>
                                     <h2 id="resultDescription"></h2>
-                                </div> 
-                            </div>
-                        </div>
+                                </div>        
                     </div>
 
                     <div class="resultDimension">
-                        <div class="container">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">    <polygon stroke="white" fill="white" points="0,100 100,0 100,100"/></svg>
                             <div class="row dimensionContent">
                                 <div class="col-lg-4 col-md-4 col-sm-12 text-center">
@@ -125,7 +121,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
 
                     <br/>
@@ -176,6 +171,6 @@
                     </div>
                     <br/>
                 </div>
-        </div> -->
+        </div></div>
     </div>
 </div>
