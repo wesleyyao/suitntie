@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if(isset($_SESSION["new_test_result"])){
-        unset($_SESSION["new_test_result"]);
-    }
+    // session_start();
+    // if(isset($_SESSION["new_test_result"])){
+    //     unset($_SESSION["new_test_result"]);
+    // }
 ?>
 <!<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->

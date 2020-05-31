@@ -4,7 +4,7 @@
     $state = uniqid('', true);
     $_SESSION["wechat_state"] = $state;
 ?>
-<div class="modal fade" id="userLoginModal" tabindex="-1" role="dialog" aria-labelledby="userLoginTitle"
+<div class="modal fade userLoginModal" id="userLoginModal" tabindex="-1" role="dialog" aria-labelledby="userLoginTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -35,7 +35,7 @@
                                 <div class="col-lg-5 col-sm-12">
                                     <a id="wechatLoginButton"
                                         href="https://open.weixin.qq.com/connect/qrconnect?appid=<?php echo $appId; ?>&redirect_uri=<?php echo $redirect_url; ?>&response_type=code&scope=snsapi_login&state=<?php echo $state; ?>#wechat_redirect"><i
-                                            class="fab fa-weixin text-success"></i> 微信登录</a>
+                                            class="fab fa-weixin"></i> 微信登录</a>
                                 </div>
                                 <div class="col-lg-7 col-sm-12 text-right">
                                     <span>尚未注册？<a href="#/" id="showSignupModal">请点击这里</a></span>
@@ -47,8 +47,8 @@
                     <br />
                     <div class="row">
                         <div class="offset-1 col-10 text-right">
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
-                            <button type="submit" class="btn btn-success" id="loginSubmit"
+                            <button type="button" class="btn ghostSecBtn mr-1" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn primBtn" id="loginSubmit"
                                 name="login_button">确认</button>
                         </div>
                     </div>
@@ -91,8 +91,8 @@
                             aria-controls="profile" aria-selected="false">短信验证</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link active" id="emailSignup-tab" data-toggle="tab" href="#emailSignup" role="tab"
-                            aria-controls="contact" aria-selected="false">邮箱</a>
+                        <a class="nav-link active btn-light" id="emailSignup-tab" data-toggle="tab" href="#emailSignup" role="tab"
+                            aria-controls="contact" aria-selected="false">邮箱注册</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="tab-pane fade show active" id="emailSignup" role="tabpanel"
+                    <div class="tab-pane fade show active emailSignup" id="emailSignup" role="tabpanel"
                         aria-labelledby="emailSignup-tab">
                         <br />
                         <div class="row mb-2">
@@ -161,10 +161,10 @@
                             </div>
                         </div>
                         <div id="signupMessage"></div>
-                        <div class="row">
+                        <div class="row btnRow">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-outline-secondary close-signup-btn">关闭</button>
-                                <button type="button" class="btn btn-success submit-button"
+                                <button type="button" class="btn ghostSecBtn close-signup-btn">关闭</button>
+                                <button type="button" class="btn primBtn submit-button"
                                     id="signupByEmail">提交</button>
                             </div>
                         </div>
