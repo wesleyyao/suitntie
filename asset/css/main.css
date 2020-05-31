@@ -106,7 +106,7 @@ label:focus,
 
   .ghostSecBtn:hover{    
     background-color:  #777777 !important;
-    color:white;
+    color:white !important;
     transition: 0.3s;
     border:none;
 }
