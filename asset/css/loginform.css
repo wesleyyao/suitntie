@@ -1,0 +1,55 @@
+
+/* login form */
+
+.userLoginModal form{
+    border-radius: 0 0 10px 10px;
+}
+
+.userLoginModal .modal-header{
+    
+    border-radius: 10px 10px 0 0;
+}
+
+.userLoginModal .modal-body{
+    padding:40px 0 !important;
+}
+
+.userLoginModal form input{
+    border-radius: 4px;
+    margin-bottom: 20px !important;
+}
+
+.userLoginModal form ::placeholder{
+    color:#777777;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 100;
+    font-size:0.9em;
+}
+
+.userLoginModal input:active{
+    color:white;
+    background-color: #F19F4D;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 100;
+    font-size:0.9em;
+}
+
+.userLoginModal a{
+    color: #F19F4D !important;
+}
+
+.emailSignup i{
+    color: #F19F4D !important;
+}
+
+.emailSignup{
+    margin-bottom: 30px;
+}
+
+.emailSignup label{
+    margin-top: 10px;
+}
+
+.btnRow{
+    margin-top: 30px;
+}

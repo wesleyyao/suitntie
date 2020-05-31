@@ -29,7 +29,7 @@
                         </div>
                         <div class="row">
                             <div class="offset-2 col-8 text-right">
-                                <button type="submit" class="btn btn-primary">确认</button>
+                                <button type="submit" class="btn primBtn">确认</button>
                             </div>
                         </div>
                     </form>

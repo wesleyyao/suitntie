@@ -129,7 +129,7 @@ $(document).ready(function () {
                         });
                     }
                     courseContent += '</ul>';
-                    books += `<div class="col-lg-4 col-md-4 col-sm-6 mb-5 text-center" style="display: flex">
+                    books += `<div class="col-lg-4 col-md-4 col-sm-6 mb-5 text-left" style="display: flex">
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-12">
                             <a href="${item.link}" class="lighterShadow mr-5"><img src="${prefix}${item.image}" alt="${item.title}" width="100"/></a>
