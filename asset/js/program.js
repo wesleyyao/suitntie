@@ -108,38 +108,33 @@ $(document).ready(function () {
             let books = `<div class="row">`;
             if (bookData && Array.isArray(bookData) && bookData.length > 0) {
                 bookData.forEach(function (item) {
-                    let channelList = [];
-                    let channelContent = '<ul style="height: 120px; overflow-y: auto;">';
-                    const channelData = item.channel ? item.channel : '';
-                    if (channelData) {
-                        channelList = channelData.split('|');
-                        channelList.forEach(function (item) {
-                            channelContent += `<li>${item}</li>`;
+
+                    let contentList = '';
+                    const contentData = item.content && item.content.length > 0 ? item.content : [];
+                    console.log(contentData)
+                    if (contentData.length > 0) {
+                        contentData.forEach(function (item) {
+                            contentList += `<li style="float: left; width: 50%;">
+                                <a href="${item.is_link == 'yes' ? item.url : '#/'}"
+                                    class="recommendation-qr"
+                                    target="_blank" 
+                                    ${item.image ? `id = ${item.image} data-toggle="modal" data-target="#recommendQrModal"` : ''}>${item.title}</a>
+                                </li>`;
                         });
                     }
-                    channelContent += '</ul>';
-                    let courseList = [];
-                    let courseContent = '<ul style="height: 120px; overflow-y: auto;">';
-                    const courseData = item.online_course ? item.online_course : '';
-                    if (courseData) {
-                        courseList = courseData.split('|');
-                        console.log(courseList)
-                        courseList.forEach(function (item) {
-                            courseContent += `<li>${item}</li>`;
-                        });
-                    }
-                    courseContent += '</ul>';
-                    books += `<div class="col-lg-4 col-md-4 col-sm-6 mb-5 text-left" style="display: flex">
+                    books += `<div class="col-12 mb-5 text-left">
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-12">
-                            <a href="${item.link}" class="lighterShadow mr-5"><img src="${prefix}${item.image}" alt="${item.title}" width="100"/></a>
+                        <div class="col-lg-12">
+                            <a href="${item.link}" class="lighterShadow h5 mr-5"><img src="${prefix}${item.image}" alt="${item.title}" width="100"/> ${item.title}</a>
                         </div>
-                        <div class="col-lg-9 col-md-8 col-sm-12">
-                            <h6>${item.title}</h6>
-                            ${item.author ? `<p>作者：${item.author}</p>` : ''}
-                            ${item.douban ? `<p>豆瓣评分：${item.douban}</p>` : ''}
-                            ${channelData ? channelContent : ''}
-                            ${courseData ? courseContent : ''}
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul>
+                            ${item.author ? `<li style="float: left; width: 50%;">作者：${item.author}</li>` : ''}
+                            ${item.douban ? `<li style="float: left; width: 50%;">豆瓣评分：${item.douban}</li>` : ''}
+                            ${contentList}
+                            </ul>
                         </div>
                     </div>
                     </div>`;
@@ -223,4 +218,10 @@ $(document).ready(function () {
             $('#programTestimonial').append(testimonials);
         });
     }
+
+    $(document).on('click', '.recommendation-qr', function(){
+        const imageUrl = $(this).attr('id');
+        $('#recommendationQrImg').prop('src', `${prefix}${imageUrl}`);
+        $('#recommendQrModal').modal('show');
+    });
 });

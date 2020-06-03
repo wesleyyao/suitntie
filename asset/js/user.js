@@ -9,6 +9,8 @@ $(document).ready(function () {
         </div>
     </div>`;
     let message = '';
+    const currentPage = decodeURIComponent(window.location.href);
+    console.log(currentPage);
     $('#showSignupModal').click(function () {
         $('#userLoginModal').modal('hide');
         $('#userSignUpModal').modal('show');
@@ -63,34 +65,29 @@ $(document).ready(function () {
                     isValid = false;
                     return;
                 }
-                else if (!validateEmailFormat($('#signupEmail').val())) {
-                    const invalidEmailMessage = generateMessage('warning', '输入的邮箱格式错误。');
-                    $('#signupMessage').html(invalidEmailMessage);
-                    isValid = false;
-                    return;
-                }
-                else if (!$('#signupPassword').val().match(passwordFormat)) {
-                    const invalidPasswordMessage = generateMessage('warning', `密码不符合要求。请点击小图标<i class="fas fa-info-circle text-info"></i>查看密码格式，重新输入。`);
-                    $('#signupMessage').html(invalidPasswordMessage);
-                    isValid = false;
-                    return;
-                }
-                else if ($('#signupPassword').val() !== $('#signupPasswordConfirm').val()) {
-                    const invalidMatchPasswordMessage = generateMessage('warning', `两次输入的密码不一致。`);
-                    $('#signupMessage').html(invalidMatchPasswordMessage);
-                    isValid = false;
-                    return;
-                }
-                else {
-                    isValid = true;
-                    return;
-                }
             });
+            if(!isValid){
+                return;
+            }
+            const email = $('#signupEmail').val();
+            const password = $('#signupPassword').val();
+            const confirmPassword = $('#signupPasswordConfirm').val();
+            const phone = $('#signupPhone').val();
+            if(!validateEmailFormat($('#signupEmail').val())){
+                $('#signupMessage').html(generateMessage('warning', '输入的邮箱格式错误。'));
+                isValid = false;
+            }
+            if(!$('#signupPassword').val().match(passwordFormat)){
+                $('#signupMessage').html(generateMessage('warning', `密码不符合要求。请点击小图标<i class="fas fa-info-circle text-info"></i>查看密码格式，重新输入。`));
+                isValid = false;
+            }
+            if(password !== confirmPassword){
+                $('#signupMessage').html(generateMessage('warning', `密码不一致，重新输入。`));
+                isValid = false;
+            }
             if (isValid) {
-                const email = $('#signupEmail').val();
-                const password = $('#signupPassword').val();
                 $('#signupMessage').html(loading);
-                $.post(`${prefix}/public/api/signup.php`, { submit_signup: 'yes', usr_email: email, usr_password: password }).done(function (data) {
+                $.post(`${prefix}/public/api/signup.php?redirect=${currentPage}`, { submit_signup: 'yes', usr_email: email, usr_password: password, usr_phone: phone }).done(function (data) {
                     if (data) {
                         let result = JSON.parse(data);
                         const message = generateMessage(result.type, result.content);

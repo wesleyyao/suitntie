@@ -100,6 +100,7 @@
             <?php require_once("../public/component/contact-us.php"); ?>
         </div>
     </div>
+    <?php require_once("./components/qr-modal.php"); ?>
     <?php require_once("../theme/global-footer.php"); ?>
     <?php require_once("../public/component/auth-modals.php"); ?>
     <?php require_once("../theme/script.php"); ?>

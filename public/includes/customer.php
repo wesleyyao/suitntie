@@ -11,10 +11,10 @@
         public $country;
 
         
-        public function user_signup($email, $password, $tempId){
+        public function user_signup($email, $phone, $password, $tempId){
             $is_exist = $this->find_user($email);
             if(!$is_exist){
-                return $this->signup($email, $password, $tempId);
+                return $this->signup($email, $phone, $password, $tempId);
             }
             else{
                 return "existed";
@@ -30,13 +30,13 @@
             return $result->num_rows > 0 ? true : false;
         }
         
-        private function signup($email, $password, $tempId){
+        private function signup($email, $phone, $password, $tempId){
             $new_password = password_hash($password, PASSWORD_BCRYPT);
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
-                $query = "INSERT INTO customers (`email`, `password`, `temporary_link`, `status`) VALUES (?, ?, ?, 'open')";
+                $query = "INSERT INTO customers (`email`, `phone`, `password`, `temporary_link`, `status`) VALUES (?, ?, ?, ?, 'open')";
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sss", $email, $new_password, $tempId);
+                $sql->bind_param("ssss", $email, $phone, $new_password, $tempId);
                 $sql->execute();
                 $this->conn->commit();
                 return true;

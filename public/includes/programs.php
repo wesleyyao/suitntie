@@ -55,8 +55,18 @@
             $this->courses = $this->fetch_data_by_foreign_key($query_course, $this->id);
             $query_info = "SELECT `id`, `content`, `p_index`, `type`, `status`, `p_id` FROM program_info WHERE `status` = 'open' AND p_id = ?";
             $this->info = $this->fetch_data_by_foreign_key($query_info, $this->id);
-            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `channel`, `online_course`, `item_index` FROM self_learn_recommend WHERE `status` = 'open' AND p_id = ?";
+            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE `status` = 'open' AND p_id = ?";
             $this->books = $this->fetch_data_by_foreign_key($query_books, $this->id);
+            $query_books_content = "SELECT `id`, `title`, `is_link`, `image`, `url` FROM self_learn_recommend_content WHERE `status` = 'open' AND parent_id = ?";
+            $recommends = array();
+            if(count($this->books) > 0){
+                foreach($this->books as $item){
+                    $rec_obj = $item;
+                    $rec_obj["content"] = $this->fetch_data_by_foreign_key($query_books_content, $item["id"]);
+                    array_push($recommends, $rec_obj);
+                }
+                $this->books = $recommends;
+            }
             //$this->related_programs = $this->fetch_programs_by_cateogry($this->categoryId);
             $query_child = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM child_program WHERE `status` = 'open' AND p_id = ?";
             $this->child_programs = $this->fetch_data_by_foreign_key($query_child, $this->id);
