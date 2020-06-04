@@ -11,7 +11,7 @@ $(document).ready(function () {
                 <div class="carousel-caption">
                     <h1>${item.title ? item.title : ''}</h1>
                     <p>${item.content ? item.content : ''}</p>
-                    ${item.button ? `<a class="btn ghostBtn mt-3" href="${item.link ? item.link : '#/'}">${item.button}</a>` : ''}
+                    ${item.button ? `<a class="btn ghostBtn mt-3" href="${item.link ? prefix + item.link : '#/'}">${item.button}</a>` : ''}
                 </div>
             </div>`;
                 if (result.length > 0) {

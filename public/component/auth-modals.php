@@ -48,8 +48,7 @@
                     <div class="row">
                         <div class="offset-1 col-10 text-right">
                             <button type="button" class="btn ghostSecBtn mr-1" data-dismiss="modal">关闭</button>
-                            <button type="submit" class="btn primBtn" id="loginSubmit"
-                                name="login_button">确认</button>
+                            <button type="submit" class="btn primBtn" id="loginSubmit" name="login_button">确认</button>
                         </div>
                     </div>
                     <?php if(isset($_SESSION["auth_message"])): ?>
@@ -91,8 +90,8 @@
                             aria-controls="profile" aria-selected="false">短信验证</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link active btn-light" id="emailSignup-tab" data-toggle="tab" href="#emailSignup" role="tab"
-                            aria-controls="contact" aria-selected="false">邮箱注册</a>
+                        <a class="nav-link active btn-light" id="emailSignup-tab" data-toggle="tab" href="#emailSignup"
+                            role="tab" aria-controls="contact" aria-selected="false">邮箱注册</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -140,6 +139,13 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-12">
+                                <label><span class="text-danger">*</span> 手机：</label>
+                                <input type="text" class="form-control signup-required" id="signupPhone"
+                                    maxlength="25" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12">
                                 <label><span class="text-danger">*</span> 密码：<i class="fas fa-info-circle text-info"
                                         style="cursor: pointer" data-toggle="collapse" href="#signUpPasswordTip"
                                         role="button" aria-expanded="false"
@@ -164,8 +170,7 @@
                         <div class="row btnRow">
                             <div class="col-12 text-right">
                                 <button type="button" class="btn ghostSecBtn close-signup-btn">关闭</button>
-                                <button type="button" class="btn primBtn submit-button"
-                                    id="signupByEmail">提交</button>
+                                <button type="button" class="btn primBtn submit-button" id="signupByEmail">提交</button>
                             </div>
                         </div>
                     </div>
@@ -180,9 +185,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="userProfileCompleteModalTitle">完善用户资料</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button> -->
             </div>
             <div class="modal-body">
                 <div class="alert alert-light" role="alert">
