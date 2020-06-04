@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div id="mainContentDiv container">
+            <div id="mainContentDiv container" class="mainTestContainer">
                 <div class="row">
                     <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 textHeading">
                         <h2 class="text-center" id="questionTypeTitle"></h2>

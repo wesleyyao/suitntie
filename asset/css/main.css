@@ -25,6 +25,20 @@ p{
     font-size: 1em;
 }
 
+@media (max-width: 768px) {
+    h1{
+        font-size: 2em !important;
+    }
+
+    h2{
+        font-size: 1.5em !important;
+    }
+    
+    p{
+        font-size: 0.9em;
+    }
+}
+
 form{
     margin: 0;
 }
