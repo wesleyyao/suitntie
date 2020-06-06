@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding: 0 30px 0 15px">
         <div id="mainDiv">
             <?php require_once("./components/nav.php"); ?>
             <br />
@@ -34,7 +34,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <table class="table table-striped" id="courseTable">
+                        <table class="table table-striped table-responsive" id="courseTable">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>ID</th>
@@ -126,8 +126,7 @@
                                     <th>作者</th>
                                     <th>豆瓣</th>
                                     <th>链接</th>
-                                    <th>公众号</th>
-                                    <th>公开课</th>
+                                    <th>相关</th>
                                     <th>排序</th>
                                     <th>状态</th>
                                     <th></th>
@@ -168,6 +167,8 @@
             </div>
         </div>
     </div>
+    <?php require_once("./components/recommendationContentModal.php");?>
+    <?php require_once("./components/previewImageModal.php");?>
     <?php require_once("./components/login.php"); ?>
     <?php require_once("./components/script.php"); ?>
     <script src="/suitntie/manager/asset/js/program-details.js"></script>

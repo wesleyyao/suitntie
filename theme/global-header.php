@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg global-nav navbar-bar-light bg-light sticky-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/suitntie/index.php">
         <img src="/suitntie/asset/image/logo/main-logo.png" width="125" alt="suitntie logo" />
     </a>
     <button class="navbar-toggler navbar-toggler-icon" type="button" data-toggle="collapse"

@@ -29,7 +29,6 @@
     <div class="test-main">
         <input type="hidden" id="hide_title" value="dimension-test" />
         <?php require_once("../theme/global-header.php"); ?>
-        <!-- <div class="container"> -->
         <?php if(isset($_SESSION["test_error_message"])): ?>
         <br />
         <div class="row">
@@ -90,20 +89,21 @@
                         <div id="clock"></div>
                     </div>
                 </div>
-                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
-                    <div id="clock"></div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="message" style="padding-top: 90px"></div>
                 </div>
             </div>
         </div>
-        <div id="mainContentDiv" class="container">
+        <div id="mainContentDiv" class="container mainTestContainer">
             <div class="row">
                 <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 textHeading">
                     <h2 class="text-center" id="questionTypeTitle"></h2>
                     <div class="text-center result-div" id="resultSubtitle"></div>
                 </div>
             </div>
-            <br />
-            <div id="mainQuestionDiv" class="test-div">
+            <div id="mainQuestionDiv" class="test-div mt-3">
                 <div class="row">
                     <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 text-center">
                         <div class="spinner-border text-success" role="status">
@@ -114,30 +114,9 @@
                 </div>
             </div>
             <div class="row test-div text-center">
-                <div class="offset-lg-4 col-lg-4 offset-md-2 col-md-8 offset-sm-1 col-sm-10">
-                    <form id="testForm" action="process-dimension-result.php" method="POST">
-                        <input type="hidden" id="testId" name="test_id" value="" />
-                        <input type="hidden" id="resultCodes" name="result_codes" value="" />
-                        <?php if(count($available_dimensions) > 0): ?>
-                        <?php foreach($available_dimensions as $item): ?>
-                        <input type="hidden" id="dimension<?php echo $item["id"];?>"
-                            name="dimension_<?php echo $item["id"];?>" value="" />
-                        <?php endforeach; ?>
-                        <?php endif; ?>
-                        <button type="submit" class="btn primBtn" id="nextPage">下一页</button>
-                    </form>
-                </div>
+                <button type="submit" class="btn primBtn" id="nextPage">下一页</button>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div id="message"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- </div> -->
     </div>
     <?php require_once("../theme/global-footer.php"); ?>
     <?php require_once("../public/component/auth-modals.php"); ?>

@@ -1,3 +1,11 @@
+.test-main{
+  overflow-x: hidden;
+}
+
+.mainTestContainer{
+  padding:0 20px;
+}
+
 /* Header */
 
 .mainTitle{

@@ -53,7 +53,6 @@
             else{
                 $_SESSION["test_error"] = "测试结果保存未成功。";
             }
-            //redirect($new_result_id ? "dimension-test-result.php" : "index.php");
             echo json_encode("success");
             exit;
         }

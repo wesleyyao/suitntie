@@ -18,14 +18,14 @@
                     <br />
                     <div class="row">
                         <div class="offset-1 col-10">
-                            <input type="text" id="loginEmail" name="login_email" placeholder="&#xf0e0; 邮箱"
+                            <input type="text" id="loginEmail" name="login_email" placeholder="邮箱"
                                 class="form-control login-required" maxlength="128" />
                         </div>
                     </div>
                     <br />
                     <div class="row mb-1">
                         <div class="offset-1 col-10">
-                            <input type="password" id="loginPassword" name="login_password" placeholder="&#xf09c; 密码"
+                            <input type="password" id="loginPassword" name="login_password" placeholder="密码"
                                 class="form-control login-required" maxlength="20" />
                         </div>
                     </div>
@@ -36,6 +36,9 @@
                                     <a id="wechatLoginButton"
                                         href="https://open.weixin.qq.com/connect/qrconnect?appid=<?php echo $appId; ?>&redirect_uri=<?php echo $redirect_url; ?>&response_type=code&scope=snsapi_login&state=<?php echo $state; ?>#wechat_redirect"><i
                                             class="fab fa-weixin"></i> 微信登录</a>
+                                    <a
+                                        href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<?php echo $appId; ?>&redirect_uri=<?php echo $redirect_url; ?>&response_type=code&scope=snsapi_userinfo&state=<?php echo $state; ?>#wechat_redirect">wechat
+                                        in mobile</a>
                                 </div>
                                 <div class="col-lg-7 col-sm-12 text-right">
                                     <span>尚未注册？<a href="#/" id="showSignupModal">请点击这里</a></span>

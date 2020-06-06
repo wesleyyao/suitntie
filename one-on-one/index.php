@@ -28,7 +28,7 @@
                     </p>
                 </div>
             </div>
-            <div class="one-on-one-section-1 mt-5">
+            <div class="one-on-one-section-1 mt-5" id="ourTeachers">
                 <div class="row mb-3">
                     <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12 text-center">
                         <h2>我们的导师</h2>

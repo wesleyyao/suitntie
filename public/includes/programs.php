@@ -160,9 +160,14 @@
                 $query = "INSERT INTO program_categories (`name`, `image`, `item_index`, `status`) VALUES (?,?,?,?)";
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssis", $name, $imageUrl, $index, $status);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -187,9 +192,14 @@
                 else{
                     $sql->bind_param("ssisi", $name, $imageUrl, $index, $status, $id);
                 }
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -210,8 +220,16 @@
             $this->courses = $this->fetch_data_by_foreign_key($query_course, $this->id);
             $query_info = "SELECT `id`, `content`, `p_index`, `type`, `status`, `p_id` FROM program_info WHERE p_id = ?";
             $this->info = $this->fetch_data_by_foreign_key($query_info, $this->id);
-            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `channel`, `online_course`, `item_index` FROM self_learn_recommend WHERE p_id = ?";
-            $this->books = $this->fetch_data_by_foreign_key($query_books, $this->id);
+            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE p_id = ?";
+            $books = $this->fetch_data_by_foreign_key($query_books, $this->id);
+            if(count($books) > 0){
+                $query_books_content = "SELECT `id`, `title`, `is_link`, `image`, `url`, `status` FROM self_learn_recommend_content WHERE parent_id = ?";
+                foreach($books as $item){
+                    $temp_recommend = $item;
+                    $temp_recommend["content"] = $this->fetch_data_by_foreign_key($query_books_content, $item["id"]);
+                    array_push($this->books, $temp_recommend);
+                }
+            }
             //$this->related_programs = $this->fetch_programs_by_cateogry($this->categoryId);
             $query_child = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM child_program WHERE p_id = ?";
             $this->child_programs = $this->fetch_data_by_foreign_key($query_child, $this->id);
@@ -234,9 +252,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssssii", $name, $desc, $status, $related, $pc_id, $id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -249,9 +272,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssssi", $name, $desc, $status, $related, $pc_id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -273,9 +301,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssisi", $name, $content, $index, $status, $id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -288,9 +321,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssisi", $name, $content, $index, $status, $program_id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -306,10 +344,13 @@
                 $query = "SELECT `id`, `name`, `content`, `item_index`, `status` FROM program_course WHERE `status` = 'open' AND id = ?";
             }
             else if($data == "book"){
-                $query = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `channel`, `online_course`, `item_index` FROM self_learn_recommend WHERE id = ?";
+                $query = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE id = ?";
             }
             else if($data == "child"){
                 $query = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM child_program WHERE id = ?";
+            }
+            else if($data == "recommend content"){
+                $query = "SELECT `id`, `title`, `is_link`, `image`, `url`, `status` FROM self_learn_recommend_content WHERE id = ?";
             }
             else{
                 $query = "SELECT `id`, `name`, `feedback`, `school`, `program`, `grade`, `status`, `p_id` FROM program_testimonials WHERE id = ?";
@@ -327,9 +368,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssisi", $content, $type, $index, $status, $program_id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -342,9 +388,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssisi", $content, $type, $index, $status, $id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -357,9 +408,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssssssi", $name, $content, $school, $program, $grade, $status, $program_id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -372,9 +428,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssssssi", $name, $content, $school, $program, $grade, $status, $id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -387,9 +448,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("sssssssisi", $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status, $program_id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -402,9 +468,54 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("sssssssisi", $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status, $id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
+        }
+
+        public function save_program_recommendation_content($parent_id, $title, $is_link, $imageUrl, $url, $status){
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            $query = "INSERT INTO self_learn_recommend_content (`parent_id`,`title`,`is_link`,`image`,`url`,`status`) VALUES (?, ?, ?, ?, ?, ?)";
+            try {
+                $sql = $this->conn->prepare($query);
+                $sql->bind_param("isssss", $parent_id, $title, $is_link, $imageUrl, $url, $status);
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
+        }
+
+        public function update_program_recommendation_content($id, $title, $is_link, $imageUrl, $url, $status){
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            $query = "UPDATE self_learn_recommend_content SET `title` = ?, `is_link` = ?, `image` = ?, `url` = ?, `status` = ? WHERE id = ?";
+            try {
+                $sql = $this->conn->prepare($query);
+                $sql->bind_param("sssssi", $title, $is_link, $imageUrl, $url, $status, $id);
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -417,9 +528,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssisi", $title, $content, $index, $status, $program_id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -432,9 +548,14 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssisi", $title, $content, $index, $status, $id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;

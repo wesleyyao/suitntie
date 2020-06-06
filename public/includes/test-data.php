@@ -163,7 +163,10 @@
                 $this->checkIfTotalResultsAreFull($test_id, $user_id, $table);
                 $sql = $this->conn->prepare("INSERT INTO test_results (`test_id`, `table_name`, `user_id`, `create_date`, `status`) VALUES (?,?,?,?,'open')");
                 $sql->bind_param("isis", $test_id, $table, $user_id, $create_date);
-                $sql->execute();
+                if(!$sql->execute()){
+                    $this->conn->rollback();
+                    return false;
+                }
                 $new_result_id = $this->conn->insert_id;
                 $counter = 0;
                 foreach($dimension_ids as $id){

@@ -27,6 +27,22 @@ $(document).ready(function () {
                 <br/><br/>
             </div>
         </div>`;
+    const proceeding = `
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container text-center">
+                <h1 class="display-4">
+                <div class="spinner-border text-success" style="width: 3rem; height: 3rem; vertical-align: middle;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div> 
+                请稍等，正在为您处理...</h1>
+                <p class="lead">我们正在为您生成本次测试的结果。处理完成后，会自动为您跳转到测试结果页面。</p>
+            </div>
+        </div>`;
+
+    const notCompletedMessage =
+        `<div class="alert alert-danger mt-3" role="alert">
+          请先回答完本页的问题。
+        </div>`;
 
     $('.result-div').hide();
     $('#mainQuestionDiv').html(questionDiv);
@@ -79,26 +95,19 @@ $(document).ready(function () {
         $('#mainQuestionDiv').html(firstPageQuestions);
     });
 
-    $('#testForm').submit(function (e) {
+    $('#nextPage').click(function () {
         let content = '';
         let numberOfQuestions = 0;
         if (!questions[questionTypesIndex]) {
             return;
         }
         if (questionsAndAnswersOnCurrentPage.length < actualQuestionsPerPage) {
-            e.preventDefault();
-
-            const notCompletedMessage =
-                `<br/><div class="alert alert-danger" role="alert">
-                    请先回答完本页的问题。
-                </div>`;
             $('#message').html(notCompletedMessage);
+            scrollToTestTop();
             return;
         }
         else {
-            $('html, body').animate({
-                scrollTop: 300
-            }, 1000);
+            scrollToTestTop();
         }
 
         questionsAndAnswersOnCurrentPage.forEach(function (item) {
@@ -129,16 +138,8 @@ $(document).ready(function () {
                 formData['dimension_' + item.id] = item.times;
             });
             console.log(formData);
-            const proceeding = `<div class="jumbotron jumbotron-fluid">
-            <div class="container text-center">
-              <h1 class="display-4">
-              <div class="spinner-border text-success" style="width: 3rem; height: 3rem; vertical-align: middle;" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div> 
-              请稍等，正在为您处理...</h1>
-              <p class="lead">我们正在为您生成本次测试的结果。处理完成后，会自动为您跳转到测试结果页面。</p>
-            </div>
-          </div>`;
+
+            $('#clockAndProgressBarDiv').hide();
             $('#mainContentDiv').html(proceeding);
             $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
                 const result = JSON.parse(data);
@@ -161,10 +162,6 @@ $(document).ready(function () {
                 }
             });
             return;
-        }
-
-        if (numberOfAnswers < totalQuestions) {
-            e.preventDefault();
         }
 
         if (questions[questionTypesIndex].questions[page * questionsPerPage]) {
@@ -250,5 +247,11 @@ $(document).ready(function () {
             }
         }
         return { content, numberOfQuestions };
+    }
+
+    function scrollToTestTop(){
+        $('html, body').animate({
+            scrollTop: $("#message").offset().top
+        }, 1000);
     }
 });

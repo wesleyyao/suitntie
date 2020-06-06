@@ -6,7 +6,7 @@
         exit;
     }
     if(!isset($_GET["id"]) || !isset($_GET["type"]) || !isset($_GET["pid"]) || !isset($_GET["title"])){
-        header("Location: ../program-details.php");
+        header("Location: ../programs.php");
         exit;
     }
     $id = $_GET["id"];
@@ -87,20 +87,6 @@
                             <label>链接</label>
                             <input type="text" maxlength="512" class="form-control" name="rec_link"
                                 value="<?php echo $type == "edit" ? $data["link"] : ""; ?>" />
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <label>公众号</label>
-                            <input type="text" maxlength="512" class="form-control" name="rec_channel"
-                                value="<?php echo $type == "edit" ? $data["channel"] : ""; ?>" />
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <label>公开课</label>
-                            <input type="text" maxlength="512" class="form-control" name="rec_online_course"
-                                value="<?php echo $type == "edit" ? $data["online_course"] : ""; ?>" />
                         </div>
                     </div>
                     <div class="row mt-3">

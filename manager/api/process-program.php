@@ -120,6 +120,51 @@
             header("Location: $back_url");
             exit;
         }
+        else if($from == "recommendation_content"){
+            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/suitntie/uploads/";
+            if(empty($_POST["content_title"]) || empty($_POST["content_status"]) || empty($_POST["content_has_link"]) || !isset($_GET["bId"])){
+                invalidForm($back_url);
+            }
+            $content_title = $_POST["content_title"];
+            $content_status = $_POST["content_status"];
+            $content_has_link = $_POST["content_has_link"];
+            $content_url = !empty($_POST["content_url"]) ? $_POST["content_url"] : "";
+            $recommendation_id = $_GET["bId"];
+            $content_image_url = $_POST["content_img_url"];
+            $imageUrl = "";
+            
+            $back_url = "../components/program-recommendation-content.php?type=$type&id=$id&pid=$program_id&title=$title&bId=$recommendation_id";
+       
+            if($_FILES["content_image"]["size"] != 0){
+                $imageUrl = "/uploads/" . basename($_FILES["content_image"]["name"]);
+                $file = $target_dir . basename($_FILES["content_image"]["name"]);
+                if(file_exists($file)){
+                    unlink($file);
+                }
+                $result["file"] = fileUpload($target_dir, "image", $_FILES["content_image"]);
+                if($result["file"]["status"] == "failed"){
+                    $_SESSION["program_message"]["status"] = "warning";
+                    $_SESSION["program_message"]["content"] = "图片上传失败。";
+                    header("Location: $back_url");
+                    exit;
+                }
+            }
+            if($type == "new"){
+                $is_saved = $program->save_program_recommendation_content($recommendation_id, $content_title, $content_has_link, $imageUrl, $content_url, $content_status);
+                generateMessage($is_saved);
+                header("Location: $back_url");
+                exit;
+            }
+            else{
+                if($_FILES["content_image"]["size"] == 0){
+                    $imageUrl = $content_image_url;
+                }
+                $is_updated = $program->update_program_recommendation_content($id, $content_title, $content_has_link, $imageUrl, $content_url, $content_status);
+                generateMessage($is_updated);
+                header("Location: $back_url");
+                exit;
+            }
+        }
         else if($from == "child"){
             $back_url = "../components/program-children.php?type=$type&id=$id&pid=$program_id&title=$title";
             if(empty($_POST["child_title"]) || empty($_POST["child_content"]) || empty($_POST["child_index"]) || empty($_POST["child_status"])){
