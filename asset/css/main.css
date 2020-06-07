@@ -33,7 +33,6 @@ p{
     h2{
         font-size: 1.5em !important;
     }
-    
     p{
         font-size: 0.9em;
     }
@@ -328,5 +327,12 @@ label:focus,
     right: 20px;
     z-index: 99;
 }
+
+@media screen and (max-width: 550px) {
+    .notification-popup{
+        top: 0;
+    }
+}
+
 
 

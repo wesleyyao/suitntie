@@ -7,6 +7,7 @@ $(document).ready(function(){
     }
     program = decodeURIComponent(program);
     let programId = 0;
+    let books = [];
     $.get(`./api/program-details.php?title=${decodeURIComponent(program)}`).done(function(data){
         const result = JSON.parse(data);
         console.log(result);
@@ -15,6 +16,7 @@ $(document).ready(function(){
             return; 
         }
         let recommendTable = '';
+        books = result.books;
         const recommendations = result.books;
         if(recommendations && Array.isArray(recommendations) && recommendations.length > 0){
             recommendations.forEach(function(item){
@@ -22,12 +24,8 @@ $(document).ready(function(){
                 recommendTable += `<tr>
                     <td>${item.id}</td>
                     <td>${item.title}</td>
-                    <td>${item.image ? '有' : '无'}</td>
-                    <td>${item.author ? item.author : ''}</td>
-                    <td>${item.douban ? item.douban : ''}</td>
-                    <td>${item.link ? item.link : ''}</td>
-                    <td>${item.channel ? item.channel : ''}</td>
-                    <td>${item.online_course ? item.online_course : ''}</td>
+                    <td><a href="#/" class="previewImgBtn" id="check_${item.image ? item.image : ''}">查看图片</a></td>
+                    <td>${item.content && Array.isArray(item.content) && item.content.length > 0 ? `<a href="#/" id="book${item.id}" class="book-content">查看</a>` : ''}</td>
                     <td>${item.item_index}</td>
                     <td>${item.status}</td>
                     <td><a href="./components/program-recommendation.php?type=edit&id=${item.id}&pid=${item.p_id}&title=${program}">编辑</a></td></tr>`;
@@ -108,6 +106,47 @@ $(document).ready(function(){
         $('#newTestimonialBtn').prop('href', `./components/program-testimonial.php?type=new&id=0&pid=${programId}&title=${program}`);
     });
 
+    $(document).on('click', '.previewImgBtn', function(){
+        const imgUrl = $(this).attr('id').replace('check_', '');
+        const path = '/suitntie' + imgUrl;
+        if(imgUrl){
+            $('#imagePreviewMessage').html('');
+            $('#previewImg').prop('src', path);
+            $('#previewImg').show();
+        }
+        else{
+            $('#imagePreviewMessage').html(generateMessage('warning', '没有上传图片'));
+            $('#previewImg').hide();
+        }
+        $('#imageModal').modal('show');
+    });
+
+    $(document).on('click', '.book-content', function(){
+        const bookId = $(this).attr('id').replace('book', '');
+        if(books && Array.isArray(books) && books.length > 0){
+            const foundBook = books.find(item => item.id === parseInt(bookId)); console.log(foundBook)
+            if(foundBook && foundBook.content && Array.isArray(foundBook.content) && foundBook.content.length > 0){
+                let contentTableBody = '';
+                foundBook.content.forEach(function(item){
+                    contentTableBody += `
+                        <tr>
+                            <td>${item.title ? item.title : ''}</td>
+                            <td>${item.is_link ? item.is_link : ''}</td>
+                            <td><a href="#/" class="previewImgBtn" id="check_${item.image ? item.image : ''}">查看图片</a></td>
+                            <td>${item.url ? item.url : ''}</td>
+                            <td>${item.author ? item.author : ''}</td>
+                            <td>${item.douban ? item.douban : ''}</td>
+                            <td>${item.status}</td>
+                            <td><a href="./components/program-recommendation-content.php?type=edit&id=${item.id}&pid=${item.p_id}&title=${program}&bId=${bookId}">编辑</a></td>
+                        </tr>`;
+                });
+                $('#recommendationContentTableBody').html(contentTableBody);
+            }
+        }
+        $('#newRecommendationContent').prop('href', `./components/program-recommendation-content.php?type=new&id=0&pid=${programId}&title=${program}&bId=${bookId}`);
+        $('#recommendationContentModal').modal('show');
+    });
+
     function generateMessage(type, message){
         return  `
         <div class="row">
@@ -118,4 +157,5 @@ $(document).ready(function(){
             </div>
         </div>`;
     }
+    
 });

@@ -25,7 +25,7 @@
                 $mail->Host = 'hwsmtp.exmail.qq.com'; // Set the SMTP server to send through
                 $mail->SMTPAuth   = true; // Enable SMTP authentication
                 $mail->Username = 'wesley@suitntie.cn'; // SMTP username
-                $mail->Password = 'Mocamoca90618!'; // SMTP password EZr4ihhsPyCe3Jze
+                $mail->Password = 'Suka90daohaoshigou'; // SMTP password EZr4ihhsPyCe3Jze
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
                 //$mail->SMTPSecure = 'ssl';
                 $mail->Port = 465; // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above

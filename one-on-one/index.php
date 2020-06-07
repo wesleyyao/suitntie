@@ -120,7 +120,8 @@ require_once("../utils/initial.php");
                                     <p>翻译，本地化</p>
                                     <label>毕业院校</label>
                                     <p>广东外语外贸大学，蒙特雷国际研究院</p>
-                                    <p>Ming学姐是广东外语外贸大学翻译专业学士，蒙特雷国际研究院翻译本地化管理硕士，现就职谷歌，担任语言经理。梦想能够解放固化的中国教育现状。有着一百个梦想，一个个慢慢地去实现。</p>
+                                    <p>Ming学姐是广东外语外贸大学翻译专业学士，蒙特雷国际研究院翻译本地化管理硕士，现就职谷歌，担任语言经理。梦想能够解放固化的中国教育现状。有着一百个梦想，一个个慢慢地去实现。
+                                    </p>
                                 </div>
                                 <div class="reachoutBtn">
                                     <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
@@ -136,7 +137,8 @@ require_once("../utils/initial.php");
                                     <label>毕业院校</label>
                                     <p>剑桥大学，伦敦大学学院（UCL)</p>
                                     <p>
-                                        小雨学姐是伦敦大学学院（UCL）材料与视觉文化（人类学院）的硕士，专注于青年文化与性别研究，曾在国内领先市场咨询公司实习，服务于可口可乐、腾讯等国内外知名品牌。</p>
+                                        小雨学姐是伦敦大学学院（UCL）材料与视觉文化（人类学院）的硕士，专注于青年文化与性别研究，曾在国内领先市场咨询公司实习，服务于可口可乐、腾讯等国内外知名品牌。
+                                    </p>
                                 </div>
                                 <div class="reachoutBtn">
                                     <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
@@ -344,6 +346,7 @@ require_once("../utils/initial.php");
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-footer.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/auth-modals.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/script.php"); ?>
+    <script src="/suitntie/asset/js/mentorSlider.js"></script>
 </body>
 
 </html>

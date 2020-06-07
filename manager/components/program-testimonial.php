@@ -1,14 +1,7 @@
 <?php
     require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
-
-    if(!isset($_SESSION["login_staff"])){
-        header("Location: ./index.php");
-        exit;
-    }
-    if(!isset($_GET["id"]) || !isset($_GET["type"]) || !isset($_GET["pid"]) || !isset($_GET["title"])){
-        header("Location: ../program-details.php");
-        exit;
-    }
+    require_once("./page-common-functions.php");
+    
     $id = $_GET["id"];
     $type = $_GET["type"];
     $program_id = $_GET["pid"];

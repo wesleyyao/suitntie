@@ -104,44 +104,66 @@ $(document).ready(function () {
             ready += '</ul>';
             $('#ready').html(ready);
 
-            const bookData = result.books;
-            let books = `<div class="row">`;
-            if (bookData && Array.isArray(bookData) && bookData.length > 0) {
-                bookData.forEach(function (item) {
-
-                    let contentList = '';
-                    const contentData = item.content && item.content.length > 0 ? item.content : [];
-                    console.log(contentData)
-                    if (contentData.length > 0) {
-                        contentData.forEach(function (item) {
-                            contentList += `<li style="float: left; width: 50%;">
-                                <a href="${item.is_link == 'yes' ? item.url : '#/'}"
-                                    class="recommendation-qr"
-                                    target="_blank" 
-                                    ${item.image ? `id = ${item.image} data-toggle="modal" data-target="#recommendQrModal"` : ''}>${item.title}</a>
-                                </li>`;
-                        });
-                    }
-                    books += `<div class="col-12 mb-5 text-left">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <a href="${item.link}" class="lighterShadow h5 mr-5"><img src="${prefix}${item.image}" alt="${item.title}" width="100"/> ${item.title}</a>
+            const recommendationData = result.books;
+            let recommendationCategories = [];
+            let recommendationContent = '';
+            if (recommendationData && Array.isArray(recommendationData) && recommendationData.length > 0) {
+                recommendationCategories = recommendationData.map(item => item.title).filter(onlyUnique);
+                console.log(recommendationCategories);
+                recommendationCategories.forEach(function (item) {
+                    const foundRec = recommendationData.find(a => a.title === item);
+                    recommendationContent += `
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="${prefix + foundRec.image}" alt="${item}" width="100"/> <span>${item}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <ul>
-                            ${item.author ? `<li style="float: left; width: 50%;">作者：${item.author}</li>` : ''}
-                            ${item.douban ? `<li style="float: left; width: 50%;">豆瓣评分：${item.douban}</li>` : ''}
-                            ${contentList}
-                            </ul>
-                        </div>
-                    </div>
-                    </div>`;
+                        <div class="row">`;
+                    recommendationData.forEach(function (i) {
+                        if (i.title == item) {
+                            let contentList = '';
+                            const contentData = i.content && i.content.length > 0 ? i.content : [];
+                            console.log(contentData)
+                            if (contentData.length > 0) {
+                                contentData.forEach(function (j) {
+                                    contentList += `
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <ul>
+                                            ${j.author && j.douban ?
+                                            `<li>
+                                                <div>
+                                                    <a href="${j.url}">${j.title}</a> ${j.author}<br/>豆瓣: ${j.douban}
+                                                </div>
+                                            </li>` : ''}
+                                            ${
+                                        j.image ?
+                                            `<li>
+                                                    <a href="#/"
+                                                        class="recommendation-qr"
+                                                        target="_blank" 
+                                                        ${j.image ? `id = ${j.image} data-toggle="modal" data-target="#recommendQrModal"` : ''}>${j.title}</a>
+                                                </li>
+                                                ` : ''}
+                                            ${
+                                        !j.author && j.url ?
+                                            `<li>
+                                                <div>
+                                                    <a href="${j.url}">${j.title}</a>
+                                                </div>
+                                                </li>` : ''
+                                        }
+                                            </ul>
+                                            </div>`;
+                                });
+                            }
+                            recommendationContent += contentList;
+                        }
+                    });
+                    recommendationContent += `</div>`;
                 });
             }
-            books += `</div>`;
-            $('#recommend').html(books);
+
+            $('#recommend').html(recommendationContent);
 
             const courseData = result.courses;
             let courses = `<div class="accordion" id="courseAccordion">`;
@@ -219,9 +241,13 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on('click', '.recommendation-qr', function(){
+    $(document).on('click', '.recommendation-qr', function () {
         const imageUrl = $(this).attr('id');
         $('#recommendationQrImg').prop('src', `${prefix}${imageUrl}`);
         $('#recommendQrModal').modal('show');
     });
+
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+    }
 });

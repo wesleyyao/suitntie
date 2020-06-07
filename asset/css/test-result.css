@@ -3,19 +3,19 @@
 }
 
 .dimension-test-result-main h3{
-    font-size:1.5em !important;
-    font-weight:500;
+    font-size: 1.5em !important;
+    font-weight: 500;
  }
 
 .resultHeader{
     background-color: #2F4858 !important;
-    padding:0 !important;
+    padding: 0 !important;
 }
 
 .resultDimension{
     margin-top: -1px;;
     background-color: #2F4858 !important;
-    position:relative;
+    position: relative;
 }
 
 .resultDimension svg {
@@ -28,7 +28,7 @@
 }
 
 .resultCharactor{
-    display:inline-block;
+    display: inline-block;
 }
 
 .dimensionContent{
@@ -41,24 +41,28 @@
 
 @media only screen and (max-width: 575px) {
     .resultBarChart{
-        padding:40px;
+        padding: 40px;
     }
 
     .dimensionContent img{
-        padding:0 0 30px 0;
+        padding: 0 0 30px 0;
     }
-  }
+}
+
+.resultDimension:after{
+    clear: both;
+}
 
 @media only screen and (max-width:768px) {
     .dimensionContent img{
-        padding:30px 0;
+        padding: 30px 0;
     }
 
     .resultDimension svg {
         width: 110%;
         height: 30vw;
     }
-  }
+}
 
 .jumbotron{
     background-color: transparent !important;
@@ -84,7 +88,7 @@
 }
 
 .tagBox{
-    padding:20px;
+    padding: 20px;
     background-color: #ffffff9d;
     border-radius: 6px;
     margin-top: 20px;
@@ -98,57 +102,54 @@
     background: white;
 }
 
- .resultBarChart{
-     padding:20px;
+.resultBarChart{
+     padding: 20px;
  }
 
- .result-div .row{
-    padding:30px 80px;
+.result-div .row{
+    padding: 30px 80px;
 }
 
  @media only screen and (max-width: 1200px) {
     .resultBarChart{
-        padding:10px;
+        padding: 10px;
     }
   }
 
  @media only screen and (max-width: 992px) {
     .resultBarChart{
-        padding:20px;
+        padding: 20px;
     }
 
-    #resultCharts row{
+    #resultCharts .row{
         padding:0 !important;
     }
 
     .result-div .row{
-        padding:30px 20px;
-    }
-  }
-
-@media only screen and (max-width: 768px){
-    .resultCharactor{
-        padding:0 120px 50px 120px;
+        padding: 30px 20px;
     }
 }
 
-  @media only screen and (max-width: 576px) {
-
-    .resultDimension{
-        padding:0 10px;
+@media only screen and (max-width: 768px){
+    .resultCharactor{
+        padding: 0 120px 50px 120px;
     }
+}
 
-    .result-div .row{
-        padding:15px 10px;
-    }
-  }
+.resultDimension{
+    padding: 0 10px;
+}
 
-  .result-div h3{
-      color:#2F4858;
-  }
+.result-div .row{
+    padding: 30px 20px;
+}
 
 .list-group-item{
     border: none !important;
+}
+
+.result-div h3{
+    color:#2F4858;
 }
 
 .badge{
@@ -157,7 +158,11 @@
 
 /* Analysis */
 .dimension-analysis{
-    padding:70px 80px !important;
+    padding: 70px 80px !important;
+}
+
+.dimension-analysis li, .advantages li, .disadvantages li{
+    padding: 0.75rem 0 !important;
 }
 
 .dimension-analysis li, .advantages li, .disadvantages li{
@@ -225,11 +230,11 @@
 }
 
 .careerFit{
-    margin:50px 0 0 0;
+    margin: 50px 0 0 0;
 }
 
 .careerFit ul{
-    list-style:none;
+    list-style: none;
 }
 
 .careerFit ul li::before{
@@ -250,7 +255,11 @@
     .disadvantages{
         padding:0 30px !important;
     }
-  }
+}
+
+.reminderText{
+    margin-top: 20px;
+}
 
 .reminderText{
     margin-top: 20px;
@@ -281,4 +290,4 @@
     .twoButton{
         margin: 20px 0 40px 0;
     }
-  }
+} 
