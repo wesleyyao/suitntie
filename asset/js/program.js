@@ -114,11 +114,11 @@ $(document).ready(function () {
                     const foundRec = recommendationData.find(a => a.title === item);
                     recommendationContent += `
                         <div class="row">
-                            <div class="col-12">
-                                <img src="${prefix + foundRec.image}" alt="${item}" width="100"/> <span>${item}</span>
+                            <div class="col-12 mb-3">
+                                <img src="${prefix + foundRec.image}" alt="${item}" width="45"/> <span style="font-size:1.2em;font-weight:300;">${item}</span>
                             </div>
                         </div>
-                        <div class="row">`;
+                        <div class="row mb-5">`;
                     recommendationData.forEach(function (i) {
                         if (i.title == item) {
                             let contentList = '';
@@ -131,9 +131,9 @@ $(document).ready(function () {
                                             <ul>
                                             ${j.author && j.douban ?
                                             `<li>
-                                                <div>
+                                                
                                                     <a href="${j.url}">${j.title}</a> ${j.author}<br/>豆瓣: ${j.douban}
-                                                </div>
+                                               
                                             </li>` : ''}
                                             ${
                                         j.image ?
@@ -147,9 +147,9 @@ $(document).ready(function () {
                                             ${
                                         !j.author && j.url ?
                                             `<li>
-                                                <div>
+                                                
                                                     <a href="${j.url}">${j.title}</a>
-                                                </div>
+                                                
                                                 </li>` : ''
                                         }
                                             </ul>

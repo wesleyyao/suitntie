@@ -211,13 +211,31 @@
 }
 
 /* recommendation */
-.recommend img{
-    margin-right:30px;
+
+#recommend img{
+    margin-right:15px;
+}
+
+#recommend ul{
+    list-style:none;
+}
+
+#recommend ul li{
+    margin-bottom:5px;
+}
+
+#recommend ul li::before{
+    content: "\2022"; 
+    color: #F19F4D; 
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    width: 1.5em; 
+    margin-left: -1.5em; 
 }
 
 #recommend a{
-    border-radius: 50px;
-    height:100px;
+    color: #F19F4D;
 }
 
 /* course list */
