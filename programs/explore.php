@@ -79,7 +79,8 @@
                     <h2>自学推荐</h2>
                 </div>
             </div>
-            <div id="recommend"></div>
+            <div id="recommend">
+            </div>
             <br /><br />
             <hr><br /><br />
             <div class="row mt-2 mb-5 courseList">

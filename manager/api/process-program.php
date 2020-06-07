@@ -87,35 +87,33 @@
             }
             $rec_title = $_POST["rec_title"];
             $rec_index = $_POST["rec_index"];
-            $rec_author = !empty($_POST["rec_author"]) ? $_POST["rec_author"] : "";
-            $rec_link = !empty($_POST["rec_link"]) ? $_POST["rec_link"] : "";
-            $rec_douban = !empty($_POST["rec_douban"]) ? $_POST["rec_douban"] : "";
-            $rec_channel = !empty($_POST["rec_channel"]) ? $_POST["rec_channel"] : "";
-            $rec_online_course = !empty($_POST["rec_online_course"]) ? $_POST["rec_online_course"] : "";
             $rec_status = $_POST["rec_status"];
-            $imageUrl = "/uploads/" . basename($_FILES["rec_image"]["name"]);
-            $file = $target_dir . basename($_FILES["rec_image"]["name"]);
-            if(file_exists($file)){
-                unlink($file);
+            $rec_image_url = $_POST["rec_image_url"];
+            $imageUrl = "";
+            if($_FILES["rec_image"]["size"] != 0){
+                $imageUrl = "/uploads/" . basename($_FILES["rec_image"]["name"]);
+                $file = $target_dir . basename($_FILES["rec_image"]["name"]);
+                if(file_exists($file)){
+                    unlink($file);
+                }
+                $result["file"] = fileUpload($target_dir, "image", $_FILES["rec_image"]);
+                if($result["file"]["status"] == "failed"){
+                    $_SESSION["program_message"]["status"] = "warning";
+                    $_SESSION["program_message"]["content"] = "图片上传失败。";
+                    header("Location: $back_url");
+                    exit;
+                }
             }
-            $result["file"] = fileUpload($target_dir, "image", $_FILES["rec_image"]);
             if($type == "new"){
-                if($result["file"]["status"] != "failed"){
-                    $is_saved = $program->save_program_recommendation($program_id, $rec_title, $imageUrl, $rec_author, $rec_douban, $rec_link, $rec_channel, $rec_online_course, $rec_index, $rec_status);
-                    generateMessage($is_saved);
-                }
-                else{
-                    generateMessage(false);
-                }
+                $is_saved = $program->save_program_recommendation($program_id, $rec_title, $imageUrl, $rec_index, $rec_status);
+                generateMessage($is_saved);
             }
             else{
-                if($result["file"]["status"] != "failed"){
-                    $is_updated = $program->update_program_recommendation($id, $rec_title, $imageUrl, $rec_author, $rec_douban, $rec_link, $rec_channel, $rec_online_course, $rec_index, $rec_status);
-                    generateMessage($is_updated);
+                if($_FILES["content_image"]["size"] == 0){
+                    $imageUrl = $rec_image_url;
                 }
-                else{
-                    generateMessage(false);
-                }
+                $is_updated = $program->update_program_recommendation($id, $rec_title, $imageUrl, $rec_index, $rec_status);
+                generateMessage($is_updated);
             }
             header("Location: $back_url");
             exit;
@@ -131,6 +129,8 @@
             $content_url = !empty($_POST["content_url"]) ? $_POST["content_url"] : "";
             $recommendation_id = $_GET["bId"];
             $content_image_url = $_POST["content_img_url"];
+            $content_author = !empty($_POST["content_author"]) ? $_POST["content_author"] : "";
+            $content_douban = !empty($_POST["content_douban"]) ? $_POST["content_douban"] : "";
             $imageUrl = "";
             
             $back_url = "../components/program-recommendation-content.php?type=$type&id=$id&pid=$program_id&title=$title&bId=$recommendation_id";
@@ -150,7 +150,7 @@
                 }
             }
             if($type == "new"){
-                $is_saved = $program->save_program_recommendation_content($recommendation_id, $content_title, $content_has_link, $imageUrl, $content_url, $content_status);
+                $is_saved = $program->save_program_recommendation_content($recommendation_id, $content_title, $content_has_link, $imageUrl, $content_url, $content_author, $content_douban, $content_status);
                 generateMessage($is_saved);
                 header("Location: $back_url");
                 exit;
@@ -159,7 +159,7 @@
                 if($_FILES["content_image"]["size"] == 0){
                     $imageUrl = $content_image_url;
                 }
-                $is_updated = $program->update_program_recommendation_content($id, $content_title, $content_has_link, $imageUrl, $content_url, $content_status);
+                $is_updated = $program->update_program_recommendation_content($id, $content_title, $content_has_link, $imageUrl, $content_url, $content_author, $content_douban, $content_status);
                 generateMessage($is_updated);
                 header("Location: $back_url");
                 exit;

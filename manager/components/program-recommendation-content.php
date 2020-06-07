@@ -87,6 +87,18 @@
                                 value="<?php echo $type == "edit" ? $data["url"] : ""; ?>" name="content_url" />
                         </div>
                     </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6 col-sm-12">
+                            <label>作者</label>
+                            <input type="text" maxlength="128" class="form-control"
+                                value="<?php echo $type == "edit" ? $data["author"] : ""; ?>" name="content_author" />
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label>豆瓣</label>
+                            <input type="text" maxlength="24" class="form-control"
+                                value="<?php echo $type == "edit" ? $data["douban"] : ""; ?>" name="content_douban" />
+                        </div>
+                    </div>
                     <input type="hidden" maxlength="256" class="form-control"
                         value="<?php echo $type == "edit" ? $data["image"] : ""; ?>" name="content_img_url" />
                     <div class="row mt-3">

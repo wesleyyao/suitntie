@@ -329,4 +329,11 @@ label:focus,
     z-index: 99;
 }
 
+@media screen and (max-width: 550px) {
+    .notification-popup{
+        top: 0;
+    }
+}
+
+
 

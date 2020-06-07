@@ -25,9 +25,6 @@ $(document).ready(function(){
                     <td>${item.id}</td>
                     <td>${item.title}</td>
                     <td><a href="#/" class="previewImgBtn" id="check_${item.image ? item.image : ''}">查看图片</a></td>
-                    <td>${item.author ? item.author : ''}</td>
-                    <td>${item.douban ? item.douban : ''}</td>
-                    <td>${item.link ? item.link : ''}</td>
                     <td>${item.content && Array.isArray(item.content) && item.content.length > 0 ? `<a href="#/" id="book${item.id}" class="book-content">查看</a>` : ''}</td>
                     <td>${item.item_index}</td>
                     <td>${item.status}</td>
@@ -137,6 +134,8 @@ $(document).ready(function(){
                             <td>${item.is_link ? item.is_link : ''}</td>
                             <td><a href="#/" class="previewImgBtn" id="check_${item.image ? item.image : ''}">查看图片</a></td>
                             <td>${item.url ? item.url : ''}</td>
+                            <td>${item.author ? item.author : ''}</td>
+                            <td>${item.douban ? item.douban : ''}</td>
                             <td>${item.status}</td>
                             <td><a href="./components/program-recommendation-content.php?type=edit&id=${item.id}&pid=${item.p_id}&title=${program}&bId=${bookId}">编辑</a></td>
                         </tr>`;

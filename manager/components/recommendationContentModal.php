@@ -23,6 +23,8 @@
                                     <th>有链接？</th>
                                     <th>图片</th>
                                     <th>链接</th>
+                                    <th>作者</th>
+                                    <th>豆瓣</th>
                                     <th>状态</th>
                                     <th></th>
                                 </tr>

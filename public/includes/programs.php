@@ -55,9 +55,9 @@
             $this->courses = $this->fetch_data_by_foreign_key($query_course, $this->id);
             $query_info = "SELECT `id`, `content`, `p_index`, `type`, `status`, `p_id` FROM program_info WHERE `status` = 'open' AND p_id = ?";
             $this->info = $this->fetch_data_by_foreign_key($query_info, $this->id);
-            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE `status` = 'open' AND p_id = ?";
+            $query_books = "SELECT `id`, `title`, `image`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE `status` = 'open' AND p_id = ?";
             $this->books = $this->fetch_data_by_foreign_key($query_books, $this->id);
-            $query_books_content = "SELECT `id`, `title`, `is_link`, `image`, `url` FROM self_learn_recommend_content WHERE `status` = 'open' AND parent_id = ?";
+            $query_books_content = "SELECT `id`, `title`, `is_link`, `image`, `url`, `author`, `douban` FROM self_learn_recommend_content WHERE `status` = 'open' AND parent_id = ?";
             $recommends = array();
             if(count($this->books) > 0){
                 foreach($this->books as $item){
@@ -220,10 +220,10 @@
             $this->courses = $this->fetch_data_by_foreign_key($query_course, $this->id);
             $query_info = "SELECT `id`, `content`, `p_index`, `type`, `status`, `p_id` FROM program_info WHERE p_id = ?";
             $this->info = $this->fetch_data_by_foreign_key($query_info, $this->id);
-            $query_books = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE p_id = ?";
+            $query_books = "SELECT `id`, `title`, `image`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE p_id = ?";
             $books = $this->fetch_data_by_foreign_key($query_books, $this->id);
             if(count($books) > 0){
-                $query_books_content = "SELECT `id`, `title`, `is_link`, `image`, `url`, `status` FROM self_learn_recommend_content WHERE parent_id = ?";
+                $query_books_content = "SELECT `id`, `title`, `is_link`, `image`, `url`, `author`, `douban`, `status` FROM self_learn_recommend_content WHERE parent_id = ?";
                 foreach($books as $item){
                     $temp_recommend = $item;
                     $temp_recommend["content"] = $this->fetch_data_by_foreign_key($query_books_content, $item["id"]);
@@ -344,13 +344,13 @@
                 $query = "SELECT `id`, `name`, `content`, `item_index`, `status` FROM program_course WHERE `status` = 'open' AND id = ?";
             }
             else if($data == "book"){
-                $query = "SELECT `id`, `title`, `author`, `douban`, `image`, `link`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE id = ?";
+                $query = "SELECT `id`, `title`, `image`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE id = ?";
             }
             else if($data == "child"){
                 $query = "SELECT `id`, `name`, `content`, `item_index`, `status`, `p_id` FROM child_program WHERE id = ?";
             }
             else if($data == "recommend content"){
-                $query = "SELECT `id`, `title`, `is_link`, `image`, `url`, `status` FROM self_learn_recommend_content WHERE id = ?";
+                $query = "SELECT `id`, `title`, `is_link`, `image`, `url`, `author`, `douban`, `status` FROM self_learn_recommend_content WHERE id = ?";
             }
             else{
                 $query = "SELECT `id`, `name`, `feedback`, `school`, `program`, `grade`, `status`, `p_id` FROM program_testimonials WHERE id = ?";
@@ -442,12 +442,12 @@
             }
         }
 
-        public function save_program_recommendation($program_id, $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status){
+        public function save_program_recommendation($program_id, $title, $imageUrl, $index, $status){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-            $query = "INSERT INTO self_learn_recommend (`title`, `image`, `author`, `douban`, `link`, `channel`, `online_course`, `item_index`, `status`, `p_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO self_learn_recommend (`title`, `image`, `item_index`, `status`, `p_id`) VALUES (?, ?, ?, ?, ?)";
             try {
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sssssssisi", $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status, $program_id);
+                $sql->bind_param("ssisi", $title, $imageUrl, $index, $status, $program_id);
                 if($sql->execute()){
                     $this->conn->commit();
                     return true;
@@ -462,12 +462,12 @@
             }
         }
 
-        public function update_program_recommendation($id, $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status){
+        public function update_program_recommendation($id, $title, $imageUrl, $index, $status){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-            $query = "UPDATE self_learn_recommend SET `title` = ?, `image` = ?, `author` = ?, `douban` = ?, `link` = ?, `channel` = ?, `online_course` = ?, `item_index` = ?, `status` = ? WHERE id = ?";
+            $query = "UPDATE self_learn_recommend SET `title` = ?, `image` = ?, `item_index` = ?, `status` = ? WHERE id = ?";
             try {
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sssssssisi", $title, $imageUrl, $author, $douban, $link, $channel, $online_course, $index, $status, $id);
+                $sql->bind_param("ssisi", $title, $imageUrl, $index, $status, $id);
                 if($sql->execute()){
                     $this->conn->commit();
                     return true;
@@ -482,12 +482,12 @@
             }
         }
 
-        public function save_program_recommendation_content($parent_id, $title, $is_link, $imageUrl, $url, $status){
+        public function save_program_recommendation_content($parent_id, $title, $is_link, $imageUrl, $url, $author, $douban, $status){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-            $query = "INSERT INTO self_learn_recommend_content (`parent_id`,`title`,`is_link`,`image`,`url`,`status`) VALUES (?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO self_learn_recommend_content (`parent_id`,`title`, `is_link`, `image`, `url`, `author`, `douban`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try {
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("isssss", $parent_id, $title, $is_link, $imageUrl, $url, $status);
+                $sql->bind_param("isssssss", $parent_id, $title, $is_link, $imageUrl, $url, $author, $douban, $status);
                 if($sql->execute()){
                     $this->conn->commit();
                     return true;
@@ -502,12 +502,12 @@
             }
         }
 
-        public function update_program_recommendation_content($id, $title, $is_link, $imageUrl, $url, $status){
+        public function update_program_recommendation_content($id, $title, $is_link, $imageUrl, $url, $author, $douban, $status){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
-            $query = "UPDATE self_learn_recommend_content SET `title` = ?, `is_link` = ?, `image` = ?, `url` = ?, `status` = ? WHERE id = ?";
+            $query = "UPDATE self_learn_recommend_content SET `title` = ?, `is_link` = ?, `image` = ?, `url` = ?, `author` = ?, `douban` = ?, `status` = ? WHERE id = ?";
             try {
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sssssi", $title, $is_link, $imageUrl, $url, $status, $id);
+                $sql->bind_param("sssssssi", $title, $is_link, $imageUrl, $url, $author, $douban, $status, $id);
                 if($sql->execute()){
                     $this->conn->commit();
                     return true;

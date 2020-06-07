@@ -123,9 +123,6 @@
                                     <th>ID</th>
                                     <th>名称</th>
                                     <th>图片</th>
-                                    <th>作者</th>
-                                    <th>豆瓣</th>
-                                    <th>链接</th>
                                     <th>相关</th>
                                     <th>排序</th>
                                     <th>状态</th>
