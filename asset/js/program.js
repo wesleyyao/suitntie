@@ -39,7 +39,6 @@ $(document).ready(function () {
         }
         let programDetails = '<ul>';
         const foundCategory = programData.find(item => item.id == pcId);
-        console.log(pcId)
         if (foundCategory && foundCategory.details && Array.isArray(foundCategory.details)) {
             foundCategory.details.forEach(function (item) {
                 programDetails += `<li><a href="${prefix}/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
@@ -54,7 +53,6 @@ $(document).ready(function () {
         const title = decodeURIComponent(currentPage.slice(currentPage.indexOf('title=') + 6));
         $.get(`${prefix}/public/api/program.php?view=single&title=${title}`).done(function (data) {
             const result = JSON.parse(data);
-            console.log(result)
             if (!result) {
                 return;
             }
@@ -109,21 +107,19 @@ $(document).ready(function () {
             let recommendationContent = '';
             if (recommendationData && Array.isArray(recommendationData) && recommendationData.length > 0) {
                 recommendationCategories = recommendationData.map(item => item.title).filter(onlyUnique);
-                console.log(recommendationCategories);
                 recommendationCategories.forEach(function (item) {
                     const foundRec = recommendationData.find(a => a.title === item);
                     recommendationContent += `
                         <div class="row">
-                            <div class="col-12">
-                                <img src="${prefix + foundRec.image}" alt="${item}" width="100"/> <span>${item}</span>
+                            <div class="col-12 mb-3">
+                                <img src="${prefix + foundRec.image}" alt="${item}" width="45"/> <span style="font-size:1.2em;font-weight:300;">${item}</span>
                             </div>
                         </div>
-                        <div class="row">`;
+                        <div class="row mb-5">`;
                     recommendationData.forEach(function (i) {
                         if (i.title == item) {
                             let contentList = '';
                             const contentData = i.content && i.content.length > 0 ? i.content : [];
-                            console.log(contentData)
                             if (contentData.length > 0) {
                                 contentData.forEach(function (j) {
                                     contentList += `
@@ -131,9 +127,7 @@ $(document).ready(function () {
                                             <ul>
                                             ${j.author && j.douban ?
                                             `<li>
-                                                <div>
-                                                    <a href="${j.url}">${j.title}</a> ${j.author}<br/>豆瓣: ${j.douban}
-                                                </div>
+                                                <a href="${j.url}">${j.title}</a> ${j.author}<br/>豆瓣: ${j.douban}
                                             </li>` : ''}
                                             ${
                                         j.image ?
@@ -147,10 +141,8 @@ $(document).ready(function () {
                                             ${
                                         !j.author && j.url ?
                                             `<li>
-                                                <div>
-                                                    <a href="${j.url}">${j.title}</a>
-                                                </div>
-                                                </li>` : ''
+                                                <a href="${j.url}">${j.title}</a>
+                                            </li>` : ''
                                         }
                                             </ul>
                                             </div>`;
