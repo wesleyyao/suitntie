@@ -15,6 +15,10 @@
     margin-left: -73px;
 }
 
+.home-slider-testimonials .carousel-control-prev-icon, .home-slider-testimonials .carousel-control-next-icon{
+    filter: invert(75%);
+}
+
 .testimonials-indicator li{
     background-color: #d3d3d3 !important;
 }
