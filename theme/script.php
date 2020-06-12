@@ -6,3 +6,4 @@
 <script src="/suitntie/asset/js/header.js"></script>
 <script src="/suitntie/asset/js/global-nav.js"></script>
 <script src="/suitntie/asset/js/contact.js"></script>
+<!-- <script src="/suitntie/asset/js/mentorSlider.js"></script> -->

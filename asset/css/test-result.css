@@ -35,6 +35,10 @@
     z-index: 100;
 }
 
+.resultDimension:after{
+    clear:both;
+}
+
 @media only screen and (max-width: 575px) {
     .resultBarChart{
         padding: 40px;
@@ -161,6 +165,10 @@
     padding: 0.75rem 0 !important;
 }
 
+.dimension-analysis li, .advantages li, .disadvantages li{
+    padding:0.75rem 0 !important;
+}
+
 .basic-analysis{
     background-color: rgba(242,242,242,0.4);
     padding:70px 80px !important;
@@ -247,6 +255,10 @@
     .disadvantages{
         padding:0 30px !important;
     }
+}
+
+.reminderText{
+    margin-top: 20px;
 }
 
 .reminderText{

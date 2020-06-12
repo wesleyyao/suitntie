@@ -1,5 +1,5 @@
 <?php
-    require_once("../utils/initial.php");
+require_once("../utils/initial.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -296,8 +296,7 @@
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
                             <div class="row">
-                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span
-                                        class="numberCircle lightShadow">1</span></h3>
+                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span class="numberCircle lightShadow">1</span></h3>
                                 <p class="col-lg-12 col-md-10 col-sm-10 h-100 justify-content-center">
                                     学生通过适途评测获取独家的个人报告；主动探索了报告中最感兴趣的几个专业；并填写了个人信息表。</p>
                             </div>
@@ -308,8 +307,7 @@
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
                             <div class="row">
-                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span
-                                        class="numberCircle lightShadow">2</span></h3>
+                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span class="numberCircle lightShadow">2</span></h3>
                                 <p class="col-lg-12 col-md-10 col-sm-10 h-100 justify-content-center">
                                     适途咨询师根据学生信息进一步与学生沟通，了解学生更多想法，并根据学生需求安排一个或多个一对一专业科普导师。</p>
                             </div>
@@ -320,8 +318,7 @@
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
                             <div class="row">
-                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span
-                                        class="numberCircle lightShadow">3</span></h3>
+                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span class="numberCircle lightShadow">3</span></h3>
                                 <p class="col-lg-12 col-md-10 col-sm-10 h-100 justify-content-center">
                                     一对一专业科普导师收集适途咨询师给到的学生信息，根据约定的时间进行正式视频或音频沟通。</p>
                             </div>
@@ -332,8 +329,7 @@
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
                             <div class="row">
-                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span
-                                        class="numberCircle lightShadow">4</span></h3>
+                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span class="numberCircle lightShadow">4</span></h3>
                                 <p class="col-lg-12 col-md-10 col-sm-10 h-100 justify-content-center">
                                     适途咨询师对学生进行回访，学生可以就与导师沟通的结果进行反馈。</p>
                             </div>
