@@ -4,10 +4,10 @@
             <div class="col-lg-5 col-md-4 col-sm-12 mb-5">
                 <div class="footer-qrcodes text-right row text-center">
                     <div class="col-6">
-                        <img src="/suitntie/asset/image/qrcode.webp" class="img-fluid" alt="qrcode" width="150" />
+                        <img src="/suitntie/asset/image/QR.png" class="img-fluid" alt="qrcode" width="150" />
                     </div>
                     <div class="col-6">
-                        <img src="/suitntie/asset/image/qrcode.webp" class="img-fluid" alt="qrcode" width="150" />
+                        <img src="/suitntie/asset/image/QR.png" class="img-fluid" alt="qrcode" width="150" />
                     </div>
                 </div>
             </div>
