@@ -84,7 +84,7 @@ $(document).ready(function () {
         console.log(expireTime);
         $('#verifyMessage').html(loading);
 
-        $.post(`${prefix}/public/api/phone-verify.php`, {phone, code}).done(function(data){
+        $.post(`${prefix}/public/api/phone-verify-local.php`, {phone, code}).done(function(data){
             console.log(data)
             if(data){
                 let messageDiv = from === 'sendSignupCode' ? '#signupVerifyMessage' : '#verifyMessage'; 
@@ -108,7 +108,11 @@ $(document).ready(function () {
             }
         });
     });
-    
+
+    $('#switchToLogin').click(function(){
+        $('#userSignUpModal').modal('hide');
+        $('#userLoginModal').modal('show');
+    });
 
     $('.submit-button').click(function () {
         const submitId = $(this).attr('id');
