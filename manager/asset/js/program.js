@@ -20,7 +20,7 @@ $(document).ready(function(){
                         <tr>
                             <td>${item.title}</td>
                             <td>${item.description ? item.description : ''}</td>
-                            <td><a href="./program-details.php">详情</a></td>
+                            <td><a href="./program-details.php?program=${item.title}">详情</a></td>
                         </tr>`;
                 });
             }

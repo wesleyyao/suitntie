@@ -9,7 +9,9 @@ $(document).ready(function () {
         </div>
     </div>`;
     let message = '';
+    let code = 0;
     const currentPage = decodeURIComponent(window.location.href);
+    $('#signupPhonePassword').hide();
     console.log(currentPage);
     $('#showSignupModal').click(function () {
         $('#userLoginModal').modal('hide');
@@ -27,7 +29,7 @@ $(document).ready(function () {
             $('#message').html(message);
         }
         user = result.user ? result.user : undefined;
-        const noLogin = `<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录 | 注册</a>`;
+        const noLogin = `<a href="#/" data-toggle="modal" data-target="#userSignUpModal">登录 | 注册</a>`;
         const isLogin = `<div class="dropdown">
             <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img id="loginUserAvatarInNav" src="" width="25" height="25" style="border-radius: 50%"/>
@@ -53,6 +55,55 @@ $(document).ready(function () {
         return;
     });
 
+    $('.send-verify-code').click(function () {
+        const phone = $('#signupPhone').val();
+        if(phone.length !== 11 || isNaN(phone) || !phone){
+            $("#signupVerifyMessage").html(generateMessage('warning', '请输入正确的手机号'));
+            return;
+        }
+
+        $('#sendVerifyCode').prop('disabled', true);
+        let seconds = 25;
+        let cooling = setInterval(function () {
+            if (seconds > 0) {
+                seconds--;
+                $('#sendVerifyCode').text(`${seconds}秒后重新发送`);
+            }
+            else {
+                $('#sendVerifyCode').prop('disabled', false);
+                $('#sendVerifyCode').text('获取验证码');
+                clearInterval(cooling);
+            }
+        }, 1000);
+
+        code = Math.floor(1000 + Math.random() * 9000);
+        const currentTime = new Date();
+        const expireTime =new Date(currentTime.getTime() + 2*60000);
+        console.log(expireTime);
+        $('#verifyMessage').html(loading);
+
+        $.post(`${prefix}/public/api/phone-verify.php`, {phone, code}).done(function(data){
+            console.log(data)
+            if(data){
+                const result = JSON.parse(data);
+                console.log(result);
+                const sendStatus = result && result.SendStatusSet && Array.isArray(result.SendStatusSet) && result.SendStatusSet.length > 0 ? result.SendStatusSet[0] : undefined;
+                if(!sendStatus){
+                    $('#verifyMessage').html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
+                    return;
+                }
+                if(sendStatus.Code === 'Ok' && sendStatus.PhoneNumber === `+86${phone}`){
+                    $('#verifyMessage').html(generateMessage('success', '验证码已经发送。'));
+                    return;
+                }
+            }
+            else{
+                $('#verifyMessage').html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
+            }
+        });
+    });
+    
+
     $('.submit-button').click(function () {
         const submitId = $(this).attr('id');
         const passwordFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
@@ -66,35 +117,42 @@ $(document).ready(function () {
                     return;
                 }
             });
-            if(!isValid){
+            if (!isValid) {
                 return;
             }
             const email = $('#signupEmail').val();
             const password = $('#signupPassword').val();
             const confirmPassword = $('#signupPasswordConfirm').val();
             const phone = $('#signupPhone').val();
-            if(!validateEmailFormat($('#signupEmail').val())){
+            if (!validateEmailFormat($('#signupEmail').val())) {
                 $('#signupMessage').html(generateMessage('warning', '输入的邮箱格式错误。'));
                 isValid = false;
             }
-            if(!$('#signupPassword').val().match(passwordFormat)){
+            if (!$('#signupPassword').val().match(passwordFormat)) {
                 $('#signupMessage').html(generateMessage('warning', `密码不符合要求。请点击小图标<i class="fas fa-info-circle text-info"></i>查看密码格式，重新输入。`));
                 isValid = false;
             }
-            if(password !== confirmPassword){
+            if (password !== confirmPassword) {
                 $('#signupMessage').html(generateMessage('warning', `密码不一致，重新输入。`));
                 isValid = false;
             }
             if (isValid) {
                 $('#signupMessage').html(loading);
-                $.post(`${prefix}/public/api/signup.php?redirect=${currentPage}`, { submit_signup: 'yes', usr_email: email, usr_password: password, usr_phone: phone }).done(function (data) {
+                $.post(`${prefix}/public/api/signup.php?redirect=${currentPage}`, 
+                    { submit_signup: 'email', usr_email: email, usr_password: password, usr_phone: phone }).done(function (data) {
                     if (data) {
                         let result = JSON.parse(data);
                         const message = generateMessage(result.type, result.content);
                         $('#signupMessage').html(message);
+                        $('#signupPhonePassword').fadeIn();
                     }
                 });
             }
+        }
+        else if(submitId === 'signupByPhone'){
+            const phone = $('#signupPhone').val();
+            const verifyCode = $('#verifyCode').val();
+            const password = $('#')
         }
     });
 
@@ -160,9 +218,14 @@ $(document).ready(function () {
         <div class="row">
             <div class="col-12">
                 <div class="alert alert-${type}">
-                    <i class="${type == 'success' ? 'fas fa-check' : type === 'warning' ? 'fas fa-exclamation-triangle' : 'fas fa-times'}"></i> ${message}
+                    <i class="${type == 'success' ?
+                'fas fa-check' : type === 'warning' ?
+                    'fas fa-exclamation-triangle' : type == 'info' ?
+                        'fas fa-info-circle' : 'fas fa-times'}"></i> ${message}
                 </div>
             </div>
         </div>`;
     }
+
+
 });

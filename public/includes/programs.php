@@ -341,7 +341,7 @@
                 $query = "SELECT `id`, `content`, `p_index`, `type`, `status`, `p_id` FROM program_info WHERE id = ?";
             }
             else if($data == "course"){
-                $query = "SELECT `id`, `name`, `content`, `item_index`, `status` FROM program_course WHERE `status` = 'open' AND id = ?";
+                $query = "SELECT `id`, `name`, `content`, `item_index`, `status` FROM program_course WHERE id = ?";
             }
             else if($data == "book"){
                 $query = "SELECT `id`, `title`, `image`, `status`, `p_id`, `item_index` FROM self_learn_recommend WHERE id = ?";

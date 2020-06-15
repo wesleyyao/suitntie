@@ -127,7 +127,7 @@ $(document).ready(function () {
                                             <ul>
                                             ${j.author && j.douban ?
                                             `<li>
-                                                <a href="${j.url}">${j.title}</a> ${j.author}<br/>豆瓣: ${j.douban}
+                                                <a href="${j.url}" target="_blank">${j.title}</a> ${j.author}<br/>豆瓣: ${j.douban}
                                             </li>` : ''}
                                             ${
                                         j.image ?
@@ -141,7 +141,7 @@ $(document).ready(function () {
                                             ${
                                         !j.author && j.url ?
                                             `<li>
-                                                <a href="${j.url}">${j.title}</a>
+                                                <a href="${j.url}" target="_blank">${j.title}</a>
                                             </li>` : ''
                                         }
                                             </ul>

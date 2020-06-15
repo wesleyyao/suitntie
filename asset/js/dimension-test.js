@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     const notCompletedMessage =
         `<div class="alert alert-danger mt-3" role="alert">
-          请先回答完本页的问题。
+         <i class="fas fa-exclamation-circle"></i> 请先回答完本页的问题。
         </div>`;
 
     $('.result-div').hide();
@@ -82,6 +82,7 @@ $(document).ready(function () {
                 }
             }, 1000);
             $('#progress').attr('aria-valuemax', totalQuestions);
+            console.log(result)
         }
         let firstPageQuestions = '';
         let numberOfQuestions = 0;

@@ -6,14 +6,16 @@ $(document).ready(function () {
             console.log(result)
             if (Array.isArray(result) && result.length > 0) {
                 result.forEach(function (item) {
-                    programsDropDown += `<li class="dropdown-submenu dropdown-item"><a class="program-category dropdown-submenu-toggle"tabindex="-1" href="#">${item.name} 
-                        <i class="fas fa-caret-right pl-1" style="color: #c7c7c7;"></i></a><ul class="dropdown-menu">`;
+                    programsDropDown += `
+                        <li class="dropdown-submenu">
+                            <a class="program-category dropdown-submenu-toggle" id="category${item.id}" tabindex="-1" href="#/">${item.name} 
+                            <i class="fas fa-caret-right pl-1" style="color: #c7c7c7;"></i>
+                            </a>
+                        <ul class="level-3-dropdown">`;
                     if (item.details && Array.isArray(item.details) && item.details.length > 0) {
-                        programsDropDown += `<li>`;
                         item.details.forEach(function (item) {
-                            programsDropDown += `<a class="dropdown-item" href="/suitntie/programs/explore.php?title=${item.title}">${item.title}</a>`;
+                            programsDropDown += `<li><a href="/suitntie/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
                         });
-                        programsDropDown += `</li>`;
                     }
                     programsDropDown += `</ul></li>`;
                 });
@@ -22,16 +24,8 @@ $(document).ready(function () {
         }
     });
 
-    // Make Dropdown Submenus possible
-	$('.dropdown-submenu a.dropdown-submenu-toggle').on("click", function(e){
-		$('.dropdown-submenu ul').removeAttr('style');
-		$(this).next('ul').toggle();
-		e.stopPropagation();
-		e.preventDefault();
-	});
-	
-	// Clear secondary dropdowns on.Hidden
-	$('#bs-navbar-collapse-1').on('hidden.bs.dropdown', function () {
-  		$('.navbar-nav .dropdown-submenu ul.dropdown-menu').removeAttr('style');
-	});
+    $(document).on('click', '.program-category', function(e){
+        e.stopPropagation();
+        $(this).next('.level-3-dropdown').toggle();
+    });
 });

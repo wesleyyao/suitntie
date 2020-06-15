@@ -53,7 +53,6 @@
                             <label><span class="text-danger">*</span> 类别</label>
                             <select name="info_type" class="form-control"
                                 value="<?php echo $type == "edit" ? $data["type"] : ""; ?>">
-                                <option value="">- 选择 -</option>
                                 <option value="brief">专业简介</option>
                                 <option value="suitable">你适合学吗</option>
                                 <option value="ready">你准备好了吗</option>

@@ -34,11 +34,13 @@
                             <div class="row">
                                 <div class="col-lg-5 col-sm-12">
                                     <a id="wechatLoginButton"
-                                        href="https://open.weixin.qq.com/connect/qrconnect?appid=<?php echo $appId; ?>&redirect_uri=<?php echo $redirect_url; ?>&response_type=code&scope=snsapi_login&state=<?php echo $state; ?>#wechat_redirect"><i
-                                            class="fab fa-weixin"></i> 微信登录</a>
+                                        href="https://open.weixin.qq.com/connect/qrconnect?appid=<?php echo $appId; ?>&redirect_uri=<?php echo $redirect_url; ?>&response_type=code&scope=snsapi_login&state=<?php echo $state; ?>#wechat_redirect">
+                                        <i class="fab fa-weixin"></i> 微信登录
+                                    </a>
                                     <a
-                                        href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<?php echo $appId; ?>&redirect_uri=<?php echo $redirect_url; ?>&response_type=code&scope=snsapi_userinfo&state=<?php echo $state; ?>#wechat_redirect">wechat
-                                        in mobile</a>
+                                        href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=<?php echo $appId; ?>&redirect_uri=<?php echo $redirect_url; ?>&response_type=code&scope=snsapi_userinfo&state=<?php echo $state; ?>#wechat_redirect">
+                                        wechat in mobile
+                                    </a>
                                 </div>
                                 <div class="col-lg-7 col-sm-12 text-right">
                                     <span>尚未注册？<a href="#/" id="showSignupModal">请点击这里</a></span>
@@ -88,32 +90,67 @@
             </div>
             <div class="modal-body">
                 <ul class="nav nav-pills" id="signupTabs" role="tablist">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" id="phoneSignup-tab" data-toggle="tab" href="#phoneSignup" role="tab"
-                            aria-controls="profile" aria-selected="false">短信验证</a>
-                    </li> -->
+                    <li class="nav-item signup-options">
+                        <a class="nav-link btn-light active" id="phoneSignup-tab" data-toggle="tab" href="#phoneSignup"
+                            role="tab" aria-controls="profile" aria-selected="false">手机号注册</a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link active btn-light" id="emailSignup-tab" data-toggle="tab" href="#emailSignup"
+                        <a class="nav-link btn-light" id="emailSignup-tab" data-toggle="tab" href="#emailSignup"
                             role="tab" aria-controls="contact" aria-selected="false">邮箱注册</a>
                     </li>
                 </ul>
-                <div class="tab-content" id="myTabContent">
-                    <!--     <div class="tab-pane fade show active" id="phoneSignup" role="tabpanel"
+                <div class="tab-content" id="loginTabs">
+                    <div class="tab-pane fade show active" id="phoneSignup" role="tabpanel"
                         aria-labelledby="phoneSignup-tab">
                         <br />
-                        <p>请选择区号，并输入您的手机号码。</p>
+                        <p>请输入您的11位国内手机号</p>
                         <div class="row">
-                            <div class="col-3">
-                                <select class="form-control ">
-                                    <option value="1">+1</option>
-                                    <option value="86">+86</option>
-                                </select>
-                            </div>
-                            <div class="col-9">
-                                <input type="text" class="form-control" />
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="phoneNumberPrefix">+86</span>
+                                    </div>
+                                    <input type="text" id="signupPhone" class="form-control signup-required"
+                                        placeholder="手机号" aria-label="手机号" aria-describedby="phoneNumberPrefix">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary send-verify-code" id="sendSignupCode"
+                                            type="button">获取验证码</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-4 col-md-4 col-sm-5">
+                                <label><span class="text-danger">*</span> 验证码: </label>
+                                <input type="text" class="form-control signup-required" id="verifyCode" maxlength="4" />
+                            </div>
+                        </div>
+                        <div id="signupVerifyMessage"></div>
                         <br />
+                        <div id="signupPhonePassword">
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <label><span class="text-danger">*</span> 密码：<i class="fas fa-info-circle text-info"
+                                            style="cursor: pointer" data-toggle="collapse" href="#signUpPasswordTip"
+                                            role="button" aria-expanded="false"
+                                            aria-controls="signUpPasswordTip"></i></label>
+                                    <div class="collapse" id="signUpPasswordTip">
+                                        <div class="alert alert-secondary">
+                                            密码必须包含至少一个大写字母，一个小写字母和一个数字。长度不小于8
+                                        </div>
+                                    </div>
+                                    <input type="password" id="signupPassword" maxlength="20"
+                                        class="form-control signup-required" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <label><span class="text-danger">*</span> 确认密码：</label>
+                                    <input type="password" id="signupPasswordConfirm" maxlength="36"
+                                        class="form-control signup-required" />
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-12 text-right">
                                 <button type="button" class="btn btn-outline-secondary close-signup-btn">关闭</button>
@@ -121,8 +158,8 @@
                                     id="signupByPhone">提交</button>
                             </div>
                         </div>
-                    </div> -->
-                    <div class="tab-pane fade show active emailSignup" id="emailSignup" role="tabpanel"
+                    </div>
+                    <div class="tab-pane fade emailSignup" id="emailSignup" role="tabpanel"
                         aria-labelledby="emailSignup-tab">
                         <br />
                         <div class="row mb-2">
@@ -138,13 +175,6 @@
                                 </div>
                                 <input type="email" class="form-control signup-required" id="signupEmail"
                                     maxlength="128" />
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <label><span class="text-danger">*</span> 手机：</label>
-                                <input type="text" class="form-control signup-required" id="signupPhone"
-                                    maxlength="25" />
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -182,7 +212,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="userProfileCompleteModal" tabindex="-1" role="dialog"
+<!-- <div class="modal fade" id="userProfileCompleteModal" tabindex="-1" role="dialog"
     aria-labelledby="userProfileCompleteModalTitle" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -215,5 +245,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

@@ -43,6 +43,7 @@
             $info_index = $_POST["info_index"];
             $info_status = $_POST["info_status"];
             if($type == "new"){
+                var_dump($_POST);
                 $is_saved = $program->save_program_info($program_id, $info_content, $info_type, $info_index, $info_status);
                 generateMessage($is_saved);
                 header("Location: $back_url");

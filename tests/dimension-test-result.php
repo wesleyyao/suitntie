@@ -143,11 +143,11 @@
                 <hr>
                 <div class="col-lg-3 col-sm-6 text-center">
                     <h5 class="text-center">没有看到心仪的专业？</h5>
-                    <a class="btn primBtn" href="../programs/index.php">探索更多专业</a>
+                    <a class="btn primBtn" href="../programs/index.php" target="_blank">探索更多专业</a>
                 </div>
                 <div class="offset-lg-6 col-lg-3 col-sm-6 text-center">
                     <h5 class="text-center">想找专业导师聊聊？</h5>
-                    <a class="btn primBtn" href="../one-on-one/index.php">一对一咨询</a>
+                    <a class="btn primBtn" href="../one-on-one/index.php" target="_blank">一对一咨询</a>
                 </div>
             </div>
         </div>

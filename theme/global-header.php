@@ -16,13 +16,13 @@
                 <a class="nav-link" href="/suitntie/tests/dimension-test.php">个人测试</a>
             </li>
             <li class="nav-item global-nav-item dropdown">
-                    <a class="dropdown-toggle nav-link" href="#" role="button" id="programLinks" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        专业探索
-                    </a>
-                    <ul class="dropdown-menu pt-2 pb-2 text-left" aria-labelledby="programLinks" id="programMenu">
-                        <li><a class="dropdown-item" href="/suitntie/programs/index.php">总览</a><li>
-                    </ul>
+                <a class="dropdown-toggle nav-link" href="#" role="button" id="programLinks" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    专业探索
+                </a>
+                <ul class="dropdown-menu pt-2 pb-2 text-left" aria-labelledby="programLinks" id="programMenu">
+                    <li><a class="dropdown-item" href="/suitntie/programs/index.php">总览</a></li>
+                </ul>
             </li>
             <li class="nav-item global-nav-item">
                 <a class="nav-link" href="/suitntie/one-on-one/index.php">一对一科普</a>
