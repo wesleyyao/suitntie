@@ -152,6 +152,13 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-secondary" role="alert">
+                                    已经注册？请点击<a id="switchToLogin" href="#/">此处</a>登录
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-12 text-right">
                                 <button type="button" class="btn btn-outline-secondary close-signup-btn">关闭</button>
                                 <button type="button" class="btn btn-success submit-button"

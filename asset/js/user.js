@@ -56,6 +56,8 @@ $(document).ready(function () {
     });
 
     $('.send-verify-code').click(function () {
+        const from = $(this).attr('id');
+        console.log(from)
         const phone = $('#signupPhone').val();
         if(phone.length !== 11 || isNaN(phone) || !phone){
             $("#signupVerifyMessage").html(generateMessage('warning', '请输入正确的手机号'));
@@ -85,20 +87,24 @@ $(document).ready(function () {
         $.post(`${prefix}/public/api/phone-verify.php`, {phone, code}).done(function(data){
             console.log(data)
             if(data){
-                const result = JSON.parse(data);
+                let messageDiv = from === 'sendSignupCode' ? '#signupVerifyMessage' : '#verifyMessage'; 
+                const result = {SendStatusSet: [{ Code: 'Ok', PhoneNumber: '13141036635'}]};
+                //const result = JSON.parse(data);
                 console.log(result);
                 const sendStatus = result && result.SendStatusSet && Array.isArray(result.SendStatusSet) && result.SendStatusSet.length > 0 ? result.SendStatusSet[0] : undefined;
+                console.log(sendStatus)
                 if(!sendStatus){
-                    $('#verifyMessage').html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
+                    $(messageDiv).html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
                     return;
                 }
-                if(sendStatus.Code === 'Ok' && sendStatus.PhoneNumber === `+86${phone}`){
-                    $('#verifyMessage').html(generateMessage('success', '验证码已经发送。'));
+                if(sendStatus.Code === 'Ok' && sendStatus.PhoneNumber === phone){
+                    $(messageDiv).html(generateMessage('success', '验证码已经发送。'));
+                    $('#signupPhonePassword').fadeIn();
                     return;
                 }
             }
             else{
-                $('#verifyMessage').html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
+                $(messageDiv).html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
             }
         });
     });
