@@ -82,7 +82,6 @@ $(document).ready(function () {
                 }
             }, 1000);
             $('#progress').attr('aria-valuemax', totalQuestions);
-            console.log(result)
         }
         let firstPageQuestions = '';
         let numberOfQuestions = 0;
@@ -138,13 +137,11 @@ $(document).ready(function () {
             dimensions.forEach(function (item) {
                 formData['dimension_' + item.id] = item.times;
             });
-            console.log(formData);
 
             $('#clockAndProgressBarDiv').hide();
             $('#mainContentDiv').html(proceeding);
             $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
                 const result = JSON.parse(data);
-                console.log(result)
                 if (result == 'success') {
                     window.location.replace(`${prefix}/tests/dimension-test-result.php`);
                 }
@@ -250,7 +247,7 @@ $(document).ready(function () {
         return { content, numberOfQuestions };
     }
 
-    function scrollToTestTop(){
+    function scrollToTestTop() {
         $('html, body').animate({
             scrollTop: $("#message").offset().top
         }, 1000);

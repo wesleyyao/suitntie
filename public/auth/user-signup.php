@@ -2,6 +2,9 @@
     require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/utils/initial.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/customer.php");
     $customer = new Customer;
+    $message = array();
+    $current_time = date("Y-m-d H:i:s");
+    $ip = $_SERVER["SERVER_ADDR"];
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(!isset($_GET["user"]) || !isset($_GET["tempId"]) || !isset($_GET["redirect"])){
             $_SESSION["signup_message"]["type"] = "error";
@@ -32,4 +35,76 @@
             redirect($url);
         }
     }
+    else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["by"])){
+        $by = $_POST["by"];
+        if($by == "phone"){
+            if(!isset($_SESSION["login_user"])){
+                $message["type"] = "danger";
+                $message["content"] = "您的登录信息已经过期，请重新登录。";
+            }
+            else{
+                if(!isset($_POST["phone"]) || empty(trim($_POST["phone"]))){
+                    $message["type"] = "danger";
+                    $message["content"] = "请填写所有必填内容。";
+                }
+                else{
+                    $phone = trim($_POST["phone"]);
+                    $is_found = $customer->find_user_by_phone($phone);
+                    if($is_found){
+                        $message["type"] = "warning";
+                        $message["content"] = "该手机号已经注册过。";
+                    }
+                    else{
+                        $is_saved = $customer->save_phone_by_user($phone, $_SESSION["login_user"]);
+                        if($is_saved){
+                            $message["type"] = "success";
+                            $message["content"] = "您的手机号已经保存成功。正在为您跳转...";
+                        }
+                        else{
+                            $message["type"] = "warning";
+                            $message["content"] = "未保存成功，请刷新后重试。";
+                        }
+                    }
+                }
+            }
+        }
+        else if($by == "email"){ 
+            if(!isset($_POST["email"]) || !isset($_POST["password"])){
+                $message["type"] = "danger";
+                $message["content"] = "请填写所有必填内容。";
+            }
+            else{
+                $email = trim($_POST["email"]);
+                $password = trim($_POST["password"]);
+                if(empty($email) || empty($password)){
+                    $message["type"] = "danger";
+                    $message["content"] = "请填写所有必填内容。"; 
+                }
+                else{
+                    $is_found = $customer->find_user_by_email($email);
+                    if(!$is_found){
+                        $message["type"] = "danger";
+                        $message["content"] = "请求无法被处理，请重试"; 
+                    }
+                    else{
+                        if($is_found == "not found"){
+                            $is_saved = $customer->save_new_email_user($email, $password, $current_time, $ip);
+                            if($is_saved){
+                                $_SESSION["login_user"] = $customer->id;
+                                $message["type"] = "success";
+                                $message["content"] = "您已经注册成功。正在为您跳转...";
+                            }
+                            else{
+                                $message["type"] = "warning";
+                                $message["content"] = "保存失败，请稍后重试。";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        echo json_encode($message);
+        exit;
+    }
+    echo json_encode(false);
 ?>

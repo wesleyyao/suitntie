@@ -87,8 +87,8 @@
                     <h2>部分导师展示</h2>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-md-6 col-sm-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 mt-5">
                     <div class="teacher-cell center-block" style="width:400px;max-width:100%;">
                         <img src="/suitntie/asset/image/photos/Erik.png" alt="teacher" class="mb-auto" />
                         <div class="teacher-cell-info">
@@ -109,15 +109,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12 mt-5">
                     <div class="teacher-cell center-block" style="width:400px;max-width:100%;">
                         <img src="/suitntie/asset/image/photos/Cathy.png" alt="teacher" class="mb-auto" />
                         <div class="teacher-cell-info">
                             <h5>Cathy</h5>
                             <label>专业领域：</label>
-                            <p>机械工程，机器人</p>
+                            <p>社会学</p>
                             <label>毕业院校:</label>
-                            <p>康奈尔大学，滑铁卢大学</p>
+                            <p>伦敦政经（LSE）</p>
                             <a class="animated-arrow" href="/suitntie/one-on-one/index.php">
                                 <span class="the-arrow -left"><span class="shaft"></span></span>
                                 <span class="main">
@@ -131,16 +131,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-md-6 col-sm-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 mt-5">
                     <div class="teacher-cell center-block" style="width:400px;max-width:100%;">
                         <img src="/suitntie/asset/image/photos/Joyce.png" alt="teacher" class="mb-auto" />
                         <div class="teacher-cell-info">
                             <h5>Joyce</h5>
                             <label>专业领域：</label>
-                            <p>机械工程，机器人</p>
+                            <p>数学，经济金融学</p>
                             <label>毕业院校:</label>
-                            <p>康奈尔大学，滑铁卢大学</p>
+                            <p>剑桥大学，伦敦大学学院（UCL）</p>
                             <a class="animated-arrow" href="/suitntie/one-on-one/index.php">
                                 <span class="the-arrow -left"><span class="shaft"></span></span>
                                 <span class="main">
@@ -153,15 +153,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12 mt-5">
                     <div class="teacher-cell center-block" style="width:400px;max-width:100%;">
-                        <img src="/suitntie/asset/image/photos/Violet.png" alt="teacher" class="mb-auto" />
+                        <img src="/suitntie/asset/image/photos/Sunny.png" alt="teacher" class="mb-auto" />
                         <div class="teacher-cell-info">
-                            <h5>Erik</h5>
+                            <h5>Sunny</h5>
                             <label>专业领域：</label>
-                            <p>机械工程，机器人</p>
+                            <p>品牌管理</p>
                             <label>毕业院校:</label>
-                            <p>康奈尔大学，滑铁卢大学</p>
+                            <p>墨尔本大学，纽约大学</p>
                             <a class="animated-arrow" href="/suitntie/one-on-one/index.php">
                                 <span class="the-arrow -left"><span class="shaft"></span></span>
                                 <span class="main">

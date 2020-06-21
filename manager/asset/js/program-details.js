@@ -18,6 +18,7 @@ $(document).ready(function(){
         let recommendTable = '';
         books = result.books;
         programId = result.id;
+        //${item.content && Array.isArray(item.content) && item.content.length > 0 ? 
         const recommendations = result.books;
         if(recommendations && Array.isArray(recommendations) && recommendations.length > 0){
             recommendations.forEach(function(item){
@@ -25,7 +26,7 @@ $(document).ready(function(){
                     <td>${item.id}</td>
                     <td>${item.title}</td>
                     <td><a href="#/" class="previewImgBtn" id="check_${item.image ? item.image : ''}">查看图片</a></td>
-                    <td>${item.content && Array.isArray(item.content) && item.content.length > 0 ? `<a href="#/" id="book${item.id}" class="book-content">查看</a>` : ''}</td>
+                    <td><a href="#/" id="book${item.id}" class="book-content">查看</a></td>
                     <td>${item.item_index}</td>
                     <td>${item.status}</td>
                     <td><a href="./components/program-recommendation.php?type=edit&id=${item.id}&pid=${programId}&title=${program}">编辑</a></td></tr>`;

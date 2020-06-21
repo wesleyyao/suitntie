@@ -1,5 +1,6 @@
 <?php
     class Customer extends Database {
+        public $id;
         public $email;
         public $password;
         public $nick_name;
@@ -46,6 +47,103 @@
             }
         }
 
+        public function signup_by_phone($phone, $current_time, $ip){
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            try {
+                $query = "INSERT INTO customers (`phone`, `status`, `date_time`, `ip`) VALUES (?, 'open', ?, ?)";
+                $sql = $this->conn->prepare($query);
+                $sql->bind_param("sss", $phone, $current_time, $ip);
+                if($sql->execute()){
+                    $this->id = $this->conn->insert_id;
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
+        }
+
+        public function save_phone_by_user($phone, $id){
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            try {
+                $query = "UPDATE customers set phone = ? WHERE id = ?";
+                $sql = $this->conn->prepare($query);
+                $sql->bind_param("si", $phone, $id);
+                if($sql->execute()){
+                    //$this->id = $this->conn->insert_id;
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
+        }
+
+        public function find_user_by_phone($phone){
+            $query = "SELECT id FROM customers WHERE phone = ?";
+            $sql = $this->conn->prepare($query);
+            $sql->bind_param("s", $phone);
+            $sql->execute();
+            $result = $sql->get_result();
+            if($result){
+                $data = mysqli_fetch_assoc($result);
+                if(empty($data["id"])){
+                    return false;
+                }
+                $this->id = $data["id"];
+                return true;
+            }
+            return false;
+        }
+
+        public function find_user_by_email($email){
+            $query = "SELECT id FROM customers WHERE email = ?";
+            $sql = $this->conn->prepare($query);
+            $sql->bind_param("s", $email);
+            $sql->execute();
+            $result = $sql->get_result();
+            if($result){
+                $data = mysqli_fetch_assoc($result);
+                if(empty($data["id"])){
+                    return "not found";
+                }
+                //$this->id = $data["id"];
+                return "found";
+            }
+            return false;
+        }
+
+        public function save_new_email_user($email, $password, $date_time, $ip){
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            try {
+                $query = "INSERT INTO customers (`email`, `password`, `status`, `date_time`, `ip`) VALUES (?, ?, 'open', ?, ?)";
+                $sql = $this->conn->prepare($query);
+                $sql->bind_param("ssss", $email, $password, $date_time, $ip);
+                if($sql->execute()){
+                    $this->id = $this->conn->insert_id;
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
+        }
+
         public function find_user_id($email, $tempId){
             $query = "SELECT `id` FROM customers WHERE email = ? AND temporary_link = ?";
             $sql = $this->conn->prepare($query);
@@ -72,7 +170,7 @@
         }
 
         public function fetch_current_user($id){
-            $query = "SELECT `id`, `email`, `nick_name`, `phone`, `headImg`, `sex`, `city`, `province`, `country` FROM customers WHERE `id` = ? AND `status` = 'open'";
+            $query = "SELECT `id`, `email`, `nick_name`, `phone`, `headImg`, `sex`, `city`, `province`, `country`, `unionid` FROM customers WHERE `id` = ? AND `status` = 'open'";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("i", $id);
             $sql->execute();
@@ -86,6 +184,7 @@
             $this->city = $data["city"];
             $this->province = $data["province"];
             $this->country = $data["country"];
+            $this->unionid = $data["unionid"];
         }
 
         public function validate_login($email, $password){

@@ -55,8 +55,8 @@
                     <div id="profileEditMessage"></div>
                     <div class="form-row">
                         <div class="col-12 text-right">
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
-                            <button type="submit" class="btn btn-success">更新</button>
+                            <button type="button" class="btn ghostSecBtn" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn primBtn">更新</button>
                         </div>
                     </div>
                 </form>

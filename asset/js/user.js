@@ -10,161 +10,255 @@ $(document).ready(function () {
     </div>`;
     let message = '';
     let code = 0;
+    let emailCode = 0;
+    let expireTime = undefined;
+    let emailExpireTime = undefined;
     const currentPage = decodeURIComponent(window.location.href);
     $('#signupPhonePassword').hide();
-    console.log(currentPage);
     $('#showSignupModal').click(function () {
         $('#userLoginModal').modal('hide');
         $('#userSignUpModal').modal('show');
     });
+    const redirectUrl = currentPage.replace("http://www.suitntie.cn", '');
 
-    $.get(`${prefix}/public/api/account.php`).done(function (data) {
-        const result = JSON.parse(data);
-        console.log(result)
-        const pageTitle = $('#hide_title').val();
-        if (result === 'no login' && pagesRequiredLogin.includes(pageTitle)) {
-            $('#userLoginModal').modal('show');
-            $('#mainContentDiv').fadeOut();
-            message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
-            $('#message').html(message);
-        }
-        user = result.user ? result.user : undefined;
-        const noLogin = `<a href="#/" data-toggle="modal" data-target="#userSignUpModal">登录 | 注册</a>`;
-        const isLogin = `<div class="dropdown">
-            <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img id="loginUserAvatarInNav" src="" width="25" height="25" style="border-radius: 50%"/>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userLinks">
-                <a class="dropdown-item" href="${prefix}/account/user.php">个人中心</a>
-                <a class="dropdown-item" href="${prefix}/public/auth/user-logout.php">登出</a>
-            </div>
-        </div>`;
-        $('#userInNav').html(user ? isLogin : noLogin);
-        if (user) {
-            $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : `${prefix}/asset/image/avatar.png`);
-        }
-        if (user && !user.phone) {
-            if (pagesRequiredPhone.includes(pageTitle)) {
-                //window.location.href = `${prefix}/account/user.php`;
-                $('#profileCompletePhoneCell').css('display', 'block');
-                $('#userProfileCompleteModal').modal('show');
-                message = generateMessage('warning', '在开始测试前，请您点击<a href="#/" data-toggle="modal" data-target="#userProfileCompleteModal">此处</a>完善联系方式。');
-                $('#message').html(message);
-            }
-        }
-        return;
-    });
+    const obj = new WxLogin
+        ({
+            id: "login_container",//div的id
+            appid: "wxcfeb0aba33ebba0c",
+            scope: "snsapi_login",//写死
+            redirect_uri: encodeURI("http://www.suitntie.cn/suitntie/public/auth/wechat-login.php?redirect=" + redirectUrl),
+            state: "wechatLogin",
+            style: "black",//二维码黑白风格        
+            href: ""
+        });
+
+    const obj2 = new WxLogin
+        ({
+            id: "signup_container",//div的id
+            appid: "wxcfeb0aba33ebba0c",
+            scope: "snsapi_login",//写死
+            redirect_uri: encodeURI("http://www.suitntie.cn/suitntie/public/auth/wechat-login.php?redirect=" + redirectUrl),
+            state: "wechatLogin",
+            style: "black",//二维码黑白风格        
+            href: ""
+        });
+    fetchAccount();
 
     $('.send-verify-code').click(function () {
         const from = $(this).attr('id');
-        console.log(from)
-        const phone = $('#signupPhone').val();
-        if(phone.length !== 11 || isNaN(phone) || !phone){
-            $("#signupVerifyMessage").html(generateMessage('warning', '请输入正确的手机号'));
+        const buttonId = '#' + from;
+        const messageDiv = from === 'sendSignupCode' ? '#profileCompleteMessage' : '#loginByPhoneMessage';
+        const phoneInputId = from === 'sendSignupCode' ? '#signupPhone' : '#loginPhone';
+        const phone = $(phoneInputId).val().replace(/\s/g, '');
+        if (phone.length !== 11 || isNaN(phone) || !phone) {
+            $(messageDiv).html(generateMessage('warning', '请输入正确的手机号'));
             return;
         }
 
-        $('#sendVerifyCode').prop('disabled', true);
+        $(buttonId).prop('disabled', true);
         let seconds = 25;
         let cooling = setInterval(function () {
             if (seconds > 0) {
                 seconds--;
-                $('#sendVerifyCode').text(`${seconds}秒后重新发送`);
+                $(buttonId).text(`${seconds}秒后重新发送`);
             }
             else {
-                $('#sendVerifyCode').prop('disabled', false);
-                $('#sendVerifyCode').text('获取验证码');
+                $(buttonId).prop('disabled', false);
+                $(buttonId).text('获取验证码');
                 clearInterval(cooling);
             }
         }, 1000);
 
         code = Math.floor(1000 + Math.random() * 9000);
+        console.log(code);
         const currentTime = new Date();
-        const expireTime =new Date(currentTime.getTime() + 2*60000);
-        console.log(expireTime);
-        $('#verifyMessage').html(loading);
+        expireTime = new Date(currentTime.getTime() + 3 * 60000);
+        $(messageDiv).html(loading);
 
-        $.post(`${prefix}/public/api/phone-verify-local.php`, {phone, code}).done(function(data){
+        $.post(`${prefix}/public/api/phone-verify-local.php`, { phone, code }).done(function (data) {
             console.log(data)
-            if(data){
-                let messageDiv = from === 'sendSignupCode' ? '#signupVerifyMessage' : '#verifyMessage'; 
-                const result = {SendStatusSet: [{ Code: 'Ok', PhoneNumber: '13141036635'}]};
-                //const result = JSON.parse(data);
+            if (data) {
+                //const result = { SendStatusSet: [{ Code: 'Ok', PhoneNumber: '13141036635' }] };
+                const result = JSON.parse(data);
                 console.log(result);
-                const sendStatus = result && result.SendStatusSet && Array.isArray(result.SendStatusSet) && result.SendStatusSet.length > 0 ? result.SendStatusSet[0] : undefined;
+                const sendStatus =
+                    result &&
+                        result.SendStatusSet &&
+                        Array.isArray(result.SendStatusSet) &&
+                        result.SendStatusSet.length > 0 ? result.SendStatusSet[0] : undefined;
                 console.log(sendStatus)
-                if(!sendStatus){
+                if (!sendStatus) {
                     $(messageDiv).html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
                     return;
                 }
-                if(sendStatus.Code === 'Ok' && sendStatus.PhoneNumber === phone){
+                if (sendStatus.Code === 'Ok' && sendStatus.PhoneNumber === '+86' + phone) {
                     $(messageDiv).html(generateMessage('success', '验证码已经发送。'));
-                    $('#signupPhonePassword').fadeIn();
                     return;
                 }
             }
-            else{
+            else {
                 $(messageDiv).html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
             }
         });
     });
 
-    $('#switchToLogin').click(function(){
+
+    $('#sendEmailVerifyCode').click(function () {
+        emailCode = Math.floor(1000 + Math.random() * 9000);
+        const currentTime = new Date();
+        emailExpireTime = new Date(currentTime.getTime() + 5 * 60000);
+        const email = $('#signupEmail').val().replace(/\s/g, '');
+        $('#sendEmailVerifyCode').prop('disabled', true);
+        $('#signupEmailVerifyMessage').html(generateMessage('info', '正在发送验证邮件...'))
+        let seconds = 25;
+        let cooling = setInterval(function () {
+            if (seconds > 0) {
+                seconds--;
+                $('#sendEmailVerifyCode').text(`${seconds}秒后重新发送`);
+            }
+            else {
+                $('#sendEmailVerifyCode').prop('disabled', false);
+                $('#sendEmailVerifyCode').text('获取验证码');
+                clearInterval(cooling);
+            }
+        }, 1000);
+        if (!email || !validateEmailFormat(email)) {
+            $('#signupEmailVerifyMessage').html(generateMessage('warning', '请输入正确的邮箱。'));
+            return;
+        }
+        console.log(emailCode)
+        $.post(`${prefix}/public/api/signup.php?by=email`, { email, code: emailCode }).done(function (data) {
+            if (data) {
+                const result = JSON.parse(data);
+                $('#signupEmailVerifyMessage').html(generateMessage(result.type, result.content));
+                return;
+            }
+            else {
+                $('#signupEmailVerifyMessage').html(generateMessage('warning', '该请求无法被处理，请刷新后重试。'));
+                return;
+            }
+        });
+    });
+
+    $('#showLoginModal').click(function () {
         $('#userSignUpModal').modal('hide');
         $('#userLoginModal').modal('show');
     });
 
-    $('.submit-button').click(function () {
+    $('.signup-button').click(function () {
         const submitId = $(this).attr('id');
         const passwordFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+        const current_time = new Date();
         if (submitId === 'signupByEmail') {
             let isValid = true;
             $('.signup-required').each(function () {
                 if (!$(this).val().replace(/\s/g, '')) {
-                    const emptyErrorMessage = generateMessage('warning', '请填写所有必填项。');
-                    $('#signupMessage').html(emptyErrorMessage);
+                    $('#signupByEmailMessage').html(generateMessage('warning', '请填写所有必填项。'));
                     isValid = false;
                     return;
                 }
             });
             if (!isValid) {
+                $('#signupByEmailMessage').html(generateMessage('warning', '请检查您的输入。'));
                 return;
             }
-            const email = $('#signupEmail').val();
-            const password = $('#signupPassword').val();
-            const confirmPassword = $('#signupPasswordConfirm').val();
-            const phone = $('#signupPhone').val();
-            if (!validateEmailFormat($('#signupEmail').val())) {
-                $('#signupMessage').html(generateMessage('warning', '输入的邮箱格式错误。'));
-                isValid = false;
+            const email = $('#signupEmail').val().replace(/\s/g, '');
+            const password = $('#signupPassword').val().replace(/\s/g, '');
+            const confirmPassword = $('#signupPasswordConfirm').val().replace(/\s/g, '');
+            const code = $('#signupEmailCode').val().replace(/\s/g, '');
+            if (!email || !validateEmailFormat(email)) {
+                $('#signupByEmailMessage').html(generateMessage('warning', '输入的邮箱格式错误。'));
+                return;
             }
-            if (!$('#signupPassword').val().match(passwordFormat)) {
-                $('#signupMessage').html(generateMessage('warning', `密码不符合要求。请点击小图标<i class="fas fa-info-circle text-info"></i>查看密码格式，重新输入。`));
-                isValid = false;
+            if (!password.match(passwordFormat)) {
+                $('#signupByEmailMessage').html(generateMessage('warning', `密码不符合要求。请点击小图标<i class="fas fa-info-circle text-info"></i>查看密码格式，重新输入。`));
+                return;
             }
             if (password !== confirmPassword) {
-                $('#signupMessage').html(generateMessage('warning', `密码不一致，重新输入。`));
-                isValid = false;
+                $('#signupByEmailMessage').html(generateMessage('warning', `密码不一致，重新输入。`));
+                return;
             }
-            if (isValid) {
-                $('#signupMessage').html(loading);
-                $.post(`${prefix}/public/api/signup.php?redirect=${currentPage}`, 
-                    { submit_signup: 'email', usr_email: email, usr_password: password, usr_phone: phone }).done(function (data) {
+            if (!code || parseInt(code) !== emailCode) {
+                $('#signupByEmailMessage').html(generateMessage('warning', `验证码错误。`));
+                return;
+            }
+            if (current_time > emailExpireTime) {
+                $('#signupByEmailMessage').html(generateMessage('warning', '您的验证码已过期。'));
+                return;
+            }
+            $('#signupByEmailMessage').html(loading);
+            $.post(`${prefix}/public/auth/user-signup.php`,
+                { by: 'email', email, password }).done(function (data) {
                     if (data) {
                         let result = JSON.parse(data);
-                        const message = generateMessage(result.type, result.content);
-                        $('#signupMessage').html(message);
-                        $('#signupPhonePassword').fadeIn();
+                        $('#signupByEmailMessage').html(generateMessage(result.type, result.content));
+                        if (result.type === 'success') {
+                            fetchAccount();
+                            let signupModalTimeout = setTimeout(function () {
+                                $('#userSignUpModal').modal('hide');
+                                clearTimeout(signupModalTimeout);
+                            }, 2000);
+                        }
+                    }
+                    else {
+                        $('#signupByEmailMessage').html(generateMessage('warning', '请求无法处理，请刷新重试。'));
                     }
                 });
-            }
-        }
-        else if(submitId === 'signupByPhone'){
-            const phone = $('#signupPhone').val();
-            const verifyCode = $('#verifyCode').val();
-            const password = $('#')
         }
     });
+
+    $('.login-button').click(function () {
+        const target = $(this).attr('id');
+        let formData = undefined;
+        if (target === 'loginByPhone') {
+            const phone = $('#loginPhone').val().replace(/\s/g, '');
+            const verifyCode = $('#loginVerifyCode').val().replace(/\s/g, '');
+            const current_time = new Date();
+            console.log(verifyCode);
+            if (!phone || !verifyCode) {
+                $('#loginByPhoneMessage').html(generateMessage('warning', '请填写必填的项目。'));
+                return;
+            }
+            if (isNaN(phone)) {
+                $('#loginByPhoneMessage').html(generateMessage('warning', '请填写正确的手机号（11位）。'));
+                return;
+            }
+            if (parseInt(verifyCode) !== code) {
+                $('#loginByPhoneMessage').html(generateMessage('warning', '验证码不匹配，请重试。'));
+                return;
+            }
+            if (current_time > expireTime) {
+                $('#loginByPhoneMessage').html(generateMessage('warning', '您的验证码已过期。'));
+                return;
+            }
+            formData = { phone, by: 'phone' };
+        }
+        else {
+            const email = $('#loginEmail').val().replace(/\s/g, '');
+            const password = $('#loginPassword').val().replace(/\s/g, '');
+            if (!email || !password) {
+                $('#loginByEmailMessage').html(generateMessage('warning', '请填写必填的项目。'));
+                return;
+            }
+            formData = { email, password, by: 'email' };
+        }
+        $.post(`${prefix}/public/auth/user-login.php`, formData).done(function (data) {
+            if (data) {
+                const result = JSON.parse(data);
+                console.log(result)
+                const messageDiv = target === 'loginByPhone' ? '#loginByPhoneMessage' : '#loginByEmailMessage';
+                $(messageDiv).html(generateMessage(result.type, result.content));
+                if (result.type === 'success') {
+                    fetchAccount();
+                    let loginModalTimeout = setTimeout(function () {
+                        $('#userLoginModal').modal('hide');
+                        clearTimeout(loginModalTimeout);
+                    }, 2000);
+                }
+            }
+        });
+    });
+
 
     $('#loginForm').submit(function (e) {
         if (!formValidation('.login-required', '#loginMessage', $('#loginEmail').val())) {
@@ -174,18 +268,28 @@ $(document).ready(function () {
 
     $('#userProfileCompleteForm').submit(function (e) {
         e.preventDefault();
-        const email = $('#toFinishEmail').val();
-        const phone = $('#toFinishPhone').val();
-        $('#profileCompleteMessage').html(loading);
-        if (!formValidation('.profile-required', '#profileCompleteMessage', 'test@abc.ca')) {
+        const phone = $('#signupPhone').val().replace(/\s/g, '');;
+        if (!phone || isNaN(phone) || phone.length !== 11) {
+            $('#profileCompleteMessage').html(generateMessage('danger', '请填写有效的手机号。'));
             return;
         }
-        $.post(`${prefix}/public/api/account.php`, { email, phone, isSaveContact: true }).done(function (data) {
+        $('#profileCompleteMessage').html(loading);
+        $.post(`${prefix}/public/auth/user-signup.php`, { phone, by: 'phone' }).done(function (data) {
             if (data) {
-                window.location.href = `${prefix}/tests/dimension-test.php`;
+                const result = JSON.parse(data);
+                console.log(result)
+                $('#profileCompleteMessage').html(generateMessage(result.type, result.content));
+                if (result.type === 'success') {
+                    fetchAccount();
+                    let phoneModalTimeout = setTimeout(function () {
+                        $('#userProfileCompleteModal').modal('hide');
+                        clearTimeout(phoneModalTimeout);
+                    }, 2000);
+                }
             }
             else {
                 $('#profileCompleteMessage').html(generateMessage('danger', '请求未被处理，请重试。'));
+                return;
             }
         });
     });
@@ -194,6 +298,43 @@ $(document).ready(function () {
         $('#userSignUpModal').modal('hide');
         $('#userLoginModal').modal('show');
     });
+
+    function fetchAccount() {
+        $.get(`${prefix}/public/api/account.php`).done(function (data) {
+            const result = JSON.parse(data);
+            console.log(result)
+            const pageTitle = $('#hide_title').val();
+            if (result === 'no login' && pagesRequiredLogin.includes(pageTitle)) {
+                $('#userLoginModal').modal('show');
+                $('#mainContentDiv').fadeOut();
+                message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
+                $('#message').html(message);
+            }
+            user = result.user ? result.user : undefined;
+            const noLogin = `<a href="#/" data-toggle="modal" data-target="#userSignUpModal">登录 | 注册</a>`;
+            const isLogin = `<div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img id="loginUserAvatarInNav" src="" width="25" height="25" style="border-radius: 50%"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userLinks">
+                    <a class="dropdown-item" href="${prefix}/account/user.php">个人中心</a>
+                    <a class="dropdown-item" href="${prefix}/public/auth/user-logout.php">登出</a>
+                </div>
+            </div>`;
+            $('#userInNav').html(user ? isLogin : noLogin);
+            if (user) {
+                $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : `${prefix}/asset/image/avatar.png`);
+            }
+            if (user && user.unionid && !user.email && !user.phone) {
+                $('#mainContentDiv').fadeOut();
+                $('#userProfileCompleteModal').modal('show');
+                $('#message').html(generateMessage(
+                    'warning',
+                    '在开始测试前，请您点击<a href="#/" data-toggle="modal" data-target="#userProfileCompleteModal">此处</a>完善联系方式。'));
+            }
+            return;
+        });
+    }
 
     function formValidation(className, message, email) {
         let isValid = true;
@@ -236,6 +377,4 @@ $(document).ready(function () {
             </div>
         </div>`;
     }
-
-
 });

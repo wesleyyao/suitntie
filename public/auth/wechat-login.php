@@ -4,6 +4,7 @@
     $customer = new Customer();
     $appId = "wxcfeb0aba33ebba0c";
     $secret = "da10d4ea0a4d2a36843b81044642759e";
+    $redirect_url = "/suitntie/index.php";
     if(isset($_GET["code"]) && isset($_GET["state"])){
         $code = $_GET["code"];
         $state = $_GET["state"];
@@ -62,7 +63,8 @@
                 $_SESSION["auth_message"]["message"] = "保存新用户数据未成功，请重新扫描二维码。";
             }
         }
-        header("Location: /suitntie/account/user.php");
-        exit;
-    }        
+        $redirect_url = isset($_GET["redirect"]) ? $_GET["redirect"] : "/suitntie/index.php";
+    }
+    redirect($redirect_url);
+    exit;
 ?>

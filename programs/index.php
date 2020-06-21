@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <div class="card one-on-one-promote">
                         <div class="card-body">
-                            <img class="program-one-on-one-img d-sm-none d-md-block"
+                            <img class="program-one-on-one-img d-none d-md-block"
                                 src="<?php echo $global_prefix; ?>/asset/image/pics/programs/contact.png" />
                             <div>
                                 <h2 class="card-title">一对一专业导师科普</h2>

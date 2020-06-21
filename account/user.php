@@ -67,22 +67,14 @@
                                         <div class="row">
                                             <div class="col-lg-2 col-md-3 col-sm-4">
                                                 <div class="row">
-                                                    <div class="col-12">
+                                                    <div class="col-12 text-center mb-5">
                                                         <img src="/suitntie/asset/image/avatar.png" id="profileHeadImg"
                                                             class="img-cell" style="width: 100%; height: auto;"
                                                             alt="avatar" />
                                                     </div>
                                                 </div>
-                                                <br />
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <button class="btn btn-outline-dark btn-block"
-                                                            data-toggle="modal"
-                                                            data-target="#editProfileModal">修改资料</button>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <div class="col-lg-8 col-md-9 col-sm-8">
+                                            <div class="col-md-9 col-sm-8">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                                         <label class="h5">昵称</label><br />
@@ -120,6 +112,14 @@
                                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                                         <label class="h5">国家</label><br />
                                                         <span class="text-muted" id="profileCountry">-</span>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <button class="btn ghostSecBtn btn-block mb-4"
+                                                            data-toggle="modal"
+                                                            data-target="#editProfileModal">修改资料</button>
                                                     </div>
                                                 </div>
                                             </div>

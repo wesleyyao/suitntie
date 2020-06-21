@@ -1,24 +1,52 @@
 <?php
     require_once("../includes/initial.php");
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $redirect_to = isset($_GET["redirect"]) ? $_GET["redirect"] : '';
-        if(!isset($_POST["login_email"]) || !isset($_POST["login_password"])){
-            $_SESSION["auth_message"]["type"] = "error";
-            $_SESSION["auth_message"]["message"] = "验证错误，请重试。";
-        }
-        else{
-            $email = $_POST["login_email"];
-            $password = $_POST["login_password"];
-            $found_user_id = $customer->validate_login($email, $password);
-            if($found_user_id){
-                $_SESSION["login_user"] = $found_user_id;
-                redirect(!empty($redirect_to) ? $redirect_to : '/index.php');
+    $message = array();
+    $current_time = date("Y-m-d H:i:s");
+    $ip = $_SERVER["SERVER_ADDR"];
+    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["by"])){
+        $by = $_POST["by"];
+        if($by == "phone"){
+            if(!isset($_POST["phone"]) || empty(trim($_POST["phone"]))){
+                $message["type"] = "error";
+                $message["content"] = "请求错误，请刷新后重试";
+            }
+            $phone = trim($_POST["phone"]);
+            $is_found = $customer->find_user_by_phone($phone);
+            if($is_found){
+                $_SESSION["login_user"] = $customer->id;
+                
+                $message["type"] = "success";
+                $message["content"] = "您登录成功，正在为您准备数据...";
             }
             else{
-                $_SESSION["auth_message"]["type"] = "error";
-                $_SESSION["auth_message"]["message"] = "未找到该用户，请重试。";
+                $is_saved = $customer->signup_by_phone($phone, $current_time, $ip);
+                if($is_saved){
+                    $_SESSION["login_user"] = $customer->id;
+                }
+                $message["type"] = $is_saved ? 'success' : 'danger';
+                $message["content"] = $is_saved ? "您登录成功，正在为您准备数据..." : "请求无法被处理，请刷新后重试。";
             }
         }
-        redirect(!empty($redirect_to) ? $redirect_to : '/index.php');
+        else if($by == "email"){
+            if(!isset($_POST["email"]) || !isset($_POST["password"])){
+                $message["type"] = "danger";
+                $message["content"] = "请填写所有必填内容。";
+            }
+            else{
+                $email = trim($_POST["email"]);
+                $password = trim($_POST["password"]);
+                $found_user_id = $customer->validate_login($email, $password);
+                if($found_user_id){
+                    $_SESSION["login_user"] = $found_user_id;
+                    $message["type"] = "success";
+                    $message["content"] = "您登录成功，正在为您准备数据...";
+                }
+                else{
+                    $message["type"] = "warning";
+                    $message["content"] = "未找到该用户，请填写有效的信息。";
+                }
+            }
+        }
+        echo json_encode($message);
     }
 ?>

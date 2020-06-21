@@ -30,6 +30,10 @@ h3{
     padding-right:45px;
 }
 
+.contentBox{
+    padding:0 3rem !important;
+}
+
 @media screen and (max-width: 1200px) {
     .partnerBlock img{
         padding:0;
@@ -52,8 +56,22 @@ h3{
     }
 }
 
+@media screen and (max-width: 637px) {
+    .container{
+        padding:0 !important;
+    }
+}
+
 @media screen and (max-width: 576px) {
     .partnerPhoto{
         padding:50px 80px;
+    }
+
+    .contentBox{
+        padding:0 !important;
+    }
+
+    .row{
+        margin:0 !important;
     }
 }

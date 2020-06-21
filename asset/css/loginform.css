@@ -10,14 +10,14 @@
     border-radius: 10px 10px 0 0;
 }
 
-.userLoginModal .modal-body{
+/* .userLoginModal .modal-body{
     padding:40px 0 !important;
-}
+} */
 
-.userLoginModal form input{
+/* .userLoginModal form input{
     border-radius: 4px;
     margin-bottom: 20px !important;
-}
+} */
 
 .userLoginModal form ::placeholder{
     color:#777777;
@@ -34,15 +34,15 @@
     font-size:0.9em;
 }
 
-.userLoginModal a{
+/* .userLoginModal a{
     color: #F19F4D !important;
-}
+} */
 
 .emailSignup i{
     color: #F19F4D !important;
 }
 
-.emailSignup{
+.emailSignup, .cellSignup{
     margin-bottom: 30px;
 }
 
@@ -56,4 +56,14 @@
 
 .signup-options{
     margin-right: 3px;
+}
+
+.impowerBox .title{
+    display: none !important;
+}
+
+@media (max-width: 576px) { 
+    #accountCenter img{
+        width:150px !important;
+    }
 }

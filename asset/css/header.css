@@ -131,3 +131,10 @@
 .level-3-dropdown li{
     padding-left: 10px;
 }
+
+/* drop down menu */
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a
+{
+    background-color: transparent !important;
+    outline: none !important;
+}
