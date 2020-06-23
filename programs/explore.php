@@ -93,6 +93,12 @@
                     <div id="childPrograms"></div>
                 </div>
             </div>
+            <br />
+            <div class="row mb-5">
+                <div class="col-12">
+                    <a href="index.php" class="btn primBtn">回到总览</a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="program-contact-form">

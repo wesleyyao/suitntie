@@ -19,7 +19,12 @@ $(document).ready(function () {
         $('#userLoginModal').modal('hide');
         $('#userSignUpModal').modal('show');
     });
-    const redirectUrl = currentPage.replace("http://www.suitntie.cn", '');
+
+    $('.carousel').carousel({
+        interval: 3000
+    });
+
+    const redirectUrl = currentPage.replace("http://www.suitntie.cn", ''); console.log(redirectUrl)
 
     const obj = new WxLogin
         ({
@@ -70,23 +75,19 @@ $(document).ready(function () {
         }, 1000);
 
         code = Math.floor(1000 + Math.random() * 9000);
-        console.log(code);
         const currentTime = new Date();
-        expireTime = new Date(currentTime.getTime() + 3 * 60000);
+        expireTime = new Date(currentTime.getTime() + 1 * 60000);
         $(messageDiv).html(loading);
 
         $.post(`${prefix}/public/api/phone-verify-local.php`, { phone, code }).done(function (data) {
-            console.log(data)
             if (data) {
                 //const result = { SendStatusSet: [{ Code: 'Ok', PhoneNumber: '13141036635' }] };
                 const result = JSON.parse(data);
-                console.log(result);
                 const sendStatus =
                     result &&
                         result.SendStatusSet &&
                         Array.isArray(result.SendStatusSet) &&
                         result.SendStatusSet.length > 0 ? result.SendStatusSet[0] : undefined;
-                console.log(sendStatus)
                 if (!sendStatus) {
                     $(messageDiv).html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
                     return;
@@ -126,7 +127,6 @@ $(document).ready(function () {
             $('#signupEmailVerifyMessage').html(generateMessage('warning', '请输入正确的邮箱。'));
             return;
         }
-        console.log(emailCode)
         $.post(`${prefix}/public/api/signup.php?by=email`, { email, code: emailCode }).done(function (data) {
             if (data) {
                 const result = JSON.parse(data);
@@ -193,10 +193,11 @@ $(document).ready(function () {
                         let result = JSON.parse(data);
                         $('#signupByEmailMessage').html(generateMessage(result.type, result.content));
                         if (result.type === 'success') {
-                            fetchAccount();
+                            //fetchAccount();
                             let signupModalTimeout = setTimeout(function () {
-                                $('#userSignUpModal').modal('hide');
-                                clearTimeout(signupModalTimeout);
+                                //$('#userSignUpModal').modal('hide');
+                                window.location.href = currentPage;
+                                //clearTimeout(signupModalTimeout);
                             }, 2000);
                         }
                     }
@@ -214,7 +215,6 @@ $(document).ready(function () {
             const phone = $('#loginPhone').val().replace(/\s/g, '');
             const verifyCode = $('#loginVerifyCode').val().replace(/\s/g, '');
             const current_time = new Date();
-            console.log(verifyCode);
             if (!phone || !verifyCode) {
                 $('#loginByPhoneMessage').html(generateMessage('warning', '请填写必填的项目。'));
                 return;
@@ -245,26 +245,25 @@ $(document).ready(function () {
         $.post(`${prefix}/public/auth/user-login.php`, formData).done(function (data) {
             if (data) {
                 const result = JSON.parse(data);
-                console.log(result)
                 const messageDiv = target === 'loginByPhone' ? '#loginByPhoneMessage' : '#loginByEmailMessage';
                 $(messageDiv).html(generateMessage(result.type, result.content));
                 if (result.type === 'success') {
-                    fetchAccount();
+                    //fetchAccount();
                     let loginModalTimeout = setTimeout(function () {
-                        $('#userLoginModal').modal('hide');
-                        clearTimeout(loginModalTimeout);
+                        window.location.href = currentPage;
+                        //$('#userLoginModal').modal('hide');
+                        //clearTimeout(loginModalTimeout);
                     }, 2000);
                 }
             }
         });
     });
 
-
-    $('#loginForm').submit(function (e) {
-        if (!formValidation('.login-required', '#loginMessage', $('#loginEmail').val())) {
-            e.preventDefault();
-        }
-    });
+    // $('#loginForm').submit(function (e) {
+    //     if (!formValidation('.login-required', '#loginMessage', $('#loginEmail').val())) {
+    //         e.preventDefault();
+    //     }
+    // });
 
     $('#userProfileCompleteForm').submit(function (e) {
         e.preventDefault();
@@ -277,7 +276,6 @@ $(document).ready(function () {
         $.post(`${prefix}/public/auth/user-signup.php`, { phone, by: 'phone' }).done(function (data) {
             if (data) {
                 const result = JSON.parse(data);
-                console.log(result)
                 $('#profileCompleteMessage').html(generateMessage(result.type, result.content));
                 if (result.type === 'success') {
                     fetchAccount();
@@ -302,7 +300,6 @@ $(document).ready(function () {
     function fetchAccount() {
         $.get(`${prefix}/public/api/account.php`).done(function (data) {
             const result = JSON.parse(data);
-            console.log(result)
             const pageTitle = $('#hide_title').val();
             if (result === 'no login' && pagesRequiredLogin.includes(pageTitle)) {
                 $('#userLoginModal').modal('show');
@@ -325,7 +322,14 @@ $(document).ready(function () {
             if (user) {
                 $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : `${prefix}/asset/image/avatar.png`);
             }
-            if (user && user.unionid && !user.email && !user.phone) {
+            const isPageRequirePhone = 0;
+            pagesRequiredPhone.forEach(function (item) {
+                if (redirectUrl.indexOf(item) > -1) {
+                    isPageRequirePhone = 1;
+                    return;
+                }
+            });
+            if (isPageRequirePhone === 1 && user && user.unionid && !user.email && !user.phone) {
                 $('#mainContentDiv').fadeOut();
                 $('#userProfileCompleteModal').modal('show');
                 $('#message').html(generateMessage(
@@ -334,27 +338,6 @@ $(document).ready(function () {
             }
             return;
         });
-    }
-
-    function formValidation(className, message, email) {
-        let isValid = true;
-        $(className).each(function () {
-            if (!$(this).val().replace(/\s/g, '')) {
-                $(message).html(generateMessage('warning', '请填写所有必填项。'));
-                isValid = false;
-                return;
-            }
-            else if (!validateEmailFormat(email)) {
-                $(message).html(generateMessage('warning', '输入的邮箱格式错误。'));
-                isValid = false;
-                return;
-            }
-            else {
-                isValid = true;
-                return;
-            }
-        });
-        return isValid;
     }
 
     function validateEmailFormat(mail) {

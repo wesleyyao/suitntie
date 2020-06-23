@@ -13,7 +13,8 @@
                 <a class="nav-link" href="/suitntie/index.php">首页</a>
             </li>
             <li class="nav-item global-nav-item">
-                <a class="nav-link" href="/suitntie/tests/dimension-test.php">个人测试</a>
+                <a class="nav-link" href="/suitntie/tests/dimension-test.php">个人测试 <span
+                        class="badge badge-warning">免费</span></a>
             </li>
             <li class="nav-item global-nav-item dropdown">
                 <a class="dropdown-toggle nav-link" href="#" role="button" id="programLinks" data-toggle="dropdown"

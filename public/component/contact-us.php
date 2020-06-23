@@ -7,37 +7,35 @@
                     placeholder="姓名" />
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
-                <label><span class="text-danger">*</span> E-Mail：</label>
-                <input type="email" maxlength="128" id="contactEmail" class="form-control contact-required"
-                    placeholder="E-Mail" />
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
                 <label><span class="text-danger">*</span> 手机号：</label>
                 <input type="text" maxlength="64" id="contactPhone" class="form-control contact-required"
                     placeholder="手机号" />
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
-                <label> 微信号：</label>
+                <label>E-Mail：</label>
+                <input type="email" maxlength="128" id="contactEmail" class="form-control" placeholder="E-Mail" />
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <label>微信号：</label>
                 <input type="text" maxlength="64" id="contactWechat" class="form-control" placeholder="微信号" />
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <label><span class="text-danger">*</span> 所在城市：</label>
-                <input type="text" maxlength="128" id="contactCity" class="form-control contact-required"
-                    placeholder="所在城市" />
+                <label> 所在城市：</label>
+                <input type="text" maxlength="128" id="contactCity" class="form-control" placeholder="所在城市" />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
-                <label><span class="text-danger">*</span> 所在高校：</label>
-                <input type="text" maxlength="128" id="contactSchool" class="form-control contact-required"
-                    placeholder="所在高校" />
+                <label>所在高校：</label>
+                <input type="text" maxlength="128" id="contactSchool" class="form-control" placeholder="所在高校" />
             </div>
         </div>
 
         <div class="row pb-3">
             <div class="col-12">
                 <label><span class="text-danger">*</span> 提问：</label>
-                <textarea type="text" rows="5" maxlength="2500" id="contactContent" class="form-control"></textarea>
+                <textarea type="text" rows="5" maxlength="2500" id="contactContent"
+                    class="form-control contact-required"></textarea>
             </div>
         </div>
         <div id="contactMessage"></div>

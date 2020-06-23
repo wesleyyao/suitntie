@@ -48,7 +48,7 @@
                                                 aria-label="手机号" aria-describedby="phoneNumberPrefix" maxlength="12"
                                                 style="padding:28px 20px;">
                                             <div class="input-group-append">
-                                                <button class="btn primBtn  send-verify-code" id="sendLoginCode"
+                                                <button class="btn primBtn send-verify-code" id="sendLoginCode"
                                                     type="button">获取验证码</button>
                                             </div>
                                         </div>
@@ -62,7 +62,8 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-12 text-right">
-                                        <button type="button" class="btn ghostSecBtn close-signup-btn">关闭</button>
+                                        <button type="button" class="btn ghostSecBtn close-signup-btn"
+                                            data-dismiss="modal">关闭</button>
                                         <button type="button" class="btn primBtn login-button"
                                             id="loginByPhone">提交</button>
                                     </div>
@@ -127,7 +128,8 @@
                 <ul class="nav nav-pills" id="signupTabs" role="tablist">
                     <li class="nav-item signup-options">
                         <a class="nav-link btn-light active" id="phoneSignup-tab" data-toggle="tab" href="#phoneSignup"
-                            role="tab" aria-controls="profile" aria-selected="false">微信注册</a>
+                            role="tab" aria-controls="profile" aria-selected="false">微信注册 <span
+                                class="badge badge-warning">推荐</span></a>
                     </li>
                     <li class="nav-item signup-options">
                         <a class="nav-link btn-light" id="emailSignup-tab" data-toggle="tab" href="#emailSignup"
@@ -138,6 +140,13 @@
                     <div class="tab-pane fade show active" id="phoneSignup" role="tabpanel"
                         aria-labelledby="phoneSignup-tab">
                         <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="alert alert-primary" role="alert">
+                                    <i class="fas fa-info-circle"></i> 如果您是海外用户，建议使用邮箱注册。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-12">
                                 <div id="signup_container" class="text-center"></div>
                             </div>
@@ -159,9 +168,9 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <input type="text" id="signupEmail" class="form-control" placeholder=""
-                                        aria-label="邮箱" maxlength="64">
+                                        aria-label="邮箱" maxlength="64" style="padding:28px 20px;">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" id="sendEmailVerifyCode"
+                                        <button class="btn primBtn" id="sendEmailVerifyCode"
                                             type="button">获取验证码</button>
                                     </div>
                                 </div>

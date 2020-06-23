@@ -138,3 +138,11 @@
     background-color: transparent !important;
     outline: none !important;
 }
+
+.nav-item-tag{
+    top: 0;
+    right: 0;
+    padding: 2px 3px;
+    font-size: 0.7em;
+    background-color: #e0a911;
+}
