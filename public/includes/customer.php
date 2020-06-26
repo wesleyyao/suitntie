@@ -213,6 +213,19 @@
             return false;
         }
 
+        public function find_user_by_openid($openid){
+            $query = "SELECT `id` FROM customers WHERE openid = ?";
+            $sql = $this->conn->prepare($query);
+            $sql->bind_param("s", $openid);
+            $sql->execute();
+            $result = $sql->get_result();
+            $data = mysqli_fetch_assoc($result);
+            if($data && !empty($data["id"])){
+                return $data["id"];
+            }
+            return false;
+        }
+
         public function save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $unionid){
             $status = "open";
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);

@@ -99,6 +99,9 @@
                                 <div class="row mt-4">
                                     <div class="col-12">
                                         <div id="login_container" class="text-center"></div>
+                                        <div id="login_mobile_container" class="text-center">
+                                            请确保在微信客户端中打开此网页，点击<a href="" id="login_wechat_mobile_link">此处</a>前往授权。
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -149,6 +152,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div id="signup_container" class="text-center"></div>
+                                <div id="signup_mobile_container" class="text-center">
+                                    请确保在微信客户端中打开此网页，点击<a href="" id="signup_wechat_mobile_link">此处</a>前往授权。
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -273,7 +279,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="offset-1 col-10 text-right">
-                            <a class="btn ghostSecBtn" href="../../suitntie/account/user.php">回到个人中心</a>
+                            <button class="btn ghostSecBtn" data-dismiss="modal">返回</button>
                             <button type="submit" class="btn primBtn" id="CompleteProfile">提交</button>
                         </div>
                     </div>

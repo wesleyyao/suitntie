@@ -322,14 +322,14 @@ $(document).ready(function () {
             if (user) {
                 $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : `${prefix}/asset/image/avatar.png`);
             }
-            const isPageRequirePhone = 0;
+            let isPageRequirePhone = 0;
             pagesRequiredPhone.forEach(function (item) {
                 if (redirectUrl.indexOf(item) > -1) {
                     isPageRequirePhone = 1;
                     return;
                 }
             });
-            if (isPageRequirePhone === 1 && user && user.unionid && !user.email && !user.phone) {
+            if (isPageRequirePhone == 1 && user && !user.email && !user.phone) {
                 $('#mainContentDiv').fadeOut();
                 $('#userProfileCompleteModal').modal('show');
                 $('#message').html(generateMessage(

@@ -2,10 +2,8 @@
     require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/utils/initial.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/customer.php");
     $customer = new Customer();
-    $appId = "wxcfeb0aba33ebba0c";
-    $secret = "da10d4ea0a4d2a36843b81044642759e";
-    // $appId = "wx25d424c51ed0650d";
-    // $secret = "b93d576736a7dabf70fef90294432cbd";
+    $appId = "wx25d424c51ed0650d";
+    $secret = "b93d576736a7dabf70fef90294432cbd";
     $redirect_url = "/suitntie/index.php";
     if(isset($_GET["code"]) && isset($_GET["state"])){
         $code = $_GET["code"];
@@ -42,8 +40,8 @@
         curl_close($ch);
 
         $arr2=json_decode($json2,1);
-        //print_r($arr2);
-        $found_user = $customer->find_user_by_uid($arr1["unionid"]);
+    //print_r($arr2);
+        $found_user = $customer->find_user_by_openid($arr1["openid"]);
         if($found_user){
             $_SESSION["login_user"] = $found_user;
         }
