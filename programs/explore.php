@@ -95,10 +95,11 @@
             </div>
             <br />
             <div class="row mb-5">
-                <div class="col-12">
+                <div class="col-12 text-center">
                     <a href="index.php" class="btn primBtn">回到总览</a>
                 </div>
             </div>
+            <br />
         </div>
     </div>
     <div class="program-contact-form">

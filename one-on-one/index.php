@@ -135,7 +135,7 @@ require_once("../utils/initial.php");
                                     <label>专业领域</label>
                                     <p>人类学</p>
                                     <label>毕业院校</label>
-                                    <p>剑桥大学，伦敦大学学院（UCL)</p>
+                                    <p>东华大学，伦敦大学学院（UCL)</p>
                                     <p>
                                         小雨学姐是伦敦大学学院（UCL）材料与视觉文化（人类学院）的硕士，专注于青年文化与性别研究，曾在国内领先市场咨询公司实习，服务于可口可乐、腾讯等国内外知名品牌。
                                     </p>
@@ -292,45 +292,51 @@ require_once("../utils/initial.php");
                 </div>
             </div>
             <div class="row fourSteps">
-                <div class="col-lg-3 col-md-12 col-sm-12 d-flex align-items-stretch">
+                <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
                             <div class="row">
-                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span class="numberCircle lightShadow">1</span></h3>
-                                <p class="col-lg-12 col-md-10 col-sm-10 h-100 justify-content-center">
-                                    学生通过适途评测获取独家的个人报告；主动探索了报告中最感兴趣的几个专业；并填写了个人信息表。</p>
+                                <div class="row text-center">
+                                    <img src="../asset/image/icons/process/process_icon_Step1.svg" width="40px" />
+                                    <h5 class="card-title text-center col-12 mb-3">1. 兴趣调查</h5>
+                                    <p class="col-12 h-100 justify-content-center">
+                                        学生通过适途评测获取独家的个人报告；主动探索了报告中最感兴趣的几个专业；并填写了个人信息表。</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 d-flex align-items-stretch">
+                <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
-                            <div class="row">
-                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span class="numberCircle lightShadow">2</span></h3>
-                                <p class="col-lg-12 col-md-10 col-sm-10 h-100 justify-content-center">
+                            <div class="row text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step2.svg" width="40px" />
+                                <h5 class="card-title text-center col-12 mb-3">2. 安排导师</h5>
+                                <p class="col-12 h-100 justify-content-center">
                                     适途咨询师根据学生信息进一步与学生沟通，了解学生更多想法，并根据学生需求安排一个或多个一对一专业科普导师。</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 d-flex align-items-stretch">
+                <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
-                            <div class="row">
-                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span class="numberCircle lightShadow">3</span></h3>
-                                <p class="col-lg-12 col-md-10 col-sm-10 h-100 justify-content-center">
+                            <div class="row text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step3.svg" width="40px" />
+                                <h5 class="card-title text-center col-12 mb-3">3. 师生沟通</h5>
+                                <p class="col-12 h-100 justify-content-center">
                                     一对一专业科普导师收集适途咨询师给到的学生信息，根据约定的时间进行正式视频或音频沟通。</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 d-flex align-items-stretch">
+                <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
-                            <div class="row">
-                                <h3 class="card-title text-center col-lg-12 col-md-2 col-sm-2"><span class="numberCircle lightShadow">4</span></h3>
-                                <p class="col-lg-12 col-md-10 col-sm-10 h-100 justify-content-center">
+                            <div class="row text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step4.svg" width="40px" />
+                                <h5 class="card-title text-center col-12 mb-3">4. 咨询反馈</h5>
+                                <p class="col-12 h-100 justify-content-center">
                                     适途咨询师对学生进行回访，学生可以就与导师沟通的结果进行反馈。</p>
                             </div>
                         </div>

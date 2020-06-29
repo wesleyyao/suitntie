@@ -55,7 +55,11 @@
     padding: 0 5px;
 }
 
-.numberCircle{
+.fourSteps img{
+    margin:0 auto 20px auto;
+}
+
+/* .numberCircle{
     border-radius: 30px;
     -moz-border-radius: 30px;
     -webkit-border-radius: 30px;
@@ -66,7 +70,7 @@
     text-align: center;
     width: 60px; 
     margin-bottom: 15px;
-}
+} */
 
 /* Contact Form */
 .home-contact-form{
@@ -217,4 +221,4 @@
     bottom:50px;
     left:0;
     right:0;
-} 
+}

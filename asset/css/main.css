@@ -1,4 +1,3 @@
-/* Global */
 body {
     font-family: 'Noto Sans SC', sans-serif;
     line-height: 1.6 !important;
@@ -138,6 +137,35 @@ label:focus,
     transition: 0.3s;
 }
 
+.primBtnSM{
+    margin:0 auto;
+    color:white !important;
+    background-color: #F19F4D !important;
+    transition: 0.3s;
+    font-weight:100;
+}
+
+  .primBtnSM:hover{    
+    background-color: #9E744E !important;
+    color:white;
+    transition: 0.3s;
+}
+
+.ghostSecBtnSM{
+    margin:0 auto;
+    border: 1px solid #777777;
+    color:#777777 !important;
+    transition: 0.3s;
+    font-weight:100;
+  }
+
+  .ghostSecBtnSM:hover{    
+    background-color:  #777777 !important;
+    color:white !important;
+    transition: 0.3s;
+    border:none;
+}
+
 .secBtn{
     font-weight: 100;
     margin:0 auto;
@@ -150,6 +178,11 @@ label:focus,
     transition: 0.3s;
     background-color: #F19F4D !important;
     color:white;
+}
+
+.login-badge{
+    background-color: white;
+    color: #2F4858;
 }
 
 /* arrow animation */
@@ -333,6 +366,3 @@ label:focus,
         top: 0;
     }
 }
-
-
-
