@@ -3,7 +3,6 @@ $(document).ready(function () {
     $.get('/suitntie/public/api/program.php?type=all').done(function (data) {
         if (data) {
             const result = JSON.parse(data);
-            console.log(result)
             if (Array.isArray(result) && result.length > 0) {
                 result.forEach(function (item, index) {
                     programsDropDown += `
@@ -24,12 +23,12 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click', '.program-category', function(e){
+    $(document).on('click', '.program-category', function (e) {
         e.stopPropagation();
         const id = $(this).next('.level-3-dropdown').attr('id');
         $(this).next('.level-3-dropdown').toggle();
-        $('.level-3-dropdown').each(function(){
-            if($(this).attr('id') !== id){
+        $('.level-3-dropdown').each(function () {
+            if ($(this).attr('id') !== id) {
                 $(this).hide();
             }
         });

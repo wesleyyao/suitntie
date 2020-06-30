@@ -44,7 +44,7 @@ $(document).ready(function () {
                 isValid = false;
                 return;
             }
-            else if (!validateEmailFormat(email)) {
+            else if (email && !validateEmailFormat(email)) {
                 $(message).html(generateMessage('warning', '输入的邮箱格式错误。'));
                 $('#contactMessage').delay(3000).fadeOut();
                 isValid = false;

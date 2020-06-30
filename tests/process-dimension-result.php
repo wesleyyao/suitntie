@@ -2,7 +2,8 @@
     require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
     $result_category = "dimension_test_result";
     $current_time = date("Y-m-d H:i:s");
-    $receiver = "wesleyaijx@gmail.com";
+    $receiver = "tim.zhao@suitntie.cn";
+    $receiver2 = "fangqian@suitntie.cn";
     $subject = "适途教育[通知] - 内部邮件 - 新测试结果";
     
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -39,7 +40,7 @@
                 $customer->fetch_current_user(isset($_SESSION["login_user"]) ? $_SESSION["login_user"] : 0);
                 $dimension_result->fetchResult($new_result_id);
                 $email_content = emailContent($customer->nick_name, $dimension_result->code, $dimension_result->title, $customer->email, $customer->phone);
-                $is_send = $email->send($receiver, $subject, $email_content);
+                $is_send = $email->send($receiver, $receiver2, $subject, $email_content);
 
                 unset($_SESSION["new_test"]);
             }

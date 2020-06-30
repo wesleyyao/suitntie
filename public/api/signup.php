@@ -19,7 +19,7 @@
                 }
                 else if($is_found == "not found"){
                     $content = generateEmailContent($email_addr, $code);
-                    $is_send = $email->send($email_addr, $subject, $content);
+                    $is_send = $email->send($email_addr, "", $subject, $content);
                     if($is_send){
                         $message["type"] = "success";
                         $message["content"] = "验证码已经成功发送到您的邮箱，该验证码的有效期为5分钟。";

@@ -24,7 +24,6 @@ $(document).ready(function () {
         e.preventDefault();
         $('.required-input').each(function () {
             if (!$(this).val().replace(/\s/g, '')) {
-                console.log('hree')
                 $('#profileEditMessage').html(generateMessage('danger', '请填写所有必填项。'));
                 isValid = false;
                 return;
@@ -51,8 +50,13 @@ $(document).ready(function () {
                 isUpdate: true
             }
             $('#profileEditMessage').html(loading);
-            $.post(`${prefix}/public/api/account.php`, data).done(function (newData) {
-                if (newData) {
+            $.post(`${prefix}/public/api/account.php`, data).done(function (result) {
+                if (result) {
+                    const data = JSON.parse(result);
+                    if (data == "exist") {
+                        $('#profileEditMessage').html(generateMessage('warning', '该邮箱或手机已经被注册。'));
+                        return;
+                    }
                     fetchUserInfo();
                     $('#profileEditMessage').html(generateMessage('success', '您的信息已更新成功。'));
                     timeoutHideModal();
@@ -71,7 +75,6 @@ $(document).ready(function () {
         $.get(`${prefix}/public/api/result.php?result=${resultId}`).done(function (data) {
             const result = JSON.parse(data);
             if (result) {
-                console.log(result)
                 if (result === 'no login') {
                     $('#userLoginModal').modal('show');
                     $('#loadingDiv').hide();
@@ -217,7 +220,6 @@ $(document).ready(function () {
                 $('#message').html(message);
                 return;
             }
-            console.log(result);
             user = result.user ? result.user : undefined;
             tests = result.results ? result.results : [];
             if (user) {

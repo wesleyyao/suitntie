@@ -23,12 +23,31 @@
                     exit;
                 }
                 $nick_name = $_POST["nickName"];
-                $email = $_POST["email"];
-                $phone = $_POST["phone"];
+                $email = trim($_POST["email"]);
+                $phone = trim($_POST["phone"]);
                 $sex = $_POST["sex"];
                 $city = $_POST["city"];
                 $province = $_POST["province"];
                 $country = $_POST["country"];
+                $is_found_email = $customer->find_user_by_email($email);
+                if(!$is_found_email){
+                    echo json_encode(false);
+                    exit; 
+                }
+                else if($is_found_email == "found" && $customer->id != $user_id){
+                    echo json_encode("exist");
+                    exit; 
+                }
+                $is_found_phone = $customer->find_user_by_phone($phone);
+                if(!$is_found_phone){
+                    echo json_encode(false);
+                    exit; 
+                }
+                else if($is_found_phone && $customer->id != $user_id){
+                    echo json_encode("exist");
+                    exit; 
+                }
+
                 $is_update = $customer->update_user($nick_name, $email, $phone, $sex, $city, $province, $country, $user_id);
                 echo json_encode($is_update);
             }

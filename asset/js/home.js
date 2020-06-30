@@ -3,7 +3,7 @@ $(document).ready(function () {
     let topSlider = '';
     let topController = '';
     $.get(`${prefix}/public/api/home.php`).done(function (data) {
-        const result = JSON.parse(data); console.log(result)
+        const result = JSON.parse(data);
         if (result && Array.isArray(result) && result.length > 0) {
             result.forEach(function (item, index) {
                 topSlider += `<div class="carousel-item ${index == 0 ? 'active' : ''}">

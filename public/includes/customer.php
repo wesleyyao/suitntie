@@ -117,7 +117,7 @@
                 if(empty($data["id"])){
                     return "not found";
                 }
-                //$this->id = $data["id"];
+                $this->id = $data["id"];
                 return "found";
             }
             return false;
@@ -160,9 +160,14 @@
                 $query = "UPDATE customers SET temporary_link = '' WHERE id = ?";
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("i", $id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -226,17 +231,44 @@
             return false;
         }
 
-        public function save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $unionid){
+        public function save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $unionid, $ip, $current_time){
             $status = "open";
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
-                $query = "INSERT INTO customers (`nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionid`, `status`) VALUES (?,?,?,?,?,?,?,?)";
+                $query = "INSERT INTO customers (`nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionid`, `status`, `date_time`, `ip`) VALUES (?,?,?,?,?,?,?,?,?,?)";
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sissssss", $nickname, $sex, $city, $province, $country, $headImg, $unionid, $status);
-                $sql->execute();
-                $new_id = $this->conn->insert_id;
-                $this->conn->commit();
-                return $new_id;
+                $sql->bind_param("sissssssss", $nickname, $sex, $city, $province, $country, $headImg, $unionid, $status, $current_time, $ip);
+                if($sql->execute()){
+                    $new_id = $this->conn->insert_id;
+                    $this->conn->commit();
+                    return $new_id;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
+        }
+
+        public function save_wechat_mobile_user($nickname, $sex, $city, $province, $country, $headImg, $openid, $ip, $current_time){
+            $status = "open";
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            try {
+                $query = "INSERT INTO customers (`nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `openid`, `status`, `date_time`, `ip`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                $sql = $this->conn->prepare($query);
+                $sql->bind_param("sissssssss", $nickname, $sex, $city, $province, $country, $headImg, $openid, $status, $current_time, $ip);
+                if($sql->execute()){
+                    $new_id = $this->conn->insert_id;
+                    $this->conn->commit();
+                    return $new_id;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -249,9 +281,14 @@
                 $query = "UPDATE customers SET nick_name = ?, email = ?, phone = ?, sex = ?, city = ?, province = ?, country = ? WHERE id = ?";
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("sssisssi", $nickname, $email, $phone, $sex, $city, $province, $country, $user_id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;

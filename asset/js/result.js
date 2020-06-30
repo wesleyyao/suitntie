@@ -17,7 +17,6 @@ $(document).ready(function () {
     let imgSrc = '';
     $.get(`${prefix}/public/api/result.php`).done(function (data) {
         const result = JSON.parse(data);
-        console.log(result);
         if (result) {
             if (result === 'no login') {
                 $('#userLoginModal').modal('show');

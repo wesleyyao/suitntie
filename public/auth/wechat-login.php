@@ -4,6 +4,8 @@
     $customer = new Customer();
     $appId = "wxcfeb0aba33ebba0c";
     $secret = "da10d4ea0a4d2a36843b81044642759e";
+    $current_time = date("Y-m-d H:i:s");
+    $ip = $_SERVER["SERVER_ADDR"];
     // $appId = "wx25d424c51ed0650d";
     // $secret = "b93d576736a7dabf70fef90294432cbd";
     $redirect_url = "/suitntie/index.php";
@@ -54,7 +56,7 @@
             $province = $arr2["province"];
             $country = $arr2["country"];
             $headImg = $arr2["headimgurl"];
-            $is_saved = $customer->save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $arr1["unionid"]);
+            $is_saved = $customer->save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $arr1["unionid"], $ip, $current_time);
             if($is_saved){
                 $_SESSION["login_user"] = $is_saved;
             }

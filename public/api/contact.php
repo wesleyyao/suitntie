@@ -4,7 +4,8 @@
     require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/email.php");
     $message = new Message();
     $mail = new MailBox();
-    $receiver = "wesleyaijx@gmail.com";
+    $receiver = "tim.zhao@suitntie.cn";
+    $receiver2 = "fangqian@suitntie.cn";
     $subject = "适途教育[通知] - 内部邮件 - 用户咨询";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(isset($_POST["email"]) && isset($_POST["phone"])&& isset($_POST["name"])&& isset($_POST["wechat"])&& isset($_POST["city"])&& isset($_POST["school"])&& isset($_POST["content"])){
@@ -18,7 +19,7 @@
             $is_saved = $message->save_contact_form($email, $phone, $name, $wechat, $city, $school, $content);
             if($is_saved){
                 $email_content = emailContent($email, $phone, $name, $wechat, $city, $school, $content);
-                $is_send = $mail->send($receiver, $subject, $email_content);
+                $is_send = $mail->send($receiver, $receiver2, $subject, $email_content);
                 echo json_encode(true);
                 exit;
             }

@@ -6,7 +6,7 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
     class MailBox extends Database {
-        public function send($receiver, $subject, $content){        
+        public function send($receiver, $receiver2, $subject, $content){        
             $mail = new PHPMailer(true);
             $mail->SMTPOptions = array(
                 'ssl' => array(
@@ -24,14 +24,17 @@
                 $mail->isSMTP();
                 $mail->Host = 'hwsmtp.exmail.qq.com'; // Set the SMTP server to send through
                 $mail->SMTPAuth   = true; // Enable SMTP authentication
-                $mail->Username = 'wesley@suitntie.cn'; // SMTP username
-                $mail->Password = 'Suka90daohaoshigou'; // SMTP password EZr4ihhsPyCe3Jze
+                $mail->Username = 'contact@suitntie.cn'; // SMTP username wesley@suitntie.cn
+                $mail->Password = '9YHZ3kkUgWKbBDJw'; // SMTP password EZr4ihhsPyCe3Jze Suka90daohaoshigou
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
                 //$mail->SMTPSecure = 'ssl';
                 $mail->Port = 465; // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
                 //Recipients
-                $mail->setFrom('wesley@suitntie.cn', 'Do Not Reply');
+                $mail->setFrom('contact@suitntie.cn', 'Do Not Reply');
                 $mail->addAddress($receiver);// Add a recipient
+                if(!empty(trim($receiver2))){
+                    $mail->addAddress($receiver2);
+                }
                 // $mail->addAddress('ellen@example.com'); // Name is optional
                 // $mail->addReplyTo('info@example.com', 'Information');
                 // $mail->addCC('cc@example.com');

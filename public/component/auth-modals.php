@@ -147,18 +147,20 @@
                 <div class="tab-content cellSignup" id="loginTabs">
                     <div class="tab-pane fade show active" id="phoneSignup" role="tabpanel"
                         aria-labelledby="phoneSignup-tab">
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <div class="alert alert-primary" role="alert">
-                                    <i class="fas fa-info-circle"></i> 如果您是海外用户，建议使用邮箱注册。
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <div id="signup_container" class="text-center"></div>
-                                <div id="signup_mobile_container" class="text-center">
-                                    请确保在微信客户端中打开此网页，点击<a href="" id="signup_wechat_mobile_link">此处</a>前往授权。
+                                <div id="signup_mobile_container" class="text-center row" style="padding: 50px 15px;">
+                                    <a href="" id="signup_wechat_mobile_link" class="btn primBtn col-12">点击此处授权</a>
+                                    <p class="mt-1" style="margin:0 auto;"><small
+                                            style="font-weight:100 !important;">请确保在微信客户端中打开此网页</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-12">
+                                <div class="alert alert-primary" role="alert">
+                                    <i class="fas fa-info-circle"></i> 如果您是海外用户，建议使用邮箱注册。
                                 </div>
                             </div>
                         </div>

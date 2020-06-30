@@ -14,7 +14,6 @@ $(document).ready(function () {
     let expireTime = undefined;
     let emailExpireTime = undefined;
     const currentPage = decodeURIComponent(window.location.href);
-    $('#signupPhonePassword').hide();
     $('#showSignupModal').click(function () {
         $('#userLoginModal').modal('hide');
         $('#userSignUpModal').modal('show');
@@ -24,7 +23,7 @@ $(document).ready(function () {
         interval: 3000
     });
 
-    const redirectUrl = currentPage.replace("http://www.suitntie.cn", ''); console.log(redirectUrl)
+    const redirectUrl = currentPage.replace("http://www.suitntie.cn", '');
 
     const obj = new WxLogin
         ({
@@ -108,9 +107,14 @@ $(document).ready(function () {
         emailCode = Math.floor(1000 + Math.random() * 9000);
         const currentTime = new Date();
         emailExpireTime = new Date(currentTime.getTime() + 5 * 60000);
-        const email = $('#signupEmail').val().replace(/\s/g, '');
+        const email = $('#signupEmail').val().replace(/\s/g, '').toLowerCase();
+        if (!email || !validateEmailFormat(email)) {
+            $('#signupEmailVerifyMessage').html(generateMessage('warning', '请输入正确的邮箱。'));
+            return;
+        }
         $('#sendEmailVerifyCode').prop('disabled', true);
-        $('#signupEmailVerifyMessage').html(generateMessage('info', '正在发送验证邮件...'))
+        
+        $('#signupEmailVerifyMessage').html(generateMessage('info', '正在发送验证邮件...'));
         let seconds = 25;
         let cooling = setInterval(function () {
             if (seconds > 0) {
@@ -123,13 +127,16 @@ $(document).ready(function () {
                 clearInterval(cooling);
             }
         }, 1000);
-        if (!email || !validateEmailFormat(email)) {
-            $('#signupEmailVerifyMessage').html(generateMessage('warning', '请输入正确的邮箱。'));
-            return;
-        }
         $.post(`${prefix}/public/api/signup.php?by=email`, { email, code: emailCode }).done(function (data) {
             if (data) {
                 const result = JSON.parse(data);
+                if(result.content == '该邮箱已经注册过。'){
+                    $('#signupEmailVerifyMessage').html(generateMessage(result.type, result.content));
+                    $('#sendEmailVerifyCode').prop('disabled', false);
+                    $('#sendEmailVerifyCode').text('获取验证码');
+                    clearInterval(cooling);
+                    return;
+                }
                 $('#signupEmailVerifyMessage').html(generateMessage(result.type, result.content));
                 return;
             }
@@ -162,7 +169,7 @@ $(document).ready(function () {
                 $('#signupByEmailMessage').html(generateMessage('warning', '请检查您的输入。'));
                 return;
             }
-            const email = $('#signupEmail').val().replace(/\s/g, '');
+            const email = $('#signupEmail').val().replace(/\s/g, '').toLowerCase();
             const password = $('#signupPassword').val().replace(/\s/g, '');
             const confirmPassword = $('#signupPasswordConfirm').val().replace(/\s/g, '');
             const code = $('#signupEmailCode').val().replace(/\s/g, '');
@@ -234,7 +241,7 @@ $(document).ready(function () {
             formData = { phone, by: 'phone' };
         }
         else {
-            const email = $('#loginEmail').val().replace(/\s/g, '');
+            const email = $('#loginEmail').val().replace(/\s/g, '').toLowerCase();
             const password = $('#loginPassword').val().replace(/\s/g, '');
             if (!email || !password) {
                 $('#loginByEmailMessage').html(generateMessage('warning', '请填写必填的项目。'));
