@@ -11,3 +11,4 @@
 <link rel="stylesheet" href="/suitntie/asset/css/program.css">
 <link rel="stylesheet" href="/suitntie/asset/css/user.css">
 <link rel="stylesheet" href="/suitntie/asset/css/loginform.css">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">

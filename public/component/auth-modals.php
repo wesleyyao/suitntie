@@ -1,6 +1,6 @@
 <?php
     $appId = "wxcfeb0aba33ebba0c";
-    $redirect_url = "http://www.suitntie.cn/suitntie/public/auth/wechat-login.php";
+    $redirect_url = "https://www.suitntie.cn/suitntie/public/auth/wechat-login.php";
     $state = uniqid('', true);
     $_SESSION["wechat_state"] = $state;
 ?>
@@ -26,7 +26,8 @@
                             </li>
                             <li class="nav-item signup-options col-4 text-center" style="padding:0 1px;margin:0;">
                                 <a class="nav-link btn-light" id="emailLogin-tab" data-toggle="tab" href="#emailLogin"
-                                    role="tab" aria-controls="emailLogin" aria-selected="false">邮箱</a>
+                                    role="tab" aria-controls="emailLogin" aria-selected="false">邮箱<sup><span
+                                            class="badge login-badge">推荐</span></sup></a>
                             </li>
                             <li class="nav-item signup-options col-4 text-center"
                                 style="padding:0 15px 0 1px;margin:0;">
@@ -72,7 +73,14 @@
                                 <div id="loginByPhoneMessage"></div>
                             </div>
                             <div class="tab-pane fade" id="emailLogin" role="tabpanel" aria-labelledby="emailLogin-tab">
-                                <div class="row mt-5">
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <div class="alert alert-primary" role="alert">
+                                            <i class="fas fa-info-circle"></i> 如果您是海外用户，建议使用邮箱注册。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
                                     <div class="col-12">
                                         <input type="text" id="loginEmail" name="login_email" placeholder="邮箱"
                                             class="form-control" maxlength="128" />
@@ -253,7 +261,7 @@
                 <div class="row">
                     <div class="offset-1 col-10">
                         <div class="alert alert-info" role="alert">
-                            <i class="fas fa-info-circle"></i> 为了确保我们的工作人员可以与您取得联系，请填写手机号。
+                            <i class="fas fa-info-circle"></i> 请输入手机号，完善个人资料。
                         </div>
                     </div>
                 </div>
@@ -272,7 +280,7 @@
                                 <input type="text" id="signupPhone" class="form-control" placeholder="手机号"
                                     aria-label="手机号" aria-describedby="signupPhonePrefix" maxlength="12">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary send-verify-code" id="sendSignupCode"
+                                    <button class="btn primBtnSM send-verify-code" id="sendSignupCode"
                                         type="button">获取验证码</button>
                                 </div>
                             </div>
@@ -286,8 +294,8 @@
                     </div>
                     <div class="row mb-2">
                         <div class="offset-1 col-10 text-right">
-                            <a class="btn ghostSecBtn" href="../../suitntie/account/user.php">回到个人中心</a>
-                            <button type="submit" class="btn primBtn" id="CompleteProfile">提交</button>
+                            <a class="btn ghostSecBtnSM" href="../../suitntie/account/user.php">返回</a>
+                            <button type="submit" class="btn primBtnSM" id="CompleteProfile">提交</button>
                         </div>
                     </div>
                     <div class="row">

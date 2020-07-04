@@ -23,14 +23,14 @@ $(document).ready(function () {
         interval: 3000
     });
 
-    const redirectUrl = currentPage.replace("http://www.suitntie.cn", '');
+    const redirectUrl = currentPage.replace("https://www.suitntie.cn", '');
 
     const obj = new WxLogin
         ({
             id: "login_container",//div的id
             appid: "wxcfeb0aba33ebba0c",
             scope: "snsapi_login",//写死
-            redirect_uri: encodeURI("http://www.suitntie.cn/suitntie/public/auth/wechat-login.php?redirect=" + redirectUrl),
+            redirect_uri: encodeURI("https://www.suitntie.cn/suitntie/public/auth/wechat-login.php?redirect=" + redirectUrl),
             state: "wechatLogin",
             style: "black",//二维码黑白风格        
             href: ""
@@ -41,7 +41,7 @@ $(document).ready(function () {
             id: "signup_container",//div的id
             appid: "wxcfeb0aba33ebba0c",
             scope: "snsapi_login",//写死
-            redirect_uri: encodeURI("http://www.suitntie.cn/suitntie/public/auth/wechat-login.php?redirect=" + redirectUrl),
+            redirect_uri: encodeURI("https://www.suitntie.cn/suitntie/public/auth/wechat-login.php?redirect=" + redirectUrl),
             state: "wechatLogin",
             style: "black",//二维码黑白风格        
             href: ""
@@ -255,22 +255,14 @@ $(document).ready(function () {
                 const messageDiv = target === 'loginByPhone' ? '#loginByPhoneMessage' : '#loginByEmailMessage';
                 $(messageDiv).html(generateMessage(result.type, result.content));
                 if (result.type === 'success') {
-                    //fetchAccount();
-                    let loginModalTimeout = setTimeout(function () {
+                    setTimeout(function () {
                         window.location.href = currentPage;
-                        //$('#userLoginModal').modal('hide');
-                        //clearTimeout(loginModalTimeout);
+
                     }, 2000);
                 }
             }
         });
     });
-
-    // $('#loginForm').submit(function (e) {
-    //     if (!formValidation('.login-required', '#loginMessage', $('#loginEmail').val())) {
-    //         e.preventDefault();
-    //     }
-    // });
 
     $('#userProfileCompleteForm').submit(function (e) {
         e.preventDefault();
@@ -285,10 +277,8 @@ $(document).ready(function () {
                 const result = JSON.parse(data);
                 $('#profileCompleteMessage').html(generateMessage(result.type, result.content));
                 if (result.type === 'success') {
-                    fetchAccount();
-                    let phoneModalTimeout = setTimeout(function () {
-                        $('#userProfileCompleteModal').modal('hide');
-                        clearTimeout(phoneModalTimeout);
+                    setTimeout(function () {
+                        window.location.href = currentPage;
                     }, 2000);
                 }
             }

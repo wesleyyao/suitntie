@@ -19,8 +19,8 @@ $(document).ready(function () {
 
     const flag = isPC();
     const currentPage = decodeURIComponent(window.location.href);
-    let redirectUrl = currentPage.replace("http://www.suitntie.cn", '');
-    redirectUrl = encodeURI("http://www.suitntie.cn/suitntie/public/auth/wechat-login-mobile.php?redirect=" + redirectUrl);
+    let redirectUrl = currentPage.replace("https://www.suitntie.cn", '');
+    redirectUrl = encodeURI("https://www.suitntie.cn/suitntie/public/auth/wechat-login-mobile.php?redirect=" + redirectUrl);
     if(!flag){
         $('#phoneLogin-tab').removeClass('active');
         $('#wechatLogin-tab').addClass('active');
