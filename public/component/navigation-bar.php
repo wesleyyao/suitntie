@@ -9,7 +9,7 @@
                 <a class="nav-link" href="#">主页</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/suitntie/index.php" tabindex="-1" aria-disabled="true">人格测试</a>
+                <a class="nav-link" href="/index.php" tabindex="-1" aria-disabled="true">人格测试</a>
             </li>
         </ul>
         <div id="userSection" class="form-inline my-2 my-lg-0">
@@ -21,9 +21,9 @@
                             <?php if(isset($_SESSION["new_test_result"])): ?><span class="notification-dot dot-medium text-danger"></span><?php endif; ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/suitntie/user.php">个人主页 
+                            <a class="dropdown-item" href="/user.php">个人主页 
                             <?php if(isset($_SESSION["new_test_result"])): ?><span class="notification-dot dot-small text-danger"></span><?php endif; ?></a>
-                            <a class="dropdown-item" href="/suitntie/public/auth/user-logout.php?redirect=<?php echo $_SERVER["REQUEST_URI"]; ?>">注销</a>
+                            <a class="dropdown-item" href="/public/auth/user-logout.php?redirect=<?php echo $_SERVER["REQUEST_URI"]; ?>">注销</a>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const prefix = '/suitntie';
+    const prefix = '';
     const loading = `
     <div class="d-flex justify-content-center m-2">
         <div class="spinner-border text-warning" role="status">
@@ -139,9 +139,13 @@ $(document).ready(function () {
                                                 </li>
                                                 ` : ''}
                                             ${
-                                        !j.author && j.url ?
+                                        !j.author && !j.douban && !j.image ?
                                             `<li>
-                                                <a href="${j.url}" target="_blank">${j.title}</a>
+                                                ${
+                                            j.url ?
+                                                `<a href="${j.url}" target="_blank">${j.title}</a>` :
+                                                `<label>${j.title}</label>`
+                                            }
                                             </li>` : ''
                                         }
                                             </ul>
@@ -164,10 +168,16 @@ $(document).ready(function () {
                     courses += `
                         <div class="card border-0">
                             <div class="card-header" id="courseHeader${index}">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-accordion" type="button" data-toggle="collapse" data-target="#courseCollapse${index}" aria-expanded="true" aria-controls="courseCollapse${index}">
-                                        ${item.name}
-                                    </button>
+                                <button 
+                                    class="btn btn-accordion relative-course-title ${index == 0 ? 'is-focus' : ''}" 
+                                    id="relativeProgram${index}" 
+                                    type="button" 
+                                    data-toggle="collapse" 
+                                    data-target="#courseCollapse${index}" 
+                                    aria-expanded="true" 
+                                    aria-controls="courseCollapse${index}">
+                                    ${item.name}
+                                </button>
                                 </h2>
                             </div>
                     
@@ -190,9 +200,16 @@ $(document).ready(function () {
                         <div class="card border-0">
                             <div class="card-header" id="childHeader${index}">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-accordion" type="button" data-toggle="collapse" data-target="#childCollapse${index}" aria-expanded="true" aria-controls="childCollapse${index}">
-                                        ${item.name}
-                                    </button>
+                                <button 
+                                    class="btn btn-accordion child-program-title ${index == 0 ? 'is-focus' : ''}" 
+                                    id="childProgram${index}" 
+                                    type="button" 
+                                    data-toggle="collapse" 
+                                    data-target="#childCollapse${index}" 
+                                    aria-expanded="true" 
+                                    aria-controls="childCollapse${index}">
+                                    ${item.name}
+                                </button>
                                 </h2>
                             </div>
                     
@@ -220,7 +237,7 @@ $(document).ready(function () {
                             <h5>${item.name}</h5>
                             <p><em>${item.school} ${item.program} ${item.grade}</em></p>
                         </div>
-                        <a class="btn primBtn" href="#/">咨询学长学姐</a>
+                        <a class="btn primBtn contact-btn" href="#/">咨询学长学姐</a>
                     </div>
                 </div>`;
                     if (testimonialData.length > 1) {
@@ -237,6 +254,22 @@ $(document).ready(function () {
         const imageUrl = $(this).attr('id');
         $('#recommendationQrImg').prop('src', `${prefix}${imageUrl}`);
         $('#recommendQrModal').modal('show');
+    });
+
+    $(document).on('click', '.contact-btn', function(){
+        $('html, body').animate({
+            scrollTop: $("#contactUs").offset().top
+        }, 1000);
+    });
+
+    $(document).on('click', '.relative-course-title', function(){
+        const selectId = $(this).attr('id');
+        $(this).addClass('is-focus');
+        $('.relative-course-title').each(function(){
+            if($(this).attr('id') !== selectId){
+                $(this).removeClass('is-focus');
+            }
+        });
     });
 
     function onlyUnique(value, index, self) {

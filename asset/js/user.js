@@ -1,5 +1,7 @@
+import { validateEmailFormat, generateMessage } from './common.js';
+
 $(document).ready(function () {
-    const prefix = '/suitntie';
+    const prefix = '';
     const pagesRequiredLogin = ['dimension-test', 'user'];
     const pagesRequiredPhone = ['dimension-test'];
     const loading = `
@@ -13,24 +15,28 @@ $(document).ready(function () {
     let emailCode = 0;
     let expireTime = undefined;
     let emailExpireTime = undefined;
-    const currentPage = decodeURIComponent(window.location.href);
+    let currentPage = decodeURIComponent(window.location.href);
+    if(currentPage.indexOf('#') > -1){
+        currentPage = currentPage.substring(0, currentPage.indexOf('#'));
+    }
+
     $('#showSignupModal').click(function () {
         $('#userLoginModal').modal('hide');
         $('#userSignUpModal').modal('show');
     });
 
     $('.carousel').carousel({
-        interval: 3000
+        interval: 6000
     });
-
-    const redirectUrl = currentPage.replace("https://www.suitntie.cn", '');
+    const toRemoveUrl = currentPage.indexOf('www') > -1 ? 'https://www.suitntie.cn' : 'https://suitntie.cn'; 
+    const redirectUrl = currentPage.replace(toRemoveUrl, "");
 
     const obj = new WxLogin
         ({
             id: "login_container",//div的id
             appid: "wxcfeb0aba33ebba0c",
             scope: "snsapi_login",//写死
-            redirect_uri: encodeURI("https://www.suitntie.cn/suitntie/public/auth/wechat-login.php?redirect=" + redirectUrl),
+            redirect_uri: encodeURI("https://www.suitntie.cn/public/auth/wechat-login.php?redirect=" + redirectUrl),
             state: "wechatLogin",
             style: "black",//二维码黑白风格        
             href: ""
@@ -41,7 +47,7 @@ $(document).ready(function () {
             id: "signup_container",//div的id
             appid: "wxcfeb0aba33ebba0c",
             scope: "snsapi_login",//写死
-            redirect_uri: encodeURI("https://www.suitntie.cn/suitntie/public/auth/wechat-login.php?redirect=" + redirectUrl),
+            redirect_uri: encodeURI("https://www.suitntie.cn/public/auth/wechat-login.php?redirect=" + redirectUrl),
             state: "wechatLogin",
             style: "black",//二维码黑白风格        
             href: ""
@@ -60,7 +66,7 @@ $(document).ready(function () {
         }
 
         $(buttonId).prop('disabled', true);
-        let seconds = 25;
+        let seconds = 45;
         let cooling = setInterval(function () {
             if (seconds > 0) {
                 seconds--;
@@ -77,7 +83,6 @@ $(document).ready(function () {
         const currentTime = new Date();
         expireTime = new Date(currentTime.getTime() + 1 * 60000);
         $(messageDiv).html(loading);
-
         $.post(`${prefix}/public/api/phone-verify-local.php`, { phone, code }).done(function (data) {
             if (data) {
                 //const result = { SendStatusSet: [{ Code: 'Ok', PhoneNumber: '13141036635' }] };
@@ -115,7 +120,7 @@ $(document).ready(function () {
         $('#sendEmailVerifyCode').prop('disabled', true);
         
         $('#signupEmailVerifyMessage').html(generateMessage('info', '正在发送验证邮件...'));
-        let seconds = 25;
+        let seconds = 45;
         let cooling = setInterval(function () {
             if (seconds > 0) {
                 seconds--;
@@ -200,11 +205,8 @@ $(document).ready(function () {
                         let result = JSON.parse(data);
                         $('#signupByEmailMessage').html(generateMessage(result.type, result.content));
                         if (result.type === 'success') {
-                            //fetchAccount();
-                            let signupModalTimeout = setTimeout(function () {
-                                //$('#userSignUpModal').modal('hide');
+                            setTimeout(function () {
                                 window.location.href = currentPage;
-                                //clearTimeout(signupModalTimeout);
                             }, 2000);
                         }
                     }
@@ -257,7 +259,6 @@ $(document).ready(function () {
                 if (result.type === 'success') {
                     setTimeout(function () {
                         window.location.href = currentPage;
-
                     }, 2000);
                 }
             }
@@ -304,7 +305,7 @@ $(document).ready(function () {
                 message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
                 $('#message').html(message);
             }
-            user = result.user ? result.user : undefined;
+            const user = result.user ? result.user : undefined;
             const noLogin = `<a href="#/" data-toggle="modal" data-target="#userSignUpModal">登录 | 注册</a>`;
             const isLogin = `<div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -321,11 +322,12 @@ $(document).ready(function () {
             }
             let isPageRequirePhone = 0;
             pagesRequiredPhone.forEach(function (item) {
-                if (redirectUrl.indexOf(item) > -1) {
+                if (currentPage.indexOf(item) > -1) {
                     isPageRequirePhone = 1;
                     return;
                 }
             });
+
             if (isPageRequirePhone == 1 && user && !user.email && !user.phone) {
                 $('#mainContentDiv').fadeOut();
                 $('#userProfileCompleteModal').modal('show');
@@ -335,26 +337,5 @@ $(document).ready(function () {
             }
             return;
         });
-    }
-
-    function validateEmailFormat(mail) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-            return true;
-        }
-        return false;
-    }
-
-    function generateMessage(type, message) {
-        return `
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-${type}">
-                    <i class="${type == 'success' ?
-                'fas fa-check' : type === 'warning' ?
-                    'fas fa-exclamation-triangle' : type == 'info' ?
-                        'fas fa-info-circle' : 'fas fa-times'}"></i> ${message}
-                </div>
-            </div>
-        </div>`;
     }
 });

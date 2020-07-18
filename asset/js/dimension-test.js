@@ -1,5 +1,6 @@
+import { generateMessage } from './common.js';
 $(document).ready(function () {
-    const prefix = '/suitntie';
+    const prefix = '';
     let second = 0;
     let minute = 0;
     const title = '适途16型人格测试';
@@ -39,10 +40,7 @@ $(document).ready(function () {
             </div>
         </div>`;
 
-    const notCompletedMessage =
-        `<div class="alert alert-danger mt-3" role="alert">
-         <i class="fas fa-exclamation-circle"></i> 请先回答完本页的问题。
-        </div>`;
+    const notCompletedMessage = generateMessage('warning', '请先回答完本页的问题。');
 
     $('.result-div').hide();
     $('#mainQuestionDiv').html(questionDiv);
@@ -92,6 +90,7 @@ $(document).ready(function () {
         }
         $('#testTitle').html(title);
         $('#questionTypeTitle').html(questions[questionTypesIndex].name);
+        //$('#questionTypeTitle').html('在下列每对词语中，哪个词语相对更能准确地形容你自己或是更合你意？请用直觉进行快速选择。');
         $('#mainQuestionDiv').html(firstPageQuestions);
     });
 
@@ -188,6 +187,7 @@ $(document).ready(function () {
 
         $('#message').html('');
         $('#questionTypeTitle').html(questions[questionTypesIndex] ? questions[questionTypesIndex].name : '');
+        //$('#questionTypeTitle').html('在下列每对词语中，哪个词语相对更能准确地形容你自己或是更合你意？请用直觉进行快速选择。');
         $('#mainQuestionDiv').html(content);
         questionsAndAnswersOnCurrentPage = [];
     });
@@ -249,7 +249,7 @@ $(document).ready(function () {
 
     function scrollToTestTop() {
         $('html, body').animate({
-            scrollTop: $("#message").offset().top
+            scrollTop: $("#message").offset().top - 130
         }, 1000);
     }
 });

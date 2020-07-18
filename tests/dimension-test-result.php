@@ -18,10 +18,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>适途教育</title>
+    <title>适途咨询</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/style.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/style.php"); ?>
 </head>
 
 <body>
@@ -30,12 +30,18 @@
         <![endif]-->
     <div class="dimension-test-result-main">
         <input type="hidden" id="hide_title" value="dimension-test-result" />
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
 
         <div id="loadingDiv">
-            <div class="d-flex justify-content-center">
-                <div class="spinner-border text-success" role="status">
-                    <span class="sr-only">Loading...</span>
+            <div class="pt-2 pb-2">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <span class="pl-2 h5">正在加载...</span>
+                </div>
+                <div class="alert alert-primary text-center mt-2" role="alert">
+                    <i class="fas fa-info-circle"></i> 请耐心等待，正在进行数据分析，结果需要15-30秒时间加载
                 </div>
             </div>
         </div>
@@ -50,7 +56,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="resultDimension">
                 <div class="container">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -84,14 +89,12 @@
                 </div>
             </div>
         </div>
-
         <br />
         <div class="container">
             <div class="row dimension-analysis">
                 <div class="col-12">
                     <h3>维度解释</h3>
                     <div id="dimensionAnalytics">
-
                     </div>
                 </div>
             </div>
@@ -100,7 +103,6 @@
                 <div class="col-12 ">
                     <h3>基本分析</h3>
                     <div id="basicAnalytics">
-
                     </div>
                 </div>
             </div>
@@ -109,7 +111,6 @@
                 <div class="col-12 ">
                     <h3>你的优势</h3>
                     <div id="advantageList">
-
                     </div>
                 </div>
             </div>
@@ -118,7 +119,6 @@
                 <div class="col-12 ">
                     <h3>你的盲点</h3>
                     <div id="disadvantageList">
-
                     </div>
                 </div>
             </div>
@@ -127,7 +127,6 @@
                 <div class="col-12">
                     <h3>专业和职业分析</h3>
                     <div id="programAndJobAnalytics">
-
                     </div>
                 </div>
             </div>
@@ -159,11 +158,11 @@
         <div id="notification" class="notification-popup"></div>
     </div>
     </div>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/component/auth-modals.php"); ?>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-footer.php"); ?>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/script.php"); ?>
-    <script src="/suitntie/asset/js/chart.js"></script>
-    <script src="/suitntie/asset/js/result.js"></script>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/public/component/auth-modals.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-footer.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/script.php"); ?>
+    <script src="/asset/js/chart.js"></script>
+    <script type="module" src="/asset/js/result.js"></script>
 </body>
 
 </html>

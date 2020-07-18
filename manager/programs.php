@@ -108,7 +108,7 @@
     <?php require_once("./components/programModal.php"); ?>
     <?php require_once("./components/login.php"); ?>
     <?php require_once("./components/script.php"); ?>
-    <script src="/suitntie/manager/asset/js/program.js"></script>
+    <script src="/manager/asset/js/program.js"></script>
 </body>
 
 </html>

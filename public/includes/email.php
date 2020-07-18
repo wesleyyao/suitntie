@@ -1,7 +1,7 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . '/suitntie/vendor/phpmailer/phpmailer/src/Exception.php');
-    require_once($_SERVER["DOCUMENT_ROOT"] . '/suitntie/vendor/phpmailer/phpmailer/src/PHPMailer.php');
-    require_once($_SERVER["DOCUMENT_ROOT"] . '/suitntie/vendor/phpmailer/phpmailer/src/SMTP.php');
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/vendor/phpmailer/phpmailer/src/Exception.php');
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/vendor/phpmailer/phpmailer/src/PHPMailer.php');
+    require_once($_SERVER["DOCUMENT_ROOT"] . '/vendor/phpmailer/phpmailer/src/SMTP.php');
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
@@ -41,7 +41,7 @@
                 // $mail->addBCC('bcc@example.com');
         
                 // Attachments
-                $mail->AddEmbeddedImage($_SERVER["DOCUMENT_ROOT"] . '/suitntie/asset/image/logo.png', 'logo'); // Add attachments
+                $mail->AddEmbeddedImage($_SERVER["DOCUMENT_ROOT"] . '/asset/image/logo.png', 'logo'); // Add attachments
                 // $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); // Optional name
         
                 // Content

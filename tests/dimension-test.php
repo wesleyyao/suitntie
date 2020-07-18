@@ -79,7 +79,7 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col-12">
-                    <div id="message" style="padding-top: 80px"></div>
+                    <div id="message"></div>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@
     <?php require_once("../theme/global-footer.php"); ?>
     <?php require_once("../public/component/auth-modals.php"); ?>
     <?php require_once("../theme/script.php"); ?>
-    <script src="../asset/js/dimension-test.js"></script>
+    <script type="module" src="../asset/js/dimension-test.js"></script>
 </body>
 
 </html>

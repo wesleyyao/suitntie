@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const prefix = '/suitntie';
+    const prefix = '';
     let topSlider = '';
     let topController = '';
     $.get(`${prefix}/public/api/home.php`).done(function (data) {

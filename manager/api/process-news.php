@@ -1,6 +1,6 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/utils/initial.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/slider.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/slider.php");
     $slider = new Slider();
     if(!isset($_SESSION["login_staff"])){
         redirect("../index.php");
@@ -19,7 +19,7 @@
         $slider_status = $_POST["slider_status"];
         $slider_link = !empty($_POST["slider_link"]) ? $_POST["slider_link"] : "";
         $slider_button = !empty($_POST["slider_button"]) ? $_POST["slider_button"] : "";
-        $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/suitntie/uploads/";
+        $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/uploads/";
         $imageUrl = "/uploads/" . basename($_FILES["slider_img"]["name"]);
         $file = $target_dir . basename($_FILES["slider_img"]["name"]);
         if(file_exists($file)){

@@ -25,7 +25,7 @@
                 $result["message"]["content"] = "dismatch";
             }
         }
-        //redirect(!empty($redirect_to) ? $redirect_to : '/suitntie/manager/index.html');
+        //redirect(!empty($redirect_to) ? $redirect_to : '/manager/index.html');
     }
     else{
         $result["message"]["type"] = "danger";

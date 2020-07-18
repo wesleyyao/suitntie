@@ -10,23 +10,22 @@
             </div>
             <div class="modal-body">
                 <form id="profileEditForm" style="padding: 0 20px">
-                    <div class="form-row">
-                        <div class="col col-lg-6 col-md-12">
-                            <label for="profileEditNickname">昵称：</label>
-                            <input type="text" class="form-control" id="profileEditNickname" maxlength="256" />
-                        </div>
-                        <div class="col col-lg-6 col-md-12">
+                        <!-- <div class="col col-lg-6 col-md-12">
                             <label for="profileEditEmail"><span class="text-danger">*</span> 邮箱：</label>
                             <input type="text" class="form-control required-input" id="profileEditEmail"
-                                maxlength="128" />
-                        </div>
-                    </div>
+                                maxlength="128" disabled/>
+                        </div> -->
                     <br />
                     <div class="form-row">
-                        <div class="col col-lg-8 col-md-12">
+                        <!-- <div class="col col-lg-8 col-md-12">
                             <label for="profileEditPhone"><span class="text-danger">*</span> 电话：</label>
                             <input type="text" class="form-control required-input" id="profileEditPhone"
-                                maxlength="25" />
+                                maxlength="25" disabled/>
+                        </div> -->
+         
+                        <div class="col col-lg-8 col-md-12">
+                            <label for="profileEditNickname">昵称：</label>
+                            <input type="text" class="form-control" id="profileEditNickname" maxlength="256" />
                         </div>
                         <div class="col col-lg-4 col-md-12">
                             <label for="profileEditSex">性别：</label>

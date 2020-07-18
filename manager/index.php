@@ -62,6 +62,7 @@
                     <table id="userTable" class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
+                                <th></th>
                                 <th>昵称</th>
                                 <th>邮箱</th>
                                 <th>电话</th>
@@ -69,6 +70,8 @@
                                 <th>城市</th>
                                 <th>省份</th>
                                 <th>国家</th>
+                                <th>IP</th>
+                                <th>时间</th>
                             </tr>
                         </thead>
                         <tbody id="userTableBody">

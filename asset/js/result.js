@@ -1,5 +1,6 @@
+import { generateMessage } from './common.js';
 $(document).ready(function () {
-    const prefix = '/suitntie';
+    const prefix = '';
     $('#mainResultDiv').hide();
     let message = '';
     let code = '';
@@ -15,6 +16,9 @@ $(document).ready(function () {
     let majorDimensions = [];
     let notification = false;
     let imgSrc = '';
+
+    sendNotification();
+
     $.get(`${prefix}/public/api/result.php`).done(function (data) {
         const result = JSON.parse(data);
         if (result) {
@@ -153,9 +157,14 @@ $(document).ready(function () {
         }
     });
 
-    function generateMessage(type, content) {
-        return `<div class="alert alert-${type}" role="alert">
-                    <i class="${type === 'success' ? 'fas fa-check' : 'fas fa-exclamation-triangle'}"></i> ${content}
-                </div>`;
+    function sendNotification(){
+        $.get(`${prefix}/public/api/proceed-result.php?action=send_email`).done(function(data){
+            if(data){
+                const result = JSON.parse(data);
+                if(result && result.status){
+                    //
+                }
+            }
+        });
     }
 });

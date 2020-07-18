@@ -15,7 +15,7 @@ require_once("../utils/initial.php");
 
 <body>
     <div class="one-on-one-page-main">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
         <input type="hidden" id="hide_title" value="oneOnone" />
         <div class="one-on-one-top-banner">
             <h1>一对一科普</h1>
@@ -28,7 +28,7 @@ require_once("../utils/initial.php");
                     </p>
                 </div>
             </div>
-            <div class="one-on-one-section-1 mt-5">
+            <div class="one-on-one-section-1 mt-5" id="ourTeachers">
                 <div class="row mb-3">
                     <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12 text-center">
                         <h2>我们的导师</h2>
@@ -40,14 +40,13 @@ require_once("../utils/initial.php");
                         </p>
                     </div>
                 </div>
-
                 <!-- mentors new -->
                 <div class="mentorContainer container">
                     <div class="hs__wrapper">
                         <ul class="hs text-center">
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="/suitntie/asset/image/photos/Erik.png" alt="teacher" />
+                                    <img src="/asset/image/photos/Erik.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Erik</h5>
@@ -59,12 +58,12 @@ require_once("../utils/initial.php");
                                     </p>
                                 </div>
                                 <div class="reachoutBtn">
-                                    <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
+                                    <a href="#/" class="btn primBtn mt-auto contact-btn">请教学长姐</a>
                                 </div>
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="/suitntie/asset/image/photos/Joyce.png" alt="teacher" />
+                                    <img src="/asset/image/photos/Joyce.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Joyce</h5>
@@ -76,12 +75,12 @@ require_once("../utils/initial.php");
                                     </p>
                                 </div>
                                 <div class="reachoutBtn">
-                                    <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
+                                    <a href="#/" class="btn primBtn mt-auto contact-btn">请教学长姐</a>
                                 </div>
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="/suitntie/asset/image/photos/Cathy.png" alt="teacher" /></div>
+                                    <img src="/asset/image/photos/Cathy.png" alt="teacher" /></div>
                                 <div class="hs__item__description">
                                     <h5>Cathy</h5>
                                     <label>专业领域</label>
@@ -92,12 +91,12 @@ require_once("../utils/initial.php");
                                     </p>
                                 </div>
                                 <div class="reachoutBtn">
-                                    <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
+                                    <a href="#/" class="btn primBtn mt-auto contact-btn">请教学长姐</a>
                                 </div>
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="/suitntie/asset/image/photos/Sunny.png" alt="teacher" /></div>
+                                    <img src="/asset/image/photos/Sunny.png" alt="teacher" /></div>
                                 <div class="hs__item__description">
                                     <h5>Sunny</h5>
                                     <label>专业领域</label>
@@ -108,12 +107,12 @@ require_once("../utils/initial.php");
                                     </p>
                                 </div>
                                 <div class="reachoutBtn">
-                                    <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
+                                    <a href="#/" class="btn primBtn mt-auto contact-btn">请教学长姐</a>
                                 </div>
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="/suitntie/asset/image/photos/Ming.png" alt="teacher" /></div>
+                                    <img src="/asset/image/photos/Ming.png" alt="teacher" /></div>
                                 <div class="hs__item__description">
                                     <h5>Ming</h5>
                                     <label>专业领域</label>
@@ -124,12 +123,12 @@ require_once("../utils/initial.php");
                                     </p>
                                 </div>
                                 <div class="reachoutBtn">
-                                    <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
+                                    <a href="#/" class="btn primBtn mt-auto contact-btn">请教学长姐</a>
                                 </div>
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="/suitntie/asset/image/photos/小雨.png" alt="teacher" /></div>
+                                    <img src="/asset/image/photos/小雨.png" alt="teacher" /></div>
                                 <div class="hs__item__description">
                                     <h5>小雨</h5>
                                     <label>专业领域</label>
@@ -141,12 +140,12 @@ require_once("../utils/initial.php");
                                     </p>
                                 </div>
                                 <div class="reachoutBtn">
-                                    <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
+                                    <a href="#/" class="btn primBtn mt-auto contact-btn">请教学长姐</a>
                                 </div>
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="/suitntie/asset/image/photos/Violet.png" alt="teacher" /></div>
+                                    <img src="/asset/image/photos/Violet.png" alt="teacher" /></div>
                                 <div class="hs__item__description">
                                     <h5>Violet</h5>
                                     <label>专业领域</label>
@@ -157,12 +156,12 @@ require_once("../utils/initial.php");
                                     </p>
                                 </div>
                                 <div class="reachoutBtn">
-                                    <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
+                                    <a href="#/" class="btn primBtn mt-auto contact-btn">请教学长姐</a>
                                 </div>
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="/suitntie/asset/image/photos/Maggie.png" alt="teacher" /></div>
+                                    <img src="/asset/image/photos/Maggie.png" alt="teacher" /></div>
                                 <div class="hs__item__description">
                                     <h5>Maggie</h5>
                                     <label>专业领域</label>
@@ -173,7 +172,7 @@ require_once("../utils/initial.php");
                                     </p>
                                 </div>
                                 <div class="reachoutBtn">
-                                    <a href="#contactUs" class="btn primBtn mt-auto">请教学长姐</a>
+                                    <a href="#/" class="btn primBtn mt-auto contact-btn">请教学长姐</a>
                                 </div>
                             </li>
                         </ul>
@@ -183,12 +182,8 @@ require_once("../utils/initial.php");
                                 <span></span>
                                 <span></span>
                                 <span></span>
-
                             </div>
                         </div>
-                        <!-- <div class="hs__indicator">
-            <div class="hs__arrows"><a class="arrow disabled arrow-prev"></a><a class="arrow arrow-next"></a></div>
-        </div> -->
                     </div>
                 </div>
             </div>
@@ -296,8 +291,8 @@ require_once("../utils/initial.php");
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
                             <div class="row">
-                                <div class="row text-center">
-                                    <img src="../asset/image/icons/process/process_icon_Step1.svg" width="40px" />
+                                <div class="col-12 text-center">
+                                    <img src="../asset/image/icons/process/process_icon_Step1.png" style="margin-bottom: 10px"  width="40px" />
                                     <h5 class="card-title text-center col-12 mb-3">1. 兴趣调查</h5>
                                     <p class="col-12 h-100 justify-content-center">
                                         学生通过适途评测获取独家的个人报告；主动探索了报告中最感兴趣的几个专业；并填写了个人信息表。</p>
@@ -309,8 +304,8 @@ require_once("../utils/initial.php");
                 <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
-                            <div class="row text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step2.svg" width="40px" />
+                            <div class="col-12 text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step2.png" style="margin-bottom: 10px" width="40px" />
                                 <h5 class="card-title text-center col-12 mb-3">2. 安排导师</h5>
                                 <p class="col-12 h-100 justify-content-center">
                                     适途咨询师根据学生信息进一步与学生沟通，了解学生更多想法，并根据学生需求安排一个或多个一对一专业科普导师。</p>
@@ -321,8 +316,8 @@ require_once("../utils/initial.php");
                 <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
-                            <div class="row text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step3.svg" width="40px" />
+                            <div class="col-12 text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step3.png" style="margin-bottom: 10px"  width="40px" />
                                 <h5 class="card-title text-center col-12 mb-3">3. 师生沟通</h5>
                                 <p class="col-12 h-100 justify-content-center">
                                     一对一专业科普导师收集适途咨询师给到的学生信息，根据约定的时间进行正式视频或音频沟通。</p>
@@ -333,8 +328,8 @@ require_once("../utils/initial.php");
                 <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
                         <div class="card-body d-flex flex-column">
-                            <div class="row text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step4.svg" width="40px" />
+                            <div class="col-12 text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step4.png" style="margin-bottom: 10px"  width="40px" />
                                 <h5 class="card-title text-center col-12 mb-3">4. 咨询反馈</h5>
                                 <p class="col-12 h-100 justify-content-center">
                                     适途咨询师对学生进行回访，学生可以就与导师沟通的结果进行反馈。</p>
@@ -352,7 +347,7 @@ require_once("../utils/initial.php");
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-footer.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/auth-modals.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/script.php"); ?>
-    <script src="/suitntie/asset/js/mentorSlider.js"></script>
+    <script src="/asset/js/mentorSlider.js"></script>
 </body>
 
 </html>

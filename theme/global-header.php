@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg global-nav navbar-bar-light bg-light sticky-top">
-    <a class="navbar-brand" href="/suitntie/index.php">
-        <img src="/suitntie/asset/image/logo/main-logo.png" width="125" alt="suitntie logo" />
+    <a class="navbar-brand" href="/index.php">
+        <img src="/asset/image/logo/main-logo.png" width="125" alt="suitntie logo" />
     </a>
     <button class="navbar-toggler navbar-toggler-icon" type="button" data-toggle="collapse"
         data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -10,10 +10,10 @@
     <div class="navbar-collapse collapse navigation-list text-right" id="navbarNavAltMarkup">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item global-nav-item">
-                <a class="nav-link" href="/suitntie/index.php">首页</a>
+                <a class="nav-link" href="/index.php">首页</a>
             </li>
             <li class="nav-item global-nav-item">
-                <a class="nav-link" href="/suitntie/tests/dimension-test.php">个人测试 <sup><span
+                <a class="nav-link" href="/tests/dimension-test.php">个人测试 <sup><span
                             class="badge badge-warning">免费</span></sup></a>
             </li>
             <li class="nav-item global-nav-item dropdown">
@@ -22,14 +22,14 @@
                     专业探索
                 </a>
                 <ul class="dropdown-menu pt-2 pb-2 text-left" aria-labelledby="programLinks" id="programMenu">
-                    <li><a class="dropdown-item" href="/suitntie/programs/index.php">总览</a></li>
+                    <li><a class="dropdown-item" href="/programs/index.php">总览</a></li>
                 </ul>
             </li>
             <li class="nav-item global-nav-item">
-                <a class="nav-link" href="/suitntie/one-on-one/index.php">一对一科普</a>
+                <a class="nav-link" href="/one-on-one/index.php">一对一科普</a>
             </li>
             <li class="nav-item global-nav-item">
-                <a class="nav-link" href="/suitntie/about/index.php">关于适途</a>
+                <a class="nav-link" href="/about/index.php">关于适途</a>
             </li>
             <li class="nav-item global-nav-item">
                 <a class="nav-link" href="https://jinshuju.net/f/Q1suVd">成为导师</a>

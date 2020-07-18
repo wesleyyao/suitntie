@@ -11,7 +11,7 @@
 .mainTitle{
     width: 100%;
     height:300px;
-    background-image:url('/suitntie/asset/image/test-page/Hero-img.jpg');
+    background-image:url('/asset/image/test-page/Hero-img.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
@@ -22,7 +22,7 @@
 
 /* #testTitle{
   height:350px;
-  background-image:url('/suitntie/asset/image/test-page/Hero-img.jpg');
+  background-image:url('/asset/image/test-page/Hero-img.jpg');
   background-repeat:no-repeat;
   background-size:contain;
   background-position:center 0;

@@ -15,7 +15,7 @@
 
 <body>
     <div class="about-page-main">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
         <input type="hidden" id="hide_title" value="about" />
         <div class="about-top-banner">
             <h1>关于Suit n'Tie 适途咨询</h1>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-
+<!-- 
         <div class="container mt-5 mb-5 pt-5 pb-5 about-section-2">
             <div class="row mb-3">
                 <div class="col-12">
@@ -79,7 +79,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-footer.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/auth-modals.php"); ?>

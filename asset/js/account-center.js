@@ -1,10 +1,15 @@
+import { validateEmailFormat, generateMessage } from './common.js';
 $(document).ready(function () {
     let user = undefined;
     let tests = [];
-    const prefix = '/suitntie';
-    const loading = `<div class="d-flex justify-content-center">
-        <div class="spinner-border text-success" role="status">
-        <span class="sr-only">Loading...</span>
+    const prefix = '';
+    const loading = `
+    <div class="pt-2 pb-2">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-warning" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span class="pl-2 h5">正在加载...</span>
         </div>
     </div>`;
     $('#accountCenter').hide();
@@ -20,29 +25,27 @@ $(document).ready(function () {
     });
 
     $('#profileEditForm').submit(function (e) {
-        let isValid;
+        let isValid = true;
         e.preventDefault();
-        $('.required-input').each(function () {
-            if (!$(this).val().replace(/\s/g, '')) {
-                $('#profileEditMessage').html(generateMessage('danger', '请填写所有必填项。'));
-                isValid = false;
-                return;
-            }
-            else if (!validateEmailFormat($('#profileEditEmail').val())) {
-                $('#profileEditMessage').html(generateMessage('danger', '输入的邮箱格式错误。'));
-                isValid = false;
-                return;
-            }
-            else {
-                isValid = true;
-                return;
-            }
-        });
+        // $('.required-input').each(function () {
+        //     if (!$(this).val().replace(/\s/g, '')) {
+        //         $('#profileEditMessage').html(generateMessage('danger', '请填写所有必填项。'));
+        //         isValid = false;
+        //         return;
+        //     }
+        //     else if (!validateEmailFormat($('#profileEditEmail').val())) {
+        //         $('#profileEditMessage').html(generateMessage('danger', '输入的邮箱格式错误。'));
+        //         isValid = false;
+        //         return;
+        //     }
+        //     else {
+        //         isValid = true;
+        //         return;
+        //     }
+        // });
         if (isValid) {
             const data = {
                 nickName: $('#profileEditNickname').val(),
-                email: $('#profileEditEmail').val(),
-                phone: $('#profileEditPhone').val(),
                 sex: $('#profileEditSex').val(),
                 city: $('#profileEditCity').val(),
                 province: $('#profileEditProvince').val(),
@@ -58,7 +61,7 @@ $(document).ready(function () {
                         return;
                     }
                     fetchUserInfo();
-                    $('#profileEditMessage').html(generateMessage('success', '您的信息已更新成功。'));
+                    $('#profileEditMessage').html(generateMessage('success', '您的信息已更新成功, 请稍后...'));
                     timeoutHideModal();
                 }
                 else {
@@ -71,19 +74,21 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.check-result-btn', function () {
+        $('#loadingDiv').html(loading);
         const resultId = $(this).attr('id').replace('result_', '');
         $.get(`${prefix}/public/api/result.php?result=${resultId}`).done(function (data) {
             const result = JSON.parse(data);
+            $('#loadingDiv').html('');
             if (result) {
                 if (result === 'no login') {
                     $('#userLoginModal').modal('show');
-                    $('#loadingDiv').hide();
+                    
                     message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
                     $('#message').html(message);
                     return;
                 }
                 if (result === 'no result') {
-                    $('#loadingDiv').hide();
+               
                     message = generateMessage('warning', '未找到结果报告，请点击此处查询你的所有历史结果。');
                     $('#message').html(message);
                     return;
@@ -94,19 +99,19 @@ $(document).ready(function () {
                     $('#message').html(message);
                     return;
                 }
-                code = dimensionResult.code;
-                title = dimensionResult.title;
-                description = dimensionResult.description;
-                basicAnalysis = dimensionResult.basicAnalysis;
-                career = dimensionResult.career;
-                characteristics = dimensionResult.characteristics;
-                jobs = dimensionResult.jobs;
-                programs = dimensionResult.programs;
-                tags = dimensionResult.tags;
-                weights = dimensionResult.weights;
-                majorDimensions = dimensionResult.majorDimensions;
-                notification = result.saved_notification ? true : false;
-                imgSrc = dimensionResult.img;
+                const code = dimensionResult.code;
+                const title = dimensionResult.title;
+                const description = dimensionResult.description;
+                const basicAnalysis = dimensionResult.basicAnalysis;
+                const career = dimensionResult.career;
+                const characteristics = dimensionResult.characteristics;
+                const jobs = dimensionResult.jobs;
+                const programs = dimensionResult.programs;
+                const tags = dimensionResult.tags;
+                const weights = dimensionResult.weights;
+                const majorDimensions = dimensionResult.majorDimensions;
+                const notification = result.saved_notification ? true : false;
+                const imgSrc = dimensionResult.img;
                 //presentation
                 $('#resultTitle').html(`${code} ${title}`);
                 $('#resultDescription').html(description);
@@ -148,9 +153,8 @@ $(document).ready(function () {
                 let careerAnalytics = `<p>${career.description}</p>`;
 
                 let programList = `<h5>可能适合的专业：</h5><ul>`;
-
                 programs.forEach(function (item) {
-                    programList += `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+                    programList += `<li><a href="${'/programs/explore.php?title=' + item.title}" target="_blank">${item.title}</a></li>`;
                 });
                 programList += `</ul>`;
 
@@ -197,25 +201,14 @@ $(document).ready(function () {
         setTimeout(function () { $('#editProfileModal').modal('hide'); $('#profileEditMessage').html(''); }, 2000);
     }
 
-    function generateMessage(type, content) {
-        return `<div class="alert alert-${type}" role="alert">
-                    <i class="${type === 'success' ? 'fas fa-check' : 'fas fa-exclamation-triangle'}"></i> ${content}
-                </div>`;
-    }
-
-    function validateEmailFormat(mail) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-            return true;
-        }
-        return false;
-    }
-
     function fetchUserInfo() {
+        $('#accountCenter').hide();
+        $('#loadingDiv').html(loading);
         $.get(`${prefix}/public/api/account.php`).done(function (data) {
             const result = JSON.parse(data);
             if (result === 'no login') {
                 $('#userLoginModal').modal('show');
-                $('#loadingDiv').fadeOut();
+                $('#loadingDiv').html('');
                 message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
                 $('#message').html(message);
                 return;
@@ -236,7 +229,7 @@ $(document).ready(function () {
                 $('#profileEditNickname').val(user.nick_name);
                 $('#profileEditPhone').val(user.phone);
                 $('#profileEditEmail').val(user.email);
-                $('#profileEditSex').val(user.sex);
+                $('#profileEditSex').val(user.sex ? user.sex.toString() : '');
                 $('#profileEditCity').val(user.city);
                 $('#profileEditProvince').val(user.province);
                 $('#profileEditCountry').val(user.country);
@@ -265,9 +258,8 @@ $(document).ready(function () {
                 }
                 $('#resultList').html(resultList);
             }
-            $('#loadingDiv').fadeOut();
+            $('#loadingDiv').html('');
             $('#accountCenter').fadeIn();
-
         });
     }
 });

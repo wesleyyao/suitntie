@@ -15,7 +15,7 @@
 
 <body>
     <div class="program-page-main">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
         <input type="hidden" id="hide_title" value="program" />
         <div class="program-home-banner">
             <h1>专业探索</h1>

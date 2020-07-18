@@ -24,6 +24,10 @@ footer a{
     padding: 5px 0;
 }
 
+footer a:hover, footer a:active{
+    color: #fff !important;
+}
+
 @media (max-width: 575.98px) {
     footer{
         padding:20px !important;

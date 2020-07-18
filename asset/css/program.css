@@ -248,9 +248,9 @@
     margin:0 auto;
     color:#292929!important;
     transition: 0.3s;
-  }
+}
 
-  .btn-accordion:hover{    
+.btn-accordion:hover{    
     color:  #F19F4D !important;
     transition: 0.3s;
     border:none;
@@ -259,7 +259,11 @@
 .btn-accordion:focus,.btn-accordion:active {
     outline: none !important;
     box-shadow: none;
- }
+}
+
+.is-focus{
+    color: #F19F4D !important;
+}
 
  /* Contact form */
 

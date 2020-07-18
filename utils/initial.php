@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once("database.php");
-    $global_prefix = "/suitntie";
+    $global_prefix = "";
     function redirect($location){
         header("Location: {$location}");
         exit;

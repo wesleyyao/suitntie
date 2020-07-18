@@ -110,7 +110,7 @@ $(document).ready(function(){
 
     $(document).on('click', '.previewImgBtn', function(){
         const imgUrl = $(this).attr('id').replace('check_', '');
-        const path = '/suitntie' + imgUrl;
+        const path = '' + imgUrl;
         if(imgUrl){
             $('#imagePreviewMessage').html('');
             $('#previewImg').prop('src', path);

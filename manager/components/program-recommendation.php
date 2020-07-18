@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
 
     if(!isset($_SESSION["login_staff"])){
         header("Location: ./index.php");
@@ -52,7 +52,7 @@
                         <div class="col-12">
                             <div class="alert alert-info" role="alert">
                                 <ul>
-                                    <li>标题会以分类的形式出现在页面上。（可以填写“书籍”，“公众号”，“视频”等）</li>
+                                    <li>标题会以分类的形式出现在页面上。</li>
                                     <li>上传的图片会显示在标题左侧，成为其图标。</li>
                                 </ul>
                             </div>
@@ -61,8 +61,12 @@
                     <div class="row mt-3">
                         <div class="col-12">
                             <label><span class="text-danger">*</span> 标题</label>
-                            <input type="text" maxlength="256" class="form-control" name="rec_title"
-                                value="<?php echo $type == "edit" ? $data["title"] : ""; ?>" />
+                            <select class="form-control" name="rec_title"
+                                value="<?php echo $type == "edit" ? $data["title"] : ""; ?>">
+                                <option value="书">书</option>
+                                <option value="公众号">公众号</option>
+                                <option value="视频">视频</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mt-3">

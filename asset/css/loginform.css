@@ -66,4 +66,7 @@
     #accountCenter img{
         width:150px !important;
     }
+    .verify-code-field{
+        width: 150px !important;
+    }
 }

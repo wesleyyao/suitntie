@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
     if(!isset($_SESSION["login_staff"])){
         header("Location: ../index.php");
         exit;
@@ -82,7 +82,7 @@
         }
         else if($from == "recommendation"){
             $back_url = "../components/program-recommendation.php?type=$type&id=$id&pid=$program_id&title=$title";
-            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/suitntie/uploads/";
+            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/uploads/";
             if(empty($_POST["rec_title"]) || empty($_POST["rec_status"]) || empty($_POST["rec_index"])){
                 invalidForm($back_url);
             }
@@ -91,27 +91,36 @@
             $rec_status = $_POST["rec_status"];
             $rec_image_url = $_POST["rec_image_url"];
             $imageUrl = "";
-            if($_FILES["rec_image"]["size"] != 0){
-                $imageUrl = "/uploads/" . basename($_FILES["rec_image"]["name"]);
-                $file = $target_dir . basename($_FILES["rec_image"]["name"]);
-                if(file_exists($file)){
-                    unlink($file);
-                }
-                $result["file"] = fileUpload($target_dir, "image", $_FILES["rec_image"]);
-                if($result["file"]["status"] == "failed"){
-                    $_SESSION["program_message"]["status"] = "warning";
-                    $_SESSION["program_message"]["content"] = "图片上传失败。";
-                    header("Location: $back_url");
-                    exit;
-                }
+            if($rec_title == "书"){
+                $imageUrl = "/asset/image/resources/Resources_book.svg";
             }
+            else if($rec_title == "公众号"){
+                $imageUrl = "/asset/image/resources/Resources_wechat.svg";
+            }
+            else{
+                $imageUrl = "/asset/image/resources/Resources_onlineClass.svg";
+            }
+            // if($_FILES["rec_image"]["size"] != 0){
+            //     $imageUrl = "/uploads/" . basename($_FILES["rec_image"]["name"]);
+            //     $file = $target_dir . basename($_FILES["rec_image"]["name"]);
+            //     if(file_exists($file)){
+            //         unlink($file);
+            //     }
+            //     $result["file"] = fileUpload($target_dir, "image", $_FILES["rec_image"]);
+            //     if($result["file"]["status"] == "failed"){
+            //         $_SESSION["program_message"]["status"] = "warning";
+            //         $_SESSION["program_message"]["content"] = "图片上传失败。";
+            //         header("Location: $back_url");
+            //         exit;
+            //     }
+            // }
             if($type == "new"){
                 $is_saved = $program->save_program_recommendation($program_id, $rec_title, $imageUrl, $rec_index, $rec_status);
                 generateMessage($is_saved);
             }
             else{
                 if($_FILES["content_image"]["size"] == 0){
-                    $imageUrl = $rec_image_url;
+                    //$imageUrl = $rec_image_url;
                 }
                 $is_updated = $program->update_program_recommendation($id, $rec_title, $imageUrl, $rec_index, $rec_status);
                 generateMessage($is_updated);
@@ -120,7 +129,7 @@
             exit;
         }
         else if($from == "recommendation_content"){
-            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/suitntie/uploads/";
+            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/uploads/";
             if(empty($_POST["content_title"]) || empty($_POST["content_status"]) || empty($_POST["content_has_link"]) || !isset($_GET["bId"])){
                 invalidForm($back_url);
             }

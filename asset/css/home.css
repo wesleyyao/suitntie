@@ -7,7 +7,7 @@ body{
 }
 
 .home-programs-entrance{
-    background-image: url(/suitntie/asset/image/library.jpg);
+    background-image: url(/asset/image/library.jpg);
     background-size: cover;
     height: 450px;
     color: #fff;
@@ -86,7 +86,7 @@ body{
 }
 
 .home-one-on-one-entrance p{
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
 }
 
 .instructor h2{

@@ -1,26 +1,24 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
     $result_category = "dimension_test_result";
     $current_time = date("Y-m-d H:i:s");
     $receiver = "tim.zhao@suitntie.cn";
     $receiver2 = "fangqian@suitntie.cn";
     $subject = "适途教育[通知] - 内部邮件 - 新测试结果";
+    $result = array();
     
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(!isset($_SESSION["login_user"])){
-            //test_error_redirect('您没有登录。请点击<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>。');
             echo json_encode("no login");
             exit;
         }
         if(!isset($_POST["result_codes"]) || !isset($_POST["test_id"])){
-            //test_error_redirect("表格异常，请求无法被处理，请重试。");
             echo json_encode("invalid form");
             exit;
         }
         $result_codes = trim($_POST["result_codes"]);
         $test_id = trim($_POST["test_id"]);
         if(empty($result_codes) || empty($test_id)){
-            //test_error_redirect("表格异常，请求无法被处理，请重试。");
             echo json_encode("invalid form");
             exit;
         }
@@ -35,7 +33,6 @@
             }
         }
         if(count($dimension_ids) == 0){
-            //test_error_redirect("页面异常，请求无法被处理，请重试。");
             echo json_encode("failure");
             exit;
         }
@@ -45,10 +42,10 @@
                 $_SESSION["new_test_result"] = $new_result_id;
                 $_SESSION["new_test_saved_notification"] = 1;
                 //send email
-                $customer->fetch_current_user(isset($_SESSION["login_user"]) ? $_SESSION["login_user"] : 0);
-                $dimension_result->fetchResult($new_result_id);
-                $email_content = emailContent($customer->nick_name, $dimension_result->code, $dimension_result->title, $customer->email, $customer->phone);
-                $is_send = $email->send($receiver, $receiver2, $subject, $email_content);
+                //$customer->fetch_current_user(isset($_SESSION["login_user"]) ? $_SESSION["login_user"] : 0);
+                //$dimension_result->fetchResult($new_result_id);
+                //$email_content = emailContent($customer->nick_name, $dimension_result->code, $dimension_result->title, $customer->email, $customer->phone);
+                //$is_send = $email->send($receiver, $receiver2, $subject, $email_content);
                 unset($_SESSION["new_test"]);
             }
             else{
@@ -62,14 +59,37 @@
             exit;
         }
     }
-    else{
-        echo json_encode("invalid request");
+    // else{
+    //     echo json_encode("invalid request");
+    //     exit;
+    // }
+
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
+        if(isset($_GET["action"])){
+            $action = $_GET["action"];
+            if($action == "send_email" && isset($_SESSION["new_test_result"])){
+                $new_result_id = $_SESSION["new_test_result"];
+                $_SESSION["is_sent_new_result"] = false;
+                if($_SESSION["is_sent_new_result"] == false){
+                    $customer->fetch_current_user(isset($_SESSION["login_user"]) ? $_SESSION["login_user"] : 0);
+                    $dimension_result->fetchResult($new_result_id);
+                    $email_content = emailContent($customer->nick_name, $dimension_result->code, $dimension_result->title, $customer->email, $customer->phone);
+                    $is_send = $email->send($receiver, $receiver2, $subject, $email_content);
+                    $_SESSION["is_sent_new_result"] = $is_send;
+                    $result["status"] = $is_send ? "sent" : "failure";
+                }
+                else{
+                    $result["status"] = "sent";
+                }
+            }
+        }
+        echo json_encode($result);
         exit;
     }
 
     function test_error_redirect($message){
         $_SESSION["test_error_message"] = $message;
-        redirect("/suitntie/tests/dimension-test.php");
+        redirect("/tests/dimension-test.php");
         exit;
     }
 

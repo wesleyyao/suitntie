@@ -1,3 +1,4 @@
+import { validateEmailFormat, generateMessage } from './common.js';
 $(document).ready(function () {
     $('#contactMessage').hide();
     const loading = `
@@ -21,7 +22,7 @@ $(document).ready(function () {
         const city = $('#contactCity').val();
         const school = $('#contactSchool').val();
         const content = $('#contactContent').val();
-        $.post('/suitntie/public/api/contact.php', { email, phone, name, wechat, city, school, content }).done(function (data) {
+        $.post('/public/api/contact.php', { email, phone, name, wechat, city, school, content }).done(function (data) {
             if (data) {
                 $('#contactMessage').html(generateMessage('success', '提交成功！我们的工作人员会及时回复您。'));
             }
@@ -58,21 +59,21 @@ $(document).ready(function () {
         return isValid;
     }
 
-    function validateEmailFormat(mail) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-            return true;
-        }
-        return false;
-    }
+    // function validateEmailFormat(mail) {
+    //     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    function generateMessage(type, message) {
-        return `
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-${type}">
-                    <i class="${type == 'success' ? 'fas fa-check' : type === 'warning' ? 'fas fa-exclamation-triangle' : 'fas fa-times'}"></i> ${message}
-                </div>
-            </div>
-        </div>`;
-    }
+    // function generateMessage(type, message) {
+    //     return `
+    //     <div class="row">
+    //         <div class="col-12">
+    //             <div class="alert alert-${type}">
+    //                 <i class="${type == 'success' ? 'fas fa-check' : type === 'warning' ? 'fas fa-exclamation-triangle' : 'fas fa-times'}"></i> ${message}
+    //             </div>
+    //         </div>
+    //     </div>`;
+    // }
 });

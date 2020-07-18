@@ -1,6 +1,6 @@
 <?php
     $appId = "wxcfeb0aba33ebba0c";
-    $redirect_url = "https://www.suitntie.cn/suitntie/public/auth/wechat-login.php";
+    $redirect_url = "https://www.suitntie.cn/public/auth/wechat-login.php";
     $state = uniqid('', true);
     $_SESSION["wechat_state"] = $state;
 ?>
@@ -26,8 +26,7 @@
                             </li>
                             <li class="nav-item signup-options col-4 text-center" style="padding:0 1px;margin:0;">
                                 <a class="nav-link btn-light" id="emailLogin-tab" data-toggle="tab" href="#emailLogin"
-                                    role="tab" aria-controls="emailLogin" aria-selected="false">邮箱<sup><span
-                                            class="badge login-badge">推荐</span></sup></a>
+                                    role="tab" aria-controls="emailLogin" aria-selected="false">邮箱</a>
                             </li>
                             <li class="nav-item signup-options col-4 text-center"
                                 style="padding:0 15px 0 1px;margin:0;">
@@ -43,10 +42,6 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" style="background-color:#f2f2f2;"
-                                                    id="phoneNumberPrefix">+86</span>
-                                            </div>
                                             <input type="text" id="loginPhone" class="form-control" placeholder="手机号"
                                                 aria-label="手机号" aria-describedby="phoneNumberPrefix" maxlength="12">
                                             <div class="input-group-append">
@@ -59,7 +54,7 @@
                                 <div class="row mb-2">
                                     <div class="col-lg-4 col-md-4 col-sm-5">
                                         <label><span class="text-danger">*</span> 验证码: </label>
-                                        <input type="text" class="form-control" id="loginVerifyCode" maxlength="4" />
+                                        <input type="text" class="form-control verify-code-field" id="loginVerifyCode" maxlength="4" />
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -73,14 +68,7 @@
                                 <div id="loginByPhoneMessage"></div>
                             </div>
                             <div class="tab-pane fade" id="emailLogin" role="tabpanel" aria-labelledby="emailLogin-tab">
-                                <div class="row mt-3">
-                                    <div class="col-12">
-                                        <div class="alert alert-primary" role="alert">
-                                            <i class="fas fa-info-circle"></i> 如果您是海外用户，建议使用邮箱注册。
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-1">
+                                <div class="row mt-5">
                                     <div class="col-12">
                                         <input type="text" id="loginEmail" name="login_email" placeholder="邮箱"
                                             class="form-control" maxlength="128" />
@@ -112,14 +100,22 @@
                                             style="padding: 50px 15px;">
                                             <a href="" id="login_wechat_mobile_link"
                                                 class="btn primBtn col-12">点击此处授权</a>
-                                            <p class="mt-1" style="margin:0 auto;"><small
-                                                    style="font-weight:100 !important;">请确保在微信客户端中打开此网页</small></p>
+                                            <p class="mt-1" style="margin:0 auto;">
+                                                <small style="font-weight:100 !important;">请确保在微信客户端中打开此网页</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <div class="alert alert-primary" role="alert">
+                                            <i class="fas fa-info-circle"></i> 如果您是海外用户，建议使用邮箱注册。
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3 mb-4">
+                        <div class="row mt-1 mb-1">
                             <div class="col-12 text-right">
                                 <span>尚未注册？<a href="#/" id="showSignupModal">请点击这里</a></span>
                             </div>
@@ -201,7 +197,7 @@
                         <div class="row mb-2">
                             <div class="col-lg-4 col-md-4 col-sm-5">
                                 <label><span class="text-danger">*</span> 验证码: </label>
-                                <input type="text" class="form-control" id="signupEmailCode" maxlength="4" />
+                                <input type="text" class="form-control verify-code-field" id="signupEmailCode" maxlength="4" />
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -274,14 +270,12 @@
                     <div class="row">
                         <div class="offset-1 col-10">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="signupPhonePrefix">+86</span>
-                                </div>
                                 <input type="text" id="signupPhone" class="form-control" placeholder="手机号"
                                     aria-label="手机号" aria-describedby="signupPhonePrefix" maxlength="12">
                                 <div class="input-group-append">
                                     <button class="btn primBtnSM send-verify-code" id="sendSignupCode"
-                                        type="button">获取验证码</button>
+                                        type="button">获取验证码
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -289,12 +283,12 @@
                     <div class="row mb-3">
                         <div class="offset-1 col-lg-4 col-md-4 col-sm-5">
                             <label><span class="text-danger">*</span> 验证码: </label>
-                            <input type="text" class="form-control" id="signupVerifyCode" maxlength="4" />
+                            <input type="text" class="form-control verify-code-field" id="signupVerifyCode" maxlength="4" />
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="offset-1 col-10 text-right">
-                            <a class="btn ghostSecBtnSM" href="../../suitntie/account/user.php">返回</a>
+                            <a class="btn ghostSecBtnSM" href="../../account/user.php">返回</a>
                             <button type="submit" class="btn primBtnSM" id="CompleteProfile">提交</button>
                         </div>
                     </div>

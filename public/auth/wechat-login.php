@@ -1,14 +1,14 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/utils/initial.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/customer.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/customer.php");
     $customer = new Customer();
     $appId = "wxcfeb0aba33ebba0c";
     $secret = "da10d4ea0a4d2a36843b81044642759e";
     $current_time = date("Y-m-d H:i:s");
-    $ip = $_SERVER["SERVER_ADDR"];
+    $ip = $_SERVER["REMOTE_ADDR"];
     // $appId = "wx25d424c51ed0650d";
     // $secret = "b93d576736a7dabf70fef90294432cbd";
-    $redirect_url = "/suitntie/index.php";
+    $redirect_url = "/index.php";
     if(isset($_GET["code"]) && isset($_GET["state"])){
         $code = $_GET["code"];
         $state = $_GET["state"];
@@ -65,7 +65,7 @@
                 $_SESSION["auth_message"]["message"] = "保存新用户数据未成功，请重新扫描二维码。";
             }
         }
-        $redirect_url = isset($_GET["redirect"]) ? $_GET["redirect"] : "/suitntie/index.php";
+        $redirect_url = isset($_GET["redirect"]) ? $_GET["redirect"] : "/index.php";
     }
     redirect($redirect_url);
     exit;

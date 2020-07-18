@@ -1,6 +1,6 @@
 $(document).ready(function(){
     let sliderTable = '';
-    $.get(`/suitntie/public/api/home.php`).done(function(data){
+    $.get(`/public/api/home.php`).done(function(data){
         const result = JSON.parse(data);
         console.log(result)
         if(result && Array.isArray(result) && result.length > 0){
@@ -24,7 +24,7 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.previewImgBtn', function(){
-        const path = '/suitntie' + $(this).attr('id').replace('check_', '');
+        const path = '' + $(this).attr('id').replace('check_', '');
         $('#previewImg').prop('src', path);
         $('#imageModal').modal('show');
     });

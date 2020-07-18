@@ -1,12 +1,12 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/utils/initial.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/customer.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/customer.php");
     $customer = new Customer();
     $appId = "wx25d424c51ed0650d";
     $secret = "b93d576736a7dabf70fef90294432cbd";
     $current_time = date("Y-m-d H:i:s");
-    $ip = $_SERVER["SERVER_ADDR"];
-    $redirect_url = "/suitntie/index.php";
+    $ip = $_SERVER["REMOTE_ADDR"];
+    $redirect_url = "/index.php";
     if(isset($_GET["code"]) && isset($_GET["state"])){
         $code = $_GET["code"];
         $state = $_GET["state"];
@@ -42,8 +42,9 @@
         curl_close($ch);
 
         $arr2=json_decode($json2,1);
+        $union_id = $arr2["unionid"];
         //print_r($arr2);
-        $found_user = $customer->find_user_by_openid($open_id);
+        $found_user = $customer->find_user_by_uid($union_id);
         if($found_user){
             $_SESSION["login_user"] = $found_user;
         }
@@ -54,7 +55,7 @@
             $province = $arr2["province"];
             $country = $arr2["country"];
             $headImg = $arr2["headimgurl"];
-            $is_saved = $customer->save_wechat_mobile_user($nickname, $sex, $city, $province, $country, $headImg, $open_id, $ip, $current_time);
+            $is_saved = $customer->save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $union_id, $ip, $current_time);
             if($is_saved){
                 $_SESSION["login_user"] = $is_saved;
             }
@@ -63,7 +64,7 @@
                 $_SESSION["auth_message"]["message"] = "保存新用户数据未成功，请重新扫描二维码。";
             }
         }
-        $redirect_url = isset($_GET["redirect"]) ? $_GET["redirect"] : "/suitntie/index.php";
+        $redirect_url = isset($_GET["redirect"]) ? $_GET["redirect"] : "/index.php";
     }
     redirect($redirect_url);
     exit;

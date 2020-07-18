@@ -1,10 +1,10 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/utils/initial.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/customer.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/customer.php");
     $customer = new Customer;
     $message = array();
     $current_time = date("Y-m-d H:i:s");
-    $ip = $_SERVER["SERVER_ADDR"];
+    $ip = $_SERVER["REMOTE_ADDR"];
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(!isset($_GET["user"]) || !isset($_GET["tempId"]) || !isset($_GET["redirect"])){
             $_SESSION["signup_message"]["type"] = "error";
@@ -43,6 +43,7 @@
                 $message["content"] = "您的登录信息已经过期，请重新登录。";
             }
             else{
+                $user_id = $_SESSION["login_user"];
                 if(!isset($_POST["phone"]) || empty(trim($_POST["phone"]))){
                     $message["type"] = "danger";
                     $message["content"] = "请填写所有必填内容。";
@@ -51,19 +52,14 @@
                     $phone = trim($_POST["phone"]);
                     $is_found = $customer->find_user_by_phone($phone);
                     if($is_found){
-                        $message["type"] = "warning";
-                        $message["content"] = "该手机号已经注册过。";
+                        $is_transfer = $customer->transfer_user_data_by_phone($phone, $user_id);
+                        $message["type"] = $is_transfer ? "success" : "warning";
+                        $message["content"] = $is_transfer ? "找到您用手机号注册的账户，该账户的数据已经合并到此微信账户下。" : "未保存成功，请刷新后充实重试。";
                     }
                     else{
-                        $is_saved = $customer->save_phone_by_user($phone, $_SESSION["login_user"]);
-                        if($is_saved){
-                            $message["type"] = "success";
-                            $message["content"] = "您的手机号已经保存成功。正在为您跳转...";
-                        }
-                        else{
-                            $message["type"] = "warning";
-                            $message["content"] = "未保存成功，请刷新后重试。";
-                        }
+                        $is_saved = $customer->save_phone_by_user($phone, $user_id);
+                        $message["type"] = $is_saved ? "success" : "warning";
+                        $message["content"] = $is_saved ? "您的手机号已经保存成功。正在为您跳转..." : "未保存成功，请刷新后重试。";
                     }
                 }
             }

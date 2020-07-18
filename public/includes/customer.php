@@ -275,12 +275,12 @@
             }
         }
 
-        public function update_user($nickname, $email, $phone, $sex, $city, $province, $country, $user_id){
+        public function update_user($nickname, $sex, $city, $province, $country, $user_id){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
-                $query = "UPDATE customers SET nick_name = ?, email = ?, phone = ?, sex = ?, city = ?, province = ?, country = ? WHERE id = ?";
+                $query = "UPDATE customers SET nick_name = ?, sex = ?, city = ?, province = ?, country = ? WHERE id = ?";
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sssisssi", $nickname, $email, $phone, $sex, $city, $province, $country, $user_id);
+                $sql->bind_param("sisssi", $nickname, $sex, $city, $province, $country, $user_id);
                 if($sql->execute()){
                     $this->conn->commit();
                     return true;
@@ -304,9 +304,14 @@
                 $query = "UPDATE customers SET email = ?, phone = ? WHERE id = ?";
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssi", $new_email, $new_phone, $user_id);
-                $sql->execute();
-                $this->conn->commit();
-                return true;
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
             } catch (Exception $e) {
                 $this->conn->rollback();
                 return false;
@@ -315,7 +320,7 @@
 
         public function fetch_all_users(){
             $data = array();
-            $query = "SELECT `id`, `email`, `phone`, `nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionId`, `temporary_link`, `status` FROM customers";
+            $query = "SELECT `id`, `email`, `phone`, `nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionId`, `temporary_link`, `status`, `date_time`, `ip` FROM customers";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();
@@ -323,6 +328,38 @@
                 array_push($data, $row);
             }
             return $data;
+        }
+
+        public function transfer_user_data_by_phone($phone, $id){
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            try {
+                $query1 = "UPDATE test_results SET `user_id` = ? WHERE `user_id` = ?";
+                $sql = $this->conn->prepare($query1);
+                $sql->bind_param("ii", $id, $this->id);
+                if(!$sql->execute()){
+                    $this->conn->rollback();
+                    return false;
+                }
+                $query2 = "UPDATE customers SET phone = ? WHERE id = ?";
+                $sql = $this->conn->prepare($query2);
+                $sql->bind_param("si", $phone, $id);
+                if(!$sql->execute()){
+                    $this->conn->rollback();
+                    return false;
+                }
+                $query3 = "UPDATE customers set `status` = 'close' where id = ?";
+                $sql = $this->conn->prepare($query3);
+                $sql->bind_param("i", $this->id);
+                if(!$sql->execute()){
+                    $this->conn->rollback();
+                    return false;
+                }
+                $this->conn->commit();
+                return true;
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
         }
     }
 ?>

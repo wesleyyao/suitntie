@@ -247,13 +247,17 @@ $(document).ready(function(){
                 $('#totalUser').html(users.length);
                 let userTable = '';
                 users.forEach(function(item){
-                    userTable += `<tr><td><a href="#/" class="user-names" id="userId_${item.id}">${item.nick_name ? item.nick_name : ''}</a></td>
+                    userTable += `<tr>
+                    <td><a href="#/" class="user-names" id="userId_${item.id}">查看</a></td>
+                    <td>${item.nick_name ? item.nick_name : ''}</a></td>
                     <td>${item.email ? item.email : ''}</td>
                     <td>${item.phone ? item.phone : ''}</td>
                     <td>${item.sex ? item.sex == 1 ? '男' : '女' : ''}</td>
                     <td>${item.city ? item.city : ''}</td>
                     <td>${item.province ? item.province : ''}</td>
-                    <td>${item.country ? item.country : ''}</td></tr>`;
+                    <td>${item.country ? item.country : ''}</td>
+                    <td>${item.ip ? item.ip : ''}</td>
+                    <td>${item.date_time ? item.date_time : ''}</td></tr>`;
                 });
                 $('#userTableBody').html(userTable);
                 $('#userTable').DataTable();

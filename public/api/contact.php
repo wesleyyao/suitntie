@@ -1,7 +1,7 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/utils/initial.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/message.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/email.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/message.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/email.php");
     $message = new Message();
     $mail = new MailBox();
     $receiver = "tim.zhao@suitntie.cn";

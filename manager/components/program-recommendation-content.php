@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
     require_once("./page-common-functions.php");
     
     if(!isset($_GET["bId"])){

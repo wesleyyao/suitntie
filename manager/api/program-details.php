@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/includes/initial.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
     $result = array();
     if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["title"])){
         $title = $_GET["title"];

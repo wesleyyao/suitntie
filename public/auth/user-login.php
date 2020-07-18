@@ -2,7 +2,7 @@
     require_once("../includes/initial.php");
     $message = array();
     $current_time = date("Y-m-d H:i:s");
-    $ip = $_SERVER["SERVER_ADDR"];
+    $ip = $_SERVER["REMOTE_ADDR"];
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["by"])){
         $by = $_POST["by"];
         if($by == "phone"){

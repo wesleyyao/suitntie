@@ -4,7 +4,7 @@
         unset($_SESSION["new_test_result"]);
     }
 ?>
-<!<!DOCTYPE html>
+<!DOCTYPE html>
     <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
     <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
     <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -15,10 +15,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>用户中心</title>
+        <title>适途咨询</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/style.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/style.php"); ?>
     </head>
 
     <body>
@@ -27,7 +27,7 @@
         <![endif]-->
         <div class="user-main">
             <input type="hidden" id="hide_title" value="user" />
-            <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-header.php"); ?>
+            <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
             <div class="container mt-5" style="padding: 20px 0 100px 0">
                 <div class="row">
                     <div class="col-12">
@@ -35,12 +35,6 @@
                     </div>
                 </div>
                 <div id="loadingDiv">
-                    <br />
-                    <div class="d-flex justify-content-center">
-                        <div class="spinner-border text-warning" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
                 </div>
                 <div id="accountCenter">
                     <div class="row no-gutters">
@@ -68,7 +62,7 @@
                                             <div class="col-lg-2 col-md-3 col-sm-4">
                                                 <div class="row">
                                                     <div class="col-12 text-center mb-5">
-                                                        <img src="/suitntie/asset/image/avatar.png" id="profileHeadImg"
+                                                        <img src="/asset/image/avatar.png" id="profileHeadImg"
                                                             class="img-cell" style="width: 100%; height: auto;"
                                                             alt="avatar" />
                                                     </div>
@@ -155,9 +149,9 @@
                 </div>
             </div>
         </div>
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/public/component/auth-modals.php"); ?>
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/account/components/dimension-test-result-modal.php"); ?>
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/account/components/profile-editor-modal.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/public/component/auth-modals.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/account/components/dimension-test-result-modal.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/account/components/profile-editor-modal.php"); ?>
         <?php if(isset($_SESSION["signup_message"])): ?>
         <div id="dimension-result-notification" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
             data-autohide="false">
@@ -176,10 +170,10 @@
         </div>
         <?php unset($_SESSION["signup_message"]); ?>
         <?php endif; ?>
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/global-footer.php"); ?>
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/suitntie/theme/script.php"); ?>
-        <script src="/suitntie/asset/js/chart.js"></script>
-        <script src="/suitntie/asset/js/account-center.js" charset="utf-8"></script>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-footer.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/script.php"); ?>
+        <script src="/asset/js/chart.js"></script>
+        <script type="module" src="/asset/js/account-center.js" charset="utf-8"></script>
     </body>
 
     </html>
