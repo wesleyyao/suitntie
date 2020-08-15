@@ -229,23 +229,35 @@ $(document).ready(function () {
             let controller = '';
             if (testimonialData && Array.isArray(testimonialData) && testimonialData.length > 0) {
                 testimonialData.forEach(function (item, index) {
-                    testimonials += `<div class="carousel-item ${index == 0 ? 'active' : ''}">
-                    <img src="../asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">
-                    <div class="carousel-caption" style="color: #333; top: 90px;">
-                        <div>
-                            <p>${item.feedback}</p>
-                            <h5>${item.name}</h5>
-                            <p><em>${item.school} ${item.program} ${item.grade}</em></p>
-                        </div>
-                        <a class="btn primBtn contact-btn" href="#/">咨询学长学姐</a>
+                //     testimonials += `<div class="carousel-item ${index == 0 ? 'active' : ''}">
+                //     <img src="../asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">
+                //     <div class="carousel-caption" style="color: #333; top: 90px;">
+                //         <div>
+                //             <p>${item.feedback}</p>
+                //             <h5>${item.name}</h5>
+                //             <p><em>${item.school} ${item.program} ${item.grade}</em></p>
+                //         </div>
+                //         <a class="btn primBtn contact-btn" href="#/">咨询学长学姐</a>
+                //     </div>
+                // </div>`;
+                //     if (testimonialData.length > 1) {
+                //         controller += `<li data-target="#testimonialSlider" data-slide-to="${index + 1}"></li>`;
+                //     }
+                testimonials += index === 0 ? `<h2 class="text-center m-0">学长学姐说啥？</h2>
+                <div class="container text-center">
+                <!--<img src="../asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">-->
+                <div class="" style="color: #333;">
+                    <div>
+                        <p>${item.feedback}</p>
+                        <h5>${item.name}</h5>
+                        <p><em>${item.school} ${item.program} ${item.grade}</em></p>
                     </div>
-                </div>`;
-                    if (testimonialData.length > 1) {
-                        controller += `<li data-target="#testimonialSlider" data-slide-to="${index + 1}"></li>`;
-                    }
+                    <a class="btn primBtn" href="#/">咨询学长学姐</a>
+                </div>
+            </div>` : '';
                 });
             }
-            $('#programTestimonialController').append(controller);
+            //$('#programTestimonialController').append(controller);
             $('#programTestimonial').append(testimonials);
         });
     }

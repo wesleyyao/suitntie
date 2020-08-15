@@ -295,7 +295,16 @@ $(document).ready(function () {
         $('#userLoginModal').modal('show');
     });
 
+    $('#startTesting').click(function(){
+        $('#testOrView').fadeOut();
+        $('#mainContentDiv').fadeIn();
+        $('html, body').animate({
+            scrollTop: $("#message").offset().top - 130
+        }, 1000);
+    });
+
     function fetchAccount() {
+        $('#testOrView').hide();
         $.get(`${prefix}/public/api/account.php`).done(function (data) {
             const result = JSON.parse(data);
             const pageTitle = $('#hide_title').val();
@@ -318,6 +327,7 @@ $(document).ready(function () {
             </div>`;
             $('#userInNav').html(user ? isLogin : noLogin);
             if (user) {
+                $('#testOrView').show();
                 $('#loginUserAvatarInNav').attr('src', user.headImg ? user.headImg : `${prefix}/asset/image/avatar.png`);
             }
             let isPageRequirePhone = 0;
@@ -334,8 +344,11 @@ $(document).ready(function () {
                 $('#message').html(generateMessage(
                     'warning',
                     '在开始测试前，请您点击<a href="#/" data-toggle="modal" data-target="#userProfileCompleteModal">此处</a>完善联系方式。'));
+                    return;
             }
-            return;
+            if(pageTitle == 'dimension-test' && user){
+                $('#mainContentDiv').hide();
+            }
         });
     }
 });

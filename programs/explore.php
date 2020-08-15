@@ -104,7 +104,7 @@
     </div>
     <div class="program-contact-form">
         <div class="container pt-5 pb-5">
-            <h2 class="text-center pb-3">没有看到你有兴趣的专业？请留言联系我们</h2>
+            <h2 class="text-center pb-3">没有看到你感兴趣的专业？请留言联系我们</h2>
             <?php require_once("../public/component/contact-us.php"); ?>
         </div>
     </div>

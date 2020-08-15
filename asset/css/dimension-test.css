@@ -184,3 +184,53 @@
     margin-top:50px;
     margin-bottom: 100px;
 }
+
+#testOrView{
+  position: relative;
+  padding: 10px;
+  margin-bottom: 70px;
+  z-index: 90;
+  bottom: 0;
+  width: 40%;
+  left: 30%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@media only screen and (max-width: 1080px) {
+  #testOrView{
+    width: 60%;
+    left: 20%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #testOrView{
+    position: fixed;
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #testOrView{
+    width: 80%;
+    left: 10%;
+  }
+}
+
+@media only screen and (max-width:512px) {
+  #testOrView{
+    width: 100%;
+    left: 0;
+  }
+
+  #testOrView button, #testOrView a{
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  #testOrView button, #testOrView a{
+    padding: 8px 20px;
+  }
+}

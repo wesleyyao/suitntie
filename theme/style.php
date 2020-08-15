@@ -1,7 +1,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="Keywords" content="留学咨询，专业选择，导师一对一咨询">
-<meta name="Description" content="">
+<meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+<meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
     rel="stylesheet">
 <link rel="stylesheet" href="/asset/css/bootstrap.css">

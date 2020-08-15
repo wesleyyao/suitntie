@@ -26,13 +26,13 @@
                 </ul>
             </li>
             <li class="nav-item global-nav-item">
-                <a class="nav-link" href="/one-on-one/index.php">一对一科普</a>
+                <a class="nav-link" href="/one-on-one/index.php">一对一解惑</a>
             </li>
             <li class="nav-item global-nav-item">
                 <a class="nav-link" href="/about/index.php">关于适途</a>
             </li>
             <li class="nav-item global-nav-item">
-                <a class="nav-link" href="https://jinshuju.net/f/Q1suVd">成为导师</a>
+                <a class="nav-link" href="https://jinshuju.net/f/Q1suVd" target="_blank">成为导师</a>
             </li>
             <li class="nav-item global-nav-item userIcon">
                 <div id="userInNav" class=""></div>

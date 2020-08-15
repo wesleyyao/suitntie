@@ -83,6 +83,16 @@
                 </div>
             </div>
         </div>
+        <div id="testOrView">
+            <div class="row">
+                <div class="col-6">
+                    <button class="btn primBtn btn-block" id="startTesting">开始测试</button>
+                </div>
+                <div class="col-6">
+                    <a class="btn primBtn btn-block" href="/account/user.php?view=history">查看过往结果</a>
+                </div>
+            </div>
+        </div>
         <div id="mainContentDiv" class="mainTestContainer container">
             <div class="container">
                 <div id="clockAndProgressBarDiv" class="test-div">

@@ -18,16 +18,115 @@ require_once("../utils/initial.php");
         <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
         <input type="hidden" id="hide_title" value="oneOnone" />
         <div class="one-on-one-top-banner">
-            <h1>一对一科普</h1>
+            <h1>一对一解惑</h1>
         </div>
         <div class="container mt-5 mb-5 pt-5 pb-5">
-            <div class="row one-on-one-reason">
-                <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12">
-                    <h2 class="text-center mb-4">为什么要一对一？</h2>
-                    <p>固然，互联网上关于不同专业的信息不计其数，从百度百科到知乎回答再到科普类博主。但是不同性格，兴趣，价值观，家庭背景都造就了独一无二的你。对于独立个体，教育不应该是灌输信息，也不因该是娱乐节目；教育是互动，是激励。而最具有针对性的方法就是一对一的沟通。
-                    </p>
+            <div class="one-on-one-section-2 mt-5">
+                <div class="row mb-3">
+                    <div class="col-12 text-center">
+                        <h2>一对一能解你哪些惑？</h2>
+                    </div>
+                </div>
+                <!-- <div class="row mb-5">
+                    <div class="col-md-10 offset-md-1 col-sm-12">
+                        <p>不同的人格类型没有好坏之分，每个人都是独一无二的个体，都有其特别的优势和劣势，但问题关键在于如何认识这些优势和劣势。“取己之长，补己之短”，学会了这一点将会影响你的成败及你对未来专业和工作的喜好。
+                        </p>
+                    </div>
+                </div> -->
+                <div class="row mb-5">
+                    <div class="col-md-10 offset-md-1 col-sm-12 mb-3">
+                        <div style="margin-bottom: 10px; position:relative;">
+                            <img src="../asset/image/pics/1-on-1/experiment.svg" width="30px" />
+                            <h5 style="margin: 0; position:absolute; bottom:0; left:40px;">关于专业</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-5 offset-md-1 col-sm-12">
+                        <div>
+                            <ul>
+                                <li>在推荐的专业列表里我可能更适合哪个专业？</li>
+                                <li>这些专业听起来很像，有什么区别？</li>
+                                <li>这个专业有什么书和资料我可以提前了解的？</li>
+                                <li>这个专业通常有哪些必修和选修课？</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        <div>
+                            <ul>
+                                <li>假期的实习工作或者课外活动一般怎么找？</li>
+                                <li>这个专业对应的行业是什么样的发展趋势？</li>
+                                <li>有没有什么跨行业的机会？比如心理学应用在金融方面</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md-10 offset-md-1 col-sm-12 mb-3">
+                        <div style="margin-bottom: 10px; position:relative;">
+                            <img src="../asset/image/pics/1-on-1/experiment.svg" width="30px" />
+                            <h5 style="margin: 0; position:absolute; bottom:0; left:40px;">关于职业</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-5 offset-md-1 col-sm-12">
+                        <div>
+                            <ul>
+                                <li>这个专业毕业的学生都一般会进入什么行业和领域？</li>
+                                <li>这个专业毕业后在不同的工作上起薪有多少？</li>
+                                <li>这个专业，行业有哪些公司，他们都在做什么？</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        <div>
+                            <ul>
+                                <li>我能从这个专业获得什么样的技能？</li>
+                                <li>这个专业有哪些选课技巧？</li>
+                                <li>这个专业如果学不下去有没有可能转到其他专业，比如哪些？</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1 col-sm-12 mb-3">
+                        <div style="margin-bottom: 10px; position:relative;">
+                            <img src="../asset/image/pics/1-on-1/experiment.svg" width="30px" />
+                            <h5 style="margin: 0; position:absolute; bottom:0; left:40px;" class="align-text-bottom">
+                                <span>关于大学生活</span></h5>
+                        </div>
+                    </div>
+                    <div class="col-md-5 offset-md-1 col-sm-12">
+                        <div>
+                            <ul>
+                                <li>导师您当初为什么选择这个专业？</li>
+                                <li>在XX大学XX专业就读是种怎样的体验？</li>
+                                <li>大学里除了学好专业课，还需要锻炼哪些能力才能更好适应未来社会？</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        <div>
+                            <ul>
+                                <li>在大学如何平衡GPA和课外活动经历？</li>
+                                <li>如果真要进入这个专业，导师您还能给我其他什么忠告？</li>
+                                <li>如果不推荐这个专业，有什么别的专业可能更适合我？</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="container mt-5 mb-5 pt-5 pb-5">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7 col-sm-12 p-3 pr-5 pl-5">
+                        <h2 class="mb-5 text-center text-md-left text-lg-left">为什么要一对一？</h2>
+                        <p>固然，互联网上关于不同专业的信息不计其数，从百度百科到知乎回答再到科普类博主。但是不同性格，兴趣，价值观，家庭背景都造就了独一无二的你。对于独立个体，教育不应该是灌输信息，也不因该是娱乐节目；教育是互动，是激励。而最具有针对性的方法就是一对一的沟通。
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-5 d-none d-md-block d-lg-block">
+                        <img src="../asset/image/pics/1-on-1/1v1.png" class="img-fluid pt-3" />
+                    </div>
+                </div>
+            </div>
+            <!-- mentors new -->
             <div class="one-on-one-section-1 mt-5" id="ourTeachers">
                 <div class="row mb-3">
                     <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12 text-center">
@@ -40,9 +139,16 @@ require_once("../utils/initial.php");
                         </p>
                     </div>
                 </div>
-                <!-- mentors new -->
-                <div class="mentorContainer container">
+                <div class="mentorContainer container mt-5">
                     <div class="hs__wrapper">
+                        <div class="sliderControl">
+                            <p>向左滑动</p>
+                            <div class="arrow">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
                         <ul class="hs text-center">
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
@@ -176,163 +282,65 @@ require_once("../utils/initial.php");
                                 </div>
                             </li>
                         </ul>
-                        <div class="sliderControl">
-                            <p>向右滑动</p>
-                            <div class="arrow">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- mentors new end -->
-            <div class="one-on-one-section-2 mt-5">
-                <div class="row mb-3">
-                    <div class="col-12 text-center">
-                        <h2>一对一能回答你哪些问题？</h2>
-                    </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-md-10 offset-md-1 col-sm-12">
-                        <p>不同的人格类型没有好坏之分，每个人都是独一无二的个体，都有其特别的优势和劣势，但问题关键在于如何认识这些优势和劣势。“取己之长，补己之短”，学会了这一点将会影响你的成败及你对未来专业和工作的喜好。
-                        </p>
-                    </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-md-10 offset-md-1 col-sm-12 mb-3">
-                        <div style="margin-bottom: 10px; position:relative;">
-                            <img src="../asset/image/pics/1-on-1/experiment.svg" width="30px" />
-                            <h5 style="margin: 0; position:absolute; bottom:0; left:40px;">关于专业</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-5 offset-md-1 col-sm-12">
-                        <div>
-                            <ul>
-                                <li>在推荐的专业列表里我可能更适合哪个专业？</li>
-                                <li>这些专业听起来很像，有什么区别？</li>
-                                <li>这个专业有什么书和资料我可以提前了解的？</li>
-                                <li>这个专业通常有哪些必修和选修课？</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-12">
-                        <div>
-                            <ul>
-                                <li>假期的实习工作或者课外活动一般怎么找？</li>
-                                <li>这个专业对应的行业是什么样的发展趋势？</li>
-                                <li>有没有什么跨行业的机会？比如心理学应用在金融方面</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-md-10 offset-md-1 col-sm-12 mb-3">
-                        <div style="margin-bottom: 10px; position:relative;">
-                            <img src="../asset/image/pics/1-on-1/experiment.svg" width="30px" />
-                            <h5 style="margin: 0; position:absolute; bottom:0; left:40px;">关于职业</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-5 offset-md-1 col-sm-12">
-                        <div>
-                            <ul>
-                                <li>这个专业毕业的学生都一般会进入什么行业和领域？</li>
-                                <li>这个专业毕业后在不同的工作上起薪有多少？</li>
-                                <li>这个专业，行业有哪些公司，他们都在做什么？</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-12">
-                        <div>
-                            <ul>
-                                <li>我能从这个专业获得什么样的技能？</li>
-                                <li>这个专业有哪些选课技巧？</li>
-                                <li>这个专业如果学不下去有没有可能转到其他专业，比如哪些？</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-10 offset-md-1 col-sm-12 mb-3">
-                        <div style="margin-bottom: 10px; position:relative;">
-                            <img src="../asset/image/pics/1-on-1/experiment.svg" width="30px" />
-                            <h5 style="margin: 0; position:absolute; bottom:0; left:40px;" class="align-text-bottom">
-                                <span>关于大学生活</span></h5>
-                        </div>
-                    </div>
-                    <div class="col-md-5 offset-md-1 col-sm-12">
-                        <div>
-                            <ul>
-                                <li>导师您当初为什么选择这个专业？</li>
-                                <li>在XX大学XX专业就读是种怎样的体验？</li>
-                                <li>大学里除了学好专业课，还需要锻炼哪些能力才能更好适应未来社会？</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-12">
-                        <div>
-                            <ul>
-                                <li>在大学如何平衡GPA和课外活动经历？</li>
-                                <li>如果真要进入这个专业，导师您还能给我其他什么忠告？</li>
-                                <li>如果不推荐这个专业，有什么别的专业可能更适合我？</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-5 mb-3">
                 <div class="col-12 text-center">
-                    <h2>适途一对一专业科普流程</h2>
+                    <h2>适途一对一解惑流程</h2>
                 </div>
             </div>
             <div class="row fourSteps">
                 <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
-                        <div class="card-body d-flex flex-column">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <img src="../asset/image/icons/process/process_icon_Step1.png" style="margin-bottom: 10px"  width="40px" />
-                                    <h5 class="card-title text-center col-12 mb-3">1. 兴趣调查</h5>
-                                    <p class="col-12 h-100 justify-content-center">
-                                        学生通过适途评测获取独家的个人报告；主动探索了报告中最感兴趣的几个专业；并填写了个人信息表。</p>
-                                </div>
+                        <div class="d-flex flex-column">
+                            <div class="text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step1.png"
+                                    style="margin-bottom: 10px" width="40px" />
+                                <h5 class="card-title col-12 mb-3 mt-2" style="font-size: 1.1em">1. 兴趣初步调查</h5>
+                                <p class="col-12 h-100 justify-content-start text-left">
+                                    学生通过适途专业匹测试获取独家个人报告后，主动探索报告中最感兴趣的几个专业，并填写个人信息表。</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
-                        <div class="card-body d-flex flex-column">
-                            <div class="col-12 text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step2.png" style="margin-bottom: 10px" width="40px" />
-                                <h5 class="card-title text-center col-12 mb-3">2. 安排导师</h5>
-                                <p class="col-12 h-100 justify-content-center">
-                                    适途咨询师根据学生信息进一步与学生沟通，了解学生更多想法，并根据学生需求安排一个或多个一对一专业科普导师。</p>
+                        <div class="d-flex flex-column">
+                            <div class="text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step2.png"
+                                    style="margin-bottom: 10px" width="40px" />
+                                <h5 class="card-title col-12 mb-3 mt-2" style="font-size: 1.1em">2. 按需匹配导师</h5>
+                                <p class="col-12 h-100 justify-content-start text-left">
+                                    适途咨询师根据学生信息与学生进一步沟通，挖掘学生更多潜在想法，并根据学生和家长需求安排一对一专业导师。
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
-                        <div class="card-body d-flex flex-column">
-                            <div class="col-12 text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step3.png" style="margin-bottom: 10px"  width="40px" />
-                                <h5 class="card-title text-center col-12 mb-3">3. 师生沟通</h5>
-                                <p class="col-12 h-100 justify-content-center">
-                                    一对一专业科普导师收集适途咨询师给到的学生信息，根据约定的时间进行正式视频或音频沟通。</p>
+                        <div class="d-flex flex-column">
+                            <div class="text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step3.png"
+                                    style="margin-bottom: 10px" width="40px" />
+                                <h5 class="card-title col-12 mb-3 mt-2" style="font-size: 1.1em">3. 学生导师沟通</h5>
+                                <p class="col-12 h-100 justify-content-start text-left">
+                                    专业导师收集适途咨询师提供的学生信息，并根据约定的时间进行正式一对一线上咨询。
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                     <div class="card border-0 p-4">
-                        <div class="card-body d-flex flex-column">
-                            <div class="col-12 text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step4.png" style="margin-bottom: 10px"  width="40px" />
-                                <h5 class="card-title text-center col-12 mb-3">4. 咨询反馈</h5>
-                                <p class="col-12 h-100 justify-content-center">
-                                    适途咨询师对学生进行回访，学生可以就与导师沟通的结果进行反馈。</p>
+                        <div class="d-flex flex-column">
+                            <div class="text-center">
+                                <img src="../asset/image/icons/process/process_icon_Step4.png"
+                                    style="margin-bottom: 10px" width="40px" />
+                                <h5 class="card-title col-12 mb-3 mt-2" style="font-size: 1.1em">4. 定制个人报告</h5>
+                                <p class="col-12 h-100 justify-content-start text-left">
+                                    适途咨询师对导师和学生以及家长进行回访，根据多方反馈整理数据并提供个性化定制报告。</p>
                             </div>
                         </div>
                     </div>
@@ -340,7 +348,7 @@ require_once("../utils/initial.php");
             </div>
         </div>
         <div class="home-contact-form" id="contactUs">
-            <h2 class="text-center pt-3">联系我们</h2>
+            <h2 class="text-center pt-3">联系学长姐</h2>
             <?php require_once("../public/component/contact-us.php"); ?>
         </div>
     </div>

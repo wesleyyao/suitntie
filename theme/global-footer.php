@@ -1,16 +1,6 @@
 <footer>
     <div class="container pt-5">
         <div class="row">
-            <div class="col-lg-5 col-md-4 col-sm-12 mb-5">
-                <div class="footer-qrcodes text-right row text-center">
-                    <div class="col-6">
-                        <img src="/asset/image/qr/suitntie.jpg" class="img-fluid" alt="公众号二维码" width="150" />
-                    </div>
-                    <div class="col-6">
-                        <!-- <img src="/asset/image/QR.png" class="img-fluid" alt="qrcode" width="150" /> -->
-                    </div>
-                </div>
-            </div>
             <div class="col-lg-7 col-md-8 col-sm-12">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-12 mb-5">
@@ -30,6 +20,18 @@
                         <a href="#/">+86-13770644337</a>
                         <a href="mailto:contact@suitntie.cn">contact@suitntie.cn</a>
                         <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-4 col-sm-12 mb-5">
+                <div class="footer-qrcodes text-right row text-center">
+                    <div class="col-6">
+                        <img src="/asset/image/qr/zhushou.JPG" class="img-fluid" alt="小助手" width="150" />
+                        <label style="color: #fff; font-size: 0.75rem">扫码添加小助手免费咨询</label>
+                    </div>
+                    <div class="col-6">
+                        <img src="/asset/image/qr/gongzhonghao.jpg" class="img-fluid" alt="小助手" width="150" />
+                        <label style="color: #fff; font-size: 0.75rem">扫码关注公众号</label>
                     </div>
                 </div>
             </div>

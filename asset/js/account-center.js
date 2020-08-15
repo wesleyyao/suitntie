@@ -260,6 +260,12 @@ $(document).ready(function () {
             }
             $('#loadingDiv').html('');
             $('#accountCenter').fadeIn();
+            if(window.location.search.indexOf('view=history') > -1){
+                $('#userProfile').removeClass('active');
+                $('#testResults').addClass('active');
+                $('#userProfileSection').hide();
+                $('#testResultsSection').fadeIn();
+            }
         });
     }
 });

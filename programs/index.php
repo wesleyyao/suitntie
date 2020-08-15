@@ -29,8 +29,8 @@
                             <img class="program-one-on-one-img d-none d-md-block"
                                 src="<?php echo $global_prefix; ?>/asset/image/pics/programs/contact.png" />
                             <div>
-                                <h2 class="card-title">一对一专业导师科普</h2>
-                                <p>我们的每一位导师都经过精心挑选，他们来自于全球顶级学府的各个专业。他们走过的路就是你可能面临的路。他们的人生经验和专业知识能给你从专业，选课，学校生活，工作各个方面提供指导和参考价值。
+                                <h2 class="card-title">一对一在线解惑</h2>
+                                <p>我们的每一位导师都经过精心挑选，他们来自于全球顶级学府的各个专业。他们走过的路就是你可能面临的路。他们的人生经验和专业知识能给你从专业、选课、学校生活、工作等各个方面提供指导和参考价值。
                                 </p>
                                 <a class="btn primBtn"
                                     href="<?php echo $global_prefix; ?>/one-on-one/index.php">了解更多</a>
