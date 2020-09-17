@@ -21,7 +21,7 @@
                     aria-haspopup="true" aria-expanded="false">
                     专业探索
                 </a>
-                <ul class="dropdown-menu pt-2 pb-2 text-left" aria-labelledby="programLinks" id="programMenu">
+                <ul class="dropdown-menu pt-2 pb-2 text-left" aria-labelledby="programLinks" id="programMenu" style="overflow-y: auto; height: 340px">
                     <li><a class="dropdown-item" href="/programs/index.php">总览</a></li>
                 </ul>
             </li>

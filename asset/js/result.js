@@ -157,11 +157,11 @@ $(document).ready(function () {
         }
     });
 
-    function sendNotification() {
-        $.get(`${prefix}/public/api/proceed-result.php?action=send_email`).done(function (data) {
-            if (data) {
+    function sendNotification(){
+        $.get(`${prefix}/public/api/proceed-result.php?action=send_email`).done(function(data){
+            if(data){
                 const result = JSON.parse(data);
-                if (result && result.status) {
+                if(result && result.status){
                     //
                 }
             }

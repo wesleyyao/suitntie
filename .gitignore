@@ -5,3 +5,10 @@ public/api/phone-verify-local.php
 vendor/
 
 phone-verify-local.php
+
+ocp.php
+p.php
+
+.vscode/
+
+

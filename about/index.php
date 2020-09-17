@@ -25,7 +25,7 @@
                 <div class="col-lg-8 col-md-7 col-sm-12 p-3 pr-5 pl-5">
                     <h2 class="mb-5 text-center text-md-left text-lg-left">为什么叫Suit n'Tie 适途？</h2>
                     <p>Suit n'Tie (Suit and Tie的简称)
-                        直译为西装与领带，是国际上正式场合的着装要求，也是长大成人的标志之一。同时Suit也有合适的意思，而Tie也有直接之意。正如我们希望的一样：让每个学生都能够用更科学的方法找到适合自己的专业方向；并帮助他们连接到理想专业的学长学姐，解决专业上的困惑，指引学术上的方向。因为我们坚信：适合自己的道路，才是最美的旅途。
+                        直译为西装与领带，是国际上正式场合的着装要求，也是长大成人的标志之一。同时Suit也有合适的意思，而Tie也有连接之意。正如我们希望的一样：让每个学生都能够用更科学的方法找到适合自己的专业方向；并帮助他们连接到理想专业的学长学姐，解决专业上的困惑，指引学术上的方向。因为我们坚信：适合自己的道路，才是最美的旅途。
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-5 d-none d-md-block d-lg-block">
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-<!-- 
+        <!-- 
         <div class="container mt-5 mb-5 pt-5 pb-5 about-section-2">
             <div class="row mb-3">
                 <div class="col-12">
