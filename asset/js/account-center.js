@@ -1,8 +1,7 @@
-import { validateEmailFormat, generateMessage } from './common.js';
+import { validateEmailFormat, generateMessage, prefix } from './common.js';
 $(document).ready(function () {
     let user = undefined;
     let tests = [];
-    const prefix = '';
     const loading = `
     <div class="pt-2 pb-2">
         <div class="d-flex justify-content-center">

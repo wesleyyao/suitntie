@@ -15,7 +15,7 @@
 
 <body>
     <div class="about-page-main">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-header.php"); ?>
         <input type="hidden" id="hide_title" value="about" />
         <div class="about-top-banner">
             <h1>关于Suit n'Tie 适途咨询</h1>

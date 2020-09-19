@@ -1,6 +1,6 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/customer.php");
+    require_once("../../utils/initial.php");
+    require_once("../includes/customer.php");
     $customer = new Customer();
     $appId = "wxcfeb0aba33ebba0c";
     $secret = "da10d4ea0a4d2a36843b81044642759e";

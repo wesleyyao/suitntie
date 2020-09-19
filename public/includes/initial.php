@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
+    require_once("../../utils/initial.php");
     require_once("test-data.php");
     require_once("dimension.php");
     require_once("customer.php");

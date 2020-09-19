@@ -1,4 +1,4 @@
-import { validateEmailFormat, generateMessage } from './common.js';
+import { validateEmailFormat, generateMessage, prefix } from './common.js';
 $(document).ready(function () {
     $('#contactMessage').hide();
     const loading = `
@@ -22,7 +22,7 @@ $(document).ready(function () {
         const city = $('#contactCity').val();
         const school = $('#contactSchool').val();
         const content = $('#contactContent').val();
-        $.post('/public/api/contact.php', { email, phone, name, wechat, city, school, content }).done(function (data) {
+        $.post(`${prefix}/public/api/contact.php`, { email, phone, name, wechat, city, school, content }).done(function (data) {
             if (data) {
                 $('#contactMessage').html(generateMessage('success', '提交成功！我们的工作人员会及时回复您。'));
             }

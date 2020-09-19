@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
+    require_once("../../public/includes/initial.php");
     $result = array();
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         $result["categories"] = $program->fetch_program_data_all();
@@ -8,7 +8,7 @@
     }
     
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["to"])){
-        $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/uploads/";
+        $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "$global_prefix/uploads/";
         $to = $_GET["to"];
         if($to == "addNewCategory"){
             $name = $_POST["new_category_name"];

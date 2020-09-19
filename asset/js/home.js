@@ -1,5 +1,6 @@
+import { prefix } from './common.js';
+
 $(document).ready(function () {
-    const prefix = '';
     let topSlider = '';
     let topController = '';
     $.get(`${prefix}/public/api/home.php`).done(function (data) {

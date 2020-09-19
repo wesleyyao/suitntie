@@ -1,4 +1,5 @@
 <?php
+    require_once("../utils/initial.php");
     if(isset($_GET["title"])){
         $title = $_GET["title"];
     }
@@ -112,8 +113,8 @@
     <?php require_once("../theme/global-footer.php"); ?>
     <?php require_once("../public/component/auth-modals.php"); ?>
     <?php require_once("../theme/script.php"); ?>
-    <script src="../asset/js/program.js"></script>
-    <script src="../asset/js/home.js"></script>
+    <script type="module" src="../asset/js/program.js"></script>
+    <script type="module" src="../asset/js/home.js"></script>
 </body>
 
 </html>

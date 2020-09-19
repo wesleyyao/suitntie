@@ -1,6 +1,5 @@
-import { generateMessage } from './common.js';
+import { generateMessage, prefix } from './common.js';
 $(document).ready(function () {
-    const prefix = '';
     let second = 0;
     let minute = 0;
     const title = '适途16型人格测试';

@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
+    require_once("../../public/includes/initial.php");
     if(!isset($_SESSION["login_staff"])){
         header("Location: ../index.php");
         exit;
@@ -82,7 +82,7 @@
         }
         else if($from == "recommendation"){
             $back_url = "../components/program-recommendation.php?type=$type&id=$id&pid=$program_id&title=$title";
-            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/uploads/";
+            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "$global_prefix/uploads/";
             if(empty($_POST["rec_title"]) || empty($_POST["rec_status"]) || empty($_POST["rec_index"])){
                 invalidForm($back_url);
             }
@@ -129,7 +129,7 @@
             exit;
         }
         else if($from == "recommendation_content"){
-            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "/uploads/";
+            $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "$global_prefix/uploads/";
             if(empty($_POST["content_title"]) || empty($_POST["content_status"]) || empty($_POST["content_has_link"]) || !isset($_GET["bId"])){
                 invalidForm($back_url);
             }

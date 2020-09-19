@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
+    require_once("../../public/includes/initial.php");
     require_once("./page-common-functions.php");
     
     $id = $_GET["id"];

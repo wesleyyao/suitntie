@@ -1,3 +1,6 @@
+<?php
+    require_once("utils/initial.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,17 +8,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>适途咨询</title>
-    <link rel="icon" href="/asset/image/logo/logo.png">
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/style.php"); ?>
+    <link rel="icon" href="asset/image/logo/logo.png">
+    <?php require_once("theme/style.php"); ?>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/asset/css/home.css">
+    <link rel="stylesheet" href="asset/css/home.css">
 </head>
 
 <body>
     <div class="home-page-main">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/home-slider-top.php"); ?>
+        <?php require_once("theme/global-header.php"); ?>
+        <?php require_once("theme/home-slider-top.php"); ?>
         <input type="hidden" id="hide_title" value="home" />
         <div class="container mt-5 mb-5 pt-5 pb-5">
             <div class="row stepsTitle">
@@ -58,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/home-slider-testimonials.php"); ?>
+        <?php require_once("theme/home-slider-testimonials.php"); ?>
         <div class="home-programs-entrance text-center">
             <div class="container">
                 <h2>超全专业库</h2>
@@ -94,7 +97,8 @@
                         <ul class="hs text-center">
                             <li class="hs_item lightShadow">
                                 <div class="hs_item_image_wrapper">
-                                    <img src="/asset/image/photos/Erik.png" alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Erik.png"
+                                        alt="teacher" />
                                 </div>
                                 <div class="hs_item_description">
                                     <h5>Erik</h5>
@@ -111,7 +115,8 @@
                             </li>
                             <li class="hs_item lightShadow">
                                 <div class="hs_item_image_wrapper">
-                                    <img src="/asset/image/photos/Joyce.png" alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Joyce.png"
+                                        alt="teacher" />
                                 </div>
                                 <div class="hs_item_description">
                                     <h5>Joyce</h5>
@@ -128,7 +133,8 @@
                             </li>
                             <li class="hs_item lightShadow">
                                 <div class="hs_item_image_wrapper">
-                                    <img src="/asset/image/photos/Cathy.png" alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Cathy.png"
+                                        alt="teacher" />
                                 </div>
                                 <div class="hs_item_description">
                                     <h5>Cathy</h5>
@@ -145,7 +151,8 @@
                             </li>
                             <li class="hs_item lightShadow">
                                 <div class="hs_item_image_wrapper">
-                                    <img src="/asset/image/photos/Sunny.png" alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Sunny.png"
+                                        alt="teacher" />
                                 </div>
                                 <div class="hs_item_description">
                                     <h5>Sunny</h5>
@@ -162,7 +169,8 @@
                             </li>
                             <li class="hs_item lightShadow">
                                 <div class="hs_item_image_wrapper">
-                                    <img src="/asset/image/photos/Ming.png" alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Ming.png"
+                                        alt="teacher" />
                                 </div>
                                 <div class="hs_item_description">
                                     <h5>Ming</h5>
@@ -179,7 +187,7 @@
                             </li>
                             <li class="hs_item lightShadow">
                                 <div class="hs_item_image_wrapper">
-                                    <img src="/asset/image/photos/小雨.png" alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/小雨.png" alt="teacher" />
                                 </div>
                                 <div class="hs_item_description">
                                     <h5>小雨</h5>
@@ -197,7 +205,8 @@
                             </li>
                             <li class="hs_item lightShadow">
                                 <div class="hs_item_image_wrapper">
-                                    <img src="/asset/image/photos/Violet.png" alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Violet.png"
+                                        alt="teacher" />
                                 </div>
                                 <div class="hs_item_description">
                                     <h5>Violet</h5>
@@ -214,7 +223,8 @@
                             </li>
                             <li class="hs_item lightShadow">
                                 <div class="hs_item_image_wrapper">
-                                    <img src="/asset/image/photos/Maggie.png" alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Maggie.png"
+                                        alt="teacher" />
                                 </div>
                                 <div class="hs_item_description">
                                     <h5>Maggie</h5>
@@ -237,14 +247,14 @@
         </div>
         <div class="home-contact-form" id="contactUs">
             <h2 class="text-center pt-3">联系我们</h2>
-            <?php require_once("./public/component/contact-us.php"); ?>
+            <?php require_once("public/component/contact-us.php"); ?>
         </div>
     </div>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-footer.php"); ?>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/public/component/auth-modals.php"); ?>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/script.php"); ?>
-    <script src="/asset/js/home.js"></script>
-    <script src="/asset/js/mentorSlider.js"></script>
+    <?php require_once("theme/global-footer.php"); ?>
+    <?php require_once("public/component/auth-modals.php"); ?>
+    <?php require_once("theme/script.php"); ?>
+    <script type="module" src="asset/js/home.js"></script>
+    <script src="asset/js/mentorSlider.js"></script>
 </body>
 
 </html>

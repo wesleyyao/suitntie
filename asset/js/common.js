@@ -18,3 +18,5 @@ export function generateMessage(type, message) {
         </div>
     </div>`;
 }
+
+export const prefix = '/suitntie';

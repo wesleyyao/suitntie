@@ -89,7 +89,8 @@
                     <button class="btn primBtn btn-block" id="startTesting">开始测试</button>
                 </div>
                 <div class="col-6">
-                    <a class="btn primBtn btn-block" href="/account/user.php?view=history">查看过往结果</a>
+                    <a class="btn primBtn btn-block"
+                        href="<?php echo $global_prefix; ?>/account/user.php?view=history">查看过往结果</a>
                 </div>
             </div>
         </div>

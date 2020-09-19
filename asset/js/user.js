@@ -1,7 +1,6 @@
-import { validateEmailFormat, generateMessage } from './common.js';
+import { validateEmailFormat, generateMessage, prefix } from './common.js';
 
 $(document).ready(function () {
-    const prefix = '';
     const pagesRequiredLogin = ['dimension-test', 'user'];
     const pagesRequiredPhone = ['dimension-test'];
     const loading = `

@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once("../utils/initial.php");
     if(isset($_SESSION["new_test"])){
         unset($_SESSION["new_test"]);
     }
@@ -21,7 +21,7 @@
     <title>适途咨询</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/style.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/style.php"); ?>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         <![endif]-->
     <div class="dimension-test-result-main">
         <input type="hidden" id="hide_title" value="dimension-test-result" />
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-header.php"); ?>
 
         <div id="loadingDiv">
             <div class="pt-2 pb-2">
@@ -59,7 +59,8 @@
             <div class="resultDimension">
                 <div class="container">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <polygon stroke="white" fill="white" points="0,100 100,0 100,100" /></svg>
+                        <polygon stroke="white" fill="white" points="0,100 100,0 100,100" />
+                    </svg>
                     <div class="row dimensionContent">
                         <div class="col-lg-4 col-md-4 col-sm-12 text-center">
                             <img id="characterImg" src="" class="img-fluid" />
@@ -158,11 +159,11 @@
         <div id="notification" class="notification-popup"></div>
     </div>
     </div>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/public/component/auth-modals.php"); ?>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-footer.php"); ?>
-    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/script.php"); ?>
-    <script src="/asset/js/chart.js"></script>
-    <script type="module" src="/asset/js/result.js"></script>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/auth-modals.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-footer.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/script.php"); ?>
+    <script src="<?php echo $global_prefix; ?>/asset/js/chart.js"></script>
+    <script type="module" src="<?php echo $global_prefix; ?>/asset/js/result.js"></script>
 </body>
 
 </html>

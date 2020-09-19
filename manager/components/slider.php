@@ -1,6 +1,6 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/slider.php");
+    require_once("../../utils/initial.php");
+    require_once("../../public/includes/slider.php");
     $slider = new Slider();
     if(!isset($_SESSION["login_staff"])){
         header("Location: ./index.php");

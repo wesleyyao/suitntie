@@ -15,7 +15,7 @@
 
 <body>
     <div class="program-page-main">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-header.php"); ?>
         <input type="hidden" id="hide_title" value="program" />
         <div class="program-home-banner">
             <h1>专业探索</h1>
@@ -60,7 +60,7 @@
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-footer.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/auth-modals.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/script.php"); ?>
-    <script src="<?php echo $global_prefix; ?>/asset/js/program.js"></script>
+    <script type="module" src="<?php echo $global_prefix; ?>/asset/js/program.js"></script>
 </body>
 
 </html>

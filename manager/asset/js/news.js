@@ -1,6 +1,8 @@
+import { prefix } from '../../../asset/js/common.js';
+
 $(document).ready(function(){
     let sliderTable = '';
-    $.get(`/public/api/home.php`).done(function(data){
+    $.get(`${prefix}/public/api/home.php`).done(function(data){
         const result = JSON.parse(data);
         console.log(result)
         if(result && Array.isArray(result) && result.length > 0){

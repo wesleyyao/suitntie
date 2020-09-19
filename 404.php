@@ -15,7 +15,7 @@ require_once("./utils/initial.php");
 
 <body>
     <div class="one-on-one-page-main">
-        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/theme/global-header.php"); ?>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-header.php"); ?>
         <input type="hidden" id="hide_title" value="oneOnone" />
         <div class="container mt-5 mb-5 pt-5 pb-5">
             <div class="jumbotron">

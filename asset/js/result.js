@@ -1,6 +1,5 @@
-import { generateMessage } from './common.js';
+import { generateMessage, prefix } from './common.js';
 $(document).ready(function () {
-    const prefix = '';
     $('#mainResultDiv').hide();
     let message = '';
     let code = '';

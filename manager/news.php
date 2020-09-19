@@ -58,7 +58,7 @@
         <?php require_once("./components/previewImageModal.php");?>
         <?php require_once("./components/login.php"); ?>
         <?php require_once("./components/script.php"); ?>
-        <script src="/manager/asset/js/news.js"></script>
+        <script type="module" src="/manager/asset/js/news.js"></script>
 </body>
 
 </html>

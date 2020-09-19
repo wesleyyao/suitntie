@@ -1,6 +1,6 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/utils/initial.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/customer.php");
+    require_once("../../utils/initial.php");
+    require_once("../includes/customer.php");
     $customer = new Customer;
     $message = array();
     $current_time = date("Y-m-d H:i:s");

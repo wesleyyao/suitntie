@@ -1,6 +1,8 @@
+import { prefix } from './common.js';
+
 $(document).ready(function () {
     let programsDropDown = '';
-    $.get('/public/api/program.php?type=all').done(function (data) {
+    $.get(`${prefix}/public/api/program.php?type=all`).done(function (data) {
         if (data) {
             const result = JSON.parse(data);
             if (Array.isArray(result) && result.length > 0) {
@@ -13,7 +15,7 @@ $(document).ready(function () {
                         <ul class="level-3-dropdown" id="navLevel3${index}">`;
                     if (item.details && Array.isArray(item.details) && item.details.length > 0) {
                         item.details.forEach(function (item) {
-                            programsDropDown += `<li><a href="/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
+                            programsDropDown += `<li><a href="${prefix}/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
                         });
                     }
                     programsDropDown += `</ul></li>`;
@@ -34,7 +36,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.contact-btn').click(function(){
+    $('.contact-btn').click(function () {
         $('html, body').animate({
             scrollTop: $("#contactUs").offset().top
         }, 1000);

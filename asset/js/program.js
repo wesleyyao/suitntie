@@ -1,5 +1,6 @@
+import { prefix } from './common.js';
+
 $(document).ready(function () {
-    const prefix = '';
     const loading = `
     <div class="d-flex justify-content-center m-2">
         <div class="spinner-border text-warning" role="status">

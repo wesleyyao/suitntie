@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/public/includes/initial.php");
+    require_once("../includes/initial.php");
     $result_category = "dimension_test_result";
     $current_time = date("Y-m-d H:i:s");
     $receiver = "tim.zhao@suitntie.cn";
