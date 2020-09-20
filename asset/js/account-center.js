@@ -1,4 +1,5 @@
 import { validateEmailFormat, generateMessage, prefix } from './common.js';
+//import * as html2canvas from './htmlToCanvas.js';
 $(document).ready(function () {
     let user = undefined;
     let tests = [];
@@ -93,11 +94,13 @@ $(document).ready(function () {
                     return;
                 }
                 const dimensionResult = result.result;
+                const customer = result.user;
                 if (!dimensionResult) {
                     message = generateMessage('warning', '无法找到该数据。请刷新页面重试。');
                     $('#message').html(message);
                     return;
                 }
+                //console.log(customer);
                 const code = dimensionResult.code;
                 const title = dimensionResult.title;
                 const description = dimensionResult.description;
@@ -114,7 +117,7 @@ $(document).ready(function () {
                 //presentation
                 $('#resultTitle').html(`${code} ${title}`);
                 $('#resultDescription').html(description);
-                $('#characterImg').attr('src', encodeURI(imgSrc));
+                $('#characterImg').attr('src', prefix + encodeURI(imgSrc));
 
                 let tagHtml = `<span>你的标签： </span>`;
                 tags.forEach(function (tag) {
@@ -193,6 +196,16 @@ $(document).ready(function () {
                 $('#testResultMessage').html(generateMessage('warning', '未找到该报告。'));
             }
             $('#testResultModal').modal('show');
+        });
+    });
+
+    $('#screenshotBtn').click(function(){
+        $('#testResultModal').modal('hide');
+        $('#screenCaptureModal').modal('show');
+        $('#screenshotBody').html(loading);
+        html2canvas(document.querySelector("#captureBody")).then(function(canvas) {
+            //document.body.appendChild(canvas);
+            $('#screenshotBody').html(canvas);
         });
     });
 

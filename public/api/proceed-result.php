@@ -32,12 +32,15 @@
                 array_push($dimension_check_times, $val);
             }
         }
+        $user_name = $_POST["userName"];
+        $user_age = $_POST["userAge"];
+        $is_study_aboard = $_POST["isStudyAboard"];
         if(count($dimension_ids) == 0){
             echo json_encode("failure");
             exit;
         }
         if(isset($_SESSION["new_test"])){
-            $new_result_id = $test->saveResult($test_id, $result_category, $_SESSION["login_user"], $dimension_ids, $dimension_check_times, $current_time);
+            $new_result_id = $test->saveResult($test_id, $result_category, $_SESSION["login_user"], $dimension_ids, $dimension_check_times, $user_name, $user_age, $is_study_aboard, $current_time);
             if($new_result_id){
                 $_SESSION["new_test_result"] = $new_result_id;
                 $_SESSION["new_test_saved_notification"] = 1;

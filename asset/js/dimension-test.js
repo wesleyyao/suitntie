@@ -58,6 +58,7 @@ $(document).ready(function () {
         if (data) {
             let result = JSON.parse(data);
             const { dimension, test, user } = result;
+            console.log(user);
             dimensions = dimension ? dimension.dimensions.map(item => ({ ...item, times: 0 })) : [];
             results = dimension ? dimension.dimension_combinations : [];
             loginUser = user ? user : undefined;
@@ -99,66 +100,17 @@ $(document).ready(function () {
         if (!questions[questionTypesIndex]) {
             return;
         }
+
         if (questionsAndAnswersOnCurrentPage.length < actualQuestionsPerPage) {
             $('#message').html(notCompletedMessage);
             scrollToTestTop();
             return;
-        }
-        else {
-            scrollToTestTop();
         }
 
         questionsAndAnswersOnCurrentPage.forEach(function (item) {
             let foundDimension = dimensions.find(dimension => dimension.id === parseInt(item.answerId));
             foundDimension.times++;
         });
-
-        //calculate result
-        if (numberOfAnswers === totalQuestions) {
-            let groups = dimensions.map((item) => item.compare_group);
-            groups = groups.filter((item, index) => groups.indexOf(item) === index);
-            let resultCode = '';
-            let resultDimensions = [];
-            groups.forEach(function (group) {
-                let compareDimensions = dimensions.filter((item) => item.compare_group === group);
-                let sortedDimensions = compareDimensions.sort((a, b) => b.times - a.times);
-                resultCode += sortedDimensions[0].code;
-                resultDimensions.push(sortedDimensions[0]);
-            });
-            let formData = {
-                result_codes: resultCode,
-                test_id: testInfo ? testInfo.id : 0,
-            };
-            $('#testId').val(testInfo ? testInfo.id : 0);
-            $('#resultCodes').val(resultCode);
-            $('#resultTimes').val(resultDimensions.map(item => item.times).toString());
-            dimensions.forEach(function (item) {
-                formData['dimension_' + item.id] = item.times;
-            });
-
-            $('#clockAndProgressBarDiv').hide();
-            $('#mainContentDiv').html(proceeding);
-            $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
-                const result = JSON.parse(data);
-                if (result == 'success') {
-                    window.location.replace(`${prefix}/tests/dimension-test-result.php`);
-                }
-                else if (result == 'no login') {
-                    window.location.replace(`${prefix}/tests/dimension-test.php`);
-                }
-                else {
-                    const invalidFormMessage = `<div class="jumbotron jumbotron-fluid">
-                    <div class="container text-center">
-                      <h1 class="display-4 text-danger"> 
-                      <i class="fas fa-times"></i> 
-                      抱歉，该请求无法被处理。</h1>
-                    </div>
-                  </div>`;
-                    $('#mainContentDiv').html(invalidFormMessage);
-                }
-            });
-            return;
-        }
 
         if (questions[questionTypesIndex].questions[page * questionsPerPage]) {
             let result = renderQuestionAndAnswer((page * questionsPerPage), (page * questionsPerPage + questionsPerPage), questions[questionTypesIndex], numberOfQuestions);
@@ -179,16 +131,95 @@ $(document).ready(function () {
                 page++;
             }
         }
+
         actualQuestionsPerPage = numberOfQuestions;
-        if (renderedQuestions === totalQuestions) {
-            $('#nextPage').html('查看结果');
+
+        if (numberOfAnswers + actualQuestionsPerPage === totalQuestions) {
+            if(loginUser && loginUser.full_name && loginUser.age){
+                $('#nextPage').text('查看结果');
+            }
+            else{
+                $('#nextPage').text('下一步');
+            }
+        }
+
+        if(numberOfAnswers === totalQuestions){
+            if(loginUser && loginUser.full_name && loginUser.age){
+                submitTest(loginUser.full_name, loginUser.age, loginUser.isStudyAboard ? true : false);
+            }
+            else{
+                $('#mainContentDiv').fadeOut(function () {
+                    $('#finishTestForm').fadeIn();
+                });
+            }
         }
 
         $('#message').html('');
         $('#questionTypeTitle').html(questions[questionTypesIndex] ? questions[questionTypesIndex].name : '');
-        //$('#questionTypeTitle').html('在下列每对词语中，哪个词语相对更能准确地形容你自己或是更合你意？请用直觉进行快速选择。');
         $('#mainQuestionDiv').html(content);
         questionsAndAnswersOnCurrentPage = [];
+        scrollToTestTop();
+    });
+
+    $('#submitTestFormBtn').click(function () {
+        if (numberOfAnswers !== totalQuestions) {
+            $('#message').html(generateMessage('warning', '抱歉，测试过程出现了问题，请重试。'));
+            return;
+        }
+        const testUserName = $('#testUserName').val().replace(/\s/g, "");
+        const testUserAge = $('#testUserAge').val();
+        const isTestUserStudyAboard = $('#testUserStudyAboard').prop('checked');
+
+        if (!testUserName || !testUserAge) {
+            $('#message').html(generateMessage('warning', '在提交前，请填写所有必填项。'));
+            return;
+        }
+        submitTest(testUserName, testUserAge, isTestUserStudyAboard);
+        // let groups = dimensions.map((item) => item.compare_group);
+        // groups = groups.filter((item, index) => groups.indexOf(item) === index);
+        // let resultCode = '';
+        // let resultDimensions = [];
+        // groups.forEach(function (group) {
+        //     let compareDimensions = dimensions.filter((item) => item.compare_group === group);
+        //     let sortedDimensions = compareDimensions.sort((a, b) => b.times - a.times);
+        //     resultCode += sortedDimensions[0].code;
+        //     resultDimensions.push(sortedDimensions[0]);
+        // });
+        // let formData = {
+        //     result_codes: resultCode,
+        //     test_id: testInfo ? testInfo.id : 0,
+        //     userName: testUserName,
+        //     userAge: testUserAge,
+        //     isStudyAboard: isTestUserStudyAboard
+        // };
+        // $('#testId').val(testInfo ? testInfo.id : 0);
+        // $('#resultCodes').val(resultCode);
+        // $('#resultTimes').val(resultDimensions.map(item => item.times).toString());
+        // dimensions.forEach(function (item) {
+        //     formData['dimension_' + item.id] = item.times;
+        // });
+
+        // $('#clockAndProgressBarDiv').hide();
+        // $('#mainContentDiv').html(proceeding);
+        // $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
+        //     const result = JSON.parse(data);
+        //     if (result == 'success') {
+        //         window.location.replace(`${prefix}/tests/dimension-test-result.php`);
+        //     }
+        //     else if (result == 'no login') {
+        //         window.location.replace(`${prefix}/tests/dimension-test.php`);
+        //     }
+        //     else {
+        //         const invalidFormMessage = `<div class="jumbotron jumbotron-fluid">
+        //             <div class="container text-center">
+        //               <h1 class="display-4 text-danger"> 
+        //               <i class="fas fa-times"></i> 
+        //               抱歉，该请求无法被处理。</h1>
+        //             </div>
+        //           </div>`;
+        //         $('#mainContentDiv').html(invalidFormMessage);
+        //     }
+        // });
     });
 
     $(document).on('click', '.answer-div', function () {
@@ -216,6 +247,53 @@ $(document).ready(function () {
         $(this).siblings().removeClass('answer-selected');
     });
 
+    function submitTest(testUserName, testUserAge, isTestUserStudyAboard) {
+        let groups = dimensions.map((item) => item.compare_group);
+        groups = groups.filter((item, index) => groups.indexOf(item) === index);
+        let resultCode = '';
+        let resultDimensions = [];
+        groups.forEach(function (group) {
+            let compareDimensions = dimensions.filter((item) => item.compare_group === group);
+            let sortedDimensions = compareDimensions.sort((a, b) => b.times - a.times);
+            resultCode += sortedDimensions[0].code;
+            resultDimensions.push(sortedDimensions[0]);
+        });
+        let formData = {
+            result_codes: resultCode,
+            test_id: testInfo ? testInfo.id : 0,
+            userName: testUserName,
+            userAge: testUserAge,
+            isStudyAboard: isTestUserStudyAboard
+        };
+        $('#testId').val(testInfo ? testInfo.id : 0);
+        $('#resultCodes').val(resultCode);
+        $('#resultTimes').val(resultDimensions.map(item => item.times).toString());
+        dimensions.forEach(function (item) {
+            formData['dimension_' + item.id] = item.times;
+        });
+
+        $('#clockAndProgressBarDiv').hide();
+        $('#mainContentDiv').html(proceeding);
+        $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
+            const result = JSON.parse(data);
+            if (result == 'success') {
+                window.location.replace(`${prefix}/tests/dimension-test-result.php`);
+            }
+            else if (result == 'no login') {
+                window.location.replace(`${prefix}/tests/dimension-test.php`);
+            }
+            else {
+                const invalidFormMessage = `<div class="jumbotron jumbotron-fluid">
+                    <div class="container text-center">
+                      <h1 class="display-4 text-danger"> 
+                      <i class="fas fa-times"></i> 
+                      抱歉，该请求无法被处理。</h1>
+                    </div>
+                  </div>`;
+                $('#mainContentDiv').html(invalidFormMessage);
+            }
+        });
+    }
 
     function renderQuestionAndAnswer(start, end, data, numberOfQuestions) {
         let content = '';

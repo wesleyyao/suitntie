@@ -83,6 +83,12 @@
                 </div>
             </div>
         </div>
+        <!-- <div class="alert alert-success" role="alert">
+            <div class="spinner-border text-success" style="width: 1.3rem; height: 1.3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span>我们正在为您加载数据...</span>
+        </div> -->
         <div id="testOrView">
             <div class="row">
                 <div class="col-6">
@@ -94,22 +100,20 @@
                 </div>
             </div>
         </div>
-        <div id="mainContentDiv" class="mainTestContainer container">
-            <div class="container">
-                <div id="clockAndProgressBarDiv" class="test-div">
-                    <div class="row">
-                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                            <span id="percentage" class="">0%</span>
+        <div id="mainContentDiv" class="container">
+            <div id="clockAndProgressBarDiv" class="test-div">
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                        <span id="percentage" class="">0%</span>
+                    </div>
+                    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 progressContainer">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" id="progress" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 progressContainer">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" id="progress" aria-valuenow="0"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
-                            <div id="clock"></div>
-                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                        <div id="clock"></div>
                     </div>
                 </div>
             </div>
@@ -136,11 +140,39 @@
                 </div>
             </div>
         </div>
-    </div>
-    <?php require_once("../theme/global-footer.php"); ?>
-    <?php require_once("../public/component/auth-modals.php"); ?>
-    <?php require_once("../theme/script.php"); ?>
-    <script type="module" src="../asset/js/dimension-test.js"></script>
+        <div id="finishTestForm" class="container">
+            <div class="needs-validation pt-5 pb-5" novalidate>
+                <div class="form-row">
+                    <div class="col-lg-3 offset-lg-3 col-md-4 offset-md-2 mb-3">
+                        <label for="testUserName">姓名 <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="testUserName" value="" required>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mb-3">
+                        <label for="testUserAge">年龄 <span class="text-danger">*</span></label>
+                        <input type="number" min="0" max="99" class="form-control" id="testUserAge" value="" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-lg-3 offset-lg-3 col-md-4 offset-md-2 mb-3">
+                        <div class="form-check">
+                            <input class="" type="checkbox" value="" id="testUserStudyAboard">
+                            <label class="form-check-label" for="testUserStudyAboard">
+                                是否有留学打算？
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row test-div text-center">
+                    <div class="offset-lg-4 col-lg-4 offset-md-2 col-md-8 offset-sm-1 col-sm-10">
+                        <button class="btn primBtn" id="submitTestFormBtn">查看结果</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php require_once("../theme/global-footer.php"); ?>
+        <?php require_once("../public/component/auth-modals.php"); ?>
+        <?php require_once("../theme/script.php"); ?>
+        <script type="module" src="../asset/js/dimension-test.js"></script>
 </body>
 
 </html>

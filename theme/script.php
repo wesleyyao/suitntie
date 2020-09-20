@@ -7,3 +7,4 @@
 <script type="module" src="<?php echo $global_prefix; ?>/asset/js/header.js"></script>
 <script src="<?php echo $global_prefix; ?>/asset/js/global-nav.js"></script>
 <script type="module" src="<?php echo $global_prefix; ?>/asset/js/contact.js"></script>
+<script type="module" src="<?php echo $global_prefix; ?>/asset/js/htmlToCanvas.js"></script>

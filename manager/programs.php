@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once("../utils/initial.php");
     if(!isset($_SESSION["login_staff"])){
         header("Location: ./index.php");
         exit;
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div id="mainDiv">
             <?php require_once("./components/nav.php"); ?>
             <br />
@@ -108,7 +108,7 @@
     <?php require_once("./components/programModal.php"); ?>
     <?php require_once("./components/login.php"); ?>
     <?php require_once("./components/script.php"); ?>
-    <script src="/manager/asset/js/program.js"></script>
+    <script src="<?php echo $global_prefix; ?>/manager/asset/js/program.js"></script>
 </body>
 
 </html>

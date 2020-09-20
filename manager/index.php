@@ -1,3 +1,6 @@
+<?php
+    require_once("../utils/initial.php");
+?>
 <!DOCTYPE html>
 
 <head>
@@ -10,7 +13,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div id="mainDiv">
             <?php require_once("./components/nav.php"); ?>
             <br />
@@ -67,6 +70,9 @@
                                 <th>邮箱</th>
                                 <th>电话</th>
                                 <th>性别</th>
+                                <th>名字</th>
+                                <th>年龄</th>
+                                <th>是否留学</th>
                                 <th>城市</th>
                                 <th>省份</th>
                                 <th>国家</th>

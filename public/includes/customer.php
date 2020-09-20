@@ -10,7 +10,9 @@
         public $city;
         public $province;
         public $country;
-
+        public $full_name;
+        public $age;
+        public $is_study_aboard;
         
         public function user_signup($email, $phone, $password, $tempId){
             $is_exist = $this->find_user($email);
@@ -175,7 +177,7 @@
         }
 
         public function fetch_current_user($id){
-            $query = "SELECT `id`, `email`, `nick_name`, `phone`, `headImg`, `sex`, `city`, `province`, `country`, `unionid` FROM customers WHERE `id` = ? AND `status` = 'open'";
+            $query = "SELECT `id`, `email`, `nick_name`, `phone`, `headImg`, `sex`, `city`, `province`, `country`, `unionid`, `full_name`, `age`, `is_study_aboard` FROM customers WHERE `id` = ? AND `status` = 'open'";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("i", $id);
             $sql->execute();
@@ -190,6 +192,9 @@
             $this->province = $data["province"];
             $this->country = $data["country"];
             $this->unionid = $data["unionid"];
+            $this->full_name = $data["full_name"];
+            $this->age = $data["age"];
+            $this->is_study_aboard = $data["is_study_aboard"];
         }
 
         public function validate_login($email, $password){
@@ -320,7 +325,7 @@
 
         public function fetch_all_users(){
             $data = array();
-            $query = "SELECT `id`, `email`, `phone`, `nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionId`, `temporary_link`, `status`, `date_time`, `ip` FROM customers";
+            $query = "SELECT `id`, `email`, `phone`, `nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionId`, `temporary_link`, `status`, `date_time`, `ip`, `full_name`, `age`, `is_study_aboard` FROM customers";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();

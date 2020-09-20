@@ -151,6 +151,7 @@
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/auth-modals.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/account/components/dimension-test-result-modal.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/account/components/profile-editor-modal.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/account/components/screen-capture-modal.php"); ?>
     <?php if(isset($_SESSION["signup_message"])): ?>
     <div id="dimension-result-notification" role="alert" aria-live="assertive" aria-atomic="true" class="toast"
         data-autohide="false">

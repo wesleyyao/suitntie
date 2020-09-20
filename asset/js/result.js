@@ -15,6 +15,7 @@ $(document).ready(function () {
     let majorDimensions = [];
     let notification = false;
     let imgSrc = '';
+    let customer = undefined;
 
     sendNotification();
 
@@ -53,10 +54,12 @@ $(document).ready(function () {
             majorDimensions = dimensionResult.majorDimensions;
             notification = result.saved_notification ? true : false;
             imgSrc = dimensionResult.img;
+            customer = result.user;
+            console.log(customer);
             //presentation
-            $('#resultTitle').html(`你的结果为： ${code} ${title}`);
+            $('#resultTitle').html(`${customer ? customer.full_name : '你'}的测试结果为： ${code} ${title}`);
             $('#resultDescription').html(description);
-            $('#characterImg').attr('src', imgSrc);
+            $('#characterImg').attr('src', prefix + imgSrc);
 
             let tagHtml = `<h4>你的标签： </h4>`;
             tags.forEach(function (tag) {

@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/manager/index.php">主页</a>
+                <a class="nav-link" href="<?php echo $global_prefix; ?>/manager/index.php">主页</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/manager/programs.php">专业</a>
+                <a class="nav-link" href="<?php echo $global_prefix; ?>/manager/programs.php">专业</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/manager/news.php">走马灯</a>
+                <a class="nav-link" href="<?php echo $global_prefix; ?>/manager/news.php">走马灯</a>
             </li>
         </ul>
     </div>

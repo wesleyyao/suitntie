@@ -253,6 +253,9 @@ $(document).ready(function(){
                     <td>${item.email ? item.email : ''}</td>
                     <td>${item.phone ? item.phone : ''}</td>
                     <td>${item.sex ? item.sex == 1 ? '男' : '女' : ''}</td>
+                    <td>${item.full_name ? item.full_name : ''}</td>
+                    <td>${item.age ? item.age : ''}</td>
+                    <td>${item.is_study_aboard ? '是' : item.is_study_aboard == 0 ? '否' : ''}</td>
                     <td>${item.city ? item.city : ''}</td>
                     <td>${item.province ? item.province : ''}</td>
                     <td>${item.country ? item.country : ''}</td>

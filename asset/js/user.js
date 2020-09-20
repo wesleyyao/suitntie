@@ -9,13 +9,20 @@ $(document).ready(function () {
             <span class="sr-only">Loading...</span>
         </div>
     </div>`;
+    const loginSuccessMessage = `
+    <div class="alert alert-success" role="alert">
+        <div class="spinner-border text-success" role="status" style="width: 1.3rem; height: 1.3rem;">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <span>登录成功，正在为您准备数据...</span>
+    </div>`;
     let message = '';
     let code = 0;
     let emailCode = 0;
     let expireTime = undefined;
     let emailExpireTime = undefined;
     let currentPage = decodeURIComponent(window.location.href);
-    if(currentPage.indexOf('#') > -1){
+    if (currentPage.indexOf('#') > -1) {
         currentPage = currentPage.substring(0, currentPage.indexOf('#'));
     }
 
@@ -27,7 +34,7 @@ $(document).ready(function () {
     $('.carousel').carousel({
         interval: 6000
     });
-    const toRemoveUrl = currentPage.indexOf('www') > -1 ? 'https://www.suitntie.cn' : 'https://suitntie.cn'; 
+    const toRemoveUrl = currentPage.indexOf('www') > -1 ? 'https://www.suitntie.cn' : 'https://suitntie.cn';
     const redirectUrl = currentPage.replace(toRemoveUrl, "");
 
     const obj = new WxLogin
@@ -117,7 +124,7 @@ $(document).ready(function () {
             return;
         }
         $('#sendEmailVerifyCode').prop('disabled', true);
-        
+
         $('#signupEmailVerifyMessage').html(generateMessage('info', '正在发送验证邮件...'));
         let seconds = 45;
         let cooling = setInterval(function () {
@@ -134,7 +141,7 @@ $(document).ready(function () {
         $.post(`${prefix}/public/api/signup.php?by=email`, { email, code: emailCode }).done(function (data) {
             if (data) {
                 const result = JSON.parse(data);
-                if(result.content == '该邮箱已经注册过。'){
+                if (result.content == '该邮箱已经注册过。') {
                     $('#signupEmailVerifyMessage').html(generateMessage(result.type, result.content));
                     $('#sendEmailVerifyCode').prop('disabled', false);
                     $('#sendEmailVerifyCode').text('获取验证码');
@@ -254,11 +261,14 @@ $(document).ready(function () {
             if (data) {
                 const result = JSON.parse(data);
                 const messageDiv = target === 'loginByPhone' ? '#loginByPhoneMessage' : '#loginByEmailMessage';
-                $(messageDiv).html(generateMessage(result.type, result.content));
                 if (result.type === 'success') {
+                    $(messageDiv).html(loginSuccessMessage);
                     setTimeout(function () {
                         window.location.href = currentPage;
                     }, 2000);
+                }
+                else{
+                    $(messageDiv).html(generateMessage(result.type, result.content));
                 }
             }
         });
@@ -294,7 +304,7 @@ $(document).ready(function () {
         $('#userLoginModal').modal('show');
     });
 
-    $('#startTesting').click(function(){
+    $('#startTesting').click(function () {
         $('#testOrView').fadeOut();
         $('#mainContentDiv').fadeIn();
         $('html, body').animate({
@@ -343,9 +353,9 @@ $(document).ready(function () {
                 $('#message').html(generateMessage(
                     'warning',
                     '在开始测试前，请您点击<a href="#/" data-toggle="modal" data-target="#userProfileCompleteModal">此处</a>完善联系方式。'));
-                    return;
+                return;
             }
-            if(pageTitle == 'dimension-test' && user){
+            if (pageTitle == 'dimension-test' && user) {
                 $('#mainContentDiv').hide();
             }
         });

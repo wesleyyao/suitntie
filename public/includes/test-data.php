@@ -149,7 +149,7 @@
         }
 
         private function countQuestions($testId){
-            $query = "SELECT count(q.id) as 'total' FROM questions q INNER JOIN question_topics t ON t.id = q.topic_id WHERE t.test_id = ?";
+            $query = "SELECT count(q.id) as 'total' FROM questions q INNER JOIN question_topics t ON t.id = q.topic_id WHERE t.test_id = ? and q.status = 'open'";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("i", $testId);
             $sql->execute();
@@ -157,10 +157,16 @@
             return mysqli_fetch_assoc($result)["total"];
         }
 
-        public function saveResult($test_id, $table, $user_id, $dimension_ids, $dimension_check_times, $create_date){
+        public function saveResult($test_id, $table, $user_id, $dimension_ids, $dimension_check_times, $user_name, $user_age, $is_study_aboard, $create_date){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
                 $this->checkIfTotalResultsAreFull($test_id, $user_id, $table);
+                $sql1 = $this->conn->prepare("UPDATE customers SET full_name = ?, age = ?, is_study_aboard = ? WHERE id = ?");
+                $sql1->bind_param("sisi", $user_name, $user_age, $is_study_aboard, $user_id);
+                if(!$sql1->execute()){
+                    $this->conn->rollback();
+                    return false;
+                }
                 $sql = $this->conn->prepare("INSERT INTO test_results (`test_id`, `table_name`, `user_id`, `create_date`, `status`) VALUES (?,?,?,?,'open')");
                 $sql->bind_param("isis", $test_id, $table, $user_id, $create_date);
                 if(!$sql->execute()){

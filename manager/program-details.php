@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once("../utils/initial.php");
     if(!isset($_SESSION["login_staff"])){
         header("Location: ./index.php");
         exit;
@@ -168,7 +168,7 @@
     <?php require_once("./components/previewImageModal.php");?>
     <?php require_once("./components/login.php"); ?>
     <?php require_once("./components/script.php"); ?>
-    <script src="/manager/asset/js/program-details.js"></script>
+    <script src="<?php echo $global_prefix; ?>/manager/asset/js/program-details.js"></script>
 </body>
 
 </html>
