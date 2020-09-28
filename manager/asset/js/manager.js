@@ -247,8 +247,9 @@ $(document).ready(function(){
                 $('#totalUser').html(users.length);
                 let userTable = '';
                 users.forEach(function(item){
+                    console.log(item.results)
                     userTable += `<tr>
-                    <td><a href="#/" class="user-names" id="userId_${item.id}">查看</a></td>
+                    <td>${item.results ? `<a href="#/" class="user-names" id="userId_${item.id}">查看</a>` : '未测试'}</td>
                     <td>${item.nick_name ? item.nick_name : ''}</a></td>
                     <td>${item.email ? item.email : ''}</td>
                     <td>${item.phone ? item.phone : ''}</td>
@@ -259,13 +260,34 @@ $(document).ready(function(){
                     <td>${item.city ? item.city : ''}</td>
                     <td>${item.province ? item.province : ''}</td>
                     <td>${item.country ? item.country : ''}</td>
-                    <td>${item.ip ? item.ip : ''}</td>
+                    <td><a href="#/" class="ip-addresses" id="userIp_${item.ip ? item.ip : ''}">${item.ip ? item.ip : ''}</a></td>
                     <td>${item.date_time ? item.date_time : ''}</td></tr>`;
                 });
                 $('#userTableBody').html(userTable);
                 $('#userTable').DataTable();
-                
             }
         });
+    }
+
+    $(document).on('click', '.ip-addresses', function(){
+        const ip = $(this).attr('id').split('userIp_')[1];
+        if(!ip){
+            return;
+        }
+        checkGeolocationByIp(ip);
+    });
+
+    function checkGeolocationByIp(ip){
+        if(ip){
+            $.get(`http://api.ipstack.com/${ip}?access_key=ceb951308163909478556bb103683606`).done(function(data){
+                if(!data){
+                    return;
+                }
+                $('#userCountry').html(data.country_name);
+                $('#userCity').html(data.city);
+                $('#userProvince').html(data.region_name);
+                $('#userIpModal').modal('show');
+            });
+        }
     }
 });

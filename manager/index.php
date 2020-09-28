@@ -55,6 +55,7 @@
                         <div class="card-body">
                             <label>用户总数：</label>
                             <span class="h1" id="totalUser">-</span>
+                            <a href="./api/export-excel.php?target=customers">导出Excel</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +77,7 @@
                                 <th>城市</th>
                                 <th>省份</th>
                                 <th>国家</th>
-                                <th>IP</th>
+                                <th>IP</th>
                                 <th>时间</th>
                             </tr>
                         </thead>
@@ -190,6 +191,34 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="userIpModal" tabindex="-1" role="dialog" aria-labelledby="userIpModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userIpModalTitle">地理信息</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="locationDiv">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>国家:</td>
+                                    <td id="userCountry"></td>
+                                    <td>省份:</td>
+                                    <td id="userProvince"></td>
+                                    <td>城市:</td>
+                                    <td id="userCity"></td>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 <?php
+    ini_set('session.gc_maxlifetime', 36000);
     session_start();
     require_once("database.php");
     $global_prefix = "/suitntie";
