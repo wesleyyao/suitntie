@@ -153,8 +153,7 @@ require_once("../utils/initial.php");
                         <ul class="hs text-center">
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Erik.png"
-                                        alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Erik.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Erik</h5>
@@ -171,8 +170,7 @@ require_once("../utils/initial.php");
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Joyce.png"
-                                        alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Joyce.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Joyce</h5>
@@ -189,8 +187,7 @@ require_once("../utils/initial.php");
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Cathy.png"
-                                        alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Cathy.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Cathy</h5>
@@ -207,8 +204,7 @@ require_once("../utils/initial.php");
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Sunny.png"
-                                        alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Sunny.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Sunny</h5>
@@ -225,8 +221,7 @@ require_once("../utils/initial.php");
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Ming.png"
-                                        alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Ming.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Ming</h5>
@@ -261,8 +256,7 @@ require_once("../utils/initial.php");
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Violet.png"
-                                        alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Violet.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Violet</h5>
@@ -279,8 +273,7 @@ require_once("../utils/initial.php");
                             </li>
                             <li class="hs__item lightShadow">
                                 <div class="hs__item__image__wrapper">
-                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Maggie.png"
-                                        alt="teacher" />
+                                    <img src="<?php echo $global_prefix; ?>/asset/image/photos/Maggie.png" alt="teacher" />
                                 </div>
                                 <div class="hs__item__description">
                                     <h5>Maggie</h5>
@@ -299,6 +292,135 @@ require_once("../utils/initial.php");
                     </div>
                 </div>
             </div>
+            <!-- table -->
+            <div class="service-type">
+                <div class="row mb-3">
+                    <div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12 text-center">
+                        <h2>适途服务类型</h2>
+                    </div>
+                </div>
+                <div class="one-one-one-table row">
+                    <div class="table-wrapper col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12 lightShadow">
+                        <table>
+                            <tr>
+                                <th class="cell-orange"></th>
+                                <th class="cell-orange-light"><h4>项目类型</h4></th>
+                                <th><h4>基础多对一服务</h4><span class="micro-text">
+                                        <p>适合对目标专业有较清晰方向的同学</p>
+                                    </span></th>
+                                <th class="cell-orange-lighter"><h4>精品多对一服务</h4><span class="micro-text">
+                                        <p>适合对目标专业有基本方向的同学</p>
+                                    </span></th>
+                                <th><h4>VIP定制服务</h4><span class="micro-text">
+                                        <p>适合对目标专业基本没有方向的同学</p>
+                                    </span></th>
+                            </tr>
+                            <tr>
+                                <th rowspan="3" class="cell-orange"><span class="white-text">适途顾问</span></th>
+                                <th class="cell-orange-light">测试结果评估</th>
+                                <td>Y</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">学业背景评估</th>
+                                <td>Y</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">家庭意见评估</th>
+                                <td>Y</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th rowspan="8" class="cell-orange"><span class="white-text">适途咨询师</span></th>
+                                <th class="cell-orange-light">兴趣点挖掘</th>
+                                <td>-</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">专业匹配沟通</th>
+                                <td>-</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">专业对应行业情况</th>
+                                <td>-</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">专业对口职业分析</th>
+                                <td>-</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">课外活动规划</th>
+                                <td>-</td>
+                                <td class="cell-orange-lighter">-</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">选校方案</th>
+                                <td>-</td>
+                                <td class="cell-orange-lighter">-</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">留学规划</th>
+                                <td>-</td>
+                                <td class="cell-orange-lighter">-</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">私人定制深度报告</th>
+                                <td>-</td>
+                                <td class="cell-orange-lighter">-</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th rowspan="5" class="cell-orange"><span class="white-text">适途专业导师</span></th>
+                                <th class="cell-orange-light">深度专业介绍</th>
+                                <td>Y</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">专业课程概况</th>
+                                <td>Y</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">面试经验分享</th>
+                                <td>Y</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">大学生活分析</th>
+                                <td>Y</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                            <tr>
+                                <th class="cell-orange-light">职场经验介绍</th>
+                                <td>Y</td>
+                                <td class="cell-orange-lighter">Y</td>
+                                <td>Y</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 1v1 -->
             <div class="row mt-5 mb-3">
                 <div class="col-12 text-center">
                     <h2>适途一对一解惑流程</h2>
@@ -309,8 +431,7 @@ require_once("../utils/initial.php");
                     <div class="card border-0 p-4">
                         <div class="d-flex flex-column">
                             <div class="text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step1.png"
-                                    style="margin-bottom: 10px" width="40px" />
+                                <img src="../asset/image/icons/process/process_icon_Step1.png" style="margin-bottom: 10px" width="40px" />
                                 <h5 class="card-title col-12 mb-3 mt-2" style="font-size: 1.1em">1. 兴趣初步调查</h5>
                                 <p class="col-12 h-100 justify-content-start text-left">
                                     学生通过适途专业匹测试获取独家个人报告后，主动探索报告中最感兴趣的几个专业，并填写个人信息表。</p>
@@ -322,8 +443,7 @@ require_once("../utils/initial.php");
                     <div class="card border-0 p-4">
                         <div class="d-flex flex-column">
                             <div class="text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step2.png"
-                                    style="margin-bottom: 10px" width="40px" />
+                                <img src="../asset/image/icons/process/process_icon_Step2.png" style="margin-bottom: 10px" width="40px" />
                                 <h5 class="card-title col-12 mb-3 mt-2" style="font-size: 1.1em">2. 按需匹配导师</h5>
                                 <p class="col-12 h-100 justify-content-start text-left">
                                     适途咨询师根据学生信息与学生进一步沟通，挖掘学生更多潜在想法，并根据学生和家长需求安排一对一专业导师。
@@ -336,8 +456,7 @@ require_once("../utils/initial.php");
                     <div class="card border-0 p-4">
                         <div class="d-flex flex-column">
                             <div class="text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step3.png"
-                                    style="margin-bottom: 10px" width="40px" />
+                                <img src="../asset/image/icons/process/process_icon_Step3.png" style="margin-bottom: 10px" width="40px" />
                                 <h5 class="card-title col-12 mb-3 mt-2" style="font-size: 1.1em">3. 学生导师沟通</h5>
                                 <p class="col-12 h-100 justify-content-start text-left">
                                     专业导师收集适途咨询师提供的学生信息，并根据约定的时间进行正式一对一线上咨询。
@@ -350,8 +469,7 @@ require_once("../utils/initial.php");
                     <div class="card border-0 p-4">
                         <div class="d-flex flex-column">
                             <div class="text-center">
-                                <img src="../asset/image/icons/process/process_icon_Step4.png"
-                                    style="margin-bottom: 10px" width="40px" />
+                                <img src="../asset/image/icons/process/process_icon_Step4.png" style="margin-bottom: 10px" width="40px" />
                                 <h5 class="card-title col-12 mb-3 mt-2" style="font-size: 1.1em">4. 定制个人报告</h5>
                                 <p class="col-12 h-100 justify-content-start text-left">
                                     适途咨询师对导师和学生以及家长进行回访，根据多方反馈整理数据并提供个性化定制报告。</p>
