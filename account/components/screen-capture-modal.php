@@ -8,8 +8,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="screenshotBody">
-
+            <div class="modal-body">
+                <div id="screenshotBody"></div>
             </div>
         </div>
     </div>

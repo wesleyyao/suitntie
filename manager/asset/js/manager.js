@@ -32,7 +32,6 @@ $(document).ready(function(){
             
             $.post('./auth/office-login.php', {email, password}).done(function(data){
                 const result = JSON.parse(data);
-                console.log(result)
                 if(!result){
                     showMessage('#loginMessage', 'danger', '无法连接服务器。');
                 }
@@ -66,11 +65,9 @@ $(document).ready(function(){
         $('#testResultModal').modal('show');
         $('#historyDiv').html(loading);
         const id = $(this).attr('id').replace('userId_', '');
-        console.log(id)
         $.get('./api/manager.php?user=' + id).done(function(data){
             if(data){
                 const result = JSON.parse(data);
-                console.log(result);
                 let historyList = `<table id="testHistoryTable" class='table table-striped'><thead class="thead-dark"><tr>
                 <th>测试</th>
                 <th>创建时间</th>
@@ -93,11 +90,9 @@ $(document).ready(function(){
     $(document).on('click', '.test-results', function(){
         $('#testResultDetailsModal').modal('show');
         const id = $(this).attr('id').replace('testResultId_', '');
-        console.log(id)
         $.get('./api/manager.php?result=' + id).done(function(data){
             if(data){
                 const result = JSON.parse(data);
-                console.log(result);
                 const dimensionResult = result;
                 if(!dimensionResult){
                     message = generateMessage('warning', '无法找到该数据。请刷新页面重试。');
@@ -223,7 +218,6 @@ $(document).ready(function(){
         $.get('./api/manager.php').done(function(data){
             const result = JSON.parse(data);
             const { message, users, staff } = result;
-            console.log(result);
             if(!result){
                 messageDiv = generateMessage('danger', '抱歉，无法连接到服务器。请刷新重试。');
                 return;
@@ -247,7 +241,6 @@ $(document).ready(function(){
                 $('#totalUser').html(users.length);
                 let userTable = '';
                 users.forEach(function(item){
-                    console.log(item.results)
                     userTable += `<tr>
                     <td>${item.results ? `<a href="#/" class="user-names" id="userId_${item.id}">查看</a>` : '未测试'}</td>
                     <td>${item.nick_name ? item.nick_name : ''}</a></td>
@@ -256,7 +249,7 @@ $(document).ready(function(){
                     <td>${item.sex ? item.sex == 1 ? '男' : '女' : ''}</td>
                     <td>${item.full_name ? item.full_name : ''}</td>
                     <td>${item.age ? item.age : ''}</td>
-                    <td>${item.is_study_aboard ? '是' : item.is_study_aboard == 0 ? '否' : ''}</td>
+                    <td>${item.is_study_aboard ? item.is_study_aboard == 0 : ''}</td>
                     <td>${item.city ? item.city : ''}</td>
                     <td>${item.province ? item.province : ''}</td>
                     <td>${item.country ? item.country : ''}</td>
@@ -279,13 +272,13 @@ $(document).ready(function(){
 
     function checkGeolocationByIp(ip){
         if(ip){
-            $.get(`http://api.ipstack.com/${ip}?access_key=ceb951308163909478556bb103683606`).done(function(data){
+            $.get(`https://ipapi.co/${ip}/json/`).done(function(data){
                 if(!data){
                     return;
                 }
                 $('#userCountry').html(data.country_name);
                 $('#userCity').html(data.city);
-                $('#userProvince').html(data.region_name);
+                $('#userProvince').html(data.region);
                 $('#userIpModal').modal('show');
             });
         }

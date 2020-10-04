@@ -1,5 +1,4 @@
-import { validateEmailFormat, generateMessage, prefix } from './common.js';
-//import * as html2canvas from './htmlToCanvas.js';
+import { validateEmailFormat, generateMessage, prefix } from './common.js'
 $(document).ready(function () {
     let user = undefined;
     let tests = [];
@@ -200,12 +199,18 @@ $(document).ready(function () {
     });
 
     $('#screenshotBtn').click(function(){
-        $('#testResultModal').modal('hide');
-        $('#screenCaptureModal').modal('show');
-        $('#screenshotBody').html(loading);
+        //$('#testResultModal').modal('hide');
+        //$('#screenCaptureModal').modal('show');
+        $('.dimension-analysis').hide();
+        $('.basic-analysis').hide();
+        $('.advantages').hide();
+        //$('#screenshotBody').html(loading);
         html2canvas(document.querySelector("#captureBody")).then(function(canvas) {
-            //document.body.appendChild(canvas);
-            $('#screenshotBody').html(canvas);
+            let link = document.getElementById('downloadLink');
+            link.download = "html_image.png";
+            link.href = canvas.toDataURL('image/png');
+            link.target = '_blank';
+            link.click();
         });
     });
 

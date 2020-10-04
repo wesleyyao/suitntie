@@ -34,13 +34,13 @@
         }
         $user_name = $_POST["userName"];
         $user_age = $_POST["userAge"];
-        $is_study_aboard = $_POST["isStudyAboard"];
+        $purpose = $_POST["purpose"];
         if(count($dimension_ids) == 0){
             echo json_encode("failure");
             exit;
         }
         if(isset($_SESSION["new_test"])){
-            $new_result_id = $test->saveResult($test_id, $result_category, $_SESSION["login_user"], $dimension_ids, $dimension_check_times, $user_name, $user_age, $is_study_aboard, $current_time);
+            $new_result_id = $test->saveResult($test_id, $result_category, $_SESSION["login_user"], $dimension_ids, $dimension_check_times, $user_name, $user_age, $purpose, $current_time);
             if($new_result_id){
                 $_SESSION["new_test_result"] = $new_result_id;
                 $_SESSION["new_test_saved_notification"] = 1;
@@ -77,8 +77,8 @@
                     $customer->fetch_current_user(isset($_SESSION["login_user"]) ? $_SESSION["login_user"] : 0);
                     $dimension_result->fetchResult($new_result_id);
                     $email_content = emailContent($customer->nick_name, $dimension_result->code, $dimension_result->title, $customer->email, $customer->phone);
-                    $is_send = $email->send($receiver, $receiver2, $subject, $email_content);
-                    $_SESSION["is_sent_new_result"] = $is_send;
+                    //$is_send = $email->send($receiver, $receiver2, $subject, $email_content);
+                    $_SESSION["is_sent_new_result"] = 1; 
                     $result["status"] = $is_send ? "sent" : "failure";
                 }
                 else{

@@ -157,12 +157,12 @@
             return mysqli_fetch_assoc($result)["total"];
         }
 
-        public function saveResult($test_id, $table, $user_id, $dimension_ids, $dimension_check_times, $user_name, $user_age, $is_study_aboard, $create_date){
+        public function saveResult($test_id, $table, $user_id, $dimension_ids, $dimension_check_times, $user_name, $user_age, $purpose, $create_date){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
                 $this->checkIfTotalResultsAreFull($test_id, $user_id, $table);
                 $sql1 = $this->conn->prepare("UPDATE customers SET full_name = ?, age = ?, is_study_aboard = ? WHERE id = ?");
-                $sql1->bind_param("sisi", $user_name, $user_age, $is_study_aboard, $user_id);
+                $sql1->bind_param("sisi", $user_name, $user_age, $purpose, $user_id);
                 if(!$sql1->execute()){
                     $this->conn->rollback();
                     return false;
@@ -215,14 +215,14 @@
             $sql->execute();
             $result = $sql->get_result();
             $data = mysqli_fetch_assoc($result);
-            if($data !== NULL && $data["total"] == 7){
+            if($data != NULL && $data["total"] == 7){
                 $result_id = $this->findTheEarliestResult($test_id, $user_id, $table_name);
                 $this->closeTheLatestResult($result_id);
             } 
         }
 
         private function findTheEarliestResult($test_id, $user_id, $table_name){
-            $query = "SELECT id FROM test_results WHERE `test_id` = ? AND `user_id` = ? AND `table_name` = ? ORDER BY create_date ASC LIMIT 1";
+            $query = "SELECT id FROM test_results WHERE `test_id` = ? AND `user_id` = ? AND `table_name` = ? AND `status` = 'close' ORDER BY create_date ASC LIMIT 1";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("iis", $test_id, $user_id, $table_name);
             $sql->execute();

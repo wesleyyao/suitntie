@@ -76,11 +76,11 @@ input:empty{
 }
 
 textarea:hover, 
-input[type=radio]:hover, 
+/* input[type=radio]:hover,  */
 textarea:active, 
-input[type=radio]:active, 
+/* input[type=radio]:active,  */
 textarea:focus, 
-input[type=radio]:focus,
+/* input[type=radio]:focus, */
 button:focus,
 button:active,
 button:hover,

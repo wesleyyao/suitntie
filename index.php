@@ -1,5 +1,5 @@
 <?php
-    require_once("utils/initial.php");
+    require_once("./utils/initial.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -247,14 +247,14 @@
         </div>
         <div class="home-contact-form" id="contactUs">
             <h2 class="text-center pt-3">联系我们</h2>
-            <?php require_once("public/component/contact-us.php"); ?>
+            <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/contact-us.php"); ?>
         </div>
     </div>
-    <?php require_once("theme/global-footer.php"); ?>
-    <?php require_once("public/component/auth-modals.php"); ?>
-    <?php require_once("theme/script.php"); ?>
-    <script type="module" src="asset/js/home.js"></script>
-    <script src="asset/js/mentorSlider.js"></script>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-footer.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/auth-modals.php"); ?>
+    <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/script.php"); ?>
+    <script type="module" src="<?php echo $global_prefix; ?>/asset/js/home.js"></script>
+    <script src="<?php echo $global_prefix; ?>/asset/js/mentorSlider.js"></script>
 </body>
 
 </html>

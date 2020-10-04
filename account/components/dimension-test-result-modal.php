@@ -98,6 +98,9 @@
                     </div>
                     <br />
                 </div>
+                <div id="testBody"></div>
+                <a id="downloadLink">Download it</a>
+                <img src="" id="imgg" />
             </div>
         </div>
     </div>

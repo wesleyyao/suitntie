@@ -135,19 +135,19 @@ $(document).ready(function () {
         actualQuestionsPerPage = numberOfQuestions;
 
         if (numberOfAnswers + actualQuestionsPerPage === totalQuestions) {
-            if(loginUser && loginUser.full_name && loginUser.age){
+            if (loginUser && loginUser.full_name && loginUser.age) {
                 $('#nextPage').text('查看结果');
             }
-            else{
+            else {
                 $('#nextPage').text('下一步');
             }
         }
 
-        if(numberOfAnswers === totalQuestions){
-            if(loginUser && loginUser.full_name && loginUser.age){
+        if (numberOfAnswers === totalQuestions) {
+            if (loginUser && loginUser.full_name && loginUser.age) {
                 submitTest(loginUser.full_name, loginUser.age, loginUser.isStudyAboard ? true : false);
             }
-            else{
+            else {
                 $('#mainContentDiv').fadeOut(function () {
                     $('#finishTestForm').fadeIn();
                 });
@@ -168,58 +168,13 @@ $(document).ready(function () {
         }
         const testUserName = $('#testUserName').val().replace(/\s/g, "");
         const testUserAge = $('#testUserAge').val();
-        const isTestUserStudyAboard = $('#testUserStudyAboard').prop('checked');
+        const purpose = $('input[name="testUserStudyAboard"]').val();
 
         if (!testUserName || !testUserAge) {
             $('#message').html(generateMessage('warning', '在提交前，请填写所有必填项。'));
             return;
         }
-        submitTest(testUserName, testUserAge, isTestUserStudyAboard);
-        // let groups = dimensions.map((item) => item.compare_group);
-        // groups = groups.filter((item, index) => groups.indexOf(item) === index);
-        // let resultCode = '';
-        // let resultDimensions = [];
-        // groups.forEach(function (group) {
-        //     let compareDimensions = dimensions.filter((item) => item.compare_group === group);
-        //     let sortedDimensions = compareDimensions.sort((a, b) => b.times - a.times);
-        //     resultCode += sortedDimensions[0].code;
-        //     resultDimensions.push(sortedDimensions[0]);
-        // });
-        // let formData = {
-        //     result_codes: resultCode,
-        //     test_id: testInfo ? testInfo.id : 0,
-        //     userName: testUserName,
-        //     userAge: testUserAge,
-        //     isStudyAboard: isTestUserStudyAboard
-        // };
-        // $('#testId').val(testInfo ? testInfo.id : 0);
-        // $('#resultCodes').val(resultCode);
-        // $('#resultTimes').val(resultDimensions.map(item => item.times).toString());
-        // dimensions.forEach(function (item) {
-        //     formData['dimension_' + item.id] = item.times;
-        // });
-
-        // $('#clockAndProgressBarDiv').hide();
-        // $('#mainContentDiv').html(proceeding);
-        // $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
-        //     const result = JSON.parse(data);
-        //     if (result == 'success') {
-        //         window.location.replace(`${prefix}/tests/dimension-test-result.php`);
-        //     }
-        //     else if (result == 'no login') {
-        //         window.location.replace(`${prefix}/tests/dimension-test.php`);
-        //     }
-        //     else {
-        //         const invalidFormMessage = `<div class="jumbotron jumbotron-fluid">
-        //             <div class="container text-center">
-        //               <h1 class="display-4 text-danger"> 
-        //               <i class="fas fa-times"></i> 
-        //               抱歉，该请求无法被处理。</h1>
-        //             </div>
-        //           </div>`;
-        //         $('#mainContentDiv').html(invalidFormMessage);
-        //     }
-        // });
+        submitTest(testUserName, testUserAge, purpose);
     });
 
     $(document).on('click', '.answer-div', function () {
@@ -247,7 +202,7 @@ $(document).ready(function () {
         $(this).siblings().removeClass('answer-selected');
     });
 
-    function submitTest(testUserName, testUserAge, isTestUserStudyAboard) {
+    function submitTest(testUserName, testUserAge, purpose) {
         let groups = dimensions.map((item) => item.compare_group);
         groups = groups.filter((item, index) => groups.indexOf(item) === index);
         let resultCode = '';
@@ -263,7 +218,7 @@ $(document).ready(function () {
             test_id: testInfo ? testInfo.id : 0,
             userName: testUserName,
             userAge: testUserAge,
-            isStudyAboard: isTestUserStudyAboard
+            purpose: purpose
         };
         $('#testId').val(testInfo ? testInfo.id : 0);
         $('#resultCodes').val(resultCode);
