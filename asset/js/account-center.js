@@ -1,4 +1,5 @@
-import { validateEmailFormat, generateMessage, prefix } from './common.js'
+import { validateEmailFormat, generateMessage, prefix } from './common.js';
+
 $(document).ready(function () {
     let user = undefined;
     let tests = [];
@@ -118,11 +119,16 @@ $(document).ready(function () {
                 $('#resultDescription').html(description);
                 $('#characterImg').attr('src', prefix + encodeURI(imgSrc));
 
+                $('#scResultTitle').html(`${code} ${title}`);
+                $('#scResultDescription').html(description);
+                $('#scCharacterImg').attr('src', prefix + encodeURI(imgSrc));
+
                 let tagHtml = `<span>你的标签： </span>`;
                 tags.forEach(function (tag) {
                     tagHtml += `<span class="badge badge-light" style="margin: 0 3px">#${tag.name}</span>`
                 });
                 $('#resultTags').html(tagHtml);
+                $('#scResultTags').html(tagHtml);
 
                 let dimensionAnalytics = `<ul class="list-group list-group-flush">`;
                 majorDimensions.forEach(function (item) {
@@ -185,11 +191,28 @@ $(document).ready(function () {
                                         beginAtZero: true
                                     }
                                 }]
+                            },
+                            bezierCurve : false,
+                            //onAnimationComplete: done
+                        }
+                    });
+                    new Chart($('#scMyChart' + index)[0].getContext('2d'), {
+                        type: 'bar',
+                        data: chartData,
+                        options: {
+                            responsive: true,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
                             }
                         }
                     });
                 });
                 $('#programAndJobAnalytics').html(careerAnalytics + programList + jobList);
+                $('#jobList').html(programList);
             }
             else {
                 $('#testResultMessage').html(generateMessage('warning', '未找到该报告。'));
@@ -198,25 +221,25 @@ $(document).ready(function () {
         });
     });
 
-    $('#screenshotBtn').click(function(){
-        //$('#testResultModal').modal('hide');
-        //$('#screenCaptureModal').modal('show');
-        $('.dimension-analysis').hide();
-        $('.basic-analysis').hide();
-        $('.advantages').hide();
-        //$('#screenshotBody').html(loading);
-        html2canvas(document.querySelector("#captureBody")).then(function(canvas) {
-            let link = document.getElementById('downloadLink');
-            link.download = "html_image.png";
-            link.href = canvas.toDataURL('image/png');
-            link.target = '_blank';
-            link.click();
-        });
-    });
-
     function timeoutHideModal() {
         setTimeout(function () { $('#editProfileModal').modal('hide'); $('#profileEditMessage').html(''); }, 2000);
     }
+
+    $('#takeScreenshot').click(function(){
+        $('#takeScreenshot').prop('disabled', true);
+        $('#takeScreenshot').html(`<span class="spinner-border spinner-border-sm" role="status" style="width: 1.3rem;height: 1.3rem; vertical-align: middle;" aria-hidden="true"></span> 正在生成图片`);
+        $('#mainResultDiv').hide();
+        $('#captureBody').show();
+        setTimeout(
+            function() 
+            {
+                html2canvas(document.getElementById("captureBody")).then(function(canvas) {
+                    $('#screenshotImg').attr('src', canvas.toDataURL('image/jpeg', 0.5));
+                    $('#screenCaptureModal').modal('show')
+                    $('#takeScreenshot').html(`<i class="fas fa-camera"></i> 截屏`);
+                });
+            }, 2000);
+    });
 
     function fetchUserInfo() {
         $('#accountCenter').hide();

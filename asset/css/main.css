@@ -1,233 +1,241 @@
 body {
     font-family: 'Noto Sans SC', sans-serif;
     line-height: 1.6 !important;
-    font-weight:100;
+    font-weight: 100;
     width: 100vw;
     overflow-x: hidden;
 }
 
-h1{
+h1 {
     font-weight: 400 !important;
 }
 
-h2{
+h2 {
     font-weight: 400 !important;
-    color:#2F4858;
+    color: #2F4858;
     margin-bottom: 30px;
 }
 
-h3{
+h3 {
     margin-bottom: 1em;
 }
 
-p{
+p {
     font-size: 1em;
 }
 
 @media (max-width: 768px) {
-    h1{
+    h1 {
         font-size: 2em !important;
     }
-
-    h2{
+    h2 {
         font-size: 1.5em !important;
     }
-    p{
+    p {
         font-size: 0.9em;
     }
 }
 
-form{
+form {
     margin: 0;
 }
 
-.btn:focus,.btn:active {
+.btn:focus, .btn:active {
     outline: none !important;
     box-shadow: none;
- }
+}
 
-.bgYellow{
+.bgYellow {
     background-color: #F19F4D !important;
-    color:white;
+    color: white;
 }
 
-.bgGrey{
+.bgGrey {
     background-color: #f2f2f2 !important;
-    color:#2f2f2f;
+    color: #2f2f2f;
 }
 
-input:empty{
+input:empty {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
     text-decoration: inherit;
 }
 
-.lightShadow{
-    -webkit-box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
-    -moz-box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
-    box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
+.lightShadow {
+    -webkit-box-shadow: 0px 0px 20px -1px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0px 0px 20px -1px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 0px 20px -1px rgba(0, 0, 0, 0.08);
 }
 
-.lighterShadow{
+.lighterShadow {
     -webkit-box-shadow: 0px 0px 25px -1px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow: 0px 0px 25px -1px rgba(0,0,0,0.05);
-    box-shadow: 0px 0px 25px -1px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 0px 25px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 0px 25px -1px rgba(0, 0, 0, 0.05);
 }
 
-textarea:hover, 
+textarea:hover,
 /* input[type=radio]:hover,  */
-textarea:active, 
+
+textarea:active,
 /* input[type=radio]:active,  */
-textarea:focus, 
+
+textarea:focus,
 /* input[type=radio]:focus, */
-button:focus,
-button:active,
-button:hover,
-label:focus,
-.btn:active,
-.btn.active
-{
-    outline:0px !important;
-    -webkit-appearance:none;
+
+button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
     box-shadow: none !important;
 }
 
-.ghostBtn{
-    margin:0 auto;
+.ghostBtn {
+    margin: 0 auto;
     border: 1px solid white;
-    color:white !important;
-    padding:16px 40px;
+    color: white !important;
+    padding: 16px 40px;
     transition: 0.3s;
-  }
-
-  .ghostBtn:hover{    
-    background-color:  #F19F4D !important;
-    color:white;
-    transition: 0.3s;
-    border:none;
 }
 
-.ghostSecBtn{
-    margin:0 auto;
+.ghostBtn:hover {
+    background-color: #F19F4D !important;
+    color: white;
+    transition: 0.3s;
+    border: none;
+}
+
+.ghostSecBtn {
+    margin: 0 auto;
     border: 1px solid #777777;
-    color:#777777 !important;
-    padding:16px 40px;
+    color: #777777 !important;
+    padding: 16px 40px;
     transition: 0.3s;
-  }
-
-  .ghostSecBtn:hover{    
-    background-color:  #777777 !important;
-    color:white !important;
-    transition: 0.3s;
-    border:none;
 }
 
-.primBtn{
-    margin:0 auto;
-    color:white !important;
-    padding:16px 40px;
+.ghostSecBtn:hover {
+    background-color: #777777 !important;
+    color: white !important;
+    transition: 0.3s;
+    border: none;
+}
+
+.primBtn {
+    margin: 0 auto;
+    color: white !important;
+    padding: 16px 40px;
     background-color: #F19F4D !important;
     transition: 0.3s;
 }
 
-  .primBtn:hover{    
+.primBtn:hover {
     background-color: #9E744E !important;
-    color:white;
+    color: white;
     transition: 0.3s;
 }
 
-.primBtnSM{
-    margin:0 auto;
-    color:white !important;
+.primBtnSM {
+    margin: 0 auto;
+    color: white !important;
     background-color: #F19F4D !important;
     transition: 0.3s;
-    font-weight:100;
-}
-
-  .primBtnSM:hover{    
-    background-color: #9E744E !important;
-    color:white;
-    transition: 0.3s;
-}
-
-.ghostSecBtnSM{
-    margin:0 auto;
-    border: 1px solid #777777;
-    color:#777777 !important;
-    transition: 0.3s;
-    font-weight:100;
-  }
-
-  .ghostSecBtnSM:hover{    
-    background-color:  #777777 !important;
-    color:white !important;
-    transition: 0.3s;
-    border:none;
-}
-
-.secBtn{
     font-weight: 100;
-    margin:0 auto;
-    padding:16px 40px;
+}
+
+.primBtnSM:hover {
+    background-color: #9E744E !important;
+    color: white;
+    transition: 0.3s;
+}
+
+.ghostSecBtnSM {
+    margin: 0 auto;
+    border: 1px solid #777777;
+    color: #777777 !important;
+    transition: 0.3s;
+    font-weight: 100;
+}
+
+.ghostSecBtnSM:hover {
+    background-color: #777777 !important;
+    color: white !important;
+    transition: 0.3s;
+    border: none;
+}
+
+.secBtn {
+    font-weight: 100;
+    margin: 0 auto;
+    padding: 16px 40px;
     background-color: rgb(248, 248, 248) !important;
     transition: 0.3s;
 }
 
-  .secBtn:hover{    
+.secBtn:hover {
     transition: 0.3s;
     background-color: #F19F4D !important;
-    color:white;
+    color: white;
 }
 
-.login-badge{
+.login-badge {
     background-color: white;
     color: #2F4858;
 }
 
 /* arrow animation */
+
 .the-arrow {
     width: 1px;
     transition: all 0.2s;
 }
+
 .the-arrow.-left {
     position: absolute;
     top: 60%;
     left: 0;
 }
-.the-arrow.-left > .shaft {
+
+.the-arrow.-left>.shaft {
     width: 0;
     background-color: #F19F4D;
 }
-.the-arrow.-left > .shaft:before, .the-arrow.-left > .shaft:after {
+
+.the-arrow.-left>.shaft:before, .the-arrow.-left>.shaft:after {
     width: 0;
     background-color: #F19F4D;
 }
-.the-arrow.-left > .shaft:before {
+
+.the-arrow.-left>.shaft:before {
     transform: rotate(0);
 }
-.the-arrow.-left > .shaft:after {
+
+.the-arrow.-left>.shaft:after {
     transform: rotate(0);
 }
+
 .the-arrow.-right {
     top: 1px;
 }
-.the-arrow.-right > .shaft {
+
+.the-arrow.-right>.shaft {
     width: 1px;
     transition-delay: 0.2s;
 }
-.the-arrow.-right > .shaft:before, .the-arrow.-right > .shaft:after {
+
+.the-arrow.-right>.shaft:before, .the-arrow.-right>.shaft:after {
     width: 8px;
     transition-delay: 0.3s;
     transition: all 0.5s;
 }
-.the-arrow.-right > .shaft:before {
+
+.the-arrow.-right>.shaft:before {
     transform: rotate(40deg);
 }
-.the-arrow.-right > .shaft:after {
+
+.the-arrow.-right>.shaft:after {
     transform: rotate(-40deg);
 }
-.the-arrow > .shaft {
+
+.the-arrow>.shaft {
     background-color: #333333;
     display: block;
     height: 1px;
@@ -236,7 +244,8 @@ label:focus,
     transition-delay: 0;
     will-change: transform;
 }
-.the-arrow > .shaft:before, .the-arrow > .shaft:after {
+
+.the-arrow>.shaft:before, .the-arrow>.shaft:after {
     background-color: #333333;
     content: '';
     display: block;
@@ -247,12 +256,15 @@ label:focus,
     transition: all 0.2s;
     transition-delay: 0;
 }
-.the-arrow > .shaft:before {
+
+.the-arrow>.shaft:before {
     transform-origin: top right;
 }
-.the-arrow > .shaft:after {
+
+.the-arrow>.shaft:after {
     transform-origin: bottom right;
 }
+
 .animated-arrow {
     display: inline-block;
     color: #333333;
@@ -262,70 +274,84 @@ label:focus,
     position: relative;
     transition: all 0.2s;
 }
+
 .animated-arrow:hover {
     color: #F19F4D;
 }
-.animated-arrow:hover > .the-arrow.-left > .shaft {
+
+.animated-arrow:hover>.the-arrow.-left>.shaft {
     width: 30px;
     transition-delay: 0.1s;
     background-color: #F19F4D;
 }
-.animated-arrow:hover > .the-arrow.-left > .shaft:before, .animated-arrow:hover > .the-arrow.-left > .shaft:after {
+
+.animated-arrow:hover>.the-arrow.-left>.shaft:before, .animated-arrow:hover>.the-arrow.-left>.shaft:after {
     width: 8px;
     transition-delay: 0.1s;
     background-color: #F19F4D;
 }
-.animated-arrow:hover > .the-arrow.-left > .shaft:before {
+
+.animated-arrow:hover>.the-arrow.-left>.shaft:before {
     transform: rotate(40deg);
 }
-.animated-arrow:hover > .the-arrow.-left > .shaft:after {
+
+.animated-arrow:hover>.the-arrow.-left>.shaft:after {
     transform: rotate(-40deg);
 }
-.animated-arrow:hover > .main {
+
+.animated-arrow:hover>.main {
     transform: translateX(17px);
     transform: translateX(40px);
 }
-.animated-arrow:hover > .main > .the-arrow.-right > .shaft {
+
+.animated-arrow:hover>.main>.the-arrow.-right>.shaft {
     width: 0;
     transform: translateX(200%);
     transition-delay: 0;
 }
-.animated-arrow:hover > .main > .the-arrow.-right > .shaft:before, .animated-arrow:hover > .main > .the-arrow.-right > .shaft:after {
+
+.animated-arrow:hover>.main>.the-arrow.-right>.shaft:before, .animated-arrow:hover>.main>.the-arrow.-right>.shaft:after {
     width: 0;
     transition-delay: 0;
     transition: all 0.1s;
 }
-.animated-arrow:hover > .main > .the-arrow.-right > .shaft:before {
+
+.animated-arrow:hover>.main>.the-arrow.-right>.shaft:before {
     transform: rotate(0);
 }
-.animated-arrow:hover > .main > .the-arrow.-right > .shaft:after {
+
+.animated-arrow:hover>.main>.the-arrow.-right>.shaft:after {
     transform: rotate(0);
 }
-.animated-arrow > .main {
+
+.animated-arrow>.main {
     display: flex;
     align-items: center;
     transition: all 0.2s;
 }
-.animated-arrow > .main > .text {
+
+.animated-arrow>.main>.text {
     margin: 0 16px 0 0;
     line-height: 1;
 }
-.animated-arrow > .main > .the-arrow {
+
+.animated-arrow>.main>.the-arrow {
     position: relative;
 }
+
 /* arrow animation end */
 
-.toTop{
+.toTop {
     z-index: 99;
 }
 
 /* menu */
 
-.user-menu:hover{
+.user-menu:hover {
     text-decoration: none;
 }
 
-.stick-at-top{
+.stick-at-top {
     position: fixed;
     z-index: 99;
     background: rgb(245, 245, 245);
@@ -335,7 +361,7 @@ label:focus,
     width: 100%;
 }
 
-.notification-dot{
+.notification-dot {
     position: absolute;
     right: 20px;
     display: inline-block;
@@ -344,24 +370,24 @@ label:focus,
     vertical-align: text-top;
 }
 
-.dot-small{
+.dot-small {
     width: 5px;
     height: 5px;
 }
 
-.dot-medium{
+.dot-medium {
     width: 8px;
     height: 8px;
 }
 
-.notification-popup{
+.notification-popup {
     position: absolute;
     top: 100px;
     right: 20px;
     z-index: 99;
 }
 
-.float-btn{
+.float-btn {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -369,7 +395,7 @@ label:focus,
 }
 
 @media screen and (max-width: 550px) {
-    .notification-popup{
+    .notification-popup {
         top: 0;
     }
 }

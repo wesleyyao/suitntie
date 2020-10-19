@@ -315,6 +315,7 @@ $(document).ready(function () {
     function fetchAccount() {
         $('#testOrView').hide();
         $.get(`${prefix}/public/api/account.php`).done(function (data) {
+            console.log(data)
             const result = JSON.parse(data);
             const pageTitle = $('#hide_title').val();
             if (result === 'no login' && pagesRequiredLogin.includes(pageTitle)) {
@@ -322,6 +323,22 @@ $(document).ready(function () {
                 $('#mainContentDiv').fadeOut();
                 message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
                 $('#message').html(message);
+            }
+            if(result === 'no login' && currentPage.indexOf('/programs/explore') !== -1){
+                let blurContent = `
+                <div class="row">
+                <div class="col-12">
+                        <div class="alert alert-warning text-center" role="alert">
+                            浏览下面内容需要先登录 <a href="#/" data-toggle="modal" data-target="#userSignUpModal" class="btn btn-warning">点击登录</a>
+                        </div>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="col-12">
+                        <img src="${prefix}/asset/image/${window.innerWidth > 768 ? 'program-blur' : 'program-blur-mobile'}.png" style="width: 100%; height: auto;" alt="blur content" />
+                    </div>
+                </div>`;
+                $('#membershipContentDiv').html(blurContent);
             }
             const user = result.user ? result.user : undefined;
             const noLogin = `<a href="#/" data-toggle="modal" data-target="#userSignUpModal">登录 | 注册</a>`;

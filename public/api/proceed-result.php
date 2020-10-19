@@ -62,10 +62,6 @@
             exit;
         }
     }
-    // else{
-    //     echo json_encode("invalid request");
-    //     exit;
-    // }
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(isset($_GET["action"])){

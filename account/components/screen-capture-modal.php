@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div id="screenshotBody"></div>
+                <img id="screenshotImg" />
             </div>
         </div>
     </div>

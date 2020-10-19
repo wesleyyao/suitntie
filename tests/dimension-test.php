@@ -153,11 +153,16 @@
                     </div>
                 </div>
                 <div class="form-row">
+                    <div class="col-lg-2 offset-lg-3 col-md-4 offset-md-2">
+                        <label>我目前: <span class="text-danger">*</span></label>
+                    </div>
+                </div>
+                <div class="form-row">
                     <div class="col-lg-2 offset-lg-3 col-md-4 offset-md-2 mb-3">
                         <div class="form-check">
                             <input class="purpose form-check-input" name="testUserStudyAboard" type="radio"
                                 value="准备出国读书">
-                            <label class="form-check-label" for="testUserStudyAboard">
+                            <label class="form-check-label">
                                 准备出国读书
                             </label>
                         </div>
@@ -166,7 +171,7 @@
                         <div class="form-check">
                             <input class="purpose form-check-input" name="testUserStudyAboard" type="radio"
                                 value="准备在国内读书">
-                            <label class="form-check-label" for="testUserStudyAboard">
+                            <label class="form-check-label">
                                 准备在国内读书
                             </label>
                         </div>
@@ -175,7 +180,7 @@
                         <div class="form-check">
                             <input class="purpose form-check-input" name="testUserStudyAboard" type="radio"
                                 value="我就做着玩玩">
-                            <label class="form-check-label" for="testUserStudyAboard">
+                            <label class="form-check-label">
                                 我就做着玩玩
                             </label>
                         </div>

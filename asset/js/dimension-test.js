@@ -58,7 +58,6 @@ $(document).ready(function () {
         if (data) {
             let result = JSON.parse(data);
             const { dimension, test, user } = result;
-            console.log(user);
             dimensions = dimension ? dimension.dimensions.map(item => ({ ...item, times: 0 })) : [];
             results = dimension ? dimension.dimension_combinations : [];
             loginUser = user ? user : undefined;
@@ -168,9 +167,13 @@ $(document).ready(function () {
         }
         const testUserName = $('#testUserName').val().replace(/\s/g, "");
         const testUserAge = $('#testUserAge').val();
-        const purpose = $('input[name="testUserStudyAboard"]').val();
-
-        if (!testUserName || !testUserAge) {
+        let purpose = '';
+        $('input[name="testUserStudyAboard"]').each(function(){
+            if($(this).prop('checked')){
+                purpose = $(this).val();
+            }
+        });
+        if (!testUserName || !testUserAge || !purpose) {
             $('#message').html(generateMessage('warning', '在提交前，请填写所有必填项。'));
             return;
         }

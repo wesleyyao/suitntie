@@ -16,10 +16,13 @@
                 <a class="nav-link" href="<?php echo $global_prefix; ?>/tests/dimension-test.php">个人测试 <sup><span
                             class="badge badge-warning">免费</span></sup></a>
             </li>
+            <li class="nav-item global-nav-item">
+                <a class="nav-link" href="<?php echo $global_prefix; ?>/one-on-one/index.php">一对一解惑</a>
+            </li>
             <li class="nav-item global-nav-item dropdown">
                 <a class="dropdown-toggle nav-link" href="#" role="button" id="programLinks" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    专业探索
+                    专业库
                 </a>
                 <ul class="dropdown-menu pt-2 pb-2 text-left" aria-labelledby="programLinks" id="programMenu"
                     style="overflow-y: auto; height: 340px">
@@ -27,7 +30,7 @@
                 </ul>
             </li>
             <li class="nav-item global-nav-item">
-                <a class="nav-link" href="<?php echo $global_prefix; ?>/one-on-one/index.php">一对一解惑</a>
+                <a class="nav-link" href="<?php echo $global_prefix; ?>/consult/index.php">导师库</a>
             </li>
             <li class="nav-item global-nav-item">
                 <a class="nav-link" href="<?php echo $global_prefix; ?>/about/index.php">关于适途</a>

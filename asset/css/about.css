@@ -7,7 +7,7 @@ h3{
 .about-top-banner{
     width: 100%;
     height: 300px;
-    background-image: url(/asset/image/pics/about/About-header-BG-Desktop.jpg);
+    background-image: url(../image/pics/about/About-header-BG-Desktop.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;

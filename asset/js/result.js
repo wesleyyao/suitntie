@@ -17,8 +17,6 @@ $(document).ready(function () {
     let imgSrc = '';
     let customer = undefined;
 
-    sendNotification();
-
     $.get(`${prefix}/public/api/result.php`).done(function (data) {
         const result = JSON.parse(data);
         if (result) {
@@ -157,6 +155,7 @@ $(document).ready(function () {
             $('#loadingDiv').hide();
             $('#mainResultDiv').fadeIn();
         }
+        sendNotification();
     });
 
     function sendNotification(){

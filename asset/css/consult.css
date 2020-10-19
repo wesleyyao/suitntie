@@ -1,0 +1,29 @@
+.consult-top-banner {
+    width: 100%;
+    height: 300px;
+    background-image: url(../image/pics/1-on-1/1on1-BG-Desktop.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.filter{
+    padding: 3px;
+    color: #F19F4D;
+}
+
+.filter:hover{
+    color: #F19F4D;
+    background-color: #f1f1f1;
+}
+
+.filter-active, .filter:hover{
+    color:  #2b2725;
+}
+
+.consultant-card{
+    width: 100%;
+    height: 250px;
+}
