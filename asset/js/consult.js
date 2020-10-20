@@ -30,11 +30,37 @@ $(document).ready(function () {
         renderList(filteredData);
     });
 
-    $(document).on('click', '.show-brief', function(){
+    $(document).on('click', '.show-brief', function () {
         const id = $(this).attr('id').replace('showBrief', '');
         const allBrief = filteredData.find(item => item.id == id)?.introduction;
         $('#briefDiv' + id).html(`${allBrief} <a href="#/" class="hide-brief" id="hideBrief${id}">收回</a>`);
-        //$('#briefDiv' + id).addClass('')
+        $('#briefDiv' + id).addClass('scroll-brief');
+    });
+
+    $(document).on('click', '.hide-brief', function () {
+        const id = $(this).attr('id').replace('hideBrief', '');
+        const foundData = filteredData.find(item => item.id == id);
+        const partialBrief = foundData && foundData.introduction ?
+            foundData.introduction.length > 150 ?
+                `${foundData.introduction.slice(0, 149)}... <a href="#/" class="show-brief" id="showBrief${foundData.id}">查看更多</a>` :
+                foundData.introduction :
+            '';
+        $('#briefDiv' + id).html(partialBrief);
+        $('#briefDiv').removeClass('scroll-brief');
+    });
+
+    $('#searchBtn').click(function () {
+        const val = $('#filterInput').val().replace(/\s+/g, '');
+        const foundProgram = reference && reference.programs ? reference.programs.find(item => item.id == currentFilters.program) : undefined;
+        let newFilteredData = consultants.filter(
+            item => item.programs.find(
+                p => p.title.indexOf(val) != -1 ||
+                    p.education.indexOf(val) != -1 ||
+                    p.region_name.indexOf(val) != -1 ||
+                    p.school.indexOf(val) != -1) ||  item.nick_name.toLowerCase().indexOf(val.toLowerCase())!= -1);
+        console.log(newFilteredData);
+        filteredData = newFilteredData;
+        renderList(filteredData);
     });
 
     function updateFilters(selected, target, value) {
@@ -49,8 +75,24 @@ $(document).ready(function () {
                     (currentFilters.region != 0 ? p.region == currentFilters.region : 1)));
 
         console.log(currentFilters);
-        console.log(reference.programs);
         filteredData = newFilteredData;
+        if (!reference || !reference.educations || !reference.programs || !reference.regions) {
+            return;
+        }
+        if (currentFilters.program == 0 && currentFilters.education == 0 && currentFilters.region == 0) {
+            $('#filterTags').html("");
+        }
+        else {
+            $('#filterTags').html(`
+            <div class="row pt-3">
+            <div class="col-12">
+                    ${currentFilters.program != 0 ? `<span class="filter-tag">${reference.programs.find(item => item.id == currentFilters.program)?.name}</span>` : ''}
+                    ${currentFilters.education != 0 ? `<span class="filter-tag">${currentFilters.education}</span>` : ''}
+                    ${currentFilters.region != 0 ? `<span class="filter-tag">${reference.regions.find(item => item.id == currentFilters.region)?.name}</span>` : ''}
+                </div>
+                </div>
+            `);
+        }
     }
 
     function fetchConsultData() {

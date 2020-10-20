@@ -30,7 +30,7 @@ require_once("../utils/initial.php");
                                     <input type="text" class="form-control" placeholder="搜索导师" aria-label="搜索导师"
                                         id="filterInput" aria-describedby="filterBtn">
                                     <div class="input-group-append">
-                                        <button class="btn primBtnSM" type="button" id="filterBtn">
+                                        <button class="btn primBtnSM" type="button" id="searchBtn">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
@@ -61,7 +61,8 @@ require_once("../utils/initial.php");
                                 </div>
                             </div>
                         </div>
-                        <div id="consultantList" class="pt-5">
+                        <div id="filterTags"></div>
+                        <div id="consultantList" class="pt-3">
                         </div>
                     </div>
                 </div>
