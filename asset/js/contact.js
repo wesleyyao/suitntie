@@ -1,4 +1,4 @@
-import { validateEmailFormat, generateMessage, prefix } from './common.js';
+import { generateMessage, prefix, formValidation } from './common.js';
 $(document).ready(function () {
     $('#contactMessage').hide();
     const loading = `
@@ -36,28 +36,28 @@ $(document).ready(function () {
         });
     });
 
-    function formValidation(className, message, email) {
-        let isValid = true;
-        $(className).each(function () {
-            if (!$(this).val().replace(/\s/g, '')) {
-                $(message).html(generateMessage('warning', '请填写所有必填项。'));
-                $('#contactMessage').delay(3000).fadeOut();
-                isValid = false;
-                return;
-            }
-            else if (email && !validateEmailFormat(email)) {
-                $(message).html(generateMessage('warning', '输入的邮箱格式错误。'));
-                $('#contactMessage').delay(3000).fadeOut();
-                isValid = false;
-                return;
-            }
-            else {
-                isValid = true;
-                return;
-            }
-        });
-        return isValid;
-    }
+    // function formValidation(className, message, email) {
+    //     let isValid = true;
+    //     $(className).each(function () {
+    //         if (!$(this).val().replace(/\s/g, '')) {
+    //             $(message).html(generateMessage('warning', '请填写所有必填项。'));
+    //             $('#contactMessage').delay(3000).fadeOut();
+    //             isValid = false;
+    //             return;
+    //         }
+    //         else if (email && !validateEmailFormat(email)) {
+    //             $(message).html(generateMessage('warning', '输入的邮箱格式错误。'));
+    //             $('#contactMessage').delay(3000).fadeOut();
+    //             isValid = false;
+    //             return;
+    //         }
+    //         else {
+    //             isValid = true;
+    //             return;
+    //         }
+    //     });
+    //     return isValid;
+    // }
 
     // function validateEmailFormat(mail) {
     //     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {

@@ -15,7 +15,7 @@ class Database
         $database = "suitntie";
         $user_name = "root"; //root
         $password = ""; //SuitNtie0502
-        date_default_timezone_set("America/Toronto");
+        date_default_timezone_set("Asia/Shanghai");
         $this->conn = mysqli_connect($host_name, $user_name, $password, $database);
         $this->conn->set_charset("utf8");
     }

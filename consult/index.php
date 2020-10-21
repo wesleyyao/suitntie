@@ -79,6 +79,7 @@ require_once("../utils/initial.php");
         </div>
     </div>
     </div>
+    <?php require_once("./components/contact-form.php") ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/global-footer.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/public/component/auth-modals.php"); ?>
     <?php require_once($_SERVER["DOCUMENT_ROOT"] . "$global_prefix/theme/script.php"); ?>

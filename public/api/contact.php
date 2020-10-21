@@ -16,10 +16,11 @@
             $city = $_POST["city"];
             $school = $_POST["school"];
             $content = $_POST["content"];
-            $is_saved = $message->save_contact_form($email, $phone, $name, $wechat, $city, $school, $content);
+            $consultant = isset($_POST["consultant"]) ? $_POST["consultant"] : "";
+            $is_saved = $message->save_contact_form($email, $phone, $name, $wechat, $city, $school, $content, $consultant);
             if($is_saved){
-                $email_content = emailContent($email, $phone, $name, $wechat, $city, $school, $content);
-                $is_send = $mail->send($receiver, $receiver2, $subject, $email_content);
+                $email_content = emailContent($email, $phone, $name, $wechat, $city, $school, $content, $consultant);
+                //$is_send = $mail->send($receiver, $receiver2, $subject, $email_content);
                 echo json_encode(true);
                 exit;
             }
@@ -36,7 +37,7 @@
         echo json_encode(false);
     }
 
-    function emailContent($email, $phone, $name, $wechat, $city, $school, $content){
+    function emailContent($email, $phone, $name, $wechat, $city, $school, $content, $consultant){
         return "<html>
         <head>
         <meta charset='utf-8'>
@@ -61,6 +62,7 @@
                     <p>微信：$wechat</p>
                     <p>城市：$city</p>
                     <p>学校: $school</p>
+                    <p>导师： $consultant</p>
                 </div>
                 <br/>
                 <div style='text-align: center; width: 60%; margin-left: 20%; padding: 15px; border: 1px solid #f4f4f4; border-radius: 10px;'>

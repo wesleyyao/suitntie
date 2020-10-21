@@ -1,11 +1,11 @@
 <?php
     class Message extends Database{
-        public function save_contact_form($email, $phone, $name, $wechat, $city, $school, $content){
+        public function save_contact_form($email, $phone, $name, $wechat, $city, $school, $content, $addition){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
-                $query = "INSERT INTO inquiry (`name`, `email`, `phone`, `wechat`, `city`, `school`, `content`) VALUES (?,?,?,?,?,?,?)";
+                $query = "INSERT INTO inquiry (`name`, `email`, `phone`, `wechat`, `city`, `school`, `content`, `addition`) VALUES (?,?,?,?,?,?,?,?)";
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sssssss", $name, $email, $phone, $wechat, $city, $school, $content);
+                $sql->bind_param("ssssssss", $name, $email, $phone, $wechat, $city, $school, $content, $addition);
                 $sql->execute();
                 $this->conn->commit();
                 return true;

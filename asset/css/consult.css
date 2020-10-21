@@ -39,3 +39,10 @@
     color: #ffffff;
     border-radius: 10px;
 }
+
+.mail-btn{
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    color: #F19F4D;
+}
