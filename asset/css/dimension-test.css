@@ -20,19 +20,9 @@
   margin: 0;
 }
 
-/* #testTitle{
-  height:350px;
-  background-image:url('/asset/image/test-page/Hero-img.jpg');
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center 0;
-  background-attachment: fixed;
-}
-     */
-
 .testDesc {
   margin-top: -110px;
-  margin-bottom: 70px;
+  margin-bottom: 30px;
   padding: 0 30px;
 }
 
@@ -90,12 +80,6 @@
   text-align: center;
 }
 
-@media only screen and (max-width: 575px) {
-  #clockAndProgressBarDiv {
-    height: 120px;
-  }
-}
-
 /* Question Section*/
 
 .textHeading h2 {
@@ -113,8 +97,9 @@
   font-weight: 400 !important;
 }
 
-#finishTestForm{
+#finishTestForm {
   display: block;
+  padding-bottom: 35px;
 }
 
 /* Answers */
@@ -219,10 +204,20 @@
   }
 }
 
+@media only screen and (max-width: 991px) {
+  .tri-block-content {
+    padding: 40px 10px 30px 10px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   #testOrView {
     position: fixed;
     margin-bottom: 0;
+  }
+  .mainTitle {
+    height: 200px;
+    padding-top: 80px;
   }
 }
 
@@ -230,6 +225,15 @@
   #testOrView {
     width: 80%;
     left: 10%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #clockAndProgressBarDiv {
+    height: 120px;
+  }
+  .tri-block-content {
+    padding: 10px;
   }
 }
 

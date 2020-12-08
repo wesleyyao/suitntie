@@ -2,6 +2,7 @@ $(document).ready(function(){
     fetchPrograms();
     let programCategories = [];
     let programs = [];
+    let programDataTable = null;
     $(document).on('click', '.categoryView', function(){
         const button = $(this).attr('id');
         let id = 0;
@@ -126,7 +127,10 @@ $(document).ready(function(){
             data: formData,
             success: function(data){ console.log(data)
                 if(data){
-                   window.location.href = "./programs.php";
+                   //window.location.href = "./programs.php";
+                   $('#programsTable').DataTable().destroy(); 
+                   fetchPrograms();
+
                 }
                 else{
                     $('#programMessage').html(generateMessage('warning', '未更新成功，请重试。'));
@@ -242,7 +246,7 @@ $(document).ready(function(){
             }
             $('#programCategoryTableBody').html(categoryTable);
             $('#programsTableBody').html(programTable);
-            $('#programTable').DataTable();
+            programDataTable= $('#programsTable').DataTable();
         });
     }
 

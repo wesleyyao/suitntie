@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+    <meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
+    <title>适途咨询</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+
+    <!-- load stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/header.css">
+    <!-- load scripts -->
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../asset/js/header.js"></script>
+    <script type="module" src="../asset/js/signup.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5b70ca46afc5ba4aa10407bf53807917";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="float-message" id="signupMsg" style="display: none;"></div>
+    <div id="headerDiv"></div>
+    <div id="mainDiv" class="container">
+        <div class="row mt-5 mb-5 pt-5 pb-5">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
+                <div id="loginDiv" class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-center text-secondary"><i class="far fa-user-circle"></i> 注册</h1>
+                        <div class="row pb-5">
+                            <div class="col-12 text-center">
+                                <div class="btn-group mr-2 btn-group-lg" role="group" aria-label="loginMethods">
+                                    <button type="button" class="btn primBtn signup-method-btn btn-active"
+                                        id="wechatSignupBtn">微信
+                                        <sup><span class="badge login-badge">推荐</span></sup>
+                                    </button>
+                                    <button type="button" class="btn primBtn signup-method-btn"
+                                        id="emailSignupBtn">邮箱</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="emailSignupDiv" class="login-div" style="display: none;">
+                                    <div class="row mb-2">
+                                        <div class="col-12">
+                                            <label><span class="text-danger">*</span> 邮箱：<i
+                                                    class="fas fa-info-circle text-info" style="cursor: pointer"
+                                                    data-toggle="collapse" href="#signUpUserNameTip" role="button"
+                                                    aria-expanded="false" aria-controls="signUpUserNameTip"></i></label>
+                                            <div class="collapse" id="signUpUserNameTip">
+                                                <div class="alert alert-secondary">
+                                                    请填写完整的邮箱地址，因为在注册提交后，我们会发送一封验证邮件到这个邮箱。
+                                                </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="text" id="signupEmail" class="form-control" placeholder=""
+                                                    aria-label="邮箱" maxlength="64">
+                                                <div class="input-group-append">
+                                                    <button class="btn primBtnSM" id="sendEmailVerifyCode"
+                                                        type="button">获取验证码</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="signupEmailVerifyMessage"></div>
+                                    <div class="row mb-2">
+                                        <div class="col-lg-4 col-md-4 col-sm-5 col-5">
+                                            <label><span class="text-danger">*</span> 验证码: </label>
+                                            <input type="text" class="form-control verify-code-field"
+                                                id="signupEmailCode" maxlength="4" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-12">
+                                            <label><span class="text-danger">*</span> 密码：<i
+                                                    class="fas fa-info-circle text-info" style="cursor: pointer"
+                                                    data-toggle="collapse" href="#signUpPasswordTip" role="button"
+                                                    aria-expanded="false" aria-controls="signUpPasswordTip"></i></label>
+                                            <div class="collapse" id="signUpPasswordTip">
+                                                <div class="alert alert-secondary">
+                                                    密码必须包含至少一个大写字母，一个小写字母和一个数字。长度不小于8
+                                                </div>
+                                            </div>
+                                            <input type="password" id="signupPassword" maxlength="36"
+                                                class="form-control signup-required" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-12">
+                                            <label><span class="text-danger">*</span> 确认密码：</label>
+                                            <input type="password" id="signupPasswordConfirm" maxlength="36"
+                                                class="form-control signup-required" />
+                                        </div>
+                                    </div>
+                                    <div class="row pt-2">
+                                        <div
+                                            class="col-lg-3 offset-lg-3 col-md-4 offset-md-2 col-sm-5 offset-1 col-5 px-1">
+                                            <a class="btn btn-block ghostSecBtnSM"
+                                                href="./login.html">登录</a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-5 col-5 px-1">
+                                            <button type="button" class="btn btn-block primBtnSM signup-button"
+                                                id="signupByEmail">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="wechatSignupDiv" class="login-div">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div id="signup_container" class="text-center"></div>
+                                            <div id="signup_mobile_container" class="text-center row"
+                                                style="padding: 50px 15px;">
+                                                <a href="" id="signup_wechat_mobile_link"
+                                                    class="btn primBtn col-12">点击此处授权</a>
+                                                <p class="mt-1" style="margin:0 auto;">
+                                                    <small style="font-weight:100 !important;">请确保在微信客户端中打开此网页</small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="alert alert-primary" role="alert">
+                                                <i class="fas fa-info-circle"></i> 如果您是海外用户，建议使用邮箱注册。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footerDiv"></div>
+</body>
+
+</html>

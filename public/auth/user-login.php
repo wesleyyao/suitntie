@@ -6,11 +6,12 @@
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["by"])){
         $by = $_POST["by"];
         if($by == "phone"){
-            if(!isset($_POST["phone"]) || empty(trim($_POST["phone"]))){
+            if(!isset($_POST["phone"]) || empty(trim($_POST["phone"])) || !isset($_POST["currentPage"])){
                 $message["type"] = "error";
                 $message["content"] = "请求错误，请刷新后重试";
             }
             $phone = trim($_POST["phone"]);
+            $request_url = trim($_POST["currentPage"]);
             $is_found = $customer->find_user_by_phone($phone);
             if($is_found){
                 $_SESSION["login_user"] = $customer->id;
@@ -19,7 +20,14 @@
                 $message["content"] = "您登录成功，正在为您准备数据...";
             }
             else{
-                $is_saved = $customer->signup_by_phone($phone, $current_time, $ip);
+                $register_by = "";
+                if(strpos($request_url, "programs/explore") > -1){
+                    $register_by = "专业";
+                }
+                if(strpos($request_url, "tests/dimension-test") > -1){
+                    $register_by = "测试";
+                }
+                $is_saved = $customer->signup_by_phone($phone, $current_time, $ip, $register_by);
                 if($is_saved){
                     $_SESSION["login_user"] = $customer->id;
                 }
@@ -34,7 +42,7 @@
             }
             else{
                 $email = trim($_POST["email"]);
-                $password = trim($_POST["password"]);
+                $password = trim($_POST["password"]);                
                 $found_user_id = $customer->validate_login($email, $password);
                 if($found_user_id){
                     $_SESSION["login_user"] = $found_user_id;
@@ -48,5 +56,8 @@
             }
         }
         echo json_encode($message);
+    }
+    else{
+        echo json_encode(false);
     }
 ?>

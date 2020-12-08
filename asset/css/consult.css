@@ -9,28 +9,23 @@
     padding-top: 100px;
 }
 
-.filter{
+.filter {
     padding: 3px;
     color: #F19F4D;
 }
 
-.filter:hover{
+.filter:hover {
     color: #F19F4D;
     background-color: #f1f1f1;
 }
 
-.filter-active, .filter:hover{
-    color:  #2b2725;
+.filter-active, .filter:hover {
+    color: #2b2725;
 }
 
-.consultant-card{
+.consultant-card {
     width: 100%;
-    height: 250px;
-}
-
-.scroll-brief {
-    overflow-y: auto;
-    height: 130px;
+    height: auto;
 }
 
 .filter-tag {
@@ -38,11 +33,60 @@
     background-color: #F19F4D;
     color: #ffffff;
     border-radius: 10px;
+    margin-right: 4px;
 }
 
-.mail-btn{
+.filter-tag a {
+    color: #fff !important;
+    padding-left: 3px;
+}
+
+.mail-btn {
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
     color: #F19F4D;
+}
+
+.consult-filter-title {
+    position: absolute;
+    left: 15px;
+}
+
+.consult-filter-option {
+    padding-left: 50px;
+}
+
+.consultant-card-avatar {
+    position: absolute;
+    width: 100px;
+    left: 15px;
+    top: 20px;
+    height: auto;
+}
+
+.consultant-card-content {
+    padding-left: 120px;
+    vertical-align: top;
+}
+
+@media screen and (max-width: 768px) {
+    .consult-top-banner {
+        height: 200px;
+        padding-top: 80px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+
+    .consultant-card-avatar {
+        position: relative;
+        width: 100%;
+        left: 0;
+        padding-bottom: 15px;
+        display: block;
+    }
+    .consultant-card-content {
+        padding-left: 0;
+    }
 }

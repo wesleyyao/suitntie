@@ -1,0 +1,124 @@
+<div id="testResultBody">
+    <button class="btn btn-lg" id="screenshotModeBtn">
+        <i class="fas fa-camera"></i> 去截屏
+    </button>
+    <div id="mainResultDiv" class="result-div">
+        <div class="userTestResultHeader">
+            <div class="text-center user-result-title-cell" style="z-index: 2; width: 100%">
+                <h1 class="display-4" id="userResultTitle"></h1>
+                <h4 id="userResultDescription" class="userResultDesc"></h4>
+            </div>
+        </div>
+        <img id="userCharacterImg" src="" class="img-fluid" />
+        <div class="resultDimension">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <polygon stroke="white" fill="white" points="0,100 100,0 100,100" />
+            </svg>
+            <div class="row userDimensionContent" style="margin: 0">
+                <div class="col-lg-8 offset-lg-4 col-md-12 col-sm-12 col-12">
+                    <div id="resultCharts" class="resultBarChart lightShadow">
+                        <div class="row" style="margin: 0">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 chart-column">
+                                <canvas id="userMyChart0" class="result-chart"
+                                    style="width: 100%; height: 130px;"></canvas>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 chart-column">
+                                <canvas id="userMyChart1" style="width: 100%; height: 130px;"></canvas>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 chart-column">
+                                <canvas id="userMyChart2" style="width: 100%; height: 130px;"></canvas>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6 chart-column">
+                                <canvas id="userMyChart3" style="width: 100%; height: 130px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 tagBox">
+                        <div class="lead" id="resultTags"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row dimension-analysis" style="margin: 0">
+            <div class="col-12">
+                <h3>维度解释</h3>
+                <div id="dimensionAnalytics">
+
+                </div>
+            </div>
+        </div>
+        <div class="row basic-analysis" style="margin: 0">
+            <div class="col-12 ">
+                <h3>基本分析</h3>
+                <div id="basicAnalytics">
+
+                </div>
+            </div>
+        </div>
+        <div class="row advantages" style="margin: 0">
+            <div class="col-12 ">
+                <h3>你的优势</h3>
+                <div id="advantageList">
+
+                </div>
+            </div>
+        </div>
+        <div class="row disadvantages" style="margin: 0">
+            <div class="col-12 ">
+                <h3>你的盲点</h3>
+                <div id="disadvantageList">
+
+                </div>
+            </div>
+        </div>
+        <div class="row careerDesc" style="margin: 0">
+            <div class="col-12">
+                <h3>专业和职业分析</h3>
+                <div id="programAndJobAnalytics">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pt-2 pb-2 pl-2 pr-2" id="userResultMsg">
+</div>
+<div id="screenshotDiv">
+    <div class="screenshot-body">
+        <div class="logo-banner">
+        <img id="scLogo" src="" alt="suitntie logo" />
+        </div>
+        <div style="background-color: #fff;">
+            <div class="title-banner">
+                <img id="scCharacterImg" src="" />
+                <div class="title-section">
+                    <p>你的结果为</p>
+                    <label class="h2" id="scTitle"></label>
+                    <p id="scTitleDesc"></p>
+                </div>
+            </div>
+            <div class="tags-banner">
+                <div class="tags-left">
+                    <span>你的标签：</span>
+                </div>
+                <div class="tags-right">
+                </div>
+            </div>
+            <div class="programRec-banner">
+                <h5 class="text-center">可能适合的专业</h5>
+                <div id="programRec"></div>
+            </div>
+            <hr />
+            <div class="row pb-2"  style="margin: 0">
+                <div class="col-4">
+                    <img id="scQRcode" style="width: 100%" src="" alt="QR code" />
+                </div>
+                <div class="col-8">
+                    <label class="h5">分享到朋友圈，让更多小伙伴测一测吧！</label>
+                    <label>关注公众号，回复1免费测测你适合什么专业</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<img id="finalScreenshot" src="" style="display: none; width: 100%; height: auto" />

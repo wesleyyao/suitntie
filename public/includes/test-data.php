@@ -157,12 +157,12 @@
             return mysqli_fetch_assoc($result)["total"];
         }
 
-        public function saveResult($test_id, $table, $user_id, $dimension_ids, $dimension_check_times, $user_name, $user_age, $purpose, $create_date){
+        public function saveResult($test_id, $table, $user_id, $dimension_ids, $dimension_check_times, $user_name, $user_age, $purpose, $how_know, $create_date){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
                 $this->checkIfTotalResultsAreFull($test_id, $user_id, $table);
-                $sql1 = $this->conn->prepare("UPDATE customers SET full_name = ?, age = ?, is_study_aboard = ? WHERE id = ?");
-                $sql1->bind_param("sisi", $user_name, $user_age, $purpose, $user_id);
+                $sql1 = $this->conn->prepare("UPDATE customers SET full_name = ?, age = ?, is_study_aboard = ?, how_know = ? WHERE id = ?");
+                $sql1->bind_param("sissi", $user_name, $user_age, $purpose, $how_know, $user_id);
                 if(!$sql1->execute()){
                     $this->conn->rollback();
                     return false;

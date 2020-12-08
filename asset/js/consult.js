@@ -1,4 +1,4 @@
-import { formValidation, prefix, submittingMessage, generateMessage } from './common.js';
+import { formValidation, prefix, submittingMessage, generateMessage, fetchAccount, windowSize } from './common.js';
 
 $(document).ready(function () {
 
@@ -22,12 +22,14 @@ $(document).ready(function () {
     let reference = undefined;
     let consultants = [];
     let filteredData = [];
-    fetchConsultData();
     let currentFilters = { region: '0', education: '0', program: '0' };
     let selectedConsultant = undefined;
     let pages = 0;
     const onPage = 3;
     let currentPage = 1;
+    const briefLength = windowSize.width > 1400 ? 200 : windowSize.width > 1024 ? 180 : windowSize.width > 768 ? 160 : windowSize.width > 500 ? 130 : windowSize.width > 380 ? 80 : 60;
+    fetchAccount();
+    fetchConsultData();
 
     $(document).on('click', '.region-option', function () {
         const id = $(this).attr('id').replace('region', '');
@@ -50,20 +52,38 @@ $(document).ready(function () {
     $(document).on('click', '.show-brief', function () {
         const id = $(this).attr('id').replace('showBrief', '');
         const allBrief = filteredData.find(item => item.id == id)?.introduction;
-        $('#briefDiv' + id).html(`${allBrief} <a href="#/" class="hide-brief" id="hideBrief${id}">收回</a>`);
+        $('#briefDiv' + id).html(`<span class="pr-1">${allBrief}<span><a href="#/" class="hide-brief" id="hideBrief${id}"><span class="badge badge-primary" style="background-color: #F19F4D">收回 <i class="fas fa-angle-up"></i></span></a>`);
         $('#briefDiv' + id).addClass('scroll-brief');
+        $('#consultant_card_' + id).css('height', 'auto');
+        $('.consultant-card').each(function(){
+            const cardId = $(this).attr('id').replace('consultant_card_','');
+            if(cardId !== id){
+                const foundData = filteredData.find(item => item.id == cardId);
+                const partialBrief = foundData && foundData.introduction ?
+                foundData.introduction.length > briefLength ?
+                    `<span class="pr-1">${foundData.introduction.slice(0, briefLength - 1)}...<span>
+                    <a href="#/" class="show-brief" id="showBrief${foundData.id}">
+                    <span class="badge badge-primary" style="background-color: #F19F4D">
+                    查看更多 <i class="fas fa-angle-down"></i>
+                    </span>
+                    </a>` : foundData.introduction : '';
+            $('#briefDiv' + cardId).html(partialBrief);
+            }
+        });
     });
 
     $(document).on('click', '.hide-brief', function () {
         const id = $(this).attr('id').replace('hideBrief', '');
         const foundData = filteredData.find(item => item.id == id);
         const partialBrief = foundData && foundData.introduction ?
-            foundData.introduction.length > 150 ?
-                `${foundData.introduction.slice(0, 149)}... <a href="#/" class="show-brief" id="showBrief${foundData.id}">查看更多</a>` :
-                foundData.introduction :
-            '';
+            foundData.introduction.length > briefLength ?
+                `<span class="pr-1">${foundData.introduction.slice(0, briefLength - 1)}...<span>
+                <a href="#/" class="show-brief" id="showBrief${foundData.id}">
+                <span class="badge badge-primary" style="background-color: #F19F4D">
+                查看更多 <i class="fas fa-angle-down"></i>
+                </span>
+                </a>` : foundData.introduction : '';
         $('#briefDiv' + id).html(partialBrief);
-        $('#briefDiv').removeClass('scroll-brief');
     });
 
     $('#searchBtn').click(function () {
@@ -81,14 +101,18 @@ $(document).ready(function () {
     $(document).on('click', '.mail-btn', function () {
         const id = $(this).attr('id').replace('contact', '');
         selectedConsultant = consultants.find(item => item.id == id);
+        $('#tutorName').text(selectedConsultant.nick_name);
         $('#contactConsultantModal').modal('show');
     });
 
-    $('#contactConsultant').click(function () {
+    $('#submitContactFormBtn').click(function () {
         $('#contactConsultant').prop('disabled', true);
         $('#ccMessage').html(submittingMessage);
         const email = $('#ccEmail').val().replace(/\s/g, '');
         if (!formValidation('.cc-required', '#ccMessage', email)) {
+            $('#ccMessage').html(generateMessage('warning', '请重新核对填写的内容。'));
+            $('#ccMessage').fadeIn().delay(3000).fadeOut();
+            $('#contactConsultant').prop('disabled', false);
             return;
         }
         const phone = $('#ccPhone').val().replace(/\s/g, '');
@@ -97,14 +121,14 @@ $(document).ready(function () {
         const city = $('#ccCity').val().replace(/\s/g, '');
         const school = $('#ccSchool').val().replace(/\s/g, '');
         const content = $('#ccContent').val();
-        $.post(`${prefix}/public/api/contact.php?type=cosultant`, { email, phone, name, wechat, city, school, content, consultant: selectedConsultant.name }).done(function (data) {
+        $.post(`${prefix}/public/api/contact.php?type=cosultant`, { email, phone, name, wechat, city, school, content, consultant: selectedConsultant.nick_name }).done(function (data) {
             if (data) {
                 $('#ccMessage').html(generateMessage('success', '提交成功！我们的工作人员会及时回复您。'));
             }
             else {
                 $('#ccMessage').html(generateMessage('warning', '抱歉，提交未被处理。请稍后重试。'));
             }
-            $('#ccMessage').delay(3000).fadeOut();
+            $('#ccMessage').fadeIn().delay(3000).fadeOut();
             $('.cc-required').each(function () {
                 $(this).val('');
             });
@@ -151,15 +175,77 @@ $(document).ready(function () {
             $('#filterTags').html("");
         }
         else {
-            $('#filterTags').html(`
-            <div class="row pt-3">
-                <div class="col-12">
-                    ${currentFilters.program != 0 ? `<span class="filter-tag">${reference.programs.find(item => item.id == currentFilters.program)?.name}</span>` : ''}
-                    ${currentFilters.education != 0 ? `<span class="filter-tag">${currentFilters.education}</span>` : ''}
-                    ${currentFilters.region != 0 ? `<span class="filter-tag">${reference.regions.find(item => item.id == currentFilters.region)?.name}</span>` : ''}
-                </div>
-            </div>`);
+            renderFilterTags();
         }
+    }
+
+    $(document).on('click', '.filter-remove-btn', function () {
+        const targetId = $(this).attr('id');
+        let newFilteredData = [];
+        if (targetId === 'removeProgramFilter') {
+            resetFilterByTarget('program-option');
+            currentFilters["program"] = '0';
+            newFilteredData = consultants.filter(
+                item => item.programs.find(
+                    p => (currentFilters.education != 0 ? p.education == currentFilters.education : 1) &&
+                        (currentFilters.region != 0 ? p.region == currentFilters.region : 1)));
+        }
+        else if (targetId === 'removeEducationFilter') {
+            resetFilterByTarget('education-option');
+            currentFilters["education"] = '0';
+            newFilteredData = consultants.filter(
+                item => item.programs.find(
+                    p => (currentFilters.program != 0 ? foundProgram?.details.find(f => f.id == p.program_id) : 1) &&
+                        (currentFilters.region != 0 ? p.region == currentFilters.region : 1)));
+        }
+        else {
+            resetFilterByTarget('region-option');
+            currentFilters["region"] = '0';
+            newFilteredData = consultants.filter(
+                item => item.programs.find(
+                    p => (currentFilters.education != 0 ? p.education == currentFilters.education : 1) &&
+                        (currentFilters.program != 0 ? foundProgram?.details.find(f => f.id == p.program_id) : 1)));
+        }
+        filteredData = newFilteredData;
+        renderFilterTags();
+        renderList(filteredData);
+    });
+
+    function resetFilterByTarget(target) {
+        $('.' + target).each(function (index) {
+            if (index === 0) {
+                $(this).addClass('filter-active');
+            }
+            else {
+                $(this).removeClass('filter-active');
+            }
+        });
+    }
+
+    function renderFilterTags() {
+        $('#filterTags').html(`
+        <div class="row pt-3">
+            <div class="col-12">
+                ${currentFilters.program != 0 ?
+                `<span class="filter-tag">
+                    ${reference.programs.find(item => item.id == currentFilters.program)?.name}
+                    <a class="filter-remove-btn" id="removeProgramFilter" href="#/"><i class="fas fa-times"></i></a>
+                    </span>` : ''
+            }
+                ${currentFilters.education != 0 ?
+                `<span class="filter-tag">
+                    ${currentFilters.education}
+                    <a class="filter-remove-btn" id="removeEducationFilter" href="#/"><i class="fas fa-times"></i></a>
+                    </span>` : ''
+            }
+                ${currentFilters.region != 0 ?
+                `<span class="filter-tag">
+                     ${reference.regions.find(item => item.id == currentFilters.region)?.name}
+                     <a class="filter-remove-btn" id="removeRegionFilter" href="#/"><i class="fas fa-times"></i></a>
+                     </span>` : ''
+            }
+            </div>
+        </div>`);
     }
 
     function fetchConsultData() {
@@ -220,18 +306,21 @@ $(document).ready(function () {
             new Set(item.programs.map(a => a.school)).forEach(function (p) {
                 schools += `<li class="list-inline-item">${p}</li>`;
             });
-            const brief = item.introduction ? item.introduction.length > 150 ? `${item.introduction.slice(0, 149)}... <a href="#/" class="show-brief" id="showBrief${item.id}">查看更多</a>` : item.introduction : '';
-
+            const brief = item.introduction ? item.introduction.length > briefLength ? 
+            `<span class="pr-1">${item.introduction.slice(0, briefLength - 1)}...</span>
+            <a href="#/" class="show-brief" id="showBrief${item.id}">
+            <span class="badge badge-primary" style="background-color: #F19F4D">查看更多 <i class="fas fa-angle-down"></i></span>
+            </a>` : item.introduction : '';
             content += `
-                <div class="card border-light mb-2 consultant-card" style="background:#f9f9f9">
+                <div class="card border-light mb-2 consultant-card" id="consultant_card_${item.id}" style="background:#f9f9f9">
                     <div class="card-body">
                         <button class="mail-btn btn primBtnSM" id="contact${item.id}"><i class="fas fa-envelope"></i></button>
-                        <div style="display: inline-block; width: 20%;" class="text-center">
-                            <div><img style="width: 80px; height: 80px;" src="${prefix}${item.thumbnail}"/>
+                        <div class="consultant-card-avatar text-center">
+                            <div><img style="width: 80px; height: 80px; border-radius: 50%" src="${prefix}${item.thumbnail}"/>
                             </div>
                             <div><label>${item.nick_name}</label></div>
                         </div>
-                        <div style="display: inline-block; width: 70%; vertical-align: top">
+                        <div class="consultant-card-content">
                             <div>
                                 <div style="display: inline-block; width: 70px">
                                     <span><strong>专业领域</strong></span>
@@ -261,15 +350,15 @@ $(document).ready(function () {
             <ul class="pagination justify-content-center">`;
         const prevPageButton = `
         <li class="page-item page-btn ${pages <= 1 || currentPage <= 1 ? 'disabled' : ''}" id="prevPageBtn">
-            <a class="page-link" href="#">上一页</a>
+            <a class="page-link" href="#/">上一页</a>
         </li>`;
         const nextPageButton = `
         <li class="page-item page-btn ${pages <= 1 || currentPage === pages ? 'disabled' : ''}" id="nextPageBtn">
-            <a class="page-link" href="#">下一页</a>
+            <a class="page-link" href="#/">下一页</a>
         </li>`;
         let pageNumberButtons = '';
         for (let i = 0; i < pages; i++) {
-            pageNumberButtons += `<li class="page-item page-btn ${currentPage === i + 1 ? 'active' : ''}" id="consultPageNumber${i + 1}"><a class="page-link" href="#">${i + 1}</a></li>`;
+            pageNumberButtons += `<li class="page-item page-btn ${currentPage === i + 1 ? 'active' : ''}" id="consultPageNumber${i + 1}"><a class="page-link" href="#/">${i + 1}</a></li>`;
         }
         const paginationEnd = `</ul></nav>`;
         const pagination = paginationStart + prevPageButton + pageNumberButtons + nextPageButton + paginationEnd;

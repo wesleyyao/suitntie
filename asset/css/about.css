@@ -54,6 +54,10 @@ h3{
     .partnerPhoto{
         padding:50px 100px;
     }
+    .about-top-banner{
+        height: 200px;
+        padding-top: 80px;
+    }
 }
 
 @media screen and (max-width: 637px) {

@@ -6,8 +6,9 @@
     $secret = "b93d576736a7dabf70fef90294432cbd";
     $current_time = date("Y-m-d H:i:s");
     $ip = $_SERVER["REMOTE_ADDR"];
-    $redirect_url = "/index.php";
+    $redirect_url = "/index.html";
     if(isset($_GET["code"]) && isset($_GET["state"])){
+        $redirect_url = isset($_GET["redirect"]) ? $_GET["redirect"] : "/index.html";
         $code = $_GET["code"];
         $state = $_GET["state"];
         $url1 = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appId&secret=$secret&code=$code&grant_type=authorization_code";
@@ -43,7 +44,9 @@
 
         $arr2=json_decode($json2,1);
         $union_id = $arr2["unionid"];
-        //print_r($arr2);
+        $_SESSION["auth_message"]["unionid"] =$arr2["unionid"];
+        // print_r($arr2);
+        // exit;
         $found_user = $customer->find_user_by_uid($union_id);
         if($found_user){
             $_SESSION["login_user"] = $found_user;
@@ -55,7 +58,14 @@
             $province = $arr2["province"];
             $country = $arr2["country"];
             $headImg = $arr2["headimgurl"];
-            $is_saved = $customer->save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $union_id, $ip, $current_time);
+            $register_by = "";
+            if(strpos($redirect_url, "programs/explore") > -1){
+                $register_by = "专业";
+            }
+            if(strpos($redirect_url, "tests/dimension-test") > -1){
+                $register_by = "测试";
+            }
+            $is_saved = $customer->save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $union_id, $ip, $current_time, $register_by);
             if($is_saved){
                 $_SESSION["login_user"] = $is_saved;
             }
@@ -64,7 +74,7 @@
                 $_SESSION["auth_message"]["message"] = "保存新用户数据未成功，请重新扫描二维码。";
             }
         }
-        $redirect_url = isset($_GET["redirect"]) ? $_GET["redirect"] : "/index.php";
+        $redirect_url = isset($_GET["redirect"]) ? $_GET["redirect"] : "/index.html";
     }
     redirect($redirect_url);
     exit;

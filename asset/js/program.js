@@ -1,4 +1,4 @@
-import { prefix } from './common.js';
+import { prefix, currentPage, fetchAccountData, windowSize, renderUserInNav, useMessage, showFloatMessage } from './common.js';
 
 $(document).ready(function () {
     const loading = `
@@ -7,17 +7,42 @@ $(document).ready(function () {
             <span class="sr-only">Loading...</span>
         </div>
     </div>`;
+    const membershipMessage = `
+    <div class="jumbotron">
+  <h1 class="display-4"><i class="fas fa-user-lock"></i></h1>
+  <p class="lead">如果想了解推荐自学内容，专业课程简介和子专业等更多信息，请登录或注册。</p>
+  <hr class="my-4">
+  <a class="btn primBtn ml-2" href="${prefix}/auth/signup.html?redirect=${currentPage}" role="button">注册</a>
+  <a class="btn primBtn" href="${prefix}/auth/login.html?redirect=${currentPage}" role="button">登录</a>
+</div>`;
     $('#programMainDiv').html(loading);
     let programCards = '';
     let programData = [];
-    const currentPage = window.location.href;
+    let meesage = '';
+
+    fetchAccountData().then(function (data) {
+        let errorMessage = '';
+        if (!data) {
+            errorMessage = useMessage('warning', '服务器连接失败，请刷新后重试。');
+            showFloatMessage('#testMsg', errorMessage, 3000);
+            return;
+        }
+        const result = JSON.parse(data);
+        const user = result.user ? result.user : undefined;
+        renderUserInNav(user ? true : false, user ? user.headImg : '');
+        if (!user) {
+            $('#membershipContentDiv').html(membershipMessage);
+            $('#membershipContentDiv').append(`<img class="program-content-replacer" src="${prefix}/asset/image/${windowSize.width > 768 ? 'program-blur.png' : 'program-blur-mobile.png'}" alt="this section is for members only" />`);
+        }
+    });
+
     $.get(`${prefix}/public/api/program.php?type=all`).done(function (data) {
         if (data) {
             const result = JSON.parse(data);
             programData = result;
             if (Array.isArray(result) && result.length > 0) {
                 result.forEach(function (item) {
-                    programCards += `<div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                    programCards += `<div class="col-lg-3 col-md-6 col-sm-6 mb-2 col-6">
                     <div class="card programItems lightShadow">
                         <div class="card-body text-center">
                             <img src="${prefix}${item.image}" width="60" alt="program logo"/>
@@ -42,7 +67,7 @@ $(document).ready(function () {
         const foundCategory = programData.find(item => item.id == pcId);
         if (foundCategory && foundCategory.details && Array.isArray(foundCategory.details)) {
             foundCategory.details.forEach(function (item) {
-                programDetails += `<li><a href="${prefix}/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
+                programDetails += `<li><a href="${prefix}/programs/explore.html?title=${item.title}">${item.title}</a></li>`;
             });
         }
         programDetails += '</ul>';
@@ -75,7 +100,7 @@ $(document).ready(function () {
             if (relatedPrograms.length > 0) {
                 relatedPrograms.forEach(function (item) {
                     if (item.title !== title) {
-                        related += `<li><a href="${prefix}/programs/explore.php?title=${item.title}">${item.title}</a></li>`;
+                        related += `<li><a href="${prefix}/programs/explore.html?title=${item.title}">${item.title}</a></li>`;
                     }
                 });
             }
@@ -124,14 +149,13 @@ $(document).ready(function () {
                             if (contentData.length > 0) {
                                 contentData.forEach(function (j) {
                                     contentList += `
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                                             <ul>
                                             ${j.author && j.douban ?
                                             `<li>
                                                 <a href="${j.url}" target="_blank">${j.title}</a> ${j.author}<br/>豆瓣: ${j.douban}
                                             </li>` : ''}
-                                            ${
-                                        j.image ?
+                                            ${j.image ?
                                             `<li>
                                                     <a href="#/"
                                                         class="recommendation-qr"
@@ -139,11 +163,9 @@ $(document).ready(function () {
                                                         ${j.image ? `id = ${j.image} data-toggle="modal" data-target="#recommendQrModal"` : ''}>${j.title}</a>
                                                 </li>
                                                 ` : ''}
-                                            ${
-                                        !j.author && !j.douban && !j.image ?
+                                            ${!j.author && !j.douban && !j.image ?
                                             `<li>
-                                                ${
-                                            j.url ?
+                                                ${j.url ?
                                                 `<a href="${j.url}" target="_blank">${j.title}</a>` :
                                                 `<label>${j.title}</label>`
                                             }
@@ -230,7 +252,7 @@ $(document).ready(function () {
             let controller = '';
             if (testimonialData && Array.isArray(testimonialData) && testimonialData.length > 0) {
                 testimonialData.forEach(function (item, index) {
-                testimonials += index === 0 ? `<h2 class="text-center m-0">学长学姐说啥？</h2>
+                    testimonials += index === 0 ? `<h2 class="text-center m-0">学长学姐说啥？</h2>
                 <div class="container text-center">
                 <!--<img src="../asset/image/slider/testimonialBG.svg" class="d-block w-100" alt="home slider 1">-->
                 <div class="" style="color: #333;">
@@ -254,17 +276,17 @@ $(document).ready(function () {
         $('#recommendQrModal').modal('show');
     });
 
-    $(document).on('click', '.contact-btn', function(){
+    $(document).on('click', '.contact-btn', function () {
         $('html, body').animate({
             scrollTop: $("#contactUs").offset().top
         }, 1000);
     });
 
-    $(document).on('click', '.relative-course-title', function(){
+    $(document).on('click', '.relative-course-title', function () {
         const selectId = $(this).attr('id');
         $(this).addClass('is-focus');
-        $('.relative-course-title').each(function(){
-            if($(this).attr('id') !== selectId){
+        $('.relative-course-title').each(function () {
+            if ($(this).attr('id') !== selectId) {
                 $(this).removeClass('is-focus');
             }
         });

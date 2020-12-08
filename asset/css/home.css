@@ -64,12 +64,6 @@ body{
     margin-bottom: 30px !important;
 }
 
-@media screen and (max-width: 990px) {
-    .addBtmMargin-30 {
-        margin-bottom:30px;
-    }
-}
-
 /* Mentor Section */
 .home-one-on-one-entrance{
     background-color: #fdf7f2;
@@ -274,4 +268,10 @@ body{
 .lastSec{
     background-color: #fdf7f2;
     box-shadow: none;
+}
+
+@media screen and (max-width: 990px) {
+    .addBtmMargin-30 {
+        margin-bottom:30px;
+    }
 }

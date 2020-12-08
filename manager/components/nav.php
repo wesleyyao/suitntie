@@ -15,6 +15,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo $global_prefix; ?>/manager/news.php">走马灯</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $global_prefix; ?>/manager/consultants.php">导师</a>
+            </li>
         </ul>
     </div>
 </nav>

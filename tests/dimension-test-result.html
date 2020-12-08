@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+    <meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
+    <title>适途咨询</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+    <!-- load stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/header.css">
+    <link rel="stylesheet" href="../asset/css/test-result.css">
+    <link rel="stylesheet" href="../asset/css/resultScreenshot.css">
+    <!-- load scripts -->
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../asset/js/header.js"></script>
+    <script src="../asset/js/chart.js"></script>
+    <script type="module"  src="../asset/js/htmlToCanvas.js"></script>
+    <script type="module" src="../asset/js/dimension-test-result.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5b70ca46afc5ba4aa10407bf53807917";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="dimension-test-result-main">
+        <button class="btn btn-lg" id="screenshotModeBtn" style="display:none">
+            <i class="fas fa-camera"></i> 去截屏
+        </button>
+        <div id="headerDiv"></div>
+        <div class="float-message" id="resultMsg" style="display: none;"></div>
+        <input type="hidden" id="hide_title" value="dimension-test-result" />
+        <div id="loadingDiv">
+            <div class="pt-5 pb-5 pl-2 pr-2">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <span class="pl-2 h5">正在加载...</span>
+                </div>
+                <div class="alert alert-primary text-center mt-2" role="alert">
+                    <i class="fas fa-info-circle"></i> 请耐心等待，正在进行数据分析，结果需要15-30秒时间加载
+                </div>
+            </div>
+        </div>
+        <div id="mainResultDiv" class="result-div container">
+            <div class="resultHeader" style="position: relative;">
+                <img id="characterImg" src="" class="img-fluid" />
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+                            <div class="text-center result-title-cell" style="z-index: 2; width: 100%">
+                                <h1 class="display-4" id="resultTitle"></h1>
+                                <h4 id="resultDescription"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultDimension">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <polygon stroke="white" fill="white" points="0,100 100,0 100,100" />
+                    </svg>
+                    <div class="dimensionContent">
+                        <!-- <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                            <img id="characterImg" src="" class="img-fluid" />
+                        </div> -->
+
+                        <div id="resultCharts" class="resultBarChart lightShadow">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 chart-column">
+                                    <canvas id="myChart0" style="width: 100%; height: 130px;"></canvas>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 chart-column">
+                                    <canvas id="myChart1" style="width: 100%; height: 130px;"></canvas>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 chart-column">
+                                    <canvas id="myChart2" style="width: 100%; height: 130px;"></canvas>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-6 chart-column">
+                                    <canvas id="myChart3" style="width: 100%; height: 130px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 tagBox">
+                            <div class="lead" id="resultTags"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row dimension-analysis">
+                    <div class="col-12">
+                        <h3>维度解释</h3>
+                        <div id="dimensionAnalytics">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row basic-analysis">
+                    <div class="col-12 ">
+                        <h3>基本分析</h3>
+                        <div id="basicAnalytics">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row advantages">
+                    <div class="col-12 ">
+                        <h3>你的优势</h3>
+                        <div id="advantageList">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row disadvantages">
+                    <div class="col-12 ">
+                        <h3>你的盲点</h3>
+                        <div id="disadvantageList">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row careerDesc">
+                    <div class="col-12">
+                        <h3>专业和职业分析</h3>
+                        <div id="programAndJobAnalytics">
+                        </div>
+                    </div>
+                </div>
+                <div class="row reminderText">
+                    <div class="col-12 text-center">
+                        <p><span class="text-danger">*</span>提示： 每次测试结果都会保存在<a href="../account/index.html">个人中心</a>， 建议每半年做一次，看看自己有没有变化。</p>
+                    </div>
+                </div>
+                <br />
+                <div class="row twoButton">
+                    <hr>
+                    <div class="col-lg-3 col-sm-6 text-center">
+                        <h5 class="text-center">没有看到心仪的专业？</h5>
+                        <a class="btn primBtn" href="../programs/index.html" target="_blank">探索更多专业</a>
+                    </div>
+                    <div class="offset-lg-6 col-lg-3 col-sm-6 text-center">
+                        <h5 class="text-center">想找专业导师聊聊？</h5>
+                        <a class="btn primBtn" href="../one-on-one/index.html" target="_blank">一对一咨询</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="notification" class="notification-popup"></div>
+    </div>
+    <div class="modal fade" id="testResultShareModal" tabindex="-1" role="dialog"
+        aria-labelledby="testResultShareModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testResultShareModalTitle">分享测试结果</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 0;">
+                    <div id="testResultShareDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footerDiv"></div>
+</body>
+
+</html>

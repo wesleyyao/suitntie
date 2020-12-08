@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+    <meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
+    <title>适途咨询</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+    <!-- load stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/header.css">
+    <link rel="stylesheet" href="../asset/css/dimension-test.css">
+    <!-- load scripts -->
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../asset/js/header.js"></script>
+    <script type="module" src="../asset/js/dimension-test.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5b70ca46afc5ba4aa10407bf53807917";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="test-main">
+        <div class="float-message" id="testMsg" style="display: none;"></div>
+        <input type="hidden" id="hide_title" value="dimension-test" />
+        <div id="headerDiv"></div>
+        <div id="titleDiv">
+            <div class="row mainTitle">
+                <div class="col-12">
+                    <h1 class="text-center" id="testTitle">加载中...</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container mainContent">
+            <div class="row testDesc">
+                <div class="col-md-4 col-sm-4 tri-block">
+                    <div class="lightShadow tri-block-content">
+                        <img src="../asset/image/test-page/timer.svg">
+                        <p>测试长度大概为20分钟，回答没有对错好坏之分。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 tri-block">
+                    <div class="lightShadow tri-block-content">
+                        <img src="../asset/image/test-page/heart.svg">
+                        <p>请选择真实的你的做法，而不要选择你认为哪样更好。</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 tri-block">
+                    <div class="lightShadow tri-block-content">
+                        <img src="../asset/image/test-page/relax.svg">
+                        <p>最大程度放松下来，不假思索地选择你的倾向。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="testOrView">
+            <div class="row">
+                <div class="col-6">
+                    <button class="btn primBtn btn-block" id="startTesting">开始测试</button>
+                </div>
+                <div class="col-6">
+                    <a class="btn primBtn btn-block" href="../account/index.html?view=history">查看过往结果</a>
+                </div>
+            </div>
+        </div>
+        <div id="mainContentDiv" class="container">
+            <div id="clockAndProgressBarDiv" class="test-div">
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                        <span id="percentage" class="">0%</span>
+                    </div>
+                    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 progressContainer">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" id="progress" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                        <div id="clock"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12 textHeading">
+                    <h2 class="text-center" id="questionTypeTitle"></h2>
+                    <div class="text-center result-div" id="resultSubtitle"></div>
+                </div>
+            </div>
+            <br />
+            <div id="mainQuestionDiv" class="test-div">
+            </div>
+            <div class="row test-div text-center">
+                <div class="offset-lg-4 col-lg-4 offset-md-2 col-md-8 offset-sm-1 col-sm-10 col-12">
+                    <button type="submit" class="btn btn-block primBtn" id="nextPage">下一页</button>
+                </div>
+            </div>
+        </div>
+        <div id="finishTestForm" class="container">
+            <div class="needs-validation pt-5 pb-5" novalidate>
+                <div class="form-row">
+                    <div class="col-lg-3 offset-lg-3 col-md-4 offset-md-2 mb-3">
+                        <label for="testUserName">姓名 <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="testUserName" value="" required>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mb-3">
+                        <label for="testUserAge">年龄 <span class="text-danger">*</span></label>
+                        <input type="number" min="0" max="99" class="form-control" id="testUserAge" value="" required>
+                    </div>
+                </div>
+                <div class="form-row pt-3">
+                    <div class="col-lg-2 offset-lg-3 col-md-4 offset-md-2">
+                        <label>我目前: <span class="text-danger">*</span></label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-lg-2 offset-lg-3 col-md-4 offset-md-2 mb-3 col-6">
+                        <div class="form-check">
+                            <input class="purpose form-check-input" name="testUserStudyAboard" type="radio"
+                                value="准备出国读书">
+                            <label class="form-check-label">
+                                准备出国读书
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-3 col-6">
+                        <div class="form-check">
+                            <input class="purpose form-check-input" name="testUserStudyAboard" type="radio"
+                                value="准备在国内读书">
+                            <label class="form-check-label">
+                                准备在国内读书
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 offset-lg-0 offset-md-2 col-md-4 mb-3 col-6">
+                        <div class="form-check">
+                            <input class="purpose form-check-input" name="testUserStudyAboard" type="radio"
+                                value="我就做着玩玩">
+                            <label class="form-check-label">
+                                我就做着玩玩
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row pt-3">
+                    <div class="col-lg-8 offset-lg-3 col-md-10 offset-md-2">
+                        <label>您是从哪里了解到我们的: <span class="text-danger">*</span></label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-lg-3 col-md-2 col-sm-0 col-0"></div>
+                    <div class="col-lg-6 col-md-8 col-sm-12 col-12">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 mb-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input how-you-know" type="checkbox" id="bySeminar" value="线下讲座">
+                                    <label class="form-check-label" for="bySeminar">线下讲座</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 mb-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input how-you-know" type="checkbox" id="byRec" value="朋友推荐">
+                                    <label class="form-check-label" for="byRec">朋友推荐</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 mb-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input how-you-know" type="checkbox" id="byWechat" value="微信公众号">
+                                    <label class="form-check-label" for="byWechat">微信公众号</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 mb-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input how-you-know" type="checkbox" id="byZhihu" value="知乎">
+                                    <label class="form-check-label" for="byZhihu">知乎</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 mb-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input how-you-know" type="checkbox" id="byBilibili" value="B站">
+                                    <label class="form-check-label" for="byBilibili">B站</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 mb-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input how-you-know" type="checkbox" id="byOthers" value="其他方式">
+                                    <label class="form-check-label" for="byOthers">其他方式</label>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <div class="row test-div text-center">
+                <div class="offset-lg-4 col-lg-4 offset-md-2 col-md-8 offset-sm-1 col-sm-10 col-12">
+                    <button class="btn primBtn btn-block" id="submitTestFormBtn">查看结果</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footerDiv"></div>
+    </div>
+    <div class="modal fade" id="userProfileCompleteModal" tabindex="-1" role="dialog"
+        aria-labelledby="userProfileCompleteModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userProfileCompleteModalTitle">完善用户资料</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-info" role="alert">
+                                <i class="fas fa-info-circle"></i> 请输入手机号，完善个人资料。
+                            </div>
+                        </div>
+                    </div>
+                    <form id="userProfileCompleteForm">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>请输入您的11位国内手机号</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="input-group mb-3">
+                                    <input type="text" id="signupPhone" class="form-control" placeholder="手机号"
+                                        aria-label="手机号" aria-describedby="signupPhonePrefix" maxlength="12">
+                                    <div class="input-group-append">
+                                        <button class="btn primBtnSM send-verify-code" id="sendPhoneVerifyCodeBtn"
+                                            type="button">获取验证码
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-4 col-md-4 col-sm-5 col-5">
+                                <label><span class="text-danger">*</span> 验证码: </label>
+                                <input type="text" class="form-control verify-code-field" id="signupVerifyCode"
+                                    maxlength="4" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12 text-right">
+                                <a class="btn ghostSecBtnSM" href="../../account/index.html">返回</a>
+                                <button type="submit" class="btn primBtnSM" id="completeProfileBtn">提交</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="profileCompleteMessage"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

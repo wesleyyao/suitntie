@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+    <meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
+    <title>适途咨询</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+    <!-- load stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/header.css">
+    <link rel="stylesheet" href="../asset/css/program.css">
+    <!-- load scripts -->
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script src="../asset/js/mentorSlider.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../asset/js/header.js"></script>
+    <script type="module" src="../asset/js/program.js"></script>
+    <script type="module" src="../asset/js/home.js"></script>
+    <script type="module" src="../asset/js/contact.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5b70ca46afc5ba4aa10407bf53807917";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="program-page-main">
+        <div id="headerDiv"></div>
+        <input type="hidden" id="hide_title" value="program" />
+        <div class="program-home-banner">
+            <h1 class="programTitle"></h1>
+        </div>
+        <div class="container mt-5 mb-2 pt-5 pb-5">
+            <div id="programDetailsMainDiv">
+                <div class="row mb-5">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <h2>专业简介</h2>
+                                <div id="brief"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="card border-0 lightShadow relatedPrograms">
+                            <div class="card-body">
+                                <h5 class="card-title">类似专业</h5>
+                                <div id="relatedPrograms"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explore-section-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>你适合学<span class="programTitle"></span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="ifSuitable"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-4 mb-4">
+                        <div class="col-12 preparation">
+                            <div class="card border-0 bg-transparent">
+                                <div class="card-body">
+                                    <h5>你准备好了吗?</h5>
+                                    <div id="ready"></div>
+                                    <p>还没有做适途测试？</p>
+                                    <a class="btn primBtn" href="../tests/dimension-test.html">点击测试</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="program-slider-testimonials">
+            <div id="testimonialSlider">
+                <div id="programTestimonial">
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5 mb-2" id="membershipContentDiv" style="position: relative;">
+            <div class="row mt-2 mb-3">
+                <div class="col-12 text-center mt-5">
+                    <h2>自学推荐</h2>
+                </div>
+            </div>
+            <div id="recommend">
+            </div>
+            <hr>
+            <div class="row mt-2 mb-5 courseList">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h3 class="text-center">相关课程</h3>
+                    <div id="courses"></div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h3 class="text-center">子专业列表</h3>
+                    <div id="childPrograms"></div>
+                </div>
+            </div>
+            <br />
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <a href="./index.html" class="btn primBtn">回到总览</a>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+    <div class="program-contact-form">
+        <div class="container pt-5 pb-5">
+            <h2 class="text-center pb-3">没有看到你感兴趣的专业？请留言联系我们</h2>
+            <div id="contactFormDiv"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="recommendQrModal" tabindex="-1" role="dialog" aria-labelledby="recommendQrModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recommendQrModalTitle">二维码</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <img id="recommendationQrImg" width="100%" src="" alt="自学推荐公众号二维码" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footerDiv"></div>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+    <meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
+    <title>适途咨询</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+
+    <!-- load stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/header.css">
+    <!-- load scripts -->
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../asset/js/header.js"></script>
+    <script type="module" src="../asset/js/login.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5b70ca46afc5ba4aa10407bf53807917";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="float-message" id="authMsg" style="display: none;"></div>
+    <div id="headerDiv"></div>
+    <div id="mainDiv" class="container">
+        <div class="row mt-5 mb-5 pt-5 pb-5">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
+                <div id="loginDiv" class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-center text-secondary"><i class="fas fa-user-circle"></i> 登录</h1>
+                        <div class="row pb-5">
+                            <div class="col-12 text-center">
+                                <div class="btn-group mr-2 btn-group-lg" role="group" aria-label="loginMethods">
+                                    <button type="button" class="btn primBtn btn-active login-method-btn"
+                                        id="phoneLoginBtn">手机号</button>
+                                    <button type="button" class="btn primBtn login-method-btn"
+                                        id="emailLoginBtn">邮箱</button>
+                                    <button type="button" class="btn primBtn login-method-btn"
+                                        id="wechatLoginBtn">微信</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="phoneLoginDiv" class="login-div">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <input type="text" id="loginPhone" class="form-control"
+                                                    placeholder="手机号" aria-label="手机号"
+                                                    aria-describedby="phoneNumberPrefix" maxlength="12">
+                                                <div class="input-group-append">
+                                                    <button class="btn primBtnSM" id="sendPhoneVerifyCodeBtn"
+                                                        type="button">获取验证码</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-lg-4 col-md-4 col-sm-5 col-4">
+                                            <label><span class="text-danger">*</span> 验证码: </label>
+                                            <input type="text" class="form-control verify-code-field"
+                                                id="loginVerifyCode" maxlength="4" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div
+                                            class="col-lg-3 offset-lg-3 col-md-4 offset-md-2 col-sm-5 offset-1 col-5 px-1">
+                                            <a class="btn btn-block ghostSecBtnSM"
+                                                href="./signup.html">注册</a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-5 col-5 px-1">
+                                            <button type="button" class="btn btn-block primBtnSM login-button"
+                                                id="loginByPhone">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="emailLoginDiv" class="login-div" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input type="text" id="loginEmail" name="login_email" placeholder="邮箱"
+                                                class="form-control" maxlength="128" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row mt-1 mb-5">
+                                        <div class="col-12">
+                                            <input type="password" id="loginPassword" name="login_password"
+                                                placeholder="密码" class="form-control" maxlength="20" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div
+                                            class="col-lg-3 offset-lg-3 col-md-4 offset-md-2 col-sm-5 offset-1 col-5 px-1">
+                                            <a class="btn btn-block ghostSecBtnSM"
+                                                href="./signup.html">注册</a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-5 col-5 px-1">
+                                            <button type="button" class="btn btn-block primBtnSM login-button"
+                                                id="loginByEmail">提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="wechatLoginDiv" class="login-div" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div id="login_container" class="text-center"></div>
+                                            <div id="login_mobile_container" class="text-center row"
+                                                style="padding: 50px 15px;">
+                                                <a href="" id="login_wechat_mobile_link"
+                                                    class="btn primBtn col-12">点击此处授权</a>
+                                                <p class="mt-1" style="margin:0 auto;">
+                                                    <small style="font-weight:100 !important;">请确保在微信客户端中打开此网页</small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="alert alert-primary" role="alert">
+                                                <i class="fas fa-info-circle"></i> 如果您是海外用户，建议使用邮箱注册。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footerDiv"></div>
+</body>
+
+</html>

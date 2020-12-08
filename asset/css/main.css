@@ -133,6 +133,11 @@ button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active
     transition: 0.3s;
 }
 
+.btn-active {
+    background-color: #9E744E !important;
+    color: white;
+}
+
 .primBtnSM {
     margin: 0 auto;
     color: white !important;
@@ -392,6 +397,44 @@ button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active
     top: 5px;
     right: 5px;
     z-index: 10;
+}
+
+.float-message {
+    position: fixed;
+    background: #ffefdc;
+    z-index: 999;
+    top: 65px;
+    width: 92%;
+    left: 4%;
+    opacity: 0.85;
+    font-weight: 500;
+    padding: 15px 5px;
+    text-align: center;
+}
+
+.float-message label {
+    margin: 0;
+}
+
+/**/
+
+.page-item.active .page-link {
+    background-color: #F19F4D;
+    border-color: #ee8c2a;
+    color: #fff;
+}
+
+.page-link {
+    color: #F19F4D;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 15px !important;
+    }
 }
 
 @media screen and (max-width: 550px) {

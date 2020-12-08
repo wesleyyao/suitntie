@@ -3,6 +3,10 @@
     
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(isset($_GET["title"])){
+            if(isset($_SESSION["new_test_result"])){
+                $data["saved_notification"] = 1;
+                unset($_SESSION["new_test_result"]);
+            }
             $title = $_GET["title"];
             if(!empty($title)){
                 $data = array();

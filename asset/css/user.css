@@ -15,7 +15,7 @@
 }
 
 .account-center-section {
-    padding: 40px;
+    padding: 25px auto;
 }
 
 #testCategory li {
@@ -28,13 +28,12 @@
     overflow-x: hidden;
 }
 
-#testResultBody .resultHeader {
-    padding: 40px !important;
+.userTestResultHeader {
+    padding: 25px;
 }
 
-.resultHeader {
+.userTestResultHeader {
     background-color: #2F4858 !important;
-    padding: 0 !important;
 }
 
 .resultDimension {
@@ -57,29 +56,20 @@
     display: inline-block;
 }
 
-.dimensionContent {
+.userDimensionContent {
     z-index: 100;
-}
-
-@media only screen and (max-width: 575px) {
-    #testResultBody .resultBarChart {
-        padding: 10px;
-    }
 }
 
 .resultDimension:after {
     clear: both;
 }
 
-@media only screen and (max-width:768px) {
-    .dimensionContent img {
-        width: 50%;
-        padding: 30px 0;
-    }
-    .resultDimension svg {
-        width: 110%;
-        height: 30vw;
-    }
+#userCharacterImg {
+    position: absolute;
+    z-index: 2;
+    top: 250px;
+    left: 20px;
+    width: 23%;
 }
 
 .jumbotron {
@@ -87,16 +77,15 @@
     padding-top: 0 !important;
 }
 
-#resultTitle, #scResultTitle {
+#userResultTitle, #scResultTitle {
     margin-top: 60px;
     color: white;
     font-size: 2.5rem;
 }
 
-.resultDesc {
+.userResultDesc {
     margin-top: 30px;
     color: white;
-    font-size: 1.2rem;
 }
 
 #resultTags h4 {
@@ -124,37 +113,13 @@
     padding: 20px;
 }
 
-@media only screen and (max-width: 1200px) {
-    .resultBarChart {
-        padding: 10px;
-    }
-}
-
-@media only screen and (max-width: 991px) {
-    .resultBarChart {
-        padding: 20px;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .resultCharactor {
-        padding: 0 120px 50px 120px;
-    }
-}
-
-@media only screen and (max-width: 575px) {
-    .resultDimension {
-        padding: 0 30px;
-    }
-}
-
 #testResultBody .result-div h3 {
     color: #2F4858;
 }
-
+/* 
 #testResultBody .result-div .row {
     padding: 10px 10px;
-}
+} */
 
 .list-group-item {
     border: none !important;
@@ -216,7 +181,6 @@
 
 .careerDesc ul {
     list-style: none;
-    padding: 0 !important;
 }
 
 .careerDesc ul li a {
@@ -247,15 +211,6 @@
     margin-left: -1.5em;
 }
 
-@media only screen and (max-width: 992px) {
-    .dimension-analysis, .basic-analysis, .advantages, .careerDesc {
-        padding: 50px 30px !important;
-    }
-    .disadvantages {
-        padding: 0 30px !important;
-    }
-}
-
 .reminderText a {
     color: #F19F4D;
     text-decoration: underline;
@@ -269,4 +224,105 @@
     margin: 40px 0 80px 0;
 }
 
-.html2canvas-container { width: 100% !important; height: 3500px !important; }
+.html2canvas-container {
+    width: 100% !important;
+}
+
+#screenshotModeBtn {
+    position: fixed;
+    background: #F19F4D;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+    display: none;
+}
+
+.user-float-msg{
+    position: fixed;
+    background: #ffefdc;
+    z-index: 2;
+    top: 65px;
+    width: 92%;
+    left: 4%;
+    opacity: 0.85;
+}
+
+@media only screen and (max-width: 1200px) {
+    .resultBarChart {
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .dimension-analysis, .basic-analysis, .advantages, .careerDesc {
+        padding: 50px 30px !important;
+    }
+    .disadvantages {
+        padding: 0 30px !important;
+    }
+    .resultBarChart {
+        padding: 20px;
+    }
+    #userResultTitle {
+        margin-top: 30px;
+    }
+    #userCharacterImg {
+        width: 80px;
+        top: 40px;
+        left: 30px;
+    }
+    .user-result-title-cell {
+        text-align: left !important;
+        padding-left: 80px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .resultCharactor {
+        padding: 0 120px 50px 120px;
+    }
+    .resultDimension svg {
+        width: 110%;
+        height: 30vw;
+    }
+    .userResultDesc{
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .resultDimension {
+        padding: 0 5px;
+    }
+    .userTestResultHeader {
+        padding: 10px;
+    }
+    .user-result-title-cell {
+        padding-left: 100px;
+    }
+    .chart-column{
+        padding: 5px;
+    }
+    .list-group{
+        display: block;
+    }
+    #userProfile, #testResults{
+        float: left;
+        width: 50%;
+    }
+    .test-tab{
+        width: 50%;
+    }
+    .resultBarChart {
+        padding: 5px;
+    }
+    #userCharacterImg {
+        top: 15px;
+    }
+    .dimension-analysis, .basic-analysis, .advantages, .careerDesc, .disadvantages{
+        padding: 30px 10px !important;
+    }
+    #dimensionAnalytics ul li {
+        padding: 5px 0;
+    }
+}

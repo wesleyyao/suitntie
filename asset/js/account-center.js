@@ -1,12 +1,16 @@
-import { validateEmailFormat, generateMessage, prefix } from './common.js';
+import { generateMessage, prefix, useMessage, showFloatMessage, renderUserInNav, isPC, fetchAccount } from './common.js';
 
 $(document).ready(function () {
+    let chart1 = undefined;
+    let chart2 = undefined;
+    let chart3 = undefined;
+    let chart4 = undefined;
     let user = undefined;
     let tests = [];
     const loading = `
     <div class="pt-2 pb-2">
         <div class="d-flex justify-content-center">
-            <div class="spinner-border text-warning" role="status">
+            <div class="spinner-border text-warning" role="status" style="width: 1.5rem; height: 1.5rem">
                 <span class="sr-only">Loading...</span>
             </div>
             <span class="pl-2 h5">正在加载...</span>
@@ -14,7 +18,26 @@ $(document).ready(function () {
     </div>`;
     $('#accountCenter').hide();
     $('#testResultsSection').hide();
+    $('#screenshotDiv').hide();
+    $('#userResultMsg').hide();
+
     fetchUserInfo();
+    $('#profileEditorDiv').load(`${prefix}/account/components/profile-editor.html`);
+    $('#testResultDiv').load(`${prefix}/account/components/dimension-test-result.html`, function () {
+        const isPCBrowser = isPC();
+        if (!isPCBrowser && window.innerWidth < 464) {
+            $('#screenshotModeBtn').show();
+        }
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 464) {
+                $('#screenshotModeBtn').hide();
+                $('#screenshotDiv').hide();
+            }
+            else {
+                $('#screenshotModeBtn').show();
+            }
+        }, false);
+    });
 
     $('.account-nav').click(function () {
         const item = $(this).attr('id');
@@ -27,22 +50,6 @@ $(document).ready(function () {
     $('#profileEditForm').submit(function (e) {
         let isValid = true;
         e.preventDefault();
-        // $('.required-input').each(function () {
-        //     if (!$(this).val().replace(/\s/g, '')) {
-        //         $('#profileEditMessage').html(generateMessage('danger', '请填写所有必填项。'));
-        //         isValid = false;
-        //         return;
-        //     }
-        //     else if (!validateEmailFormat($('#profileEditEmail').val())) {
-        //         $('#profileEditMessage').html(generateMessage('danger', '输入的邮箱格式错误。'));
-        //         isValid = false;
-        //         return;
-        //     }
-        //     else {
-        //         isValid = true;
-        //         return;
-        //     }
-        // });
         if (isValid) {
             const data = {
                 nickName: $('#profileEditNickname').val(),
@@ -74,33 +81,36 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.check-result-btn', function () {
-        $('#loadingDiv').html(loading);
+        $('#userResultMsg').html('');
         const resultId = $(this).attr('id').replace('result_', '');
+        showFloatMessage('#accountMsg', loading, 0);
         $.get(`${prefix}/public/api/result.php?result=${resultId}`).done(function (data) {
             const result = JSON.parse(data);
-            $('#loadingDiv').html('');
+            let message = '';
             if (result) {
                 if (result === 'no login') {
-                    $('#userLoginModal').modal('show');
-                    
-                    message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
-                    $('#message').html(message);
-                    return;
+                    if (!data) {
+                        message = useMessage('warning', '服务器连接失败，请刷新后重试。');
+                        showFloatMessage('#accountMsg', message, 3000);
+                        return;
+                    }
+                    const result = JSON.parse(data);
+                    const user = result.user ? result.user : undefined;
+                    renderUserInNav(user ? true : false, user ? user.headImg : '');
                 }
                 if (result === 'no result') {
-               
-                    message = generateMessage('warning', '未找到结果报告，请点击此处查询你的所有历史结果。');
-                    $('#message').html(message);
+                    message = useMessage('info', '未找到结果报告，请点击此处查询你的所有历史结果。');
+                    showFloatMessage('#accountMsg', message, 3000);
                     return;
                 }
                 const dimensionResult = result.result;
                 const customer = result.user;
                 if (!dimensionResult) {
-                    message = generateMessage('warning', '无法找到该数据。请刷新页面重试。');
-                    $('#message').html(message);
+                    message = useMessage('warning', '无法找到该数据。请刷新页面重试。');
+                    showFloatMessage('#accountMsg', message, 3000);
                     return;
                 }
-                //console.log(customer);
+                $('#accountMsg').hide();
                 const code = dimensionResult.code;
                 const title = dimensionResult.title;
                 const description = dimensionResult.description;
@@ -115,20 +125,17 @@ $(document).ready(function () {
                 const notification = result.saved_notification ? true : false;
                 const imgSrc = dimensionResult.img;
                 //presentation
-                $('#resultTitle').html(`${code} ${title}`);
-                $('#resultDescription').html(description);
-                $('#characterImg').attr('src', prefix + encodeURI(imgSrc));
+                $('#userResultTitle').html(`${code} ${title}`);
 
-                $('#scResultTitle').html(`${code} ${title}`);
-                $('#scResultDescription').html(description);
-                $('#scCharacterImg').attr('src', prefix + encodeURI(imgSrc));
+                $('#userResultDescription').html(description);
+                $('#userCharacterImg').attr('src', prefix + encodeURI(imgSrc));
 
-                let tagHtml = `<span>你的标签： </span>`;
+                let tagTitle = `<span>你的标签： </span>`;
+                let tagContent = '';
                 tags.forEach(function (tag) {
-                    tagHtml += `<span class="badge badge-light" style="margin: 0 3px">#${tag.name}</span>`
+                    tagContent += `<span class="badge badge-light" style="margin: 0 3px">#${tag.name}</span>`
                 });
-                $('#resultTags').html(tagHtml);
-                $('#scResultTags').html(tagHtml);
+                $('#resultTags').html(tagTitle + tagContent);
 
                 let dimensionAnalytics = `<ul class="list-group list-group-flush">`;
                 majorDimensions.forEach(function (item) {
@@ -159,11 +166,12 @@ $(document).ready(function () {
 
                 let careerAnalytics = `<p>${career.description}</p>`;
 
-                let programList = `<h5>可能适合的专业：</h5><ul>`;
+                let programList = '<div class="pb-3">';
+                programList += `<h5>可能适合的专业：</h5>`;
                 programs.forEach(function (item) {
-                    programList += `<li><a href="${'/programs/explore.php?title=' + item.title}" target="_blank">${item.title}</a></li>`;
+                    programList += `<a style="padding: 3px 5px; color: #6d6d6d;" href="${prefix}/programs/explore.html?title=${item.title}" target="_blank">${item.title}</a>`;
                 });
-                programList += `</ul>`;
+                programList += `</div>`;
 
                 let jobList = `<h5>你适合的职业：</h5><ul>`;
                 jobs.forEach(function (item) {
@@ -174,86 +182,144 @@ $(document).ready(function () {
                     const chartData = {
                         labels: weight.map((item) => item.code + ' ' + item.title),
                         datasets: [{
-                            data: weight.map((item) => item.total),
+                            data: weight.map((w) => w.total),
                             borderColor: '#fc8803',
                             backgroundColor: 'rgba(252, 136, 3, 0.47)',
                             label: '得分'
                         }]
                     };
-                    new Chart($('#myChart' + index)[0].getContext('2d'), {
-                        type: 'bar',
-                        data: chartData,
-                        options: {
-                            responsive: true,
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            },
-                            bezierCurve : false,
-                            //onAnimationComplete: done
+                    if (index == 0) {
+                        if (chart1) {
+                            chart1.data = chartData;
+                            chart1.update();
                         }
-                    });
-                    new Chart($('#scMyChart' + index)[0].getContext('2d'), {
-                        type: 'bar',
-                        data: chartData,
-                        options: {
-                            responsive: true,
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            }
+                        else {
+                            chart1 = setupChart(chartData, 'userMyChart0');
                         }
-                    });
+                    }
+                    else if (index == 1) {
+                        if (chart2) {
+                            chart2.data = chartData;
+                            chart2.update();
+                        }
+                        else {
+                            chart2 = setupChart(chartData, 'userMyChart1');
+                        }
+                    }
+                    else if (index == 2) {
+                        if (chart3) {
+                            chart3.data = chartData;
+                            chart3.update();
+                        }
+                        else {
+                            chart3 = setupChart(chartData, 'userMyChart2');
+                        }
+                    }
+                    else {
+                        if (chart4) {
+                            chart4.data = chartData;
+                            chart4.update();
+                        }
+                        else {
+                            chart4 = setupChart(chartData, 'userMyChart3');
+                        }
+                    }
                 });
                 $('#programAndJobAnalytics').html(careerAnalytics + programList + jobList);
-                $('#jobList').html(programList);
+                //screenshot modal
+                $('.title-banner').css('background-image', `url(${prefix}/asset/image/screenshot/hero-bg.jpg)`);
+                $('#scTitle').text(`${code} ${title}`);
+                $('#scTitleDesc').html(description);
+                $('#scCharacterImg').attr('src', prefix + encodeURI(imgSrc));
+                $('.tags-right').html(tagContent);
+                let scPrograms = '';
+                programs.forEach(function (item) {
+                    scPrograms += `<span class="user-rec-program">${item.title}</span>`;
+                });
+                $('#programRec').html(scPrograms);
+                $('#scLogo').attr('src', `${prefix}/asset/image/screenshot/Logo-White2x.png`);
+                $('#scQRcode').attr('src', `${prefix}/asset/image/screenshot/公众号2x.png`);
             }
             else {
-                $('#testResultMessage').html(generateMessage('warning', '未找到该报告。'));
+                message = useMessage('warning', '未找到该报告。');
+                showFloatMessage('#accountMsg', message, 3000);
             }
+            $('#screenshotDiv').hide();
+            $('#finalScreenshot').attr('src', '');
+            $('#finalScreenshot').hide();
+            $('#testResultBody').show();
             $('#testResultModal').modal('show');
         });
     });
+
+    function setupChart(chartData, id) {
+        let thisChart = document.getElementById(id).getContext('2d');
+        return new Chart(thisChart, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            display: false,
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                responsive: false,
+            }
+        });
+    }
 
     function timeoutHideModal() {
         setTimeout(function () { $('#editProfileModal').modal('hide'); $('#profileEditMessage').html(''); }, 2000);
     }
 
-    $('#takeScreenshot').click(function(){
-        $('#takeScreenshot').prop('disabled', true);
-        $('#takeScreenshot').html(`<span class="spinner-border spinner-border-sm" role="status" style="width: 1.3rem;height: 1.3rem; vertical-align: middle;" aria-hidden="true"></span> 正在生成图片`);
-        $('#mainResultDiv').hide();
-        $('#captureBody').show();
-        setTimeout(
-            function() 
-            {
-                html2canvas(document.getElementById("captureBody")).then(function(canvas) {
-                    $('#screenshotImg').attr('src', canvas.toDataURL('image/jpeg', 0.5));
-                    $('#screenCaptureModal').modal('show')
-                    $('#takeScreenshot').html(`<i class="fas fa-camera"></i> 截屏`);
-                });
-            }, 2000);
+    $(document).on('click', '#screenshotModeBtn', function () {
+        $('#testResultBody').hide();
+        $('#screenshotDiv').show();
+        $('#userResultMsg').html(
+            `<div class="d-flex justify-content-center">
+            <div class="spinner-border text-warning" style="width: 1.5rem; height: 1.5rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span class="pl-2" style="font-size: 1.2rem;"><strong>正在生成测试结果分享图...</strong></span>
+        </div>`
+        );
+        $('#userResultMsg').show();
+        html2canvas(document.querySelector("#screenshotDiv")).then(canvas => {
+            $('#screenshotDiv').hide();
+            const dataUrl = canvas.toDataURL('image/png', 0.6);
+            $('#finalScreenshot').attr('src', dataUrl);
+            $('#finalScreenshot').show();
+            $('#userResultMsg').html(`
+            <i class="fas fa-check-circle"></i>
+            <span class="pl-1" style="font-size: 1.2rem;"><strong>分享图已生成，请长按保存图片</strong></span>
+            `);
+            $('#userResultMsg').css({ 'color': '#28a745' });
+        });
     });
 
     function fetchUserInfo() {
         $('#accountCenter').hide();
         $('#loadingDiv').html(loading);
         $.get(`${prefix}/public/api/account.php`).done(function (data) {
+            let errorMessage = '';
+            if (!data) {
+                errorMessage = useMessage('warning', '服务器连接失败，请刷新后重试。');
+                showFloatMessage('#accountMsg', errorMessage, 3000);
+                return;
+            }
             const result = JSON.parse(data);
             if (result === 'no login') {
-                $('#userLoginModal').modal('show');
                 $('#loadingDiv').html('');
-                message = generateMessage('warning', '未找到登录用户，请先<a href="#/" data-toggle="modal" data-target="#userLoginModal">登录</a>');
-                $('#message').html(message);
+                $('#loadingDiv').css('padding', '20px 0 80px 0');
+                errorMessage = useMessage('warning', '未找到登录用户，请先<a href="../auth/login.html">登录</a>');
+                showFloatMessage('#accountMsg', errorMessage, 0);
                 return;
             }
             user = result.user ? result.user : undefined;
+            renderUserInNav(user ? true : false, user && user.headImg ? user.headImg : '');
             tests = result.results ? result.results : [];
             if (user) {
                 //mount user info
@@ -279,7 +345,7 @@ $(document).ready(function () {
                 let testCategories = '';
                 tests.forEach(function (item, index) {
                     if (index === 0) {
-                        testCategories += `<li class="list-group-item active" id="test_${item.id}">${item.title}</li>`;
+                        testCategories += `<li class="list-group-item test-tab active" id="test_${item.id}">${item.title}</li>`;
                     }
                     else {
                         testCategories += `<li class="list-group-item" id="test_${item.id}">${item.title}</li>`;
@@ -300,7 +366,7 @@ $(document).ready(function () {
             }
             $('#loadingDiv').html('');
             $('#accountCenter').fadeIn();
-            if(window.location.search.indexOf('view=history') > -1){
+            if (window.location.search.indexOf('view=history') > -1) {
                 $('#userProfile').removeClass('active');
                 $('#testResults').addClass('active');
                 $('#userProfileSection').hide();

@@ -13,6 +13,7 @@
         public $full_name;
         public $age;
         public $is_study_aboard;
+        public $how_know;
         
         public function user_signup($email, $phone, $password, $tempId){
             $is_exist = $this->find_user($email);
@@ -49,12 +50,12 @@
             }
         }
 
-        public function signup_by_phone($phone, $current_time, $ip){
+        public function signup_by_phone($phone, $current_time, $ip, $register_by){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
-                $query = "INSERT INTO customers (`phone`, `status`, `date_time`, `ip`) VALUES (?, 'open', ?, ?)";
+                $query = "INSERT INTO customers (`phone`, `status`, `date_time`, `ip`, `register_by`) VALUES (?, 'open', ?, ?, ?)";
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sss", $phone, $current_time, $ip);
+                $sql->bind_param("ssss", $phone, $current_time, $ip, $register_by);
                 if($sql->execute()){
                     $this->id = $this->conn->insert_id;
                     $this->conn->commit();
@@ -125,12 +126,12 @@
             return false;
         }
 
-        public function save_new_email_user($email, $password, $date_time, $ip){
+        public function save_new_email_user($email, $password, $date_time, $ip, $register_by){
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
-                $query = "INSERT INTO customers (`email`, `password`, `status`, `date_time`, `ip`) VALUES (?, ?, 'open', ?, ?)";
+                $query = "INSERT INTO customers (`email`, `password`, `status`, `date_time`, `ip`, `register_by`) VALUES (?, ?, 'open', ?, ?, ?)";
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("ssss", $email, $password, $date_time, $ip);
+                $sql->bind_param("sssss", $email, $password, $date_time, $ip, $register_by);
                 if($sql->execute()){
                     $this->id = $this->conn->insert_id;
                     $this->conn->commit();
@@ -177,7 +178,7 @@
         }
 
         public function fetch_current_user($id){
-            $query = "SELECT `id`, `email`, `nick_name`, `phone`, `headImg`, `sex`, `city`, `province`, `country`, `unionid`, `full_name`, `age`, `is_study_aboard` FROM customers WHERE `id` = ? AND `status` = 'open'";
+            $query = "SELECT `id`, `email`, `nick_name`, `phone`, `headImg`, `sex`, `city`, `province`, `country`, `unionid`, `full_name`, `age`, `is_study_aboard`, `how_know` FROM customers WHERE `id` = ? AND `status` = 'open'";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("i", $id);
             $sql->execute();
@@ -195,6 +196,7 @@
             $this->full_name = $data["full_name"];
             $this->age = $data["age"];
             $this->is_study_aboard = $data["is_study_aboard"];
+            $this->how_know = $data["how_know"];
         }
 
         public function validate_login($email, $password){
@@ -236,13 +238,13 @@
             return false;
         }
 
-        public function save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $unionid, $ip, $current_time){
+        public function save_wechat_uer($nickname, $sex, $city, $province, $country, $headImg, $unionid, $ip, $current_time, $register_by){
             $status = "open";
             $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
             try {
-                $query = "INSERT INTO customers (`nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionid`, `status`, `date_time`, `ip`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                $query = "INSERT INTO customers (`nick_name`, `sex`, `city`, `province`, `country`, `headImg`, `unionid`, `status`, `date_time`, `ip`, `register_by`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                 $sql = $this->conn->prepare($query);
-                $sql->bind_param("sissssssss", $nickname, $sex, $city, $province, $country, $headImg, $unionid, $status, $current_time, $ip);
+                $sql->bind_param("sisssssssss", $nickname, $sex, $city, $province, $country, $headImg, $unionid, $status, $current_time, $ip, $register_by);
                 if($sql->execute()){
                     $new_id = $this->conn->insert_id;
                     $this->conn->commit();
@@ -325,7 +327,7 @@
 
         public function fetch_all_users(){
             $data = array();
-            $query = "SELECT c.id, c.email, c.phone, c.nick_name, c.sex, c.city, c.province, c.country, c.headImg, c.unionId, c.temporary_link, c.status, c.date_time, c.ip, c.full_name, c.age, c.is_study_aboard, COUNT(r.id) as 'results' FROM customers c LEFT JOIN test_results r ON r.user_id = c.id GROUP BY c.id";
+            $query = "SELECT c.id, c.email, c.phone, c.nick_name, c.sex, c.city, c.province, c.country, c.headImg, c.unionId, c.temporary_link, c.status, c.date_time, c.ip, c.full_name, c.age, c.is_study_aboard, c.how_know, COUNT(r.id) as 'results' FROM customers c LEFT JOIN test_results r ON r.user_id = c.id GROUP BY c.id";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();

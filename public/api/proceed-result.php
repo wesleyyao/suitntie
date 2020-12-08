@@ -35,15 +35,16 @@
         $user_name = $_POST["userName"];
         $user_age = $_POST["userAge"];
         $purpose = $_POST["purpose"];
+        $how_know = $_POST["knownBy"];
+        
         if(count($dimension_ids) == 0){
             echo json_encode("failure");
             exit;
         }
-        if(isset($_SESSION["new_test"])){
-            $new_result_id = $test->saveResult($test_id, $result_category, $_SESSION["login_user"], $dimension_ids, $dimension_check_times, $user_name, $user_age, $purpose, $current_time);
+        if(!isset($_SESSION["new_test_result"])){
+            $new_result_id = $test->saveResult($test_id, $result_category, $_SESSION["login_user"], $dimension_ids, $dimension_check_times, $user_name, $user_age, $purpose, $how_know, $current_time);
             if($new_result_id){
                 $_SESSION["new_test_result"] = $new_result_id;
-                $_SESSION["new_test_saved_notification"] = 1;
                 //send email
                 //$customer->fetch_current_user(isset($_SESSION["login_user"]) ? $_SESSION["login_user"] : 0);
                 //$dimension_result->fetchResult($new_result_id);
@@ -66,15 +67,16 @@
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         if(isset($_GET["action"])){
             $action = $_GET["action"];
-            if($action == "send_email" && isset($_SESSION["new_test_result"])){
+            if($action == "send_email"){
                 $new_result_id = $_SESSION["new_test_result"];
                 $_SESSION["is_sent_new_result"] = false;
-                if($_SESSION["is_sent_new_result"] == false){
+                if(!$_SESSION["is_sent_new_result"]){
                     $customer->fetch_current_user(isset($_SESSION["login_user"]) ? $_SESSION["login_user"] : 0);
                     $dimension_result->fetchResult($new_result_id);
                     $email_content = emailContent($customer->nick_name, $dimension_result->code, $dimension_result->title, $customer->email, $customer->phone);
-                    //$is_send = $email->send($receiver, $receiver2, $subject, $email_content);
-                    $_SESSION["is_sent_new_result"] = 1; 
+                    $is_send = $email->send($receiver, $receiver2, $subject, $email_content);
+                    //$is_send = true;
+                    $_SESSION["is_sent_new_result"] =  $is_send ? true : false; 
                     $result["status"] = $is_send ? "sent" : "failure";
                 }
                 else{

@@ -1,25 +1,26 @@
-.dimension-test-result-main{
+.dimension-test-result-main {
     overflow-x: hidden;
 }
 
-.dimension-test-result-main h3{
+.dimension-test-result-main h3 {
     font-size: 1.5em !important;
     font-weight: 500;
- }
+}
 
-.resultHeader{
+.resultHeader, .test-result-header {
     background-color: #2F4858 !important;
     padding: 0 !important;
 }
 
-.resultDimension{
-    margin-top: -1px;;
+.resultDimension {
+    margin-top: -1px;
+    ;
     background-color: #2F4858 !important;
     position: relative;
 }
 
 .resultDimension svg {
-    left:0;
+    left: 0;
     bottom: -1px;
     width: 110%;
     height: 20vw;
@@ -27,267 +28,329 @@
     position: absolute;
 }
 
-.resultCharactor{
+.resultCharactor {
     display: inline-block;
 }
 
-.dimensionContent{
-    z-index: 100;
+.dimensionContent {
+    z-index: 2;
+    padding-left: 40%;
+    width: 90%;
 }
 
-.resultDimension:after{
-    clear:both;
-}
-
-@media only screen and (max-width: 575px) {
-    .resultBarChart{
-        padding: 40px;
-    }
-
-    .dimensionContent img{
-        padding: 0 0 30px 0;
-    }
-}
-
-.resultDimension:after{
+.resultDimension:after {
     clear: both;
 }
 
-@media only screen and (max-width:768px) {
-    .dimensionContent img{
-        padding: 30px 0;
-    }
-
-    .resultDimension svg {
-        width: 110%;
-        height: 30vw;
-    }
+.resultDimension:after {
+    clear: both;
 }
 
-.jumbotron{
+.jumbotron {
     background-color: transparent !important;
-    padding-top:0 !important;
+    padding-top: 0 !important;
 }
 
-#resultTitle{
+#resultTitle {
     margin-top: 60px;
-    color:white;
+    color: white;
     font-size: 2.5rem;
 }
 
-#resultDescription{
+#resultDescription {
     margin-top: 30px;
-    color:white;
+    color: white;
     font-size: 1.2rem;
 }
 
-#resultTags h4{
+#resultTags h4 {
     font-size: 0.75em;
     font-weight: 100;
     display: inline-block;
 }
 
-.tagBox{
+.tagBox {
     padding: 20px;
     background-color: #ffffff9d;
     border-radius: 6px;
     margin-top: 20px;
 }
 
-#resultCharts{
+#resultCharts {
     border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
-    -moz-box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
-    box-shadow: 0px 0px 20px -1px rgba(0,0,0,0.08);
+    -webkit-box-shadow: 0px 0px 20px -1px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0px 0px 20px -1px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 0px 20px -1px rgba(0, 0, 0, 0.08);
     background: white;
 }
 
-.resultBarChart{
-     padding: 20px;
- }
-
-.result-div .row{
-    padding: 30px 80px;
+.resultBarChart {
+    padding: 20px;
 }
 
- @media only screen and (max-width: 1200px) {
-    .resultBarChart{
-        padding: 10px;
-    }
-  }
-
- @media only screen and (max-width: 992px) {
-    .resultBarChart{
-        padding: 20px;
-    }
-
-    #resultCharts .row{
-        padding:0 !important;
-    }
-
-    .result-div .row{
-        padding: 30px 20px;
-    }
-}
-
-@media only screen and (max-width: 768px){
-    .resultCharactor{
-        padding: 0 120px 50px 120px;
-    }
-}
-
-.resultDimension{
+.resultDimension {
     padding: 0 10px;
 }
 
-.result-div .row{
-    padding: 30px 20px;
+.result-div .row {
+    padding: 10px
 }
 
-.list-group-item{
+.list-group-item {
     border: none !important;
 }
 
-.result-div h3{
-    color:#2F4858;
+.result-div h3 {
+    color: #2F4858;
 }
 
-.badge{
+.badge {
     font-weight: 200;
 }
 
 /* Analysis */
-.dimension-analysis{
+
+.dimension-analysis {
     padding: 70px 80px !important;
 }
 
-.dimension-analysis li, .advantages li, .disadvantages li{
+.dimension-analysis li, .advantages li, .disadvantages li {
     padding: 0.75rem 0 !important;
 }
 
-.dimension-analysis li, .advantages li, .disadvantages li{
-    padding:0.75rem 0 !important;
+.dimension-analysis li, .advantages li, .disadvantages li {
+    padding: 0.75rem 0 !important;
 }
 
-.basic-analysis{
-    background-color: rgba(242,242,242,0.4);
-    padding:70px 80px !important;
+.basic-analysis {
+    background-color: rgba(242, 242, 242, 0.4);
+    padding: 70px 80px !important;
     border-radius: 10px;
 }
 
-.advantages{
-    padding:70px 80px !important;
+.advantages {
+    padding: 70px 80px !important;
 }
 
-.disadvantages{
-    padding:0 80px !important;
+.disadvantages {
+    padding: 0 80px !important;
     margin-bottom: 70px;
 }
 
-.advantages ul, .disadvantages ul{
-    list-style:none;
+.advantages ul, .disadvantages ul {
+    list-style: none;
     padding-left: 0;
 }
 
-.advantages ul li::before, .disadvantages ul li::before{
-    content: "\2022"; 
-    color: #F19F4D; 
+.advantages ul li::before, .disadvantages ul li::before {
+    content: "\2022";
+    color: #F19F4D;
     font-weight: bolder;
     font-family: 'Courier New', Courier, monospace;
     display: inline-block;
-    width: 1.5em; 
-    margin-left: -1.5em; 
+    width: 1.5em;
+    margin-left: -1.5em;
 }
 
-.careerDesc{
-    background-color: rgba(241,159,77,0.05);
-    padding:70px 80px !important;
+.careerDesc {
+    background-color: rgba(241, 159, 77, 0.05);
+    padding: 70px 80px !important;
     border-radius: 10px;
     margin-bottom: 40px;
 }
 
-.careerDesc h5{
+.careerDesc h5 {
     margin-bottom: 1em;
 }
 
-.programFit{
-    margin:50px 0;
+.programFit {
+    margin: 50px 0;
 }
 
-.programFit ul{
-    list-style:none;
-    padding:0 !important;
+.programFit ul {
+    list-style: none;
+    padding: 0 !important;
 }
 
-.programFit ul li a{
-    color: #808080; 
+.programFit ul li a {
+    color: #808080;
     text-decoration: underline;
     transition: all 400ms;
 }
 
-.programFit ul li a:hover{
-    color: #F19F4D; 
+.programFit ul li a:hover {
+    color: #F19F4D;
 }
 
-.careerFit{
+.careerFit {
     margin: 50px 0 0 0;
 }
 
-.careerFit ul{
+.careerFit ul {
     list-style: none;
 }
 
-.careerFit ul li::before{
-    content: "\2022"; 
-    color: #F19F4D; 
+.careerFit ul li::before {
+    content: "\2022";
+    color: #F19F4D;
     font-weight: bolder;
     font-family: 'Courier New', Courier, monospace;
     display: inline-block;
-    width: 1.5em; 
-    margin-left: -1.5em; 
+    width: 1.5em;
+    margin-left: -1.5em;
 }
 
-@media only screen and (max-width: 992px) {
-    .dimension-analysis, .basic-analysis, .advantages, .careerDesc{
-        padding:50px 30px !important;
-    }
-
-    .disadvantages{
-        padding:0 30px !important;
-    }
-}
-
-.reminderText{
+.reminderText {
     margin-top: 20px;
 }
 
-.reminderText{
+.reminderText {
     margin-top: 20px;
 }
 
-.reminderText a{
-    color:#F19F4D;
+.reminderText a {
+    color: #F19F4D;
     text-decoration: underline;
 }
 
-.reminderText a:hover{
-    color:#9E744E;
+.reminderText a:hover {
+    color: #9E744E;
 }
 
-.twoButton{
+.twoButton {
     margin: 40px 0 80px 0;
 }
 
-.twoButton h5{
+.twoButton h5 {
     margin-bottom: 20px;
 }
 
-.twoButton a{
+.twoButton a {
     margin-bottom: 40px;
 }
 
+#characterImg {
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    width: 20%;
+    z-index: 3;
+}
+
+.result-chart{
+    width: 100%;
+    height: 180px;
+}
+
+.chart-column{
+    padding: 5px;
+}
+
+#screenshotModeBtn {
+    position: fixed;
+    background: #F19F4D;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    .resultBarChart {
+        padding: 10px;
+    }
+    #characterImg{
+        top: 180px;
+        left: 10%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .dimension-analysis, .basic-analysis, .advantages, .careerDesc {
+        padding: 50px 30px !important;
+    }
+    .disadvantages {
+        padding: 0 30px !important;
+    }
+    .resultBarChart {
+        padding: 20px;
+    }
+    #resultCharts .row {
+        padding: 0 !important;
+    }
+    .result-div .row {
+        padding: 30px 20px;
+    }
+    .dimensionContent{
+        padding-left: 30%;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    #characterImg {
+        top: 310px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .resultCharactor {
+        padding: 0 120px 50px 120px;
+    }
+    .dimensionContent{
+        width: 95%;
+        padding-left: 25%;
+    }
+    .dimensionContent img {
+        padding: 30px 0;
+    }
+    .resultDimension {
+        margin-top: 1rem;
+        padding: 0;
+    }
+    .resultDimension svg {
+        width: 110%;
+        height: 30vw;
+    }
+    #characterImg {
+        top: 340px;
+        left: 5%;
+    }
+    .container{
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
 @media only screen and (max-width: 576px) {
-    .twoButton{
+    .twoButton {
         margin: 20px 0 40px 0;
     }
-} 
+    .dimensionContent img {
+        padding: 0 0 30px 0;
+    }
+    .result-title-cell{
+        padding-left: 20%;
+    }
+    #characterImg {
+        top: 25px;
+        left: 15px;
+    }
+    #resultTitle{
+        margin-top: 0;
+    }
+    .dimensionContent{
+        width: 100%;
+        padding: 0 15px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #resultTitle{
+        font-size: 1.5rem !important;
+    }
+    #resultDescription{
+        font-size: 1rem !important;
+    }
+}

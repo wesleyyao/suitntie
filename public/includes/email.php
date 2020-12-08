@@ -41,7 +41,7 @@
                 // $mail->addBCC('bcc@example.com');
         
                 // Attachments
-                $mail->AddEmbeddedImage($_SERVER["DOCUMENT_ROOT"] . '/asset/image/logo.png', 'logo'); // Add attachments
+                $mail->AddEmbeddedImage($_SERVER["DOCUMENT_ROOT"] . '/suitntie/asset/image/logo.png', 'logo'); // Add attachments
                 // $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); // Optional name
         
                 // Content

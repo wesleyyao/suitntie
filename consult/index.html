@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+    <meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
+    <title>适途咨询</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+    <!-- load stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/header.css">
+    <link rel="stylesheet" href="../asset/css/consult.css">
+    <!-- load scripts -->
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../asset/js/header.js"></script>
+    <script type="module" src="../asset/js/consult.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5b70ca46afc5ba4aa10407bf53807917";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="headerDiv"></div>
+    <input type="hidden" id="hide_title" value="tutors" />
+    <div class="consult-top-banner">
+        <h1>导师库</h1>
+    </div>
+    <div class="container mt-5 mb-5 pt-5 pb-5">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                <div id="consultantDiv">
+                    <div id="consultantFilter" class="card border-light" style="background: #f9f9f9">
+                        <div class="card-body">
+                            <div class="input-group pb-3">
+                                <input type="text" class="form-control" placeholder="搜索导师" aria-label="搜索导师"
+                                    id="filterInput" aria-describedby="filterBtn">
+                                <div class="input-group-append">
+                                    <button class="btn primBtnSM" type="button" id="searchBtn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-12">
+                                    <div class="consult-filter-title text-secondary"><strong>地区</strong></div>
+                                    <div class="consult-filter-option" id="regionOptions"></div>
+                                </div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-12">
+                                    <div class="consult-filter-title text-secondary"><strong>专业</strong></div>
+                                    <div class="consult-filter-option" id="programOptions"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-11 col-md-10 col-sm-9">
+                                    <div class="consult-filter-title text-secondary"><strong>学历</strong></div>
+                                    <div class="consult-filter-option" id="educationOptions"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="filterTags"></div>
+                    <div id="consultantList" class="pt-3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-0">
+                <div id="adsDiv" class="card border-light" style="background: #fdf7f2">
+                    <div class="card-body">
+                        <h5>分享经验，传播智慧</h5>
+                        <p>向世界分享您的知识，经验和见解, 别让您的梦想仅仅是梦想，勇敢地为您的梦想迈出第一步。</p>
+                        <a href="#/" class="btn primBtn">成为导师</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="contactConsultantModal" tabindex="-1" aria-labelledby="contactConsultantTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactConsultantTitle">联系导师</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row pb-2">
+                        <div class="col-12 text-center">
+                            <h5 style="color: #f19f4d">对<span id="tutorName">sherry</span>导师有兴趣吗？</h5>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <label><span class="text-danger">*</span> 姓名：</label>
+                            <input type="text" maxlength="128" id="ccName" class="form-control cc-required"
+                                placeholder="姓名" />
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <label><span class="text-danger">*</span> 年龄：</label>
+                            <input type="number" min="1" max="99" id="ccCity" class="form-control cc-required"
+                                placeholder="年龄" />
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <label><span class="text-danger">*</span> 手机号：</label>
+                            <input type="text" maxlength="64" id="ccPhone" class="form-control cc-required"
+                                placeholder="手机号" />
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <label>微信号：</label>
+                            <input type="text" maxlength="64" id="ccWechat" class="form-control" placeholder="微信号" />
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <label>E-Mail：</label>
+                            <input type="email" maxlength="128" id="ccEmail" class="form-control cc-required"
+                                placeholder="E-Mail" />
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <label><span class="text-danger">*</span> 所在学校：</label>
+                            <input type="text" maxlength="128" id="ccSchool" class="form-control cc-required"
+                                placeholder="所在学校" />
+                        </div>
+                    </div>
+                    <div class="row pb-3">
+                        <div class="col-12">
+                            <label><span class="text-danger">*</span> 提问：</label>
+                            <textarea type="text" rows="5" maxlength="2500" id="ccContent"
+                                class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div id="ccMessage" style="display: none"></div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button class="btn primBtn" id="submitContactFormBtn">提交信息</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footerDiv"></div>
+</body>
+
+</html>

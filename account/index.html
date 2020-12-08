@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+    <meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
+    <title>适途咨询</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+    <!-- load stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/header.css">
+    <link rel="stylesheet" href="../asset/css/resultScreenshot.css">
+    <link rel="stylesheet" href="../asset/css/user.css">
+    <!-- load scripts -->
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../asset/js/header.js"></script>
+    <script src="../asset/js/chart.js"></script>
+    <script type="module" src="../asset/js/htmlToCanvas.js" charset="utf-8"></script>
+    <script type="module" src="../asset/js/account-center.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5b70ca46afc5ba4aa10407bf53807917";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="float-message" id="accountMsg" style="display: none;"></div>
+    <div id="headerDiv"></div>
+    <div class="container mt-5" style="padding: 20px 0 100px 0">
+        <div id="loadingDiv">
+        </div>
+        <div id="accountCenter">
+            <div class="row no-gutters">
+                <div class="col-lg-2 col-md-4 col-sm-2">
+                    <div class="list-group">
+                        <button type="button"
+                            class="list-group-item list-group-item-action account-nav active rounded-0 btn"
+                            id="userProfile">
+                            <i class="fas fa-user"></i>
+                            个人信息
+                        </button>
+                        <button type="button" class="list-group-item list-group-item-action account-nav rounded-0 btn"
+                            id="testResults">
+                            <i class="fas fa-poll"></i>
+                            测试结果
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-8 col-sm-10">
+                    <div class="card rounded-0">
+                        <div class="card-body">
+                            <div class="account-center-section" id="userProfileSection">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-4">
+                                        <div class="row">
+                                            <div class="col-12 text-center mb-5">
+                                                <img src="../asset/image/avatar.png" id="profileHeadImg"
+                                                    class="img-cell" style="width: 100%; height: auto;" alt="avatar" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 col-sm-8">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                <label class="h5">昵称</label><br />
+                                                <span class="text-muted" id="profileNickname">-</span>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                <label class="h5">电话</label><br />
+                                                <span class="text-muted" id="profileCellphone">-</span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="h5">邮箱</label><br />
+                                                <span class="text-muted" id="profileEmail">-</span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                <label class="h5">性别</label><br />
+                                                <span class="text-muted" id="profileSex">-</span>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                <label class="h5">城市</label><br />
+                                                <span class="text-muted" id="profileCity">-</span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                <label class="h5">省份</label><br />
+                                                <span class="text-muted" id="profileProvince">-</span>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                <label class="h5">国家</label><br />
+                                                <span class="text-muted" id="profileCountry">-</span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button class="btn ghostSecBtn btn-block mb-4" data-toggle="modal"
+                                                    data-target="#editProfileModal">修改资料</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="account-center-section" id="testResultsSection">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <ul class="list-group list-group-horizontal-md" id="testCategory">
+                                        </ul>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table">
+                                            <thead class="bgGrey">
+                                                <tr>
+                                                    <th>日期</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="resultList">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footerDiv"></div>
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModaltitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testResultTitle">修改资料</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="profileEditorDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="testResultModal" tabindex="-1" role="dialog" aria-labelledby="testResultTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testResultTitle">测试结果</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 0;">
+                    <div id="testResultDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+#screenshotDiv {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.screenshot-body {
+    height: auto;
+    background-color: #2F4858;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+#scLogo {
+    height: 34px;
+    width: 120px;
+}
+
+.top-banner {
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background-color: #2f4858;
+}
+
+.title-banner {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo-banner {
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.title-section {
+    position: relative;
+    padding: 30px 3px 30px 30%;
+}
+
+.title-section p {
+    color: #ffffff;
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+#scTitle {
+    color: #f19f4d !important;
+}
+
+#scCharacterImg {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 75px;
+    height: auto;
+    z-index: 2;
+}
+
+.tags-banner, #programRec {
+    position: relative;
+    width: 100%;
+    padding: 5px 10px 15px 10px;
+    font-size: 1em;
+}
+
+.tags-banner span, #programRec span {
+    font-size: 0.9em;
+}
+
+#programRec {
+    overflow: auto;
+}
+
+.programRec-banner{
+    padding-top: 10px;
+    background: rgba(240,159,77,0.05);
+}
+
+.tags-left {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.tags-right {
+    display: inline-block;
+    width: 68%;
+}
+
+.screenshot-logo {
+    width: 120px;
+}
+
+.user-rec-program {
+    width: 33.3%;
+    float: left;
+    padding: 2px 5px;
+    color: #000;
+    font-size: 1em;
+}

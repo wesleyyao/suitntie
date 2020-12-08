@@ -14,7 +14,7 @@
 
 <body>
     <div class="container-fluid">
-        <div id="mainDiv">
+        <div id="mainDiv" class="pl-2 pr-2 pb-5">
             <?php require_once("./components/nav.php"); ?>
             <br />
             <div id="message"></div>
@@ -74,6 +74,7 @@
                                 <th>名字</th>
                                 <th>年龄</th>
                                 <th>是否留学</th>
+                                <th>如何知道我们</th>
                                 <th>城市</th>
                                 <th>省份</th>
                                 <th>国家</th>

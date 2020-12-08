@@ -7,13 +7,15 @@ $(document).ready(function () {
             <span class="sr-only">Loading...</span>
         </div>
     </div>`;
-
-    $('#contactForm').submit(function (e) {
+    $('#contactFormDiv').load(`${prefix}/components/contact-form.html`);
+    $(document).on('submit', '#contactForm', function (e) {
         e.preventDefault();
         const email = $('#contactEmail').val();
         $('#contactMessage').html(loading);
-        $('#contactMessage').fadeIn();
+        //$('#contactMessage').fadeIn();
         if (!formValidation('.contact-required', '#contactMessage', email)) {
+            $('#contactMessage').html(generateMessage('warning', '确保填写所有必填项。'));
+            $('#contactMessage').fadeIn().delay(3000).fadeOut();
             return;
         }
         const phone = $('#contactPhone').val();
@@ -29,51 +31,10 @@ $(document).ready(function () {
             else {
                 $('#contactMessage').html(generateMessage('warning', '抱歉，提交未被处理。请稍后重试。'));
             }
-            $('#contactMessage').delay(3000).fadeOut();
+            $('#contactMessage').fadeIn().delay(3000).fadeOut();
             $('.contact-required').each(function () {
                 $(this).val('');
             });
         });
     });
-
-    // function formValidation(className, message, email) {
-    //     let isValid = true;
-    //     $(className).each(function () {
-    //         if (!$(this).val().replace(/\s/g, '')) {
-    //             $(message).html(generateMessage('warning', '请填写所有必填项。'));
-    //             $('#contactMessage').delay(3000).fadeOut();
-    //             isValid = false;
-    //             return;
-    //         }
-    //         else if (email && !validateEmailFormat(email)) {
-    //             $(message).html(generateMessage('warning', '输入的邮箱格式错误。'));
-    //             $('#contactMessage').delay(3000).fadeOut();
-    //             isValid = false;
-    //             return;
-    //         }
-    //         else {
-    //             isValid = true;
-    //             return;
-    //         }
-    //     });
-    //     return isValid;
-    // }
-
-    // function validateEmailFormat(mail) {
-    //     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    // function generateMessage(type, message) {
-    //     return `
-    //     <div class="row">
-    //         <div class="col-12">
-    //             <div class="alert alert-${type}">
-    //                 <i class="${type == 'success' ? 'fas fa-check' : type === 'warning' ? 'fas fa-exclamation-triangle' : 'fas fa-times'}"></i> ${message}
-    //             </div>
-    //         </div>
-    //     </div>`;
-    // }
 });

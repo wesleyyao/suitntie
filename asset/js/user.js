@@ -138,6 +138,7 @@ $(document).ready(function () {
                 clearInterval(cooling);
             }
         }, 1000);
+        return;
         $.post(`${prefix}/public/api/signup.php?by=email`, { email, code: emailCode }).done(function (data) {
             if (data) {
                 const result = JSON.parse(data);
@@ -206,11 +207,12 @@ $(document).ready(function () {
             }
             $('#signupByEmailMessage').html(loading);
             $.post(`${prefix}/public/auth/user-signup.php`,
-                { by: 'email', email, password }).done(function (data) {
+                { by: 'email', email, password, currentPage}).done(function (data) {
                     if (data) {
                         let result = JSON.parse(data);
                         $('#signupByEmailMessage').html(generateMessage(result.type, result.content));
                         if (result.type === 'success') {
+                            return;
                             setTimeout(function () {
                                 window.location.href = currentPage;
                             }, 2000);
@@ -246,7 +248,7 @@ $(document).ready(function () {
                 $('#loginByPhoneMessage').html(generateMessage('warning', '您的验证码已过期。'));
                 return;
             }
-            formData = { phone, by: 'phone' };
+            formData = { phone, by: 'phone', currentPage };
         }
         else {
             const email = $('#loginEmail').val().replace(/\s/g, '').toLowerCase();
@@ -315,7 +317,6 @@ $(document).ready(function () {
     function fetchAccount() {
         $('#testOrView').hide();
         $.get(`${prefix}/public/api/account.php`).done(function (data) {
-            console.log(data)
             const result = JSON.parse(data);
             const pageTitle = $('#hide_title').val();
             if (result === 'no login' && pagesRequiredLogin.includes(pageTitle)) {
@@ -329,7 +330,7 @@ $(document).ready(function () {
                 <div class="row">
                 <div class="col-12">
                         <div class="alert alert-warning text-center" role="alert">
-                            浏览下面内容需要先登录 <a href="#/" data-toggle="modal" data-target="#userSignUpModal" class="btn btn-warning">点击登录</a>
+                            如果想了解推荐自学内容、专业课程简介和子专业等更多信息，请 <a href="#/" data-toggle="modal" data-target="#userSignUpModal" class="btn btn-warning">登录或注册</a>
                         </div>
                     </div>
                     </div>
@@ -348,7 +349,7 @@ $(document).ready(function () {
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userLinks">
                     <a class="dropdown-item" href="${prefix}/account/user.php">个人中心</a>
-                    <a class="dropdown-item" href="${prefix}/public/auth/user-logout.php">登出</a>
+                    <a class="dropdown-item" href="${prefix}/public/auth/user-logout.php?redirect=${window.location.href}">登出</a>
                 </div>
             </div>`;
             $('#userInNav').html(user ? isLogin : noLogin);
