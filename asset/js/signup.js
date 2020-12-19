@@ -12,8 +12,8 @@ $(document).ready(function () {
         page = page.substring(0, page.indexOf('#'));
     }
     const toRemoveUrl = page.indexOf('www') > -1 ? 'https://www.suitntie.cn' : 'https://suitntie.cn';
-    let redirectUrl = page.replace(toRemoveUrl, "");
-    redirectUrl = encodeURI("https://www.suitntie.cn/public/auth/wechat-login-mobile.php?redirect=" + redirectTo);
+    let redirectUrl = page.indexOf('redirect') !== -1 ? page.split('redirect=')[1] : "/";
+    let redirectMobile = encodeURI("https://www.suitntie.cn/public/auth/wechat-login-mobile.php?redirect=" + redirectUrl);
 
     fetchAccount();
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
     if (isWechatBrowser) {
         $('#signup_mobile_container').show();
         $('#signup_container').hide();
-        $('#signup_wechat_mobile_link').prop('href', `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx25d424c51ed0650d&redirect_uri=www.suitntie.cn/index&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`);
+        $('#signup_wechat_mobile_link').prop('href', `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx25d424c51ed0650d&redirect_uri=${redirectMobile}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`);
     }
 
     $('.signup-method-btn').click(function () {

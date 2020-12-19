@@ -1,4 +1,4 @@
-import { generateMessage, prefix, useMessage, showFloatMessage, renderUserInNav, isPC, fetchAccount } from './common.js';
+import { generateMessage, prefix, useMessage, showFloatMessage, renderUserInNav, isPC } from './common.js';
 
 $(document).ready(function () {
     let chart1 = undefined;
@@ -354,10 +354,18 @@ $(document).ready(function () {
                 $('#testCategory').html(testCategories);
                 //mount first test results
                 let resultList = '';
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
                 if (tests[0].results && tests[0].results.length > 0) {
-                    tests[0].results.forEach(function (item, index) {
+                    tests[0].results.map(function (item) {
+                        let jsDate = undefined;
+                        if (item.create_date) {
+                            jsDate = moment(item.create_date);
+                            if (jsDate < moment('2020-10-20')) {
+                                jsDate.add(moment.duration(12, 'hours'));
+                            }
+                        }
                         resultList += `<tr>
-                        <td>${item.create_date}</td>
+                        <td>${jsDate ? jsDate.format('YYYY-MM-DD HH:mm') : ''}</td>
                         <td class="text-right"><button id="result_${item.id}" class="btn btn-outline-dark check-result-btn">查看</button></td>
                         </tr>`;
                     });

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>管理页面</title>
+    <link rel="icon" href="../../../asset/image/logo/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../../asset/css/common.css">
+    <link rel="stylesheet" href="../../asset/css/datatables.css">
+    <link rel="stylesheet" href="../../../asset/css/main.css">
+
+
+    <script src="../../../asset/js/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../../../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../../asset/js/datatables.js"></script>
+    <script type="module" src="../../../asset/js/common.js"></script>
+    <script type="module" src="../../asset/js/global.js"></script>
+    <script type="module" src="../../asset/js/carousel.js"></script>
+</head>
+
+<body>
+    <div id="navDiv"></div>
+    <div class="container-fluid">
+        <div id="mainDiv" class="pt-5 pb-t pl-2 pr-2">
+            <div id="message" class="float-message"></div>
+            <div id="carouselMain">
+                <div class="row">
+                    <div class="col-10">
+                        <h1>走马灯</h1>
+                    </div>
+                    <div class="col-2 text-right">
+                        <a class="btn btn-primary" id="newSliderBtn" href="#/">
+                            <i class="fas fa-plus"></i> 添加</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped" id="sliderTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>图片</th>
+                                    <th>标题</th>
+                                    <th>内容</th>
+                                    <th>链接</th>
+                                    <th>排序</th>
+                                    <th>页面</th>
+                                    <th>按钮名字</th>
+                                    <th>状态</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="sliderTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="carouselModal" tabindex="-1" role="dialog" aria-labelledby="carouselModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carouselModalTitle">幻灯片</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="carouselFormDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="carouselImageModal" tabindex="-1" role="dialog"
+        aria-labelledby="carouselImageModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carouselImageModalTitle">幻灯片图片</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="previewImage" style="width: 100%; height: auto" alt="img" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

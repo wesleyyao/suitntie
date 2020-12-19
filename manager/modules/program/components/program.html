@@ -1,0 +1,50 @@
+<form id="programForm" action="" method="post">
+    <div class="row mt-3 mb-3">
+        <div class="col-12">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <i class="far fa-question-circle"></i>
+                <span>在填写相关专业时，请使用<strong>空格</strong>分开每个专业名称</span>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 名称</label>
+            <input type="text" maxlength="128" class="form-control program-field" name="program_name" id="programName" value=""
+                required />
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12">
+            <label>概述</label>
+            <textarea maxlength="2500" class="form-control program-field" name="program_desc" id="programDesc"></textarea>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12">
+            <label>相关专业</label>
+            <textarea maxlength="2500" class="form-control program-field" name="program_related" id="programRelated"></textarea>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select class="form-control" name="program_status" id="programStatus" required>
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 专业类别</label>
+            <select class="form-control program-field" name="program_category_id" id="programCateogryId" required>
+            </select>
+        </div>
+    </div>
+    <input type="hidden" name="program_id" id="programId" value="" />
+    <div class="row">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>

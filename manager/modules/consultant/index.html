@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>管理页面</title>
+    <link rel="icon" href="../../../asset/image/logo/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../../asset/css/datatables.css">
+    <link rel="stylesheet" href="../../asset/css/common.css">
+    <link rel="stylesheet" href="../../../asset/css/main.css">
+
+
+    <script src="../../../asset/js/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../../../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../../asset/js/datatables.js"></script>
+    <script type="module" src="../../../asset/js/common.js"></script>
+    <script type="module" src="../../asset/js/global.js"></script>
+    <script type="module" src="../../asset/js/consultant.js"></script>
+</head>
+
+<body>
+    <div id="navDiv"></div>
+    <div class="container-fluid">
+        <div id="mainDiv" class="pl-3 pr-3 pt-5 pb-5">
+            <div id="message" class="float-message"></div>
+            <div class="content-div">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="pills-consultant-tab" data-toggle="pill" href="#pills-consultant"
+                            role="tab" aria-controls="pills-consultant" aria-selected="true">导师</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-school-tab" data-toggle="pill" href="#pills-school" role="tab"
+                            aria-controls="pills-school" aria-selected="false">学校</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-region-tab" data-toggle="pill" href="#pills-region" role="tab"
+                            aria-controls="pills-region" aria-selected="false">地区</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-consultant" role="tabpanel"
+                        aria-labelledby="pills-consultant-tab">
+                        <div class="row">
+                            <div class="col-10">
+                                <h1>导师列表</h1>
+                            </div>
+                            <div class="col-2 text-right">
+                                <button class="btn btn-primary new-consultant-btn" id="newTutor">
+                                    <i class="fas fa-plus"></i> 添加</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-striped" id="consultantTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>全名</th>
+                                            <th>昵称</th>
+                                            <th>最高学历</th>
+                                            <th>介绍</th>
+                                            <th>头像</th>
+                                            <th>状态</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="consultantTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-school" role="tabpanel" aria-labelledby="pills-school-tab">
+                        <div class="row mt-4">
+                            <div class="col-10">
+                                <h1>学校列表</h1>
+                            </div>
+                            <div class="col-2 text-right">
+                                <button class="btn btn-primary new-consultant-btn" id="newSchool">
+                                    <i class="fas fa-plus"></i> 添加</button>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <table class="table table-striped" id="schoolTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>地区</th>
+                                            <th>状态</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="schoolTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-region" role="tabpanel" aria-labelledby="pills-region-tab">
+                        <div class="row mt-4">
+                            <div class="col-10">
+                                <h1>地区列表</h1>
+                            </div>
+                            <div class="col-2 text-right">
+                                <button class="btn btn-primary new-consultant-btn" id="newRegion">
+                                    <i class="fas fa-plus"></i> 添加</button>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <table class="table table-striped" id="regionTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>排序</th>
+                                            <th>状态</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="regionTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="consultantModal" tabindex="-1" role="dialog" aria-labelledby="consultantModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="consultantModalTitle">导师相关</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="consultantFormsDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

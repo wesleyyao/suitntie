@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>管理页面</title>
+    <link rel="icon" href="../../../asset/image/logo/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../../asset/css/datatables.css">
+    <link rel="stylesheet" href="../../asset/css/common.css">
+    <link rel="stylesheet" href="../../../asset/css/main.css">
+
+
+    <script src="../../../asset/js/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="../../../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../../asset/js/datatables.js"></script>
+    <script type="module" src="../../../asset/js/common.js"></script>
+    <script type="module" src="../../asset/js/global.js"></script>
+    <script type="module" src="../../asset/js/program-details.js"></script>
+</head>
+
+<body>
+    <div id="navDiv"></div>
+    <div class="container-fluid">
+        <div class="row pt-2">
+            <div class="col-6">
+                <a class="btn primBtn" href="./index.html">返回</a>
+            </div>
+        </div>
+        <div id="mainDiv" class="pt-5 pb-5 pl-2 pr-2">
+            <div id="message" class="float-message"></div>
+            <div id="programMain">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="pills-course-tab" data-toggle="pill" href="#pills-course"
+                            role="tab" aria-controls="pills-course" aria-selected="true">专业课程</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-pageContent-tab" data-toggle="pill" href="#pills-pageContent"
+                            role="tab" aria-controls="pills-pageContent" aria-selected="false">页面文字内容</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-feedback-tab" data-toggle="pill" href="#pills-feedback" role="tab"
+                            aria-controls="pills-feedback" aria-selected="false">客户反馈</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-rec-tab" data-toggle="pill" href="#pills-rec" role="tab"
+                            aria-controls="pills-rec" aria-selected="false">自学推荐</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="pills-childProgram-tab" data-toggle="pill" href="#pills-childProgram"
+                            role="tab" aria-controls="pills-childProgram" aria-selected="false">子专业</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-course" role="tabpanel"
+                        aria-labelledby="pills-course-tab">
+                        <div class="row">
+                            <div class="col-10">
+                                <h1>专业课程</h1>
+                            </div>
+                            <div class="col-2 text-right">
+                                <a class="btn btn-primary new-program-details" id="newCourse" href="#/">
+                                    <i class="fas fa-plus"></i> 添加课程</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-striped" id="programCourseTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>介绍</th>
+                                            <th>排序</th>
+                                            <th>状态</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="courseTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-pageContent" role="tabpanel"
+                        aria-labelledby="pills-pageContent-tab">
+                        <div class="row mt-4">
+                            <div class="col-10">
+                                <h1>页面文字内容</h1>
+                            </div>
+                            <div class="col-2 text-right">
+                                <a class="btn btn-primary new-program-details" id="newInfo" href="#/">
+                                    <i class="fas fa-plus"></i> 添加段落</a>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <table class="table table-striped" id="programInfoTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>内容</th>
+                                            <th>类型</th>
+                                            <th>排序</th>
+                                            <th>状态</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="programInfoTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-feedback" role="tabpanel" aria-labelledby="pills-feedback-tab">
+                        <div class="row mt-4">
+                            <div class="col-10">
+                                <h1>客户反馈</h1>
+                            </div>
+                            <div class="col-2 text-right">
+                                <a class="btn btn-primary new-program-details" id="newTestimonial" href="#/">
+                                    <i class="fas fa-plus"></i> 添加反馈</a>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <table class="table table-striped" id="programTestimonialTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>内容</th>
+                                            <th>学校</th>
+                                            <th>专业</th>
+                                            <th>年级</th>
+                                            <th>状态</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="testimonialTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-rec" role="tabpanel" aria-labelledby="pills-rec-tab">
+                        <div class="row mt-4">
+                            <div class="col-10">
+                                <h1>自学推荐</h1>
+                            </div>
+                            <div class="col-2 text-right">
+                                <a class="btn btn-primary new-program-details" id="newRecommend" href="#/">
+                                    <i class="fas fa-plus"></i> 添加推荐</a>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <table class="table table-striped" id="programRecommendTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>图片</th>
+                                            <th>相关</th>
+                                            <th>排序</th>
+                                            <th>状态</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recommendTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="recommendContentDiv">
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <a class="btn btn-primary new-program-details" id="newRecommendContent" href="#/">添加推荐内容</a>
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-12">
+                                    <h5>相关内容</h5>
+                                    <table class="table table-striped" id="programRecommendContentTable">
+                                        <thead>
+                                            <tr>
+                                                <th>标题</th>
+                                                <th>有链接？</th>
+                                                <th>图片</th>
+                                                <th>链接</th>
+                                                <th>作者</th>
+                                                <th>豆瓣</th>
+                                                <th>状态</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recommendationContentTableBody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-childProgram" role="tabpanel"
+                        aria-labelledby="pills-childProgram-tab">
+                        <div class="row mt-4">
+                            <div class="col-10">
+                                <h1>子专业</h1>
+                            </div>
+                            <div class="col-2 text-right">
+                                <a class="btn btn-primary new-program-details" id="newChild" href="#/">
+                                    <i class="fas fa-plus"></i> 添加子专业</a>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <table class="table table-striped" id="programChildTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>内容</th>
+                                            <th>排序</th>
+                                            <th>状态</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="childProgramTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="programDetailsModal" tabindex="-1" role="dialog" aria-labelledby="programDetailsModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="programDetailsModalTitle">专业详情</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="programDetailsFormsDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

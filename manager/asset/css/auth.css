@@ -1,0 +1,21 @@
+body {
+    background: url(../../../asset/image/slider/home-slider-1.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login-div{
+    margin: auto;
+    position: absolute; /*Can also be `fixed`*/
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+    background: #fff;
+}

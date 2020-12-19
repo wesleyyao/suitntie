@@ -25,8 +25,13 @@ $(document).ready(function () {
     fetchAccount();
 
     $('#screenshotModeBtn').click(function () {
-        $('#screenshotDiv').show();
-        $('#testResultShareModal').modal('show');
+        $('html, body').animate({
+            scrollTop: $("#testResultPage").offset().top,
+        }, 300, function(){
+            $('#screenshotDiv').show();
+            $('#userResultMsg').html('');
+            $('#testResultShareModal').modal('show');
+        });
     });
 
     $('#testResultShareModal').on('shown.bs.modal', function () {
@@ -36,18 +41,17 @@ $(document).ready(function () {
                 <span class="sr-only">Loading...</span>
             </div>
             <span class="pl-2" style="font-size: 1.2rem;"><strong>正在生成测试结果分享图...</strong></span>
-        </div>`
-        );
+        </div>`);
+
         $('#userResultMsg').show();
         html2canvas(document.querySelector("#screenshotDiv")).then(canvas => {
             $('#screenshotDiv').hide();
             const dataUrl = canvas.toDataURL('image/png', 0.6);
             $('#finalScreenshot').attr('src', dataUrl);
             $('#finalScreenshot').show();
-            $('#userResultMsg').html(`
+            $('#userResultMsg').html(`<div style="font-size: 1.2rem;">
             <i class="fas fa-check-circle"></i>
-            <span class="pl-1" style="font-size: 1.2rem;"><strong>分享图已生成，请长按保存图片</strong></span>
-            `);
+            <span class="pl-1"><strong>分享图已生成，请长按保存图片</strong></span></div>`);
             $('#userResultMsg').css({ 'color': '#28a745' });
         });
     })

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>管理页面</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="./asset/css/datatables.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="./asset/css/common.css">
+    <link rel="stylesheet" href="./asset/css/dashboard.css">
+
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script type="module" src="./asset/js/datatables.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="../asset/js/moment.js"></script>
+    <script type="module" src="./asset/js/global.js"></script>
+    <script type="module" src="./asset/js/dashboard.js"></script>
+</head>
+
+<body>
+    <div id="navDiv"></div>
+    <div class="container-fluid">
+        <div id="mainDiv" class="pl-2 pr-2 pt-5 pb-5">
+            <div id="message" class="float-message"></div>
+            <div class="row">
+                <div class="col-12">
+                    <span>测试总次数：</span><span style="font-size: 2rem" class="pr-2 text-primary" id="totalResults"></span>
+                    <span>测试过的用户比例：</span><span style="font-size: 2rem" class="pr-2" id="testRate"></span>
+                    <span>上周测试数：</span><span style="font-size: 2rem" class="pr-2 text-primary" id="lastWeekTest"></span>
+                    <span>上月测试数：</span><span style="font-size: 2rem" class="pr-2 text-primary" id="lastMonthTest"></span>
+                    <span>用户总数：</span><span style="font-size: 2rem" class="pr-2 text-primary" id="totalUser"></span>
+                    <a class="btn btn-warning" href="./api/export-excel.php?target=customers">导出Excel</a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-12">
+                    <table id="userTable" class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th></th>
+                                <th>昵称</th>
+                                <th>邮箱</th>
+                                <th>电话</th>
+                                <th>性别</th>
+                                <th>名字</th>
+                                <th>年龄</th>
+                                <th>是否留学</th>
+                                <th>如何知道我们</th>
+                                <th>城市</th>
+                                <th>省份</th>
+                                <th>国家</th>
+                                <th>IP</th>
+                                <th>时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="testResultModal" tabindex="-1" role="dialog" aria-labelledby="testResultTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testResultTitle">测试历史</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="historyDiv">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="testResultDetailsModal" tabindex="-1" role="dialog" aria-labelledby="testResultDetailsModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testResultDetailsModalTitle">测试结果</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="historyDetailsDiv">
+                        <div class="row">
+                            <div class="col-12">
+                                <div style="min-height: 200px; background: #F19F4D">
+                                    <div class="container text-center result-title-cell" style="z-index: 2">
+                                        <h1 class="display-4" id="resultTitle"></h1>
+                                        <h2 id="resultDescription"></h2>
+                                        <div class="lead" id="resultTags"></div>
+                                    </div>
+                                    <!-- <img id="characterImg" src="" /> -->
+                                </div>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="resultCharts">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <canvas id="myChart0" height="300"></canvas>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <canvas id="myChart1" height="300"></canvas>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <canvas id="myChart2" height="300"></canvas>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <canvas id="myChart3" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>维度解释</h3>
+                                <div id="dimensionAnalytics">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>基本分析</h3>
+                                <div id="basicAnalytics">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>你的优势</h3>
+                                <div id="advantageList">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>你的盲点</h3>
+                                <div id="disadvantageList">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>专业和职业分析</h3>
+                                <div id="programAndJobAnalytics">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="userIpModal" tabindex="-1" role="dialog" aria-labelledby="userIpModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userIpModalTitle">地理信息</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="locationDiv">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>国家:</td>
+                                    <td id="userCountry"></td>
+                                    <td>省份:</td>
+                                    <td id="userProvince"></td>
+                                    <td>城市:</td>
+                                    <td id="userCity"></td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

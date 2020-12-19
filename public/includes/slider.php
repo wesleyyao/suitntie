@@ -14,6 +14,20 @@
             return $data;
         }
 
+        public function fetch_all_slider(){
+            $data = array();
+            $query = "SELECT * FROM sliders ORDER BY item_index";
+            $sql = $this->conn->prepare($query);
+            $sql->execute();
+            $result = $sql->get_result();
+            if($result){
+                while($row = $result->fetch_assoc()){
+                    array_push($data, $row);
+                }
+            }
+            return $data;
+        }
+
         public function fetch_slider_by_id($id){
             $query = "SELECT `id`, `image`, `title`, `content`, `link`, `button`, `item_index`, `type`, `status` FROM sliders WHERE id = ?";
             $sql = $this->conn->prepare($query);

@@ -1,0 +1,66 @@
+<form id="sliderForm" action="" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12">
+            <h1>走马灯</h1>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 标题</label>
+            <input type="text" maxlength="256" class="form-control slider-field" name="slider_title" id="sliderTitle"
+                value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 图片</label>
+            <div class="custom-file mb-3">
+                <input type="file" class="form-control" name="slider_img" />
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 内容</label>
+            <input type="text" maxlength="512" class="form-control slider-field" name="slider_content"
+                id="sliderContent" value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 链接</label>
+            <input type="text" maxlength="128" class="form-control slider-field" name="slider_link" id="sliderLink"
+                value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 按钮名字</label>
+            <input type="text" maxlength="64" class="form-control slider-field" id="sliderButton" name="slider_button" value="" />
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 页面</label>
+            <select name="slider_type" class="form-control" id="sliderType" value="">
+                <option value="home">首页</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 排序</label>
+            <input type="number" maxlength="100" class="form-control" value="" id="sliderIndex" name="slider_index" />
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select name="slider_status" class="form-control" id="sliderStatus" value="">
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+    </div>
+    <input type="hidden" id="currentSliderImg" name="current_img" value="" />
+    <div class="row mt-3">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>

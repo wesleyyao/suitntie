@@ -1,0 +1,52 @@
+<form id="consultantProgramForm" class="consultant-forms" action="" method="post">
+    <div class="row">
+        <div class="col-12">
+            <h1>地区</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 pb-2">
+            <label><span class="text-danger">*</span> 专业</label>
+            <select name="program_id" class="form-control large-select" style="width: 100%" id="programId"
+                value="">
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 pb-2">
+            <label><span class="text-danger">*</span> 学校</label>
+            <select name="school_id" class="form-control large-select" style="width: 100%" id="schoolId"
+                value="">
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label>奖学金</label>
+            <input name="scholarship_name" class="form-control program-input" id="scholarship" value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 学历</label>
+            <select name="education_name" class="form-control program-input" id="education" value="">
+                <option value="本科">本科</option>
+                <option value="研究生">研究生</option>
+                <option value="博士">博士</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select name="program_status" class="form-control program-input" id="status" value="">
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>

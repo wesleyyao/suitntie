@@ -10,28 +10,28 @@
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["to"])){
         $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "$global_prefix/uploads/";
         $to = $_GET["to"];
-        if($to == "addNewCategory"){
-            $name = $_POST["new_category_name"];
-            $status = $_POST["new_category_status"];
-            $index = $_POST["new_category_index"];
-            $imageUrl = "/uploads/" . basename($_FILES["newCategoryImg"]["name"]);
-            $result["file"] = fileUpload($target_dir, "image", $_FILES["newCategoryImg"]);
+        if($to == "newCategory"){
+            $name = $_POST["category_name"];
+            $status = $_POST["category_status"];
+            $index = $_POST["category_index"];
+            $imageUrl = "/uploads/" . basename($_FILES["category_img"]["name"]);
+            $result["file"] = fileUpload($target_dir, "image", $_FILES["category_img"]);
             if($result["file"]["status"] != "failed"){
                 $result["is_saved"] = $program->save_new_program_category($name, $imageUrl, $index, $status);
             }
             echo json_encode($result);
         }
         else if($to == "updateCategory"){
-            $name = $_POST["edit_category_name"];
-            $status = $_POST["edit_category_status"];
-            $index = $_POST["edit_category_index"];
-            $id = $_POST["edit_category_id"];
-            if(!$_FILES["editCategoryImg"]["name"]){
+            $name = $_POST["category_name"];
+            $status = $_POST["category_status"];
+            $index = $_POST["category_index"];
+            $id = $_POST["category_id"];
+            if(!$_FILES["category_img"]["name"]){
                 $result["is_saved"] = $program->update_program_category($name, "", $index, $status, $id);
             }
             else{
-                $imageUrl = "/uploads/" . basename($_FILES["editCategoryImg"]["name"]);
-                $file = $target_dir . basename($_FILES["editCategoryImg"]["name"]);
+                $imageUrl = "/uploads/" . basename($_FILES["category_img"]["name"]);
+                $file = $target_dir . basename($_FILES["category_img"]["name"]);
                 if(file_exists($file)){
                     unlink($file);
                 }
@@ -52,7 +52,7 @@
             $is_updated = $program->update_program($name, $desc, $status, $related, $pc_id, $id);
             echo json_encode($is_updated);
         }
-        else if($to == "addNewProgram"){
+        else if($to == "newProgram"){
             $name = $_POST["program_name"];
             $desc = !empty($_POST["program_desc"]) ? $_POST["program_desc"] : "";
             $related = !empty($_POST["program_related"]) ? $_POST["program_related"] : "";

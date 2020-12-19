@@ -120,8 +120,7 @@ export function fetchAccount() {
 }
 
 export function renderUserInNav(isLogin, avatar) {
-    //const redirectTo = location.search ? location.search.replace('?redirect=', '') : `${prefix}/index.html`;
-    const redirectTo = window.location.href;
+    const redirectTo = location.search ? location.search.replace('?redirect=', '') : window.location.pathname;
     const noSignIn = `<a style="display: inline; padding: 0 3px;" href="${prefix}/auth/login.html?redirect=${redirectTo}">登录</a> | <a style="display: inline; padding: 0 3px;" href="${prefix}/auth/signup.html?redirect=${redirectTo}">注册</a>`;
     const signedIn = `<div class="dropdown">
         <a class="dropdown-toggle" href="#" role="button" id="userLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

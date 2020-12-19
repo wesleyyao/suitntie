@@ -1,6 +1,6 @@
-import { generateMessage, prefix, fetchAccountData, showFloatMessage, useMessage, renderUserInNav, hideFloatMessage, currentPage, loadingMessage } from './common.js';
+import { generateMessage, prefix, fetchAccountData, showFloatMessage, useMessage, renderUserInNav, hideFloatMessage, currentPage, loadingMessage, windowSize } from './common.js';
 
-$(document).ready(function () {
+$(document).ready(function() {
     let second = 0;
     let minute = 0;
     const title = '适途16型人格测试';
@@ -41,8 +41,6 @@ $(document).ready(function () {
             </div>
         </div>`;
 
-    const notCompletedMessage = generateMessage('warning', '请先回答完本页的问题。');
-
     $('#testOrView').hide();
     $('.result-div').hide();
     $('#finishTestForm').hide();
@@ -50,7 +48,7 @@ $(document).ready(function () {
     $('#mainContentDiv').hide();
     showFloatMessage('#testMsg', loadingTest, 0);
 
-    fetchAccountData().then(function (data) {
+    fetchAccountData().then(function(data) {
         let errorMessage = '';
         if (!data) {
             errorMessage = useMessage('warning', '服务器连接失败，请刷新后重试。');
@@ -61,9 +59,11 @@ $(document).ready(function () {
         const user = result.user ? result.user : undefined;
         renderUserInNav(user ? true : false, user ? user.headImg : '');
         if (result === 'no login') {
-            errorMessage = useMessage('warning', `未找到登录用户，请先<a href="../auth/login.html?redirect=${prefix}/tests/dimension-test.html">登录</a>`);
-            showFloatMessage('#testMsg', errorMessage, 0);
+            window.location.href = `${prefix}/auth/login.html?redirect=${prefix}/tests/dimension-test.html`;
             return;
+            // errorMessage = useMessage('warning', `未找到登录用户，请先<a href="../auth/login.html?redirect=${prefix}/tests/dimension-test.html">登录</a>`);
+            // showFloatMessage('#testMsg', errorMessage, 0);
+            // return;
         }
         if (user && !user.phone) {
             errorMessage = useMessage('warning', '在开始测试前，请您点击<a href="#/" data-toggle="modal" data-target="#userProfileCompleteModal">此处</a>完善联系方式。');
@@ -74,30 +74,30 @@ $(document).ready(function () {
         $('#testOrView').fadeIn();
     });
 
-    $('#startTesting').click(function () {
+    $('#startTesting').click(function() {
         $('#mainContentDiv').show();
         fetchTestDetails();
         scrollToTestTop();
     });
 
 
-    $(window).scroll(function (event) {
+    $(window).scroll(function(event) {
         let scroll = $(window).scrollTop();
         if (scroll >= 300) {
             $('#clockAndProgressBarDiv').addClass('stick-at-top');
-        }
-        else {
+        } else {
             $('#clockAndProgressBarDiv').removeClass('stick-at-top');
         }
     });
 
     function fetchTestDetails() {
+        $('#pageChanger').hide();
         $('#mainQuestionDiv').html(loadingTest);
-        $.get(`${prefix}/public/api/test.php?title=${title}`).done(function (data) {
+        $.get(`${prefix}/public/api/test.php?title=${title}`).done(function(data) {
             if (data) {
                 let result = JSON.parse(data);
                 const { dimension, test, user } = result;
-                dimensions = dimension ? dimension.dimensions.map(item => ({ ...item, times: 0 })) : [];
+                dimensions = dimension ? dimension.dimensions.map(item => ({...item, times: 0 })) : [];
                 results = dimension ? dimension.dimension_combinations : [];
                 loginUser = user ? user : undefined;
                 questions = test ? test.types : [];
@@ -106,7 +106,7 @@ $(document).ready(function () {
                 questionsPerPage = questions[questionTypesIndex].questions.length >= questions[questionTypesIndex].questions_per_page ?
                     questions[questionTypesIndex].questions_per_page : questions[questionTypesIndex].questions.length;
                 actualQuestionsPerPage = questionsPerPage;
-                setupClock = setInterval(function () {
+                setupClock = setInterval(function() {
                     second++;
                     if (second == 60) {
                         second = 0;
@@ -130,10 +130,11 @@ $(document).ready(function () {
             $('#questionTypeTitle').html(questions[questionTypesIndex].name);
             $('#mainQuestionDiv').html(firstPageQuestions);
             $('#testOrView').hide();
+            $('#pageChanger').show();
         });
     }
 
-    $('#nextPage').click(function () {
+    $('#nextPage').click(function() {
         let content = '';
         let numberOfQuestions = 0;
         if (!questions[questionTypesIndex]) {
@@ -146,7 +147,7 @@ $(document).ready(function () {
             return;
         }
 
-        questionsAndAnswersOnCurrentPage.forEach(function (item) {
+        questionsAndAnswersOnCurrentPage.forEach(function(item) {
             let foundDimension = dimensions.find(dimension => dimension.id === parseInt(item.answerId));
             foundDimension.times++;
         });
@@ -160,12 +161,11 @@ $(document).ready(function () {
             numberOfQuestions = result.numberOfQuestions;
             renderedQuestions += result.numberOfQuestions;
             page++;
-        }
-        else {
+        } else {
             questionTypesIndex++;
             page = 0;
             if (questions[questionTypesIndex] && questions[questionTypesIndex].questions && questions[questionTypesIndex].questions.length > 0) {
-                questionsPerPage = questions[questionTypesIndex].questions_per_page;
+                questionsPerPage = windowSize.width > 768 ? questions[questionTypesIndex].questions_per_page : 8;
                 let result = renderQuestionAndAnswer((page * questionsPerPage), (page * questionsPerPage + questionsPerPage), questions[questionTypesIndex], numberOfQuestions);
                 content = questionTypesIndex === 1 ? `<div class="row">
                 <div class="col-lg-2 col-md-1 col-sm-0 col-0"></div>
@@ -180,20 +180,18 @@ $(document).ready(function () {
         actualQuestionsPerPage = numberOfQuestions;
 
         if (numberOfAnswers + actualQuestionsPerPage === totalQuestions) {
-            if (loginUser && loginUser.full_name && loginUser.age) {
+            if (loginUser && loginUser.full_name && loginUser.age && loginUser.is_study_aboard && loginUser.how_know) {
                 $('#nextPage').text('查看结果');
-            }
-            else {
+            } else {
                 $('#nextPage').text('下一步');
             }
         }
 
         if (numberOfAnswers === totalQuestions) {
-            if (loginUser && loginUser.full_name && loginUser.age) {
+            if (loginUser && loginUser.full_name && loginUser.age && loginUser.is_study_aboard && loginUser.how_know) {
                 submitTest(loginUser.full_name, loginUser.age, loginUser.is_study_aboard, loginUser.how_know);
-            }
-            else {
-                $('#mainContentDiv').fadeOut(function () {
+            } else {
+                $('#mainContentDiv').fadeOut(function() {
                     $('#finishTestForm').fadeIn();
                 });
             }
@@ -204,7 +202,7 @@ $(document).ready(function () {
         scrollToTestTop();
     });
 
-    $('#submitTestFormBtn').click(function () {
+    $('#submitTestFormBtn').click(function() {
         let errorMessage = '';
         if (numberOfAnswers !== totalQuestions) {
             errorMessage = useMessage('warning', '抱歉，测试过程出现了问题，请刷新页面后重试。');
@@ -214,7 +212,7 @@ $(document).ready(function () {
         const testUserName = $('#testUserName').val().replace(/\s/g, "");
         const testUserAge = $('#testUserAge').val();
         let purpose = '';
-        $('input[name="testUserStudyAboard"]').each(function () {
+        $('input[name="testUserStudyAboard"]').each(function() {
             if ($(this).prop('checked')) {
                 purpose = $(this).val();
             }
@@ -225,12 +223,18 @@ $(document).ready(function () {
             showFloatMessage('#testMsg', errorMessage, 3000);
             return;
         }
+        renderLoadingButton('submitTestFormBtn');
         submitTest(testUserName, testUserAge, purpose, checked);
     });
 
+    function renderLoadingButton(id) {
+        $('#' + id).prop('disabled', true);
+        $('#' + id).html(`<span class="spinner-border spinner-border-sm" style="width: 1.3rem; height: 1.3rem; vertical-align: top;" role="status" aria-hidden="true"></span> 正在提交...`);
+    }
+
     function collectCheckBoxValues(target) {
         let checked = '';
-        $('.' + target).each(function () {
+        $('.' + target).each(function() {
             const isCheck = $(this).prop('checked');
             if (isCheck) {
                 checked += $(this).val() + ' ';
@@ -239,15 +243,7 @@ $(document).ready(function () {
         return checked;
     }
 
-    function renderAnswerWithoutQuestion(numberOfQuestions) {
-        let result = renderQuestionAndAnswer((page * questionsPerPage), (page * questionsPerPage + questionsPerPage), questions[questionTypesIndex], numberOfQuestions);
-        return `<div class="row">
-        <div class="col-lg-2 col-md-1 col-sm-0 col-0"></div>
-        <div class="col-lg-8 col-sm-10 col-sm-12 col-12">
-            <div class="row">` + result.content + `</div></div></div>`;
-    }
-
-    $(document).on('click', '.answer-div', function () {
+    $(document).on('click', '.answer-div', function() {
         const questionId = $(this).find('input').attr('name').split('_')[3];
         const answerId = $(this).find('input').val();
         if (!questionsAndAnswersOnCurrentPage.find(item => item.questionId === questionId)) {
@@ -256,10 +252,9 @@ $(document).ready(function () {
             $('#progress').attr('aria-valuenow', numberOfAnswers);
             $('#progress').css('width', (parseInt(numberOfAnswers / totalQuestions * 100) + '%'));
             $('#percentage').html(parseInt(numberOfAnswers / totalQuestions * 100) + '%');
-        }
-        else {
+        } else {
             let position = -1;
-            questionsAndAnswersOnCurrentPage.forEach(function (item, index) {
+            questionsAndAnswersOnCurrentPage.forEach(function(item, index) {
                 if (item.questionId === questionId) {
                     position = index;
                 }
@@ -273,11 +268,12 @@ $(document).ready(function () {
     });
 
     function submitTest(testUserName, testUserAge, purpose, knownBy) {
+        $('#finishTestForm').hide();
         let groups = dimensions.map((item) => item.compare_group);
         groups = groups.filter((item, index) => groups.indexOf(item) === index);
         let resultCode = '';
         let resultDimensions = [];
-        groups.forEach(function (group) {
+        groups.forEach(function(group) {
             let compareDimensions = dimensions.filter((item) => item.compare_group === group);
             let sortedDimensions = compareDimensions.sort((a, b) => b.times - a.times);
             resultCode += sortedDimensions[0].code;
@@ -294,22 +290,20 @@ $(document).ready(function () {
         $('#testId').val(testInfo ? testInfo.id : 0);
         $('#resultCodes').val(resultCode);
         $('#resultTimes').val(resultDimensions.map(item => item.times).toString());
-        dimensions.forEach(function (item) {
+        dimensions.forEach(function(item) {
             formData['dimension_' + item.id] = item.times;
         });
 
         $('#clockAndProgressBarDiv').hide();
         $('#mainContentDiv').html(proceeding);
-        $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function (data) {
+        $.post(`${prefix}/public/api/proceed-result.php`, formData).done(function(data) {
             const result = JSON.parse(data);
             let invalidFormMessage = '';
             if (result == 'success') {
                 window.location.replace(`${prefix}/tests/dimension-test-result.html`);
-            }
-            else if (result == 'no login') {
+            } else if (result == 'no login') {
                 window.location.replace(`${prefix}/tests/dimension-test`);
-            }
-            else if (result == 'finished request') {
+            } else if (result == 'finished request') {
                 invalidFormMessage = `<div class="jumbotron jumbotron-fluid">
                     <div class="container text-center">
                       <h1 class="display-4 text-danger"> 
@@ -317,8 +311,7 @@ $(document).ready(function () {
                      你的测试结果已经被提交，请移步用户中心<a href="${prefix}/account/index.html?view=history">用户中心</a>查看记录。</h1>
                     </div>
                   </div>`;
-            }
-            else {
+            } else {
                 invalidFormMessage = `<div class="jumbotron jumbotron-fluid">
                     <div class="container text-center">
                       <h1 class="display-4 text-danger"> 
@@ -336,7 +329,7 @@ $(document).ready(function () {
         for (let i = start; i < end; i++) {
             if (data.questions[i]) {
                 if (!data.questions[i].subject) {
-                    content += `<div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-3">`;
+                    content += `<div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-3"><div class="no-title-question-cell">`;
                     for (let j = 0; j < data.questions[i].answers.length; j++) {
                         content +=
                             `<label class="answer-div" style="padding-bottom: 5px">                    
@@ -345,9 +338,8 @@ $(document).ready(function () {
                                     <span class="answer-text">${data.questions[i].answers[j].subject}</span>
                                 </label>`;
                     }
-                    content += `</div>`;
-                }
-                else {
+                    content += `</div></div>`;
+                } else {
                     content +=
                         `<div class="row">
                         <div class="offset-lg-4 col-lg-4 offset-md-2 col-md-8 col-sm-12">
@@ -380,7 +372,7 @@ $(document).ready(function () {
         }, 1000);
     }
 
-    $('#sendPhoneVerifyCodeBtn').click(function () {
+    $('#sendPhoneVerifyCodeBtn').click(function() {
         const from = $(this).attr('id');
         const buttonId = '#' + from;
         const phone = $('#signupPhone').val().replace(/\s/g, '');
@@ -391,12 +383,11 @@ $(document).ready(function () {
 
         $(buttonId).prop('disabled', true);
         let seconds = 45;
-        let cooling = setInterval(function () {
+        let cooling = setInterval(function() {
             if (seconds > 0) {
                 seconds--;
                 $(buttonId).text(`${seconds}秒后重新发送`);
-            }
-            else {
+            } else {
                 $(buttonId).prop('disabled', false);
                 $(buttonId).text('获取验证码');
                 clearInterval(cooling);
@@ -406,15 +397,15 @@ $(document).ready(function () {
         code = Math.floor(1000 + Math.random() * 9000);
         const currentTime = new Date();
         expireTime = new Date(currentTime.getTime() + 1 * 60000);
-        $.post(`${prefix}/public/api/phone-verify-local.php`, { phone, code }).done(function (data) {
+        $.post(`${prefix}/public/api/phone-verify-local.php`, { phone, code }).done(function(data) {
             if (data) {
                 //const result = { SendStatusSet: [{ Code: 'Ok', PhoneNumber: '13141036635' }] };
                 const result = JSON.parse(data);
                 const sendStatus =
                     result &&
-                        result.SendStatusSet &&
-                        Array.isArray(result.SendStatusSet) &&
-                        result.SendStatusSet.length > 0 ? result.SendStatusSet[0] : undefined;
+                    result.SendStatusSet &&
+                    Array.isArray(result.SendStatusSet) &&
+                    result.SendStatusSet.length > 0 ? result.SendStatusSet[0] : undefined;
                 if (!sendStatus) {
                     $('#profileCompleteMessage').html(generateMessage('warning', '连接出现异常，请刷新后重试。'));
                     return;
@@ -423,15 +414,14 @@ $(document).ready(function () {
                     $('#profileCompleteMessage').html(generateMessage('success', '验证码已经发送。'));
                     return;
                 }
-            }
-            else {
+            } else {
                 $('#profileCompleteMessage').html(generateMessage('danger', '连接出现异常，请刷新后重试。'));
                 return;
             }
         });
     });
 
-    $('#userProfileCompleteForm').submit(function (e) {
+    $('#userProfileCompleteForm').submit(function(e) {
         e.preventDefault();
         const phone = $('#signupPhone').val().replace(/\s/g, '');
         const verifyCode = $('#signupVerifyCode').val().replace(/\s/g, '');
@@ -446,17 +436,16 @@ $(document).ready(function () {
             return;
         }
         $('#profileCompleteMessage').html(loadingMessage);
-        $.post(`${prefix}/public/auth/user-signup.php`, { phone, by: 'phone' }).done(function (data) {
+        $.post(`${prefix}/public/auth/user-signup.php`, { phone, by: 'phone' }).done(function(data) {
             if (data) {
                 const result = JSON.parse(data);
                 $('#profileCompleteMessage').html(generateMessage(result.type, result.content));
                 if (result.type === 'success') {
-                    setTimeout(function () {
+                    setTimeout(function() {
                         window.location.href = currentPage;
                     }, 2000);
                 }
-            }
-            else {
+            } else {
                 $('#profileCompleteMessage').html(generateMessage('danger', '请求未被处理，请重试。'));
                 return;
             }

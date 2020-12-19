@@ -197,6 +197,13 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
+.no-title-question-cell{
+  width: 94%;
+  margin: 0 3%;
+  background-color: #fffaf6;
+  padding: 1px 5px 1px 15px;
+}
+
 @media only screen and (max-width: 1080px) {
   #testOrView {
     width: 60%;
@@ -219,6 +226,9 @@
     height: 200px;
     padding-top: 80px;
   }
+  #clockAndProgressBarDiv {
+    height: 90px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -229,9 +239,6 @@
 }
 
 @media only screen and (max-width: 575px) {
-  #clockAndProgressBarDiv {
-    height: 120px;
-  }
   .tri-block-content {
     padding: 10px;
   }

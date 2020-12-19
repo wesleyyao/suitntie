@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>管理页面</title>
+    <link rel="icon" href="../../../asset/image/logo/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../../asset/css/datatables.css">
+    <link rel="stylesheet" href="../../asset/css/common.css">
+    <link rel="stylesheet" href="../../../asset/css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    
+    <script src="../../../asset/js/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="../../../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../../asset/js/datatables.js"></script>
+    <script type="module" src="../../../asset/js/common.js"></script>
+    <script type="module" src="../../asset/js/global.js"></script>
+    <script type="module" src="../../asset/js/consultant-program.js"></script>
+</head>
+
+<body>
+    <div id="navDiv"></div>
+    <div class="container-fluid">
+        <div id="mainDiv" class="pl-3 pr-3 pt-5 pb-5">
+            <div id="message" class="float-message"></div>
+            <div class="content-div">
+                <div class="row">
+                    <div class="col-10">
+                        <h1 id="tutorProgramTitle">导师专业</h1>
+                    </div>
+                    <div class="col-2 text-right">
+                        <button class="btn btn-primary new-consultant-btn" id="newProgram">
+                            <i class="fas fa-plus"></i> 添加</button>
+                            <a class="btn btn-info" href="./index.html">返回</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped" id="consultantProgramTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>专业</th>
+                                    <th>学历</th>
+                                    <th>学校</th>
+                                    <th>奖学金</th>
+                                    <th>状态</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="consultantProgramTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="consultantProgramModal" tabindex="-1" role="dialog" aria-labelledby="consultantProgramModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="consultantProgramModalTitle">专业</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="consultantProgramFormDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+<form id="programRecommendForm" class="program-details-forms" action="" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12">
+            <h1>自学推荐</h1>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <ul>
+                    <li>标题会以分类的形式出现在页面上。</li>
+                    <li>上传的图片会显示在标题左侧，成为其图标。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 标题</label>
+            <select class="form-control" id="recTitle" name="rec_title" value="">
+                <option value="书籍">书籍</option>
+                <option value="公众号">公众号</option>
+                <option value="视频">视频</option>
+            </select>
+        </div>
+    </div>
+    <!-- <div class="row mt-3">
+        <div class="col-12">
+            <label>图片</label>
+            <div class="custom-file mb-3">
+                <input type="file" class="form-control" id="recImage" name="rec_image" />
+            </div>
+        </div>
+    </div> -->
+    <div class="row mt-3">
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 排序</label>
+            <input type="number" max="999" min="1" id="recIndex" class="form-control program-details-input"
+                name="rec_index" value="" />
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select name="rec_status" class="form-control" id="recStatus" value="">
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>
+
+<form id="programRecommendContentForm" class="program-details-forms" action="" enctype="multipart/form-data"
+    method="post">
+    <div class="row">
+        <div class="col-12">
+            <h1>自学推荐相关内容</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 标题</label>
+            <input type="text" maxlength="128" class="form-control program-details-input" value="" name="content_title"
+                id="contentTitle" />
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12">
+            <label>图标</label>
+            <div class="custom-file mb-3">
+                <input type="file" class="form-control program-details-input" name="content_image" id="contentImage" />
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select name="content_status" id="contentStatus" class="form-control" value="">
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 是否有链接？</label>
+            <select name="content_has_link" id="contentHasLink" class="form-control" value="">
+                <option value="yes">有</option>
+                <option value="no">无</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label>链接</label>
+            <input type="text" maxlength="128" class="form-control program-details-input" value="" name="content_url"
+                id="contentUrl" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-6 col-sm-12">
+            <label>作者</label>
+            <input type="text" maxlength="128" class="form-control program-details-input" value="" name="content_author"
+                id="contentAuthor" />
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <label>豆瓣</label>
+            <input type="text" maxlength="24" class="form-control program-details-input" value="" name="content_douban"
+                id="contentDouban" />
+        </div>
+    </div>
+    <input type="hidden" maxlength="256" class="form-control program-details-input" value="" name="content_img_url"
+        id="currentContentImgUrl" />
+    <div class="row mt-3">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>
+
+<form id="programCourseForm" class="program-details-forms" action="" method="post">
+    <div class="row">
+        <div class="col-12">
+            <h1>专业课程</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 名称</label>
+            <input type="text" maxlength="128" id="courseName" name="course_name"
+                class="form-control program-details-input" value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 内容</label>
+            <textarea type="text" maxlength="5000" id="courseContext" class="form-control program-details-input"
+                rows="4" name="course_content">
+            </textarea>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 排序</label>
+            <input type="number" maxlength="100" id="courseIndex" class="form-control program-details-input" value=""
+                name="course_index" />
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select name="course_status" id="courseStatus" class="form-control" value="">
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>
+
+<!-- Program page content -->
+<form id="programInfoForm" class="program-details-forms" action="" method="post">
+    <div class="row">
+        <div class="col-12">
+            <h1>专业页面内容</h1>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 内容</label>
+            <textarea type="text" id="infoContent" maxlength="8000" class="form-control program-details-input" rows="4"
+                name="info_content">
+            </textarea>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-4">
+            <label><span class="text-danger">*</span> 类别</label>
+            <select name="info_type" id="infoType" class="form-control" value="">
+                <option value="brief">专业简介</option>
+                <option value="suitable">你适合学吗</option>
+                <option value="ready">你准备好了吗</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <label><span class="text-danger">*</span> 排序</label>
+            <input type="number" maxlength="100" class="form-control program-details-input" id="infoIndex" value=""
+                name="info_index" />
+        </div>
+        <div class="col-4">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select name="info_status" class="form-control" id="infoStatus" value="">
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>
+
+<!-- Program feedback -->
+<form id="programTestimonialForm" class="program-details-forms" action="" method="post">
+    <div class="row">
+        <div class="col-12">
+            <h1>客户反馈</h1>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 姓名</label>
+            <input type="text" maxlength="128" class="form-control program-details-input" id="testimonialName"
+                name="testimonial_name" value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 内容</label>
+            <textarea type="text" maxlength="1500" id="testimonialContent" class="form-control program-details-input"
+                rows="4" name="testimonial_content"></textarea>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 学校</label>
+            <input type="text" maxlength="256" id="testimonialSchool" class="form-control program-details-input"
+                name="testimonial_school" value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 专业</label>
+            <input type="text" maxlength="128" id="testimonialProgram" class="form-control program-details-input"
+                name="testimonial_program" value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <label><span class="text-danger">*</span> 年级</label>
+            <input type="text" maxlength="64" id="testimonialGrade" class="form-control program-details-input"
+                name="testimonial_grade" value="" />
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select name="testimonial_status" id="testimonialStatus" class="form-control" value="">
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>
+
+<!--Child program-->
+<form id="programChildForm" class="program-details-forms" action="" method="post">
+    <div class="row">
+        <div class="col-12">
+            <h1>子专业</h1>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 名称</label>
+            <input type="text" maxlength="128" class="form-control program-details-input" name="child_title"
+                id="childTitle" value="" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <label><span class="text-danger">*</span> 内容</label>
+            <textarea type="text" maxlength="5000" class="form-control program-details-input" rows="4"
+                name="child_content" id="childContent"></textarea>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <label>排序</label>
+            <input type="number" max="999" class="form-control program-details-input" name="child_index" id="childIndex"
+                value="" />
+        </div>
+        <div class="col-6">
+            <label><span class="text-danger">*</span> 状态</label>
+            <select name="child_status" class="form-control" id="childStatus" value="">
+                <option value="open">可用</option>
+                <option value="close">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 text-right">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-dismiss="modal">关闭</button>
+            <button class="btn btn-success btn-lg" type="submit">提交</button>
+        </div>
+    </div>
+</form>

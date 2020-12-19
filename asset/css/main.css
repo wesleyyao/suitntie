@@ -358,7 +358,7 @@ button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active
 
 .stick-at-top {
     position: fixed;
-    z-index: 99;
+    z-index: 50;
     background: rgb(245, 245, 245);
     padding: 25px;
     top: 0;
@@ -402,10 +402,10 @@ button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active
 .float-message {
     position: fixed;
     background: #ffefdc;
-    z-index: 999;
-    top: 65px;
-    width: 92%;
-    left: 4%;
+    z-index: 60;
+    top: 75px;
+    width: 50%;
+    left: 25%;
     opacity: 0.85;
     font-weight: 500;
     padding: 15px 5px;
@@ -434,6 +434,13 @@ button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active
         max-width: 100% !important;
         margin: 0 !important;
         padding: 15px !important;
+    }
+    .float-message{
+        width: 80%;
+        left: 10%;
+    }
+    .stick-at-top{
+        padding: 10px;
     }
 }
 
