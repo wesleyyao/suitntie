@@ -2,8 +2,14 @@
     require_once("../../public/includes/initial.php");
     $result = array();
     if($_SERVER["REQUEST_METHOD"] == "GET"){
+        if(!isset($_SESSION["login_staff"])){
+            $result["status"] = "NO_LOGIN";
+            echo json_encode($result);
+            exit;
+        }
         $result["categories"] = $program->fetch_program_data_all();
         $result["programs"] = $program->fetch_all_program_items();
+        $result["status"] = "LOGIN";
         echo json_encode($result);
     }
     

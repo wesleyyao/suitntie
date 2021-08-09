@@ -1,6 +1,6 @@
 .consult-top-banner {
     width: 100%;
-    height: 300px;
+    height: 250px;
     background-image: url(../image/pics/1-on-1/1on1-BG-Desktop.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,7 +19,8 @@
     background-color: #f1f1f1;
 }
 
-.filter-active, .filter:hover {
+.filter-active,
+.filter:hover {
     color: #2b2725;
 }
 
@@ -70,10 +71,82 @@
     vertical-align: top;
 }
 
-@media screen and (max-width: 768px) {
+#adsDiv {
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+#adsContent{
+    padding-top: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.join-us{
+    padding-left: 25px;
+}
+
+.consult-search {
+    padding-right: 55px;
+    position: relative;
+}
+
+.reset-search {
+    position: absolute;
+    right: 0px;
+    top: 0;
+}
+
+.ads-image{
+    width: 100%;
+    margin-bottom: -1rem;
+    margin-right: -1rem;
+}
+
+.close-ads{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    z-index: 1;
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
     .consult-top-banner {
         height: 200px;
         padding-top: 80px;
+    }
+
+    #adsDiv {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        top: auto;
+        right: 0;
+        z-index: 1;
+        height: 150px;
+    }
+
+    .ads-image{
+        width: 30%;
+        position: absolute;
+        right:0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    #adsContent{
+        padding-left: 10px;
+        text-align: left;
+    }
+
+    .join-us{
+        padding-left: 10px;
+    }
+
+    .close-ads{
+        display: block;
     }
 }
 
@@ -86,7 +159,16 @@
         padding-bottom: 15px;
         display: block;
     }
+
     .consultant-card-content {
         padding-left: 0;
+    }
+
+    #adsContent{
+        font-size: 1rem;
+    }
+
+    .ads-image{
+        width: 40%;
     }
 }

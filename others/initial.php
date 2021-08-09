@@ -1,8 +1,9 @@
 <?php
     ini_set('session.gc_maxlifetime', 36000);
+    date_default_timezone_set("America/Toronto");
     session_start();
     require_once("database.php");
-    $global_prefix = "";
+    $global_prefix = "suitntie";
     function redirect($location){
         header("Location: {$location}");
         exit;

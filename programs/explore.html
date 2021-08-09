@@ -11,8 +11,8 @@
     <title>适途咨询</title>
     <link rel="icon" href="../asset/image/logo/logo.png">
     <!-- load stylesheets -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../asset/css/fontawesome.css">
     <link rel="stylesheet" href="../asset/css/bootstrap.css">
     <link rel="stylesheet" href="../asset/css/main.css">
     <link rel="stylesheet" href="../asset/css/footer.css">
@@ -20,9 +20,7 @@
     <link rel="stylesheet" href="../asset/css/program.css">
     <!-- load scripts -->
     <script src="../asset/js/jquery-3.4.1.js"></script>
-    <script src="../asset/js/mentorSlider.js"></script>
     <script type="module" src="../asset/js/common.js"></script>
-    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
     <script src="../asset/js/bootstrap.bundle.js"></script>
     <script type="module" src="../asset/js/header.js"></script>
     <script type="module" src="../asset/js/program.js"></script>
@@ -44,9 +42,9 @@
         <div id="headerDiv"></div>
         <input type="hidden" id="hide_title" value="program" />
         <div class="program-home-banner">
-            <h1 class="programTitle"></h1>
+            <h1 class="program-title" id="programTitle"></h1>
         </div>
-        <div class="container mt-5 mb-2 pt-5 pb-5">
+        <div class="container mb-2 pt-5 pb-5">
             <div id="programDetailsMainDiv">
                 <div class="row mb-5">
                     <div class="col-lg-8 col-md-12 col-sm-12">
@@ -69,7 +67,7 @@
                 <div class="explore-section-2">
                     <div class="row">
                         <div class="col-12">
-                            <h2>你适合学<span class="programTitle"></span></h2>
+                            <h2>你适合学<span class="program-title"></span>吗？</h2>
                         </div>
                     </div>
                     <div class="row">

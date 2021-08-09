@@ -2,19 +2,26 @@
     require_once("../../public/includes/initial.php");
     $result = array();
     $result["message"] = array();
+    if(!isset($_SESSION["login_staff"])){
+        $result["status"] = "NO_LOGIN";
+        echo json_encode($result);
+        exit;
+    }
     if($_SERVER["REQUEST_METHOD"] == "GET"){
+        $result["status"] = "LOGIN";
         $result["users"] = $customer->fetch_all_users();
         $result["tests"] = $dimension_result->fetchNumberOfTestResults();
+        $result["testResults"] = $office->fetch_all_test_results();
         $result["staff"] = $office->fetch_staff_data($_SESSION["login_staff"]);
         $result["test_lastWeek"] = $dimension_result->fetchNumberOfTestLastWeek();
         $result["test_lastMonth"] = $dimension_result->fetchNumberOfTestLastMonth();
         
-        if(isset($_GET["user"])){
-            $userId = $_GET["user"];
-            $result = $office->fetch_test_results($userId);
-            echo json_encode($result);
-            exit;
-        }
+        // if(isset($_GET["user"])){
+        //     $userId = $_GET["user"];
+        //     $result = $office->fetch_test_results($userId);
+        //     echo json_encode($result);
+        //     exit;
+        // }
         if(isset($_GET["result"])){
             $result_id = $_GET["result"];
             $dimension_result->fetchResult($result_id);

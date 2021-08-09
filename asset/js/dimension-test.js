@@ -65,7 +65,7 @@ $(document).ready(function() {
             // showFloatMessage('#testMsg', errorMessage, 0);
             // return;
         }
-        if (user && !user.phone) {
+        if (user && !user.email && !user.phone) {
             errorMessage = useMessage('warning', '在开始测试前，请您点击<a href="#/" data-toggle="modal" data-target="#userProfileCompleteModal">此处</a>完善联系方式。');
             showFloatMessage('#testMsg', errorMessage, 0);
             return;
@@ -442,8 +442,11 @@ $(document).ready(function() {
                 $('#profileCompleteMessage').html(generateMessage(result.type, result.content));
                 if (result.type === 'success') {
                     setTimeout(function() {
-                        window.location.href = currentPage;
+                        window.location.href = 'https://www.suitntie.cn/tests/dimension-test.html';
                     }, 2000);
+                }
+                else{
+                    $('#profileCompleteMessage').html(generateMessage('danger', '未能保存手机号，请刷新后重试。'));
                 }
             } else {
                 $('#profileCompleteMessage').html(generateMessage('danger', '请求未被处理，请重试。'));

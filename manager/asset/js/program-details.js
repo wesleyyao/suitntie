@@ -1,11 +1,11 @@
-import { prefix, showFloatMessage, useMessage } from '../../../asset/js/common';
-import { auth, renderNav } from './global';
+import { prefix, showFloatMessage, useMessage } from '../../../asset/js/common.js';
+import { auth, renderNav } from './global.js';
 
 $(document).ready(function () {
     $('#message').hide();
     $('#message').css('z-index', 1060);
     renderNav();
-    auth();
+
     $('#recommendContentDiv').hide();
 
     $('#programDetailsFormsDiv').load(`${prefix}/manager/modules/program/components/programDetails.html`);
@@ -23,6 +23,7 @@ $(document).ready(function () {
     let testimonials = [];
     let recommendations = [];
     let recommendContentId = 0;
+    let recommendContentName = "";
     let type = '';
     let currentForm = '';
     let currentId = 0;
@@ -95,15 +96,17 @@ $(document).ready(function () {
 
     $(document).on('click', '.rec-content', function () {
         const recId = $(this).attr('id').replace('recContent', '');
+        const recName = $(this).attr('name');
         recommendContentId = recId;
-        fetchRecContent(recId);
+        recommendContentName = recName;
+        fetchRecContent(recId, recName);
     });
 
-    function fetchRecContent(id){
+    function fetchRecContent(id, name) {
         if (recommendations && Array.isArray(recommendations) && recommendations.length > 0) {
             const foundData = recommendations.find(item => item.id == id);
+            let recContentTableBody = '';
             if (foundData && foundData.content && Array.isArray(foundData.content) && foundData.content.length > 0) {
-                let recContentTableBody = '';
                 foundData.content.forEach(function (item) {
                     recContentTableBody += `
                         <tr>
@@ -117,9 +120,20 @@ $(document).ready(function () {
                             <td><a href="#/" class="program-details-edit" id="recommendContent${item.id}">编辑</a></td>
                         </tr>`;
                 });
-                $('#recommendationContentTableBody').html(recContentTableBody);
-                $('#programRecommendContentTable').DataTable();
             }
+            else {
+                recContentTableBody = `<tr>
+                <td>${name}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td></tr>`;
+            }
+            $('#recommendationContentTableBody').html(recContentTableBody);
+            $('#programRecommendContentTable').DataTable();
         }
         $('#recommendContentDiv').show();
     }
@@ -170,7 +184,7 @@ $(document).ready(function () {
             $('#testimonialStatus').val(foundData.status);
             $('#testimonialProgram').val(foundData.program);
         }
-        else if(button.indexOf('recommendContent') > -1){
+        else if (button.indexOf('recommendContent') > -1) {
             id = button.replace('recommendContent', '');
             formFor = button.replace(id, '');
             const foundRec = recommendations.find(item => item.id == recommendContentId);
@@ -199,7 +213,7 @@ $(document).ready(function () {
             $('#recIndex').val(foundData.item_index);
             $('#recStatus').val(foundData.status);
         }
-        else{
+        else {
             id = button.replace('child', '');
             formFor = button.replace(id, '');
             foundData = childPrograms.find(item => item.id == id);
@@ -228,82 +242,88 @@ $(document).ready(function () {
     });
 
     function fetchProgramData() {
-        $.get(`${prefix}/manager/api/program-details.php?title=${decodeURIComponent(program)}`).done(function (data) {
-            const result = JSON.parse(data);
-            if (!result) {
-                $('#message').html(generateMessage('warning', `无法找到该专业的数据`));
-                return;
-            }
-            let recommendTable = '';
-            programId = result.id;
-            recommendations = result.books;
-            if (recommendations && Array.isArray(recommendations) && recommendations.length > 0) {
-                recommendations.forEach(function (item) {
-                    recommendTable += `<tr>
+        auth().then(
+            (result) => {
+                if (result.status === 'success') {
+                    $.get(`${prefix}/manager/api/program-details.php?title=${decodeURIComponent(program)}`).done(function (data) {
+                        const result = JSON.parse(data);
+                        if (!result) {
+                            $('#message').html(generateMessage('warning', `无法找到该专业的数据`));
+                            return;
+                        }
+                        if (result.status === "NO_LOGIN") {
+                            return;
+                        }
+                        let recommendTable = '';
+                        programId = result.id;
+                        recommendations = result.books;
+                        if (recommendations && Array.isArray(recommendations) && recommendations.length > 0) {
+                            recommendations.forEach(function (item) {
+                                recommendTable += `<tr>
                         <td>${item.title}</td>
                         <td><img src="${prefix}${item.image}" style="width: 35px; height: auto" id="previewImg" alt="pic" /></td>
-                        <td><a href="#/" id="recContent${item.id}" class="rec-content">查看</a></td>
+                        <td><a href="#/" id="recContent${item.id}" name="${item.title}" class="rec-content">查看</a></td>
                         <td>${item.item_index}</td>
                         <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
                         <td><a href="#/" class="program-details-edit" id="recommend${item.id}">编辑</a></td></tr>`;
-                });
-            }
-            $('#recommendTableBody').html(recommendTable);
-            $('#programRecommendTable').DataTable();
-            if(recommendContentId !== 0){
-                fetchRecContent(recommendContentId);
-            }
+                            });
+                        }
+                        $('#recommendTableBody').html(recommendTable);
+                        $('#programRecommendTable').DataTable();
+                        if (recommendContentId !== 0) {
+                            fetchRecContent(recommendContentId);
+                        }
 
-            let childProgramTable = '';
-            childPrograms = result.child_programs;
-            if (childPrograms && Array.isArray(childPrograms) && childPrograms.length > 0) {
-                childPrograms.forEach(function (item) {
-                    childProgramTable += `<tr>
+                        let childProgramTable = '';
+                        childPrograms = result.child_programs;
+                        if (childPrograms && Array.isArray(childPrograms) && childPrograms.length > 0) {
+                            childPrograms.forEach(function (item) {
+                                childProgramTable += `<tr>
                         <td width="140">${item.name}</td>
                         <td>${item.content}</td>
                         <td>${item.item_index}</td>
                         <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
                         <td width="50"><a href="#/" class="program-details-edit" id="child${item.id}">编辑</a></td></tr>`;
-                });
-            }
-            $('#childProgramTableBody').html(childProgramTable);
-            $('#programChildTable').DataTable();
+                            });
+                        }
+                        $('#childProgramTableBody').html(childProgramTable);
+                        $('#programChildTable').DataTable();
 
-            let courseTable = '';
-            courses = result.courses;
-            if (courses && Array.isArray(courses) && courses.length > 0) {
-                courses.forEach(function (item) {
-                    courseTable += `<tr>
+                        let courseTable = '';
+                        courses = result.courses;
+                        if (courses && Array.isArray(courses) && courses.length > 0) {
+                            courses.forEach(function (item) {
+                                courseTable += `<tr>
                         <td>${item.name}</td>
                         <td>${item.content}</td>
                         <td>${item.item_index}</td>
                         <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
                         <td width="50"><a href="#/" class="program-details-edit" id="course${item.id}">编辑</a></td></tr>`;
-                });
-            }
-            $('#courseTableBody').html(courseTable);
-            $('#programCourseTable').DataTable();
+                            });
+                        }
+                        $('#courseTableBody').html(courseTable);
+                        $('#programCourseTable').DataTable();
 
-            let infoTable = '';
-            info = result.info;
-            if (info && Array.isArray(info) && info.length > 0) {
-                info.forEach(function (item) {
-                    infoTable += `<tr>
+                        let infoTable = '';
+                        info = result.info;
+                        if (info && Array.isArray(info) && info.length > 0) {
+                            info.forEach(function (item) {
+                                infoTable += `<tr>
                         <td>${item.content}</td>
-                        <td width="100">${item.type === 'brief' ? '你适合学' : '专业简介'}</td>
+                        <td width="100">${item.type == 'suitable' ? '你适合学' : item.type == 'brief' ? '专业简介' : '你准备好了吗'}</td>
                         <td>${item.p_index}</td>
                         <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
                         <td width="50"><a href="#/" class="program-details-edit" id="info${item.id}">编辑</a></td></tr>`;
-                });
-            }
-            $('#programInfoTableBody').html(infoTable);
-            $('#programInfoTable').DataTable();
+                            });
+                        }
+                        $('#programInfoTableBody').html(infoTable);
+                        $('#programInfoTable').DataTable();
 
-            let testimonialTable = '';
-            testimonials = result.testimonials;
-            if (testimonials && Array.isArray(testimonials) && testimonials.length > 0) {
-                testimonials.forEach(function (item) {
-                    testimonialTable += `<tr>
+                        let testimonialTable = '';
+                        testimonials = result.testimonials;
+                        if (testimonials && Array.isArray(testimonials) && testimonials.length > 0) {
+                            testimonials.forEach(function (item) {
+                                testimonialTable += `<tr>
                         <td>${item.name}</td>
                         <td>${item.feedback}</td>
                         <td width="130">${item.school}</td>
@@ -311,11 +331,13 @@ $(document).ready(function () {
                         <td>${item.grade}</td>
                         <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
                         <td width="50"><a href="#/" class="program-details-edit" id="testimonial${item.id}">编辑</a></td></tr>`;
-                });
+                            });
+                        }
+                        $('#testimonialTableBody').html(testimonialTable);
+                        $('#programTestimonialTable').DataTable();
+                    });
+                }
             }
-            $('#testimonialTableBody').html(testimonialTable);
-            $('#programTestimonialTable').DataTable();
-        });
+        );
     }
-
 });

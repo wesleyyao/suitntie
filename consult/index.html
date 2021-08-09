@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/fontawesome.css">
     <link rel="stylesheet" href="../asset/css/main.css">
     <link rel="stylesheet" href="../asset/css/footer.css">
     <link rel="stylesheet" href="../asset/css/header.css">
@@ -21,7 +22,6 @@
     <!-- load scripts -->
     <script src="../asset/js/jquery-3.4.1.js"></script>
     <script type="module" src="../asset/js/common.js"></script>
-    <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
     <script src="../asset/js/bootstrap.bundle.js"></script>
     <script type="module" src="../asset/js/header.js"></script>
     <script type="module" src="../asset/js/consult.js"></script>
@@ -40,36 +40,39 @@
     <div id="headerDiv"></div>
     <input type="hidden" id="hide_title" value="tutors" />
     <div class="consult-top-banner">
-        <h1>导师库</h1>
+        <h1 class="mb-0">导师库</h1>
     </div>
-    <div class="container mt-5 mb-5 pt-5 pb-5">
+    <div class="container mb-5 pt-5 pb-5">
         <div class="row">
             <div class="col-lg-9 col-md-8 col-sm-12">
                 <div id="consultantDiv">
                     <div id="consultantFilter" class="card border-light" style="background: #f9f9f9">
                         <div class="card-body">
-                            <div class="input-group pb-3">
-                                <input type="text" class="form-control" placeholder="搜索导师" aria-label="搜索导师"
-                                    id="filterInput" aria-describedby="filterBtn">
-                                <div class="input-group-append">
-                                    <button class="btn primBtnSM" type="button" id="searchBtn">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                            <div class="consult-search">
+                                <div class="input-group pb-3">
+                                    <input type="text" class="form-control" placeholder="搜索导师" aria-label="搜索导师"
+                                        id="filterInput" aria-describedby="filterBtn">
+                                    <div class="input-group-append">
+                                        <button class="btn primBtnSM" type="button" id="searchBtn">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
+                                <button id="resetBtn" class="reset-search btn primBtnSM"><i class="fas fa-undo"></i></button>
                             </div>
-                            <div class="row pb-2">
+                            <div class="row pb-2" style="min-height: 20px;">
                                 <div class="col-12">
                                     <div class="consult-filter-title text-secondary"><strong>地区</strong></div>
                                     <div class="consult-filter-option" id="regionOptions"></div>
                                 </div>
                             </div>
-                            <div class="row pb-2">
+                            <div class="row pb-2" style="min-height: 20px;">
                                 <div class="col-12">
                                     <div class="consult-filter-title text-secondary"><strong>专业</strong></div>
                                     <div class="consult-filter-option" id="programOptions"></div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" style="min-height: 20px;">
                                 <div class="col-lg-11 col-md-10 col-sm-9">
                                     <div class="consult-filter-title text-secondary"><strong>学历</strong></div>
                                     <div class="consult-filter-option" id="educationOptions"></div>
@@ -84,10 +87,15 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-0">
                 <div id="adsDiv" class="card border-light" style="background: #fdf7f2">
-                    <div class="card-body">
-                        <h5>分享经验，传播智慧</h5>
-                        <p>向世界分享您的知识，经验和见解, 别让您的梦想仅仅是梦想，勇敢地为您的梦想迈出第一步。</p>
-                        <a href="#/" class="btn primBtn">成为导师</a>
+                    <button type="button" class="close close-ads" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="card-body p-0">
+                        <p id="adsContent"></p>
+                        <div class="pb-2 join-us">
+                            <a href="https://jinshuju.net/f/Q1suVd" target="_blank" class="btn primBtnSM">成为导师</a>
+                        </div>
+                        <img src="../asset/image/pics/consult/joinUs.png" class="ads-image" />
                     </div>
                 </div>
             </div>
@@ -98,55 +106,52 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="contactConsultantTitle">联系导师</h5>
+                    <h5 class="modal-title" id="contactConsultantTitle">对<span id="tutorName">sherry</span>导师有兴趣吗？<br />
+                        <span style="font-size: 1rem; font-weight: 200;">请留下您的联系信息，我们会尽快安排导师</span>
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row pb-2">
-                        <div class="col-12 text-center">
-                            <h5 style="color: #f19f4d">对<span id="tutorName">sherry</span>导师有兴趣吗？</h5>
-                        </div>
-                    </div>
-                    <div class="row pb-2">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <label><span class="text-danger">*</span> 姓名：</label>
-                            <input type="text" maxlength="128" id="ccName" class="form-control cc-required"
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-2">
+                            <label>姓名：<span class="text-danger">*</span></label>
+                            <input type="text" maxlength="128" id="ccName" class="cc-input form-control cc-required"
                                 placeholder="姓名" />
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <label><span class="text-danger">*</span> 年龄：</label>
-                            <input type="number" min="1" max="99" id="ccCity" class="form-control cc-required"
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-2">
+                            <label>年龄：<span class="text-danger">*</span></label>
+                            <input type="number" min="1" max="99" id="ccAge" class="cc-input form-control cc-required"
                                 placeholder="年龄" />
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                            <label><span class="text-danger">*</span> 手机号：</label>
-                            <input type="text" maxlength="64" id="ccPhone" class="form-control cc-required"
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-2">
+                            <label>手机号：<span class="text-danger">*</span></label>
+                            <input type="text" maxlength="64" id="ccPhone" class="cc-input form-control cc-required"
                                 placeholder="手机号" />
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-2">
                             <label>微信号：</label>
-                            <input type="text" maxlength="64" id="ccWechat" class="form-control" placeholder="微信号" />
+                            <input type="text" maxlength="64" id="ccWechat" class="cc-input form-control" placeholder="微信号" />
                         </div>
                     </div>
                     <div class="row pb-2">
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
                             <label>E-Mail：</label>
-                            <input type="email" maxlength="128" id="ccEmail" class="form-control cc-required"
+                            <input type="email" maxlength="128" id="ccEmail" class="cc-input form-control cc-required"
                                 placeholder="E-Mail" />
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
-                            <label><span class="text-danger">*</span> 所在学校：</label>
-                            <input type="text" maxlength="128" id="ccSchool" class="form-control cc-required"
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                            <label>所在学校：<span class="text-danger">*</span></label>
+                            <input type="text" maxlength="128" id="ccSchool" class="cc-input form-control cc-required"
                                 placeholder="所在学校" />
                         </div>
                     </div>
                     <div class="row pb-3">
                         <div class="col-12">
-                            <label><span class="text-danger">*</span> 提问：</label>
+                            <label>提问：<span class="text-danger">*</span></label>
                             <textarea type="text" rows="5" maxlength="2500" id="ccContent"
-                                class="form-control"></textarea>
+                                class="cc-input form-control"></textarea>
                         </div>
                     </div>
                     <div id="ccMessage" style="display: none"></div>

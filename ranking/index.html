@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="Keywords" content="留学，留学咨询，留学中介，选专业，大学专业，性格测试，MBTI，留学规划，留学生活，留学日常，选校指导，填志愿，16型人格，人格测试，职业规划">
+    <meta name="Description" content="适途咨询是一个致力于帮助学生找到适合自己的大学专业和未来职业的平台。">
+    <title>适途咨询</title>
+    <link rel="icon" href="../asset/image/logo/logo.png">
+    <!-- load stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/css/autoComplete.01.min.css">
+
+    <link rel="stylesheet" href="../asset/css/bootstrap.css">
+    <link rel="stylesheet" href="../asset/css/fontawesome.css">
+    <link rel="stylesheet" href="../asset/css/main.css">
+    <link rel="stylesheet" href="../asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/header.css">
+    <link rel="stylesheet" href="../asset/css/ranking.css">
+    <!-- load scripts -->
+    <script src="../asset/js/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
+    <script src="../asset/js/lodash.js"></script>
+    <script type="module" src="../asset/js/common.js"></script>
+    <script src="../asset/js/bootstrap.bundle.js"></script>
+    <script type="module" src="../asset/js/header.js"></script>
+    <script type="module" src="../asset/js/ranking.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5b70ca46afc5ba4aa10407bf53807917";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="headerDiv"></div>
+    <input type="hidden" id="hide_title" value="tutors" />
+    <div class="ranking-top-banner">
+        <h1 class="mb-0">排名搜索</h1>
+    </div>
+    <div class="bottom-right-corner-btn">
+        <span><i class="fas fa-arrow-circle-up"></i> 回到顶部</span>
+    </div>
+    <div class="container mb-5 pt-5 pb-5">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+                <div id="rankingDiv">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="schoolRanking-tab" data-toggle="tab" href="#schoolRanking"
+                                role="tab" aria-controls="schoolRanking" aria-selected="true">按专业搜索排名</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="programRanking-tab" data-toggle="tab" href="#programRanking"
+                                role="tab" aria-controls="programRanking" aria-selected="false">按学校搜索排名</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="schoolRanking" role="tabpanel"
+                            aria-labelledby="schoolRanking-tab">
+                            <div class="row pt-3">
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 col-xl-4">
+                                    <div class="d-inline-flex">
+                                        <label>专业分类</label>
+                                    </div>
+                                    <div class="d-inline-flex w-50">
+                                        <select class="w-100" id="programFilter">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-5 col-lg-5 col-xl-4">
+                                    <div class="d-inline-flex">
+                                        <label>国家地区</label>
+                                    </div>
+                                    <div class="d-inline-flex w-50">
+                                        <select class="w-100" id="regionFilter">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <div class="col-12">
+                                    <table class="table table-borderless">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th scope="col">排名</th>
+                                                <th scope="col">学校名</th>
+                                                <th scope="col">地区</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rankingTableBody">
+                                        </tbody>
+                                    </table>
+                                    <p class="text-center"><a href="#/" id="showMore">点击加载更多</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="programRanking" role="tabpanel"
+                            aria-labelledby="programRanking-tab">
+                            <div class="row pt-3">
+                                <div class="col-12 text-center">
+                                    <span class="pr-2">学校:</span>
+                                    <input type="input" class="form-control" id="autoComplete" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off" >
+                                </div>
+                            </div>
+                            <div class="row pt-2">
+                                <div class="col-12" id="schoolCard">
+                                    
+                                </div>
+                            </div>
+                            <div class="row pt-2">
+                                <div class="col-12">
+                                    <table class="table table-borderless">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th scope="col">专业</th>
+                                                <th scope="col">排名</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="schoolProgramRankingTableBody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="filterTags"></div>
+                    <div id="consultantList" class="pt-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footerDiv"></div>
+</body>
+
+</html>

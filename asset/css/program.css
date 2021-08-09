@@ -5,23 +5,15 @@
 
 .program-home-banner {
     width: 100%;
-    height: 300px;
+    height: 100px;
     background-color: #F19F4D;
     text-align: center;
-    padding-top: 125px;
+    padding-top: 25px;
 }
 
 .program-home-banner h1 {
     font-weight: 400 !important;
 }
-
-/* .carousel-caption{
-    top: 185px;
-} */
-
-/* .carousel-inner, .carousel-item{
-    max-height: 520px !important;
-} */
 
 .home-contact-form {
     padding: 50px 25px;
@@ -74,7 +66,6 @@
 }
 
 /* program list */
-
 #programDetailsModal ul {
     list-style: none;
 }
@@ -96,7 +87,6 @@
 }
 
 /* Explore page */
-
 .relatedPrograms {
     padding: 30px;
 }
@@ -227,7 +217,6 @@
 }
 
 /* course list */
-
 .courseList h3 {
     margin: 0 !important;
     padding: 20px !important;
@@ -235,7 +224,7 @@
 
 .btn-accordion {
     margin: 0 auto;
-    color: #292929!important;
+    color: #292929 !important;
     transition: 0.3s;
 }
 
@@ -245,26 +234,26 @@
     border: none;
 }
 
-.btn-accordion:focus, .btn-accordion:active {
+.btn-accordion:focus,
+.btn-accordion:active {
     outline: none !important;
     box-shadow: none;
 }
 
 /* accordion */
-
 .panel-heading-active {
     transition: all .5s;
     color: yellow !important;
 }
 
 /* Contact form */
-
 .program-contact-form {
     padding: 50px 25px;
     background-color: #f0f0f0;
 }
 
-.program-contact-form input, .program-contact-form textarea {
+.program-contact-form input,
+.program-contact-form textarea {
     background-color: #f0f0f0;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -286,21 +275,27 @@
     .program-slider-testimonials .carousel-item {
         height: 70vh !important;
     }
+
     .one-on-one-promote {
         margin-top: 50px;
     }
+
     .one-on-one-promote {
         margin-top: 30px;
     }
+
     .one-on-one-promote p {
         margin-right: 0;
     }
+
     .one-on-one-promote {
         padding: 40px 40px;
     }
+
     .one-on-one-promote h2 {
         margin-bottom: 20px;
     }
+
     .one-on-one-promote a {
         margin-top: 20px;
     }
@@ -317,10 +312,12 @@
     .program-slider-testimonials .carousel-item {
         height: 90vh !important;
     }
-    .relatedPrograms{
+
+    .relatedPrograms {
         padding: 0;
     }
-    #relatedPrograms ul li{
+
+    #relatedPrograms ul li {
         display: inline-block;
         width: 48%;
     }
@@ -331,6 +328,7 @@
         height: 200px;
         padding-top: 80px;
     }
+
     .secBtn {
         padding: 0.5em;
     }

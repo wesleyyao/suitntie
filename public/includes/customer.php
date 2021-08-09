@@ -327,7 +327,7 @@
 
         public function fetch_all_users(){
             $data = array();
-            $query = "SELECT c.id, c.email, c.phone, c.nick_name, c.sex, c.city, c.province, c.country, c.headImg, c.unionId, c.temporary_link, c.status, c.date_time, c.ip, c.full_name, c.age, c.is_study_aboard, c.how_know, COUNT(r.id) as 'results' FROM customers c LEFT JOIN test_results r ON r.user_id = c.id GROUP BY c.id";
+            $query = "SELECT c.id, c.email, c.phone, c.nick_name, c.sex, c.city, c.province, c.country, c.headImg, c.unionId, c.temporary_link, c.status, c.date_time, c.ip, c.full_name, c.age, c.is_study_aboard, c.how_know FROM customers c LEFT JOIN test_results r ON r.user_id = c.id ORDER BY r.create_date DESC";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();

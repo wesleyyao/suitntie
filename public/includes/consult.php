@@ -9,7 +9,7 @@ class Consult extends Database
     public $education = "";
     public $introduction = "";
     public $thumbnail = "";
-    public $educations = ["本科", "硕士", "博士"];
+    public $educations = ["本科", "研究生", "博士"];
 
     public function fetch_consultants_with_schools_data()
     {

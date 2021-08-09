@@ -360,9 +360,7 @@ $(document).ready(function () {
                         let jsDate = undefined;
                         if (item.create_date) {
                             jsDate = moment(item.create_date);
-                            if (jsDate < moment('2020-10-20')) {
-                                jsDate.add(moment.duration(12, 'hours'));
-                            }
+                            jsDate.add(moment.duration(12, 'hours'));
                         }
                         resultList += `<tr>
                         <td>${jsDate ? jsDate.format('YYYY-MM-DD HH:mm') : ''}</td>

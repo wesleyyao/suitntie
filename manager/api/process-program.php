@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["operate"]) && isset($_G
             $is_updated = $program->update_program_testimonial($id, $testimonial_name, $testimonial_content, $testimonial_school, $testimonial_program, $testimonial_grade, $testimonial_status);
             $result = generateMessage($is_updated);
         }
-    } else if ($from == "programRecommend") {
+    } else if ($from == "programRecommendCategory") {
         $target_dir = $_SERVER["DOCUMENT_ROOT"] .  "$global_prefix/uploads/";
         if (empty($_POST["rec_title"]) || empty($_POST["rec_status"]) || empty($_POST["rec_index"])) {
             $result = invalidForm();
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["operate"]) && isset($_G
         $rec_status = $_POST["rec_status"];
         $rec_image_url = $_POST["rec_image_url"];
         $imageUrl = "";
-        if ($rec_title == "书") {
+        if ($rec_title == "书籍" || $rec_title == "书") {
             $imageUrl = "/asset/image/resources/Resources_book.svg";
         } else if ($rec_title == "公众号") {
             $imageUrl = "/asset/image/resources/Resources_wechat.svg";

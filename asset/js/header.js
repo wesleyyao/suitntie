@@ -10,6 +10,7 @@ $(document).ready(function () {
         $('#consultantLink').attr('href', `${prefix}/consult/index.html`);
         $('#aboutLink').attr('href', `${prefix}/about/index.html`);
         $('#homeLink').attr('href', `${prefix}/index.html`);
+        $('#rankingLink').attr('href', `${prefix}/ranking/index.html`);
     });
     $('#footerDiv').load(`${prefix}/theme/footer.html`, function () {
         $('#aboutFooterLink').attr('href', `${prefix}/about/index.html`);

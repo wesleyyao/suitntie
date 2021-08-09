@@ -11,11 +11,10 @@ class Database
 
     protected function open_db_connection()
     {
-        $host_name = "localhost:3308"; //3308
+        $host_name = "localhost:8889"; //3308
         $database = "suitntie";
         $user_name = "root"; //root
-        $password = ""; //SuitNtie0502
-        date_default_timezone_set("Asia/Shanghai");
+        $password = "root"; //SuitNtie0502
         $this->conn = mysqli_connect($host_name, $user_name, $password, $database);
         $this->conn->set_charset("utf8");
     }
@@ -42,5 +41,11 @@ class Database
             }
         }
         return $data;
+    }
+
+    public function reset_table_index($table){
+        $query = "ALTER TABLE $table AUTO_INCREMENT = 1";
+        $sql = $this->conn->prepare($query);
+        $sql->execute();
     }
 }

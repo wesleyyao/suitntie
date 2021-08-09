@@ -22,33 +22,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET["operate"]) && isset($_G
         $imageUrl = empty($_FILES["tutor_img"]["name"]) ? "" : "/uploads/" . basename($_FILES["tutor_img"]["name"]);
         $target_dir = $_SERVER["DOCUMENT_ROOT"] . "$global_prefix/uploads/";
         $current_img = $_POST["current_tutor_img"];
+        $isNotChangeImage = $_POST["not_change_image"];
         $uploadResult = array();
         $is_image_saved = true;
-        if (!empty($imageUrl)) {
-            $file = $target_dir . (!empty($current_img) ? $current_img : basename($_FILES["tutor_img"]["name"]));
-            if (file_exists($file)) {
+        if (!empty($imageUrl) && !$isNotChangeImage) {
+            $file = $target_dir . ($isNotChangeImage ? $current_img : basename($_FILES["tutor_img"]["name"]));
+            if (file_exists($file) && !$isNotChangeImage) {
                 unlink($file);
             }
             if ($type == "new") {
                 $uploadResult = fileUpload($target_dir, "image", $_FILES["tutor_img"]);
             } else {
-                $uploadResult["status"] = !empty($current_img) ? "success" : fileUpload($target_dir, "image", $_FILES["tutor_img"])["status"];
+                $skip = array();
+                $skip["status"] = "success";
+                $skip["message"] = "no change image";
+                $uploadResult = $isNotChangeImage ? $skip : fileUpload($target_dir, "image", $_FILES["tutor_img"]);
             }
             if ($uploadResult["status"] == "failed") {
                 $is_image_saved = false;
                 $result["status"] = "warning";
-                $result["content"] = "图片上传失败";
+                $result["content"] = $uploadResult['message'];
                 echo json_encode($result);
                 exit;
             }
         }
+        else{
+            $result["status"] = "warning";
+            $result["content"] = "勾选了换图，但未检查到上传的图片。";
+            echo json_encode($result);
+            exit;
+        }
+
         if ($type == "new") {
             $is_saved = $consultant->save_tutor($tutor_name, $tutor_nickname, $tutor_education, $tutor_intro, $imageUrl, $tutor_status);
             $result = generateMessage($is_saved, $type);
         } else {
-            $imageUrl = $current_img;
+            $imageUrl = $isNotChangeImage ? $current_img : $imageUrl;
             $is_updated = $consultant->update_tutor($tutor_name, $tutor_nickname, $tutor_education, $tutor_intro, $imageUrl, $tutor_status, $id);
             $result = generateMessage($is_updated, $type);
+            $result["imgName"] = basename($_FILES["tutor_img"]["name"]) ? basename($_FILES["tutor_img"]["name"]) : '1';
         }
     } else if ($operate == "consultantSchool") {
         if (empty($_POST["school_name"]) || empty($_POST["school_region"]) || empty($_POST["school_status"])) {

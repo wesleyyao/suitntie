@@ -1,4 +1,4 @@
-import { prefix, loadingMessage, useMessage } from '../../../asset/js/common';
+import { prefix, loadingMessage, useMessage } from '../../../asset/js/common.js';
 
 $(document).ready(function () {
 
@@ -22,6 +22,7 @@ $(document).ready(function () {
         });
 
         if (isValid) {
+            $('#submitLoginBtn').prop('disabled', true);
             const email = $('#officeEmail').val();
             const password = $('#officePwd').val();
 
@@ -32,6 +33,7 @@ $(document).ready(function () {
                 const result = JSON.parse(data);
                 if (result.type === 'danger') {
                     $('#loginMessage').html(useMessage('warning', result.content));
+                    $('#submitLoginBtn').prop('disabled', false);
                 }
                 else {
                     $('#loginMessage').html(useMessage('success', result.content));

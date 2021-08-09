@@ -1,5 +1,6 @@
 <?php
     ini_set('session.gc_maxlifetime', 36000);
+    date_default_timezone_set("America/Toronto");
     session_start();
     require_once("database.php");
     $global_prefix = "/suitntie";
@@ -40,8 +41,8 @@
         }
 
         // Check file size
-        if ($file["size"] > 500000) {
-            $message = "Sorry, your file is too large.";
+        if ($file["size"] > 5000000) {
+            $message = "Sorry, your file is larger than 5MB.";
             $uploadOk = 0;
         }
 

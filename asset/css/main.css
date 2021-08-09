@@ -416,7 +416,7 @@ button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active
     margin: 0;
 }
 
-/**/
+/* pagination */
 
 .page-item.active .page-link {
     background-color: #F19F4D;
@@ -426,6 +426,19 @@ button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active
 
 .page-link {
     color: #F19F4D;
+}
+
+.page-input{
+    width: 70px;
+    display: inline;
+}
+
+/* back to top button */
+.bottom-right-corner-btn{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

@@ -31,7 +31,20 @@
 
         public function fetch_test_results($userId){
             $data = array();
-            $query = "SELECT r.id, r.test_id, r.create_date, r.status, t.title FROM tests t INNER JOIN test_results r ON t.id = r.test_id WHERE r.user_id = ? ORDER BY create_date DESC";
+            $query = "SELECT r.id, r.test_id, r.create_date, r.status, t.title FROM tests t INNER JOIN test_results r ON t.id = r.test_id WHERE r.user_id = ? ORDER BY r.create_date DESC";
+            $sql = $this->conn->prepare($query);
+            $sql->bind_param("i", $userId);
+            $sql->execute();
+            $result = $sql->get_result();
+            while($row = $result->fetch_assoc()){
+                array_push($data, $row);
+            }
+            return $data;
+        }
+
+        public function fetch_all_test_results(){
+            $data = array();
+            $query = "SELECT r.id, r.test_id, r.create_date, r.user_id, r.status, t.title FROM tests t INNER JOIN test_results r ON t.id = r.test_id ORDER BY r.create_date DESC";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("i", $userId);
             $sql->execute();

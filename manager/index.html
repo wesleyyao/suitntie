@@ -9,19 +9,21 @@
     <link rel="icon" href="../asset/image/logo/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../asset/css/bootstrap.css">
-    <link rel="stylesheet" href="./asset/css/datatables.css">
+    <link rel="stylesheet" href="asset/css/datatables.css">
     <link rel="stylesheet" href="../asset/css/main.css">
-    <link rel="stylesheet" href="./asset/css/common.css">
-    <link rel="stylesheet" href="./asset/css/dashboard.css">
+    <link rel="stylesheet" href="asset/css/common.css">
+    <link rel="stylesheet" href="asset/css/dashboard.css">
 
     <script src="../asset/js/jquery-3.4.1.js"></script>
     <script src="../asset/js/bootstrap.bundle.js"></script>
     <script src="https://kit.fontawesome.com/2383fb4f0d.js" crossorigin="anonymous"></script>
-    <script type="module" src="./asset/js/datatables.js"></script>
+    <script type="module" src="asset/js/datatables.js"></script>
     <script type="module" src="../asset/js/common.js"></script>
     <script src="../asset/js/moment.js"></script>
-    <script type="module" src="./asset/js/global.js"></script>
-    <script type="module" src="./asset/js/dashboard.js"></script>
+    <script src="../asset/js/lodash.js"></script>
+    <script src="../asset/js/chart.js"></script>
+    <script type="module" src="asset/js/global.js"></script>
+    <script type="module" src="asset/js/dashboard.js"></script>
 </head>
 
 <body>
@@ -30,14 +32,14 @@
         <div id="mainDiv" class="pl-2 pr-2 pt-5 pb-5">
             <div id="message" class="float-message"></div>
             <div class="row">
-                <div class="col-12">
-                    <span>测试总次数：</span><span style="font-size: 2rem" class="pr-2 text-primary" id="totalResults"></span>
-                    <span>测试过的用户比例：</span><span style="font-size: 2rem" class="pr-2" id="testRate"></span>
-                    <span>上周测试数：</span><span style="font-size: 2rem" class="pr-2 text-primary" id="lastWeekTest"></span>
-                    <span>上月测试数：</span><span style="font-size: 2rem" class="pr-2 text-primary" id="lastMonthTest"></span>
-                    <span>用户总数：</span><span style="font-size: 2rem" class="pr-2 text-primary" id="totalUser"></span>
-                    <a class="btn btn-warning" href="./api/export-excel.php?target=customers">导出Excel</a>
+                <div class="col-10">
+                    <span>测试总次数：</span><span style="font-size: 1.6rem" class="pr-2 text-primary" id="totalResults"></span>
+                    <span>测试过的用户比例：</span><span style="font-size: 1.6rem" class="pr-2" id="testRate"></span>
+                    <span>上周测试数：</span><span style="font-size: 1.6rem" class="pr-2 text-primary" id="lastWeekTest"></span>
+                    <span>上月测试数：</span><span style="font-size: 1.6rem" class="pr-2 text-primary" id="lastMonthTest"></span>
+                    <span>用户总数：</span><span style="font-size: 1.6rem" class="pr-2 text-primary" id="totalUser"></span>
                 </div>
+                <div class="col-2 text-right" id="excelBtn"></div>
             </div>
             <br />
             <div class="row">
@@ -58,7 +60,7 @@
                                 <th>省份</th>
                                 <th>国家</th>
                                 <th>IP</th>
-                                <th>时间</th>
+                                <th>注册时间</th>
                             </tr>
                         </thead>
                         <tbody id="userTableBody">
@@ -129,6 +131,8 @@
                             </div>
                         </div>
                         <br />
+                        <div class="row" id="weightDiv">
+                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <h3>维度解释</h3>
@@ -193,6 +197,7 @@
                                     <td id="userProvince"></td>
                                     <td>城市:</td>
                                     <td id="userCity"></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

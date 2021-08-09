@@ -126,7 +126,7 @@
             return $data;
         }
 
-        private function fetch_program($title){
+        public function fetch_program($title){
             $query = "SELECT `id`, `title`, `description`, `pc_id`, `related` FROM programs WHERE `status` = 'open' AND title = ? LIMIT 1";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("s", $title);

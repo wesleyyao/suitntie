@@ -1,11 +1,10 @@
-import { prefix, showFloatMessage, useMessage } from '../../../asset/js/common';
-import { auth, renderNav } from './global';
+import { prefix, showFloatMessage, useMessage } from '../../../asset/js/common.js';
+import { auth, renderNav } from './global.js';
 
 $(document).ready(function () {
     $('#message').hide();
     $('#message').css('z-index', 1060);
     renderNav();
-    auth();
     $('#categoryFormDiv').load(`${prefix}/manager/modules/program/components/category.html`);
     $('#programFormDiv').load(`${prefix}/manager/modules/program/components/program.html`);
 
@@ -195,17 +194,23 @@ $(document).ready(function () {
     }
 
     function fetchPrograms() {
-        $.get(`${prefix}/manager/api/program.php`).done(function (data) {
-            const result = JSON.parse(data);
-            console.log(result);
-            let categoryTable = '';
-            let programTable = '';
-            const categoryData = result ? result.categories : [];
-            const programData = result ? result.programs : [];
-            if (categoryData.length > 0) {
-                programCategories = categoryData;
-                categoryData.forEach(function (item) {
-                    categoryTable += `<tr>
+        auth().then(
+            (result) => {
+                if (result.status === 'success') {
+                    $.get(`${prefix}/manager/api/program.php`).done(function (data) {
+                        const result = JSON.parse(data);
+
+                        let categoryTable = '';
+                        let programTable = '';
+                        const categoryData = result ? result.categories : [];
+                        const programData = result ? result.programs : [];
+                        if (result.status === 'NO_LOGIN') {
+                            return;
+                        }
+                        if (categoryData.length > 0) {
+                            programCategories = categoryData;
+                            categoryData.forEach(function (item) {
+                                categoryTable += `<tr>
                         <td>${item.name}</td>
                         <td>${item.item_index}</td>
                         <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
@@ -214,12 +219,12 @@ $(document).ready(function () {
                             <a href="#/" class="categoryView" id="editCategory${item.id}">编辑</a>
                         </td>
                     </tr>`;
-                });
-            }
-            if (programData.length > 0) {
-                programs = programData;
-                programData.forEach(function (item) {
-                    programTable += `<tr>
+                            });
+                        }
+                        if (programData.length > 0) {
+                            programs = programData;
+                            programData.forEach(function (item) {
+                                programTable += `<tr>
                         <td>${item.title}</td>
                         <td>${item.description ? item.description : ''}</td>
                         <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
@@ -228,23 +233,15 @@ $(document).ready(function () {
                             <a href="#/" class="programView" id="editProgram${item.id}">编辑</a>
                         </td>
                     </tr>`;
-                });
+                            });
+                        }
+                        $('#programCategoryTableBody').html(categoryTable);
+                        $('#programsTableBody').html(programTable);
+                        $('#programCategoryTable').DataTable();
+                        $('#programTable').DataTable();
+                    });
+                }
             }
-            $('#programCategoryTableBody').html(categoryTable);
-            $('#programsTableBody').html(programTable);
-            $('#programCategoryTable').DataTable();
-            $('#programTable').DataTable();
-        });
-    }
-
-    function generateMessage(type, message) {
-        return `
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-${type}">
-                    <i class="${type == 'success' ? 'fas fa-check' : type === 'warning' ? 'fas fa-exclamation-triangle' : 'fas fa-times'}"></i> ${message}
-                </div>
-            </div>
-        </div>`;
+        );
     }
 });

@@ -9,12 +9,12 @@ $(document).ready(function () {
     </div>`;
     const membershipMessage = `
     <div class="jumbotron">
-  <h1 class="display-4"><i class="fas fa-user-lock"></i></h1>
-  <p class="lead">如果想了解推荐自学内容，专业课程简介和子专业等更多信息，请登录或注册。</p>
-  <hr class="my-4">
-  <a class="btn primBtn ml-2" href="${prefix}/auth/signup.html?redirect=${currentPage}" role="button">注册</a>
-  <a class="btn primBtn" href="${prefix}/auth/login.html?redirect=${currentPage}" role="button">登录</a>
-</div>`;
+        <h1 class="display-4"><i class="fas fa-user-lock"></i></h1>
+        <p class="lead">如果想了解推荐自学内容，专业课程简介和子专业等更多信息，请登录或注册。</p>
+        <hr class="my-4">
+        <a class="btn primBtn ml-2" href="${prefix}/auth/signup.html?redirect=${currentPage}" role="button">注册</a>
+        <a class="btn primBtn" href="${prefix}/auth/login.html?redirect=${currentPage}" role="button">登录</a>
+    </div>`;
     $('#programMainDiv').html(loading);
     let programCards = '';
     let programData = [];
@@ -82,6 +82,7 @@ $(document).ready(function () {
             if (!result) {
                 return;
             }
+            $('.program-title').text(result.title);
             const info = result.info;
             let briefData = info && Array.isArray(info) && info.length > 0 ?
                 info.filter(item => item.type === 'brief') : [];
@@ -96,7 +97,7 @@ $(document).ready(function () {
 
             const relatedPrograms = result.related_programs && Array.isArray(result.related_programs) && result.related_programs.length > 0 ?
                 result.related_programs : [];
-            let related = '<ul>';
+            let related = '<ul class="mb-0">';
             if (relatedPrograms.length > 0) {
                 relatedPrograms.forEach(function (item) {
                     if (item.title !== title) {

@@ -24,7 +24,7 @@ class MailBox extends Database
             $mail->CharSet = 'UTF-8';
             $mail->Encoding = 'base64';
             $mail->SMTPAutoTLS = false;
-            $mail->SMTPDebug = 4; // Enable verbose debug output
+            //$mail->SMTPDebug = 4; // Enable verbose debug output
             $mail->isSMTP();
             $mail->Host = 'hwsmtp.exmail.qq.com'; // Set the SMTP server to send through
             $mail->SMTPAuth   = true; // Enable SMTP authentication
@@ -39,8 +39,7 @@ class MailBox extends Database
             if (!empty(trim($receiver2))) {
                 $mail->addAddress($receiver2);
             }
-            $mail->addAddress("wyao@alcanada.com");
-            // $mail->addAddress('ellen@example.com'); // Name is optional
+            //$mail->addAddress("wyao@alcanada.com");
             // $mail->addReplyTo('info@example.com', 'Information');
             // $mail->addCC('cc@example.com');
             // $mail->addBCC('bcc@example.com');

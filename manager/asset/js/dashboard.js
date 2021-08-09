@@ -1,43 +1,45 @@
-import { prefix, loadingMessage, showFloatMessage } from '../../../asset/js/common';
-import { auth, renderNav } from './global';
+import { prefix, loadingMessage, showFloatMessage, useMessage } from '../../../asset/js/common.js';
+import { auth, renderNav } from './global.js';
 
 $(document).ready(function () {
+    let allUsers = [];
+    let allTestResults = [];
     $('#message').hide();
     renderNav();
-    auth();
     fetchDashboardData();
 
     $(document).on('click', '.user-names', function () {
         $('#testResultModal').modal('show');
         $('#historyDiv').html(loadingMessage);
         const id = $(this).attr('id').replace('userId_', '');
-        $.get(`${prefix}/manager/api/dashboard.php?user=${id}`).done(function (data) {
-            if (data) {
-                const result = JSON.parse(data);
-                let historyList = `<table id="testHistoryTable" class='table table-striped'><thead class="thead-dark"><tr>
+        const foundUserTestResults = allTestResults.filter(item => item.user_id == id);
+        if (foundUserTestResults.length === 0) {
+            $('#historyDiv').html(useMessage('warning', '没有找到该用户的测试数据。'));
+            return;
+        }
+        let historyList = `<table id="testHistoryTable" class='table table-striped'>
+                <thead class="thead-dark">
+                <tr>
                 <th>测试</th>
                 <th>创建时间</th>
                 <th>状态</th>
-                </tr></thead><tbody>`;
-                if (Array.isArray(result)) {
-                    result.map(function (item) {
-                        let jsDate = undefined;
-                        if (item.create_date) {
-                            jsDate = moment(item.create_date);
-                            if (jsDate < moment('2020-10-20')) {
-                                jsDate.add(moment.duration(12, 'hours'));
-                            }
-                        }
-                        historyList += `<tr><td><a href="#/" class="test-results" id="testResultId_${item.id}">${item.title}</a></td>
+                </tr>
+                </thead>
+                <tbody>`;
+        foundUserTestResults.map(function (item) {
+            let jsDate = undefined;
+            if (item.create_date) {
+                jsDate = moment(item.create_date);
+                jsDate.add(moment.duration(12, 'hours'));
+            }
+            historyList += `<tr><td><a href="#/" class="test-results" id="testResultId_${item.id}">${item.title}</a></td>
                         <td>${jsDate ? jsDate.format('YYYY-MM-DD HH:mm') : ''}</td>
                         <td>${item.status}</td></tr>`;
-                    });
-                }
-                historyList += `</tbody></table>`;
-                $('#historyDiv').html(historyList);
-                $('#testHistoryTable').DataTable();
-            }
         });
+
+        historyList += `</tbody></table>`;
+        $('#historyDiv').html(historyList);
+        $('#testHistoryTable').DataTable();
     });
 
     $(document).on('click', '.test-results', function () {
@@ -47,24 +49,25 @@ $(document).ready(function () {
             if (data) {
                 const result = JSON.parse(data);
                 const dimensionResult = result;
+                console.log(dimensionResult)
                 if (!dimensionResult) {
                     message = generateMessage('warning', '无法找到该数据。请刷新页面重试。');
                     $('#historyDetailsDiv').html(message);
                     return;
                 }
-                code = dimensionResult.code;
-                title = dimensionResult.title;
-                description = dimensionResult.description;
-                basicAnalysis = dimensionResult.basicAnalysis;
-                career = dimensionResult.career;
-                characteristics = dimensionResult.characteristics;
-                jobs = dimensionResult.jobs;
-                programs = dimensionResult.programs;
-                tags = dimensionResult.tags;
-                weights = dimensionResult.weights;
-                majorDimensions = dimensionResult.majorDimensions;
-                notification = result.saved_notification ? true : false;
-                imgSrc = dimensionResult.img;
+                const code = dimensionResult.code;
+                const title = dimensionResult.title;
+                const description = dimensionResult.description;
+                const basicAnalysis = dimensionResult.basicAnalysis;
+                const career = dimensionResult.career;
+                const characteristics = dimensionResult.characteristics;
+                const jobs = dimensionResult.jobs;
+                const programs = dimensionResult.programs;
+                const tags = dimensionResult.tags;
+                const weights = dimensionResult.weights;
+                const majorDimensions = dimensionResult.majorDimensions;
+                const notification = result.saved_notification ? true : false;
+                const imgSrc = dimensionResult.img;
                 //presentation
 
                 $('#resultTitle').html(`${code} ${title}`);
@@ -118,6 +121,7 @@ $(document).ready(function () {
                     jobList += `<li>${item.description}</li>`;
                 });
                 jobList += `</ul>`;
+                let weightList = '';
                 weights.forEach(function (weight, index) {
                     const chartData = {
                         labels: weight.map((item) => item.code + ' ' + item.title),
@@ -143,6 +147,10 @@ $(document).ready(function () {
                         }
                     });
                 });
+                weights.flat().forEach((weight, index) => {
+                    weightList += `<div class='col-lg-2 col-md-3 col-sm-4'><b>${weight.code} ${weight.title}</b>: ${weight.total}</div>`;
+                })
+                $('#weightDiv').html(weightList);
                 $('#programAndJobAnalytics').html(careerAnalytics + programList + jobList);
             }
         });
@@ -178,50 +186,64 @@ $(document).ready(function () {
     }
 
     function fetchDashboardData() {
-        $.get(`${prefix}/manager/api/dashboard.php`).done(function (data) {
-            if (!data) {
-                showFloatMessage('#message', useMessage('danger', '无法连接服务器。'));
-                return;
-            }
-            const result = JSON.parse(data);
-            const { users, tests, test_lastWeek, test_lastMonth } = result;
-            if (users) {
-                let userTable = '';
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-                [...users].map(function (item) {
-                    let jsDate = undefined;
-                    if (item.date_time) {
-                        jsDate = moment(item.date_time);
-                        if (jsDate < moment('2020-10-20')) {
-                            jsDate.add(moment.duration(12, 'hours'));
+        auth().then(
+            (result) => {
+                if (result.status === 'success') {
+                    $.get(`${prefix}/manager/api/dashboard.php`).done(function (data) {
+                        if (!data) {
+                            showFloatMessage('#message', useMessage('danger', '无法连接服务器。'));
+                            return;
                         }
-                    }
-                    userTable += `<tr>
-                    <td>${item.results ? `<a href="#/" class="user-names" id="userId_${item.id}">查看</a>` : '未测试'}</td>
-                    <td>${item.nick_name ? item.nick_name : ''}</a></td>
-                    <td>${item.email ? item.email : ''}</td>
-                    <td>${item.phone ? item.phone : ''}</td>
-                    <td>${item.sex ? item.sex == 1 ? '男' : '女' : ''}</td>
-                    <td>${item.full_name ? item.full_name : ''}</td>
-                    <td>${item.age ? item.age : ''}</td>
-                    <td>${item.is_study_aboard ? item.is_study_aboard : ''}</td>
-                    <td>${item.how_know ? item.how_know : ''}</td>
-                    <td>${item.city ? item.city : ''}</td>
-                    <td>${item.province ? item.province : ''}</td>
-                    <td>${item.country ? item.country : ''}</td>
-                    <td><a href="#/" class="ip-addresses" id="userIp_${item.ip ? item.ip : ''}">${item.ip ? item.ip : ''}</a></td>
-                    <td>${jsDate ? jsDate.format('YYYY-MM-DD HH:mm') : ''}</td></tr>`;
-                });
-                $('#userTableBody').html(userTable);
-                $('#userTable').DataTable();
-                const usersNoTestResultRate = users.filter(item => item.results === 0).length / users.length * 100;
-                $("#testRate").css("color", usersNoTestResultRate > 50 ? "green" : "orange");
-                $("#totalResults").text(tests);
-                $("#testRate").text(`${usersNoTestResultRate.toFixed(2)}%`);
-                $('#totalUser').text(users.length);
-                $('#lastWeekTest').text(test_lastWeek);
-                $('#lastMonthTest').text(test_lastMonth);
+                        const result = JSON.parse(data);
+                        const { users, tests, test_lastWeek, test_lastMonth, status, testResults } = result;
+                        if (status === 'NO_LOGIN') {
+                            return;
+                        }
+                        if(testResults && Array.isArray(testResults)){
+                            allTestResults = testResults;
+                        }
+                        if (users && Array.isArray(users)) {
+                            allUsers = _.uniqBy(users, 'id');
+                            let userTable = '';
+                            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                            allUsers.map(function (item) {
+                                let jsDate = undefined;
+                                if (item.date_time) {
+                                    jsDate = moment(item.date_time);
+                                    jsDate.add(moment.duration(12, 'hours'));
+                                }
+                                userTable += `<tr>
+                            <td><a href="#/" class="user-names" id="userId_${item.id}">查看</a></td>
+                            <td>${item.nick_name ? item.nick_name : ''}</a></td>
+                            <td>${item.email ? item.email : ''}</td>
+                            <td>${item.phone ? item.phone : ''}</td>
+                            <td>${item.sex ? item.sex == 1 ? '男' : '女' : ''}</td>
+                            <td>${item.full_name ? item.full_name : ''}</td>
+                            <td>${item.age ? item.age : ''}</td>
+                            <td>${item.is_study_aboard ? item.is_study_aboard : ''}</td>
+                            <td>${item.how_know ? item.how_know : ''}</td>
+                            <td>${item.city ? item.city : ''}</td>
+                            <td>${item.province ? item.province : ''}</td>
+                            <td>${item.country ? item.country : ''}</td>
+                            <td><a href="#/" class="ip-addresses" id="userIp_${item.ip ? item.ip : ''}">${item.ip ? item.ip : ''}</a></td>
+                            <td>${jsDate ? jsDate.format('YYYY-MM-DD HH:mm') : ''}</td></tr>`;
+                            });
+                            $('#userTableBody').html(userTable);
+                            $('#userTable').DataTable();
+                            const usersHasTestReults = testResults.map(item => item.user_id).filter((v, i, a) => a.indexOf(v) === i);
+                            console.log(usersHasTestReults.length, allUsers.length)
+                            const userHasResultRate = usersHasTestReults.length / allUsers.length * 100;
+                            $('#excelBtn').html(`<a class="btn btn-warning" href="./api/export-excel.php?target=customers">导出Excel</a>`);
+                            $("#testRate").css("color", userHasResultRate > 50 ? "green" : "orange");
+                            $("#totalResults").text(tests);
+                            $("#testRate").text(`${userHasResultRate.toFixed(2)}%`);
+                            $('#totalUser').text(allUsers.length);
+                            $('#lastWeekTest').text(test_lastWeek);
+                            $('#lastMonthTest').text(test_lastMonth);
+                        }
+                    });
+                }
             }
-        });
+        );
     }
 });

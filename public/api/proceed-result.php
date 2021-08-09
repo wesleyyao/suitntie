@@ -72,8 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $customer->fetch_current_user(isset($_SESSION["login_user"]) ? $_SESSION["login_user"] : 0);
                 $dimension_result->fetchResult($new_result_id);
                 $email_content = emailContent($customer->nick_name, $dimension_result->code, $dimension_result->title, $customer->email, $customer->phone, $customer->full_name, $customer->age, $customer->is_study_aboard, $customer->how_know);
-                $is_send = $email->send($receiver, $receiver2, $subject, $email_content);
-                //$is_send = true;
+                //$is_send = $email->send($receiver, $receiver2, $subject, $email_content);
+                $is_send = true;
                 $_SESSION["is_sent_new_result"] =  $is_send ? true : false;
                 $result["status"] = $is_send ? "sent" : "failure";
             } else {

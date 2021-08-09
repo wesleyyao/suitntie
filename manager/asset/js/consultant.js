@@ -1,11 +1,10 @@
 import { prefix, showFloatMessage, useMessage } from '../../../asset/js/common.js';
-import { auth, renderNav } from './global';
+import { auth, renderNav } from './global.js';
 
 $(document).ready(function () {
     $('#message').hide();
     $('#message').css('z-index', 1060);
     renderNav();
-    auth();
     let tutors = [];
     let regionData = [];
     let shcoolData = [];
@@ -15,7 +14,7 @@ $(document).ready(function () {
     $('#consultantFormsDiv').load(`${prefix}/manager/modules/consultant/components/forms.html`);
     fetchConsultantData();
 
-    $('.new-consultant-btn').click(function(){
+    $('.new-consultant-btn').click(function () {
         const button = $(this).attr('id');
         $('.consultant-input').each(function () {
             $(this).val('');
@@ -46,10 +45,12 @@ $(document).ready(function () {
             success: function (data) {
                 if (data) {
                     const result = JSON.parse(data);
-                    $('#consultantModal').modal('hide');
                     showFloatMessage('#message', useMessage(result.status, result.content), 3000);
                     $('#' + operate + 'Table').DataTable().destroy();
                     fetchConsultantData();
+                    if (result.status == 'success') {
+                        $('#consultantModal').modal('hide');
+                    }
                 }
                 else {
                     showFloatMessage('#message', useMessage('warning', '未保存成功，请重试'), 3000);
@@ -109,7 +110,7 @@ $(document).ready(function () {
             $('#regionIndex').val(foundData.r_index);
             $('#regionStatus').val(foundData.status);
         }
-        else if(button.indexOf('recommendContent') > -1){
+        else if (button.indexOf('recommendContent') > -1) {
             id = button.replace('recommendContent', '');
             formFor = button.replace(id, '');
             const foundRec = recommendations.find(item => item.id == recommendContentId);
@@ -126,7 +127,7 @@ $(document).ready(function () {
             $('#contentAuthor').val(foundData.author);
             $('#contentDouban').val(foundData.douban);
         }
-        else{
+        else {
 
         }
         $('.consultant-forms').each(function () {
@@ -143,54 +144,62 @@ $(document).ready(function () {
         $('#consultantModal').modal('show');
     });
 
-    function fetchConsultantData(){
-        $.get(`${prefix}/manager/api/consultant.php?tutor=all`).done(function(data){
-            const result = JSON.parse(data);
-            console.log(result);
-            if(!result){
-                return;
-            }
-            const { consultants, schools, regions } = result;
-            tutors = consultants ? [...consultants] : [];
-            let consultantTableBody = '';
-            [...consultants].map(function(item){
-                consultantTableBody += `<tr><td>${item.name ? item.name : ''}</td>
+    function fetchConsultantData() {
+        auth().then(
+            (result) => {
+                if (result.status === 'success') {
+                    $.get(`${prefix}/manager/api/consultant.php?tutor=all`).done(function (data) {
+                        const result = JSON.parse(data);
+                        if (!result) {
+                            return;
+                        }
+                        const { consultants, schools, regions, status } = result;
+                        if (status === 'NO_LOGIN') {
+                            return;
+                        }
+                        tutors = consultants ? [...consultants] : [];
+                        let consultantTableBody = '';
+                        [...consultants].map(function (item) {
+                            consultantTableBody += `<tr><td>${item.name ? item.name : ''}</td>
                 <td>${item.nick_name ? item.nick_name : ''}</td>
                 <td>${item.education ? item.education : ''}</td>
                 <td>${item.introduction ? item.introduction : ''}</td>
                 <td>${item.thumbnail ? `<img src="${prefix + item.thumbnail}" alt="" style="width: 90px; height: auto;" />` : `<i class="fas fa-user-circle h2"></i>`}</td>
                 <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
                 <td width="90"><a href="#/" class="edit-consultant-btn" id="tutor${item.id}">编辑</a> | <a href="./details.html?tutor=${item.id}">专业</a></td>`;
-            });
-            $('#consultantTableBody').html(consultantTableBody);
-            $('#consultantTable').dataTable();
+                        });
+                        $('#consultantTableBody').html(consultantTableBody);
+                        $('#consultantTable').dataTable();
 
-            regionData = regions ? [...regions] : [];
-            let regionTableBody = '';
-            let schoolRegionOptions = '';
-            [...regions].map(function(item){
-                regionTableBody += `<tr>
+                        regionData = regions ? [...regions] : [];
+                        let regionTableBody = '';
+                        let schoolRegionOptions = '';
+                        [...regions].map(function (item) {
+                            regionTableBody += `<tr>
                 <td>${item.name}</td>
                 <td>${item.r_index}</td>
                 <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
                 <td><a href="#/" class="edit-consultant-btn" id="region${item.id}">编辑</a></td>`;
-                schoolRegionOptions += `<option value="${item.id}">${item.name}</option>`;
-            });
-            $('#regionTableBody').html(regionTableBody);
-            $('#regionTable').dataTable();
-            $('#schoolRegion').append(schoolRegionOptions);
+                            schoolRegionOptions += `<option value="${item.id}">${item.name}</option>`;
+                        });
+                        $('#regionTableBody').html(regionTableBody);
+                        $('#regionTable').dataTable();
+                        $('#schoolRegion').html(schoolRegionOptions);
 
-            shcoolData = schools ? [...schools] : [];
-            let schoolTableBody = '';
-            [...schools].map(function(item){
-                schoolTableBody += `<tr>
+                        shcoolData = schools ? [...schools] : [];
+                        let schoolTableBody = '';
+                        [...schools].map(function (item) {
+                            schoolTableBody += `<tr>
                 <td>${item.name}</td>
                 <td>${regions.find(r => r.id === item.region)?.name}</td>
                 <td><span style="" class="badge bg-${item.status === 'open' ? 'success' : 'danger'} text-light">${item.status === 'open' ? '可用' : '禁用'}</span></td>
                 <td><a href="#/" class="edit-consultant-btn" id="school${item.id}">编辑</a></td>`;
-            });
-            $('#schoolTableBody').html(schoolTableBody);
-            $('#schoolTable').dataTable();
-        });
+                        });
+                        $('#schoolTableBody').html(schoolTableBody);
+                        $('#schoolTable').dataTable();
+                    });
+                }
+            }
+        );
     }
 });
