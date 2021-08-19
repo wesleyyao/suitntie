@@ -53,12 +53,12 @@ $(document).ready(function () {
                 break;
             }
             tableBody += `<tr>
-            <td>${data[i].rank}</td>
-            <td><div class="d-inline-flex" style="vertical-align: middle">
-            <img class="ranking-school-logo-sm" src="${prefix}/asset/image/logo/${data[i].logoPath}" alt="${data[i].university}Logo" />
+            <td class="text-center align-middle">${data[i].rank}</td>
+            <td><div class="d-inline-flex align-middle">
+            <img class="ranking-school-logo-sm mr-3 nopadding" src="${prefix}/asset/image/logo/${data[i].logoPath}" alt="${data[i].university}Logo" />
             <label class="pt-3">${data[i].university}</label>
             </div></td>
-            <td>${data[i].country}</td></tr>`;
+            <td class="align-middle">${data[i].country}</td></tr>`;
         }
         return tableBody;
     }
@@ -152,19 +152,34 @@ $(document).ready(function () {
                             if (!foundSchool) {
                                 return;
                             }
-                            const schoolCard = `<div class="card bg-light">
+                            const schoolCard = `<div class="col-12 pt-3 pl-0 pr-0" id="schoolCard">
+                            <div class="card bg-light border-0">
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="row ml-2">
                                         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
                                             <img style="width: 80px;height: 80px" src="${prefix}/asset/image/logo/${foundSchool.logoPath}" />
                                         </div>
                                         <div class="col-xl-10 col-lg-10 col-md-9 col-sm-8">
                                             <p class="card-title">${foundSchool.university}</p>
-                                            <p>综合排名: ${foundSchool.rank} | 国家地区: ${foundSchool.country}</p>
+                                            <p>综合排名: ${foundSchool.rank} &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 国家地区: ${foundSchool.country}</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>`;
+                            </div>
+                            <div class="row pt-3">
+                                <div class="col-12 program-list">
+                                    <table class="table table-borderless">
+                                        <thead class="bg-light rounded">
+                                            <tr>
+                                                <th scope="col">专业</th>
+                                                <th scope="col">排名</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="schoolProgramRankingTableBody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> </div>`;
                             $("#schoolCard").html(schoolCard);
 
                             const foundSchoolProgramRankings = rankingData.filter(item => item.university === foundSchool.university);
