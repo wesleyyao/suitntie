@@ -34,16 +34,31 @@
                     <form id="rankingForm" method="post" enctype="multipart/form-data">
                         <div class="row mt-3">
                             <div class="col-6 d-inline-flex">
-                                <label><span class="text-danger">*</span> 排名文件csv</label>
+                                <label><span class="text-danger">*</span> 排名文件 csv</label>
                                 <input type="file" class="pl-2" name="rankingFile" />
                             </div>
                             <div class="col-4">
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" name="isOverallRanking">
                                     <label class="form-check-label" for="notChangeImage">该文件是综合排名？</label>
-                                  </div>
+                                </div>
                             </div>
                             <div class="col-2 text-right">
+                                <button class="btn btn-success" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <form id="rankingTitleForm" method="post" enctype="multipart/form-data">
+                        <div class="row mt-3">
+                            <div class="col-6 d-inline-flex">
+                                <label><span class="text-danger">*</span> tracking sheet csv</label>
+                                <input type="file" class="pl-2" name="rankingTrackSheet" />
+                            </div>
+                            <div class="col-6 text-right">
                                 <button class="btn btn-success" type="submit">提交</button>
                             </div>
                         </div>
@@ -57,8 +72,12 @@
                             role="tab" aria-controls="programRanking" aria-selected="true">按专业排名</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="schoolRanking-tab" data-toggle="tab" href="#schoolRanking"
-                            role="tab" aria-controls="schoolRanking" aria-selected="false">学校综合排名</a>
+                        <a class="nav-link" id="schoolRanking-tab" data-toggle="tab" href="#schoolRanking" role="tab"
+                            aria-controls="schoolRanking" aria-selected="false">学校综合排名</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="rankingTitle-tab" data-toggle="tab" href="#rankingTitle" role="tab"
+                            aria-controls="rankingTitle" aria-selected="false">专业tranking sheet</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -82,8 +101,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="schoolRanking" role="tabpanel"
-                        aria-labelledby="schoolRanking-tab">
+                    <div class="tab-pane fade" id="schoolRanking" role="tabpanel" aria-labelledby="schoolRanking-tab">
                         <div class="row mb-5">
                             <div class="col-12">
                                 <table class="table table-striped" id="schoolRankingTable">
@@ -101,7 +119,24 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="tab-pane fade" id="rankingTitle" role="tabpanel" aria-labelledby="rankingTitle-tab">
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <table class="table table-striped" id="rankingProgramTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>适途专业</th>
+                                            <th>排名专业</th>
+                                            <th>排名来源</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="rankingProgramTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

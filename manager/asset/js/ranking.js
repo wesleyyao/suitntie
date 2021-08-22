@@ -54,6 +54,28 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('submit', '#rankingTitleForm', function (e) {
+        e.preventDefault();
+        let formFields = $(this)[0];
+        let formData = new FormData(formFields);
+        console.log(formData)
+        showFloatMessage('#message', submittingMessage, 0);
+        $.ajax({
+            url: `${prefix}/manager/api/ranking-tracksheet.php`,
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                handleCallback(data);
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+
     function reOrganizeDataList(data, key) {
         let newDataList = [...data];
         newDataList = newDataList.filter((item) => !isNaN(parseInt(item[key])));
@@ -68,13 +90,17 @@ $(document).ready(function () {
                     $.get(`${prefix}/manager/api/ranking.php`).done(function (data) {
                         const result = JSON.parse(data);
                         console.log(result)
-                        const { overallRankings, programRankings } = result;
+                        const { overallRankings, programRankings, rankingTitles } = result;
                         if (!Array.isArray(overallRankings)) {
                             $('#schoolRankingTableBody').html(noData);
                             return;
                         }
                         if (!Array.isArray(programRankings)) {
                             $('#programRankingTableBody').html(noData);
+                            return;
+                        }
+                        if (!Array.isArray(rankingTitles)) {
+                            $('#rankingTitlesTableBody').html(noData);
                             return;
                         }
 
@@ -85,7 +111,7 @@ $(document).ready(function () {
                             programRankingTableBody += `<tr>
                             <td>${item.title}</td>
                             <td>${item.rank}</td>
-                            <td><img src="${prefix}/asset/image/logo/${item.logoPath}" /></td>
+                            <td><img id="schoolLogo${index}" src="${prefix}/asset/image/logo/${item.logoPath}" /></td>
                             <td>${item.university}</td>
                             <td>${item.country}</td>
                             </tr>`;
@@ -105,7 +131,18 @@ $(document).ready(function () {
                         });
                         $('#schoolRankingTableBody').html(schoolRankingTableBody);
                         $('#schoolRankingTable').DataTable();
-                    })
+                        // render ranking program titles table
+                        let rankingProgramTableBody = '';
+                        rankingTitles.forEach((item, index) => {
+                            rankingProgramTableBody += `<tr>
+                            <td>${item.title}</td>
+                            <td>${item.nameForRanking}</td>
+                            <td>${item.ranking_by}</td>
+                            </tr>`;
+                        });
+                        $('#rankingProgramTableBody').html(rankingProgramTableBody);
+                        $('#rankingProgramTable').DataTable();
+                    });
                 }
             });
     }

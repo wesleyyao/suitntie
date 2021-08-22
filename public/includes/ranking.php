@@ -14,7 +14,7 @@
 
         public function fetchAllRankingData() {
             $data = array();
-            $query = "SELECT * FROM program_rankings r INNER JOIN programs p ON p.id = r.p_id";
+            $query = "SELECT r.id as 'rankingId', r.university, r.rank, r.country, r.logoPath, p.id as 'pId', p.title, p.description, p.link, p.related, p.ranking_by, p.nameForRanking FROM program_rankings r INNER JOIN programs p ON p.id = r.p_id";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();

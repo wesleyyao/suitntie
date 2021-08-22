@@ -439,6 +439,9 @@ button:focus, button:active, button:hover, label:focus, .btn:active, .btn.active
     bottom: 20px;
     right: 20px;
     cursor: pointer;
+    padding: 5px;
+    background:rgba(242, 242, 242, 0.65);
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 768px) {

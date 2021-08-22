@@ -17,6 +17,7 @@
         $data = array();
         $data["programRankings"] = $rankings->fetchAllRankingData();
         $data["overallRankings"] = $schools->fetchAll();
+        $data["rankingTitles"] = $programs->fetch_all_program_items();
         echo json_encode($data);
         exit;
     }

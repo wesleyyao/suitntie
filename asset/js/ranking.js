@@ -6,7 +6,7 @@ $(document).ready(function () {
     <td></td>
     <td>
     <div class="alert alert-light" role="alert">
-        未找到任何导师数据。
+        未找到数据。
     </div>
     </td>
     <td></td>
@@ -48,14 +48,14 @@ $(document).ready(function () {
 
     function renderRankingTable(data) {
         let tableBody = '';
-        for(let i = 0; i < data.length; i++){
-            if(i >= (currentPage * NUMBER_PER_PAGE)){
+        for (let i = 0; i < data.length; i++) {
+            if (i >= (currentPage * NUMBER_PER_PAGE)) {
                 break;
             }
             tableBody += `<tr>
             <td class="text-center align-middle">${data[i].rank}</td>
             <td><div class="d-inline-flex align-middle">
-            <img class="ranking-school-logo-sm mr-3 nopadding" src="${prefix}/asset/image/logo/${data[i].logoPath}" alt="${data[i].university}Logo" />
+            <img id="schoolLogo${data[i].$rankingId || data[i].id}" class="ranking-school-logo-sm mr-3 nopadding" src="${prefix}/asset/image/logo/${data[i].logoPath}" alt="${data[i].university}Logo" />
             <label class="pt-3">${data[i].university}</label>
             </div></td>
             <td class="align-middle">${data[i].country}</td></tr>`;
@@ -77,19 +77,30 @@ $(document).ready(function () {
         let newData = [];
         if (filterName === 'country') {
             newData = _.uniq(data.map((item, index) => item.country));
-            newData = newData.map((item, index) => { return { id: item, text: item, rIndex: popularRegions.includes(item) ? 0 : index + 4 } });
-            newData = newData.sort((a, b) => a.rIndex - b.rIndex);
-            newData.unshift({ id: 'all', text: '全球' });
+            let notPopularRegions = [];
+            for (let i = 0; i < newData.length; i++) {
+                if (!popularRegions.includes(newData[i])) {
+                    notPopularRegions.push({ id: newData[i], text: newData[i] });
+                }
+            }
+
+            // newData = newData.map((item, index) => { return { id: item, text: item, rIndex: popularRegions.includes(item) ? 0 : index + 4 } });
+            // newData = newData.sort((a, b) => a.rIndex - b.rIndex);
+            newData = [
+                { id: 'all', text: '全球' },
+                { id: 'popular', text: '热门地区', children: popularRegions.map(item => { return { id: item, text: item } }) }, { id: 'notPopular', text: '其他地区', children: notPopularRegions }];
+
         }
         else {
             newData = data.map((item, index) => {
+                const details = _.uniqBy(item.details, 'nameForRanking').filter(d=> d.ranking_by);
                 return {
                     id: item.id,
                     text: item.name,
-                    children: item.details.map(
+                    children: details.map(
                         (d) => {
                             return {
-                                text: d.title,
+                                text: (d.nameForRanking || d.title) + ' - ' + d.ranking_by,
                                 id: d.id
                             }
                         })
@@ -107,9 +118,19 @@ $(document).ready(function () {
         return newData;
     }
 
-    function updatePagination(data){
+    function updatePagination(data) {
         pageSize = Math.round(data.length / 6);
         currentPage = 1;
+    }
+
+    function validateLogoImage() {
+        rankingList.forEach((item) => {
+            $('#schoolLogo' + (item.rankingId || item.id)).on('load', function (e) {
+
+            }).on('error', function (e) {
+                $('#schoolLogo' + (item.rankingId || item.id)).attr('src', `${prefix}/asset/image/logo/placeholderImg.png`);
+            });
+        })
     }
 
     function fetchRankingData() {
@@ -131,7 +152,7 @@ $(document).ready(function () {
             updatePagination(rankingList);
             $('#regionFilter').select2({ data: convertFilterData(rankingList, 'country') });
             $('#rankingTableBody').html(renderRankingTable(rankingList));
-
+            validateLogoImage();
             //render school searcher
             const autoCompleteJS = new autoComplete({
                 selector: "#autoComplete",
@@ -157,7 +178,7 @@ $(document).ready(function () {
                                 <div class="card-body">
                                     <div class="row ml-2">
                                         <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4">
-                                            <img style="width: 80px;height: 80px" src="${prefix}/asset/image/logo/${foundSchool.logoPath}" />
+                                            <img id="foundSchoolLogo" style="width: 80px;height: 80px" src="${prefix}/asset/image/logo/${foundSchool.logoPath}" />
                                         </div>
                                         <div class="col-xl-10 col-lg-10 col-md-9 col-sm-8">
                                             <p class="card-title">${foundSchool.university}</p>
@@ -181,7 +202,11 @@ $(document).ready(function () {
                                 </div>
                             </div> </div>`;
                             $("#schoolCard").html(schoolCard);
+                            $('#foundSchoolLogo').on('load', function (e) {
 
+                            }).on('error', function (e) {
+                                $('#foundSchoolLogo').attr('src', `${prefix}/asset/image/logo/placeholderImg.png`);
+                            });
                             const foundSchoolProgramRankings = rankingData.filter(item => item.university === foundSchool.university);
                             $("#schoolProgramRankingTableBody").html(renderSchoolProgramRankingTable(foundSchoolProgramRankings));
                         },
@@ -218,7 +243,7 @@ $(document).ready(function () {
         }
         else {
             rankingList = reOrganizeData([...rankingData].filter(
-                (item) => item.country === value && item.p_id === parseInt(currentProgram)
+                (item) => item.country === value && item.pId === parseInt(currentProgram)
             ));
         }
         $('#rankingTableBody').html(renderRankingTable(rankingList));
@@ -237,22 +262,38 @@ $(document).ready(function () {
         else {
             rankingList = reOrganizeData(
                 [...rankingData].filter(
-                    item => item.country === (currentCountry !== 'all' ? currentCountry : item.country) && item.p_id === parseInt(value)
+                    item => item.country === (currentCountry !== 'all' ? currentCountry : item.country) && item.pId === parseInt(value)
                 ));
-
         }
-        $('#rankingTableBody').html(renderRankingTable(rankingList));
+        if (rankingList.length === 0) {
+            $('#showMore').hide();
+            $('#rankingTableBody').html(noData);
+        }
+        else {
+            if ($('#showMore').css('dispaly') != 'block') {
+                $('#showMore').show();
+            }
+            $('#rankingTableBody').html(renderRankingTable(rankingList));
+        }
     });
 
     //show more
-    $('#showMore').on('click', function(){
-        if(currentPage === pageSize - 1){
+    $('#showMore').on('click', function () {
+        if (currentPage === pageSize - 1) {
             $('#showMore').text('已经加载全部');
         }
         currentPage += 1;
         $('#rankingTableBody').html(renderRankingTable(rankingList));
+        validateLogoImage();
         $('html, body').animate({
             scrollTop: $("#rankingTableBody").offset().top + $('#rankingTableBody').height() - 400
         }, 1000);
+    });
+
+    $('#backTopBtn').on('click', function () {
+        const btnPosition = $(this).offset().top;
+        $('html, body').animate({
+            scrollTop: $("#rankingTableBody").offset().top - 220
+        })
     });
 });

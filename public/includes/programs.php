@@ -99,7 +99,7 @@
 
         private function fetch_programs_by_cateogry($pc_id){
             $data = array();
-            $query = "SELECT `id`, `title`, `description` FROM programs WHERE `status` = 'open' AND pc_id = ?";
+            $query = "SELECT `id`, `title`, `description`, `ranking_by`, `nameForRanking` FROM programs WHERE `status` = 'open' AND pc_id = ?";
             $sql = $this->conn->prepare($query);
             $sql->bind_param("i", $pc_id);
             $sql->execute();
@@ -114,7 +114,7 @@
 
         public function fetch_all_program_items(){
             $data = array();
-            $query = "SELECT `id`, `title`, `description`, `pc_id`, `related`, `status` FROM programs ORDER BY id DESC";
+            $query = "SELECT `id`, `title`, `description`, `pc_id`, `related`, `ranking_by`,`nameForRanking`, `status` FROM programs ORDER BY id DESC";
             $sql = $this->conn->prepare($query);
             $sql->execute();
             $result = $sql->get_result();
@@ -548,6 +548,30 @@
             try {
                 $sql = $this->conn->prepare($query);
                 $sql->bind_param("ssisi", $title, $content, $index, $status, $id);
+                if($sql->execute()){
+                    $this->conn->commit();
+                    return true;
+                }
+                else{
+                    $this->conn->rollback();
+                    return false;
+                }
+            } catch (Exception $e) {
+                $this->conn->rollback();
+                return false;
+            }
+        }
+
+        public function fetchProgramByRankingTitle(){
+
+        }
+
+        public function updateProgramRankingDataByName($rankingBy, $rankingTitle, $title){
+            $this->conn->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+            $query = "UPDATE programs SET `ranking_by` = ?, `nameForRanking` = ? WHERE `title` = ?";
+            try {
+                $sql = $this->conn->prepare($query);
+                $sql->bind_param("sss", $rankingBy, $rankingTitle, $title);
                 if($sql->execute()){
                     $this->conn->commit();
                     return true;
